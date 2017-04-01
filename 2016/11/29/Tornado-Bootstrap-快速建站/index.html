@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Tornado+Bootstrap 快速建站 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 TornadoTornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。1、完整的用以构建网站的基础模块。Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tornado+Bootstrap 快速建站 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/Tornado-Bootstrap-快速建站/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 TornadoTornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。1、完整的用以构建网站的基础模块。Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching">
+<meta property="og:image" content="http://p1.bpimg.com/567571/1001f9e6718f691f.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/da7fa1b653866611.png">
+<meta property="og:updated_time" content="2016-11-29T12:11:43.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tornado+Bootstrap 快速建站 | Hello,C">
+<meta name="twitter:description" content="0x01 TornadoTornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。1、完整的用以构建网站的基础模块。Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/1001f9e6718f691f.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Tornado+Bootstrap 快速建站</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-29" class="post-meta__date date">2016-11-29</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>, <a class="tags-link" href="/tags/web前端/">web前端</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-Tornado"><a href="#0x01-Tornado" class="headerlink" title="0x01 Tornado"></a>0x01 Tornado</h3><p>Tornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。<br>1、<strong>完整的用以构建网站的基础模块。</strong><br>Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching, cross-site request forgery protection，以及类似Facebook Connect的第三方认证。开发者可以随取所需，并且自由组合，甚至把Tornado与其他架构组合。 <a id="more"></a><br>2、<strong>实时服务。</strong><br>Tornado支持大量的同时发生的信息连接。用Tornado，能够通过HTTP或者Long Polling方便的书写实时服务。要知道，每一个FriendFeed的活跃用户都保持有一个连通FriendFeed服务器的开放通路。<br>3、<strong>高效能。</strong><br>Tornado比大多数用Python写的Web架构更快。根据一些实验，Tornado的速度是一般架构的4倍。</p>
+<pre><code>pip install tornado  #安装tornado
+</code></pre><p>Tornado内置了自己的HTTPServer，运行和部署它与其他Python web框架不太一样，需要写一个main()函数来启动服务。</p>
+<pre><code>def main():
+  app = make_app()
+  app.listen(8888)
+  IOLoop.current().start()
+
+if __name__ == &apos;__main__&apos;:
+  main()
+</code></pre><p>这里简单的输出一下：</p>
+<pre><code>import tornado.ioloop  
+import tornado.web  
+
+class MainHandler(tornado.web.RequestHandler):  
+    def get(self):  
+        self.write(&quot;Hello, world&quot;)  
+
+application = tornado.web.Application([  
+    (r&quot;/&quot;,MainHandler),  
+])  
+
+if __name__==&quot;__main__&quot;:  
+    application.listen(8888)  
+    tornado.ioloop.IOLoop.instance().start() 
+</code></pre><p>保存为hello.py，当我们运行hello.py时候，我们在浏览器输入127.0.0.1:8888，就可以访问到我们的Hello,world<br><img src="http://p1.bpimg.com/567571/1001f9e6718f691f.png" alt="">       </p>
+<h3 id="0x02-Bootsharp"><a href="#0x02-Bootsharp" class="headerlink" title="0x02 Bootsharp"></a>0x02 Bootsharp</h3><p>目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。</p>
+<p>2.1、下载代码放入我们的源代码中 <a href="http://getbootstrap.com/" target="_blank" rel="external">传送门</a>，下载已编译的版本<br>2.2、使用CDN，推荐大家使用。</p>
+<pre><code>&lt;!-- 新 Bootstrap 核心 CSS 文件 --&gt;
+&lt;link href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;!-- 可选的Bootstrap主题文件（一般不使用） --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css&quot;&gt;&lt;/script&gt;
+
+&lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p> <a href="https://www.staticfile.org/" target="_blank" rel="external">国内推荐使用</a><br> <a href="https://cdnjs.com/" target="_blank" rel="external">国际推荐使用</a>   </p>
+<h3 id="0x03-jQuery"><a href="#0x03-jQuery" class="headerlink" title="0x03 jQuery"></a>0x03 jQuery</h3><p>jQuery 是一个 JavaScript 库,极大地简化了 JavaScript编程。和Bootstrap类似，它也支持两种形式的安装。</p>
+<p>1、可以在官网下载放入源码进行加载 <a href="http://jquery.com/download/" target="_blank" rel="external">传送门</a><br>2、使用CDN</p>
+<pre><code>百度：http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+新浪：http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
+Google：http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+</code></pre><h3 id="0x04-将三者结合起来"><a href="#0x04-将三者结合起来" class="headerlink" title="0x04 将三者结合起来"></a>0x04 将三者结合起来</h3><p>Linux下可以使用tree命令查看文件结构。<br>目录结构</p>
+<pre><code>-static      ##主要放置配置文件
+    -css
+    -js
+    -fonts
+    -img
+-templates   ##主要放置页面
+    index.html
+    blog.html
+</code></pre><p><img src="http://p1.bpimg.com/567571/da7fa1b653866611.png" alt=""><br>static目录存放了我们下载的bootsharp的所有文件，下载的jquery.min.js文件也放入对应的js中。<br>总的来说，他的目录结构也相对简单，很好理解。</p>
+<p>最主要的的是编写后端的tornado代码</p>
+<pre><code>import os.path
+
+import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+
+from tornado.options import define, options
+define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
+
+class LoginHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render(&apos;login.html&apos;)
+
+if __name__ == &quot;__main__&quot;:
+    tornado.options.parse_command_line()
+    app = tornado.web.Application([(r&quot;/login&quot;,LoginHandler)],
+        template_path = os.path.join(os.path.dirname(__file__),&quot;templates&quot;),
+        static_path =os.path.join(os.path.dirname(__file__), &quot;static&quot;),
+        debug = True                                       
+          )   
+    http_server = tornado.httpserver.HTTPServer(app)
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+</code></pre><p>接下来就是前端的index.thml和login.html的编写<br>在这里需要注意的是由于我们把tornado、bootstrap放到了本地，所以我们采用第一种本地加载的方式，例如：</p>
+<pre><code>加载css:
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ static_url("css/bootstrap.min.css") }}&quot;&gt;
+加载js:
+&lt;script src=&quot;{{ static_url("js/bootstrap.min.js") }}&quot;&gt;&lt;/script&gt;
+</code></pre><p>而如果使用CDN的话：</p>
+<pre><code>加载css:
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt; 
+加载js:
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>推荐大家使用CDN的方式去加载。</p>
+<p>这样一个简单地页面就呈现了出来，是不是挺简单啊。其他的网站搭建差不多也是同理。</p>
+<p>这里只是简单的介绍了Tornado、Bootsharp、jQuery相互结合快速建站的思路，至于那些js、css等的语法这里并没有过多的介绍，大家下去可以仔细去了解，推荐搭建菜鸟教程挺不错的。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/29/Tornado-Bootstrap-快速建站/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

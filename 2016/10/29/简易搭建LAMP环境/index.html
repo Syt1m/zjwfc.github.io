@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      简易搭建LAMP环境 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简易搭建LAMP环境 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/29/简易搭建LAMP环境/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta property="og:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/64feffc46c6e7666.png">
+<meta property="og:updated_time" content="2016-10-29T06:36:31.426Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简易搭建LAMP环境 | Hello,C">
+<meta name="twitter:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">简易搭建LAMP环境</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-29" class="post-meta__date date">2016-10-29</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/LAMP环境搭建/">LAMP环境搭建</a>, <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="1、所需准备：CentOS7最小化安装"><a href="#1、所需准备：CentOS7最小化安装" class="headerlink" title="1、所需准备：CentOS7最小化安装"></a>1、所需准备：CentOS7最小化安装</h3><p>安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。<br>由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置<br>首先进入目录 </p>
+<pre><code>cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736
+</code></pre><a id="more"></a>    
+<p><img src="http://i1.piimg.com/567571/c1788cd6c10c8620.png" alt=""><br>将最后一行的no改为yes即可<br>重启网络服务 service network restart 即可<br>使用ip  address 进行测试</p>
+<p>静态IP地址设置</p>
+<pre><code>添加代码
+//需要把之前的dhcp设置为static
+BOOTPROTO=static
+IPADDR=192.168.1.110     //你的静态IP地址
+GATEWAY=192.168.1.1     //默认网关
+NETMASK=255.255.255.0  //子网掩码
+//子网掩码也可以这样表示
+#PREFIX=24
+DNS=223.5.5.5                   //DNS地址
+NM_CONTROLLED=no        //不使用Network Manager
+</code></pre><p>注意我们刚才的MAC地址和ip address的两个MAC地址是否一致。</p>
+<p>使用service network restart 或者systemctl restart network.service 命令，可能不会立即生效。使用ifdown eno16777736，然后ifup eno16777736 即可。</p>
+<p><strong><em>注意：CentOS 7.0默认使用的是firewall作为防火墙，最小化安装查看网络配置使用ip address</em></strong></p>
+<h3 id="2、更新源"><a href="#2、更新源" class="headerlink" title="2、更新源"></a>2、更新源</h3><p>我们可以使用阿里云源或者163源<br>最小化安装时，wget不会迷人被安装，所以我们得首先安装wget</p>
+<pre><code>yum -y install wget  安装wget
+</code></pre><p>首先我们备份我们的源，以免更换出错还可以恢复</p>
+<pre><code>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+</code></pre><p>更换阿里云</p>
+<pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+</code></pre><p>生成缓存</p>
+<pre><code>yum makecache
+</code></pre><p>这样我们就成功更换了源。</p>
+<p>还可以使用WinSCP，直接连接到我们的linux，找到配置额、文件的目录，找到/etc/yum.repos.d/CentOS-Base.repo将我们下载到的其他源直接进行覆盖上面，然后yum updata更新源就可以了。</p>
+<h3 id="3、安装Apache"><a href="#3、安装Apache" class="headerlink" title="3、安装Apache"></a>3、安装Apache</h3><p>3.1、安装Apache</p>
+<pre><code>yum install httpd   #安装，一直选择y
+</code></pre><p>3.2、设置配置文件<br>由于我们刚开始安装的，只能在它内部访问，那么我们想要在其他主机访问，那么就要修改一下配置文件</p>
+<pre><code>vi /etc/httpd/conf/httpd.conf  //进入配置文件
+</code></pre><p>找到</p>
+<pre><code>&lt;Directory /&gt;
+AllowOverride none
+Require all denied
+&lt;/Directory &gt;
+修改为：
+&lt;Directory /&gt;
+AllowOverride none
+Require all granted
+&lt;/Directory &gt;
+</code></pre><p><img src="http://i1.piimg.com/567571/64feffc46c6e7666.png" alt=""></p>
+<p>systemctl start httpd.service        //启动<br>systemctl stop  httpd.service    //停止<br>systemctl status httpd.service    //查看状态<br>systemctl restart httpd.service   //重启</p>
+<p>3.3、我们将httpd设置为开机启动，那么我们<br>systemctl enable httpd.service   //开机启动</p>
+<p>这样我们可以访问ip看到测试页面。</p>
+<h3 id="4、安装php"><a href="#4、安装php" class="headerlink" title="4、安装php"></a>4、安装php</h3><p>4.1、安装php</p>
+<pre><code>yum install php  #一直选择y就ok
+</code></pre><p>4.2、验证是否安装成功<br>在Apche的目录下面新建一文件test.php</p>
+<pre><code>cd /var/www/html
+vi test.php
+</code></pre><p>可以键入相关PHP代码，以输入hello world为例，</p>
+<pre><code>&lt;?php
+echo &quot;hello world&quot;;
+?&gt;
+</code></pre><p>访问网站ip+/test.php,如果正常解析，则说明PHP环境完成。</p>
+<h3 id="5、安装mysql"><a href="#5、安装mysql" class="headerlink" title="5、安装mysql"></a>5、安装mysql</h3><p>CentOS 7 版本将MySQL数据库软件从默认的程序列表中移除，用mariadb代替了，mariadb系统是MySQL的一个分支，主要由开源社区在维护，MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。</p>
+<p>5.1、安装mysql，首先得从官网下载源码</p>
+<pre><code>wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum install mysql-community-server
+</code></pre><p>5.2、安装完成后重启mysql服务</p>
+<pre><code>service mysqld restart
+</code></pre><p>5.3、测试mysql能否正常配合php的工作</p>
+<pre><code>&lt;?php
+   $con = mysql_conncet(&apos;localhost&apos;,&apos;root&apos;,&apos;root&apos;);
+   if(!$con){
+      die(&quot;connet mysql failed&quot;.mysql.error());     
+    }
+   echo &quot;connet mysql successful&quot;;       
+?&gt;
+</code></pre><p>默认情况下，php没有打开错误调试，需要在/etc/php.ini中将错误调试打开，即</p>
+<pre><code>;dispaly_errors
+;error_reporting
+</code></pre><p>前面的；去掉。</p>
+<p>5.4、如果不能成功，那就是php没有支持mysql</p>
+<pre><code>PHP Fatal error:  Call to undefined function mysql_connect()；
+</code></pre><p>在使用中出现了这个问题，查看了一下phpinfo发现没有mysql扩展。<br>步骤如下：<br>1 进入php的安装目录</p>
+<pre><code>cd 到ext/mysql 
+/usr/local/bin/phpize 
+./configure --with-php-config=/usr/local/bin/php-config --with-mysql=/usr/local/mysql/
+make
+make install
+</code></pre><p>在mysql/modules下看到了mysql.so<br>2 修改php.ini</p>
+<pre><code>添加extensions = &quot;mysql.so&quot;
+</code></pre><p>3 将mysql.so拷贝到extension_dir目录下，extension_dir在php.ini中设置<br>4重启apache就可以了。</p>
+<h3 id="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><a href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进" class="headerlink" title="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"></a>6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</h3><p>参考链接：<a href="http://www.jb51.net/os/188488.html" target="_blank" rel="external">http://www.jb51.net/os/188488.html</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/29/简易搭建LAMP环境/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

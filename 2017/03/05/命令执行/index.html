@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      命令执行 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 命令注入PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。
+Command Injection，即命令注入攻击，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令执行 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2017/03/05/命令执行/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 命令注入PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。
+Command Injection，即命令注入攻击，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资">
+<meta property="og:image" content="http://p1.bqimg.com/567571/b874cceb7f1ceedd.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/bdc67386a04b9902.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/5df4043ed95d4c3c.jpg">
+<meta property="og:updated_time" content="2017-03-05T03:27:40.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命令执行 | Hello,C">
+<meta name="twitter:description" content="0x01 命令注入PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。
+Command Injection，即命令注入攻击，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/b874cceb7f1ceedd.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">命令执行</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-05" class="post-meta__date date">2017-03-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/php/">php</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-命令注入"><a href="#0x01-命令注入" class="headerlink" title="0x01 命令注入"></a>0x01 命令注入</h3><p>PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。</p>
+<p><strong>Command Injection，即命令注入攻击</strong>，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。<a id="more"></a></p>
+<h3 id="0x02-命令注入原因"><a href="#0x02-命令注入原因" class="headerlink" title="0x02 命令注入原因"></a>0x02 命令注入原因</h3><p>PHP命令注入攻击：<br>PHP命令注入攻击存在的主要原因是Web应用程序员在应用PHP语言中一些具有命令执行功能的函数时，对用户提交的数据内容没有进行严格的过滤就带入函数中执行而造成的。例如，当黑客提交的数据内容为向网站目录写入PHP文件时，就可以通过该命令注入攻击漏洞写入一个PHP后门文件，进而实施进一步的渗透攻击。<br>在PHP中，可以执行命令的函数有system()、exec()、shell_exex()、passthru()、pcntl_exex()、popen()、proc_open()，一共七个函数，另外反引号(`)也可以执行命令，不过这种方法也是调用的shell_exec()函数。<br>PHP中可以使用下列四个函数来执行外部的应用程序或函数：<strong>system()、exec()、passthru()、shell_exec()</strong>，四个函数的原型如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">string system(string command, int &amp;return_var)</div><div class="line">    command 要执行的命令； return_var 存放执行命令的执行后的状态值。</div><div class="line">string exec (string command, array &amp;output, int &amp;return_var)</div><div class="line">    command 要执行的命令，output 获得执行命令输出的每一行字符串，return_var 存放执行命令后的状态值。</div><div class="line">void passthru (string command, int &amp;return_var)</div><div class="line">    command 要执行的命令，return_var 存放执行命令后的状态值。</div><div class="line">string shell_exec (string command)</div><div class="line">    command 要执行的命令，如下例所示，表示通过提交http://www.sectop.com/ex1.php?dir=| cat /etc/passwd操作，执行命令变成了system(&quot;ls -al | cat /etc/passwd&quot;)，输出/etc/passwd 文件的具体内容。</div></pre></td></tr></table></figure></p>
+<p>//ex1.php </p>
+<pre><code>&lt;?php
+$dir = $_GET[&quot;dir&quot;]; 
+if (isset($dir)) 
+{ 
+    echo &quot;&quot;; 
+    system(&quot;ls -al &quot;.$dir); 
+    echo &quot;&quot;; 
+} 
+?&gt; 
+</code></pre><p>popen()、proc_open()函数不会直接返回执行结果，而是返回一个文件指针。<br>popen()需要两个参数，一个是执行的命令，另一个是指针文件的连接模式，有r和w代表读和写。</p>
+<pre><code>&lt;?php
+popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
+?&gt;
+</code></pre><p>执行完之后可以在D盘根目录看到test.txt文件，内容为用户名。    </p>
+<p><strong>&amp;与&amp;&amp;与|的区别</strong><br>在Linux上，上面的;也可以用|、||代替<br>;前面的执行完执行后面的<br>|是管道符，显示后面的执行结果<br>||当前面的执行出错时执行后面的<br>在Windows上，不能用;可以用&amp;、&amp;&amp;、|、||代替<br>&amp;前面的语句为假则直接执行后面的<br>&amp;&amp;前面的语句为假则直接出错，后面的也不执行<br>|直接执行后面的语句<br>||前面出错执行后面的<br>Command 1&amp;&amp;Command 2<br>先执行Command 1，执行成功后执行Command 2，否则不执行Command 2<br>Command 1&amp;Command 2<br>先执行Command 1，不管是否成功，都会执行Command 2<br><img src="http://p1.bqimg.com/567571/b874cceb7f1ceedd.jpg" alt=""><br>“|”是管道符，表示将Command 1的输出作为Command 2的输入，并且只打印Command 2执行的结果。<br><img src="http://p1.bqimg.com/567571/bdc67386a04b9902.jpg" alt=""></p>
+<h3 id="0x03-挖掘经验"><a href="#0x03-挖掘经验" class="headerlink" title="0x03 挖掘经验"></a>0x03 挖掘经验</h3><p>大部分直接搜索关键函数进行漏洞挖掘。</p>
+<h3 id="0x04-漏洞防范"><a href="#0x04-漏洞防范" class="headerlink" title="0x04 漏洞防范"></a>0x04 漏洞防范</h3><p>PHP中命令注入攻击漏洞带来的危害和影响很严重。防范命令注入攻击漏洞的存在可以通过以下几种方法。</p>
+<p>1、尽量不要执行外部的应用程序或命令。<br>2、使用自定义函数或函数库实现外部应用程序或命令的功能。<br>3、 在执行system、eval等命令执行功能的函数前，确定参数内容。<br>4、escapeshellcmd()函数会转义命令中的所有shell元字符来完成工作。这些元字符包括：#&amp;;`,|*?~&lt;&gt;^()[]{}$\。例如写入一句话可被过滤 ，所以命令无法执行成功，无法生成一句话文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo(escapeshellcmd($_GET[&apos;cmd&apos;]));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="http://p1.bqimg.com/567571/5df4043ed95d4c3c.jpg" alt=""><br>可以看到这些字符过滤的方法就是在前面加了一个^符号，而在Linux下则是在子父母前面加了反斜杠()。<br>5、使用escapeshellarg函数处理相关参数。Escapeshellarg函数会将任何引起参数或命令结束的字符进行转义，如单引号“’”会被转义为“\’”，双引号“””会被转义为“\””，分号“;”会被转义为“\;”，这样escapeshellarg会将参数内容限制在一对单引号或双引号里面，转义参数中所包含的单引号或双引号，使其无法对当前执行进行截断，实现防范命令注入攻击的目的。<br>6、使用safe_mode_exec_dir执行可执行的文件路径。将php.ini文件中的safe_mode设置为On，然后将允许执行的文件放入一个目录中，并使用safe_mode_exec_dir指定这个可执行的文件路径。这样，在需要执行相应的外部程序时，程序必须在safe_mode_exec_dir指定的目录中才会允许执行，否则执行将失败。<br>7、参数白名单：可以在代码中或者配置文件中限定某些参数，在使用的时候匹配一下这个参数在不在白名单列表了里面，如果不在则直接显示错误提示即可。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/03/05/命令执行/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

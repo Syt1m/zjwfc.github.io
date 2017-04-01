@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      python之Django初探 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python之Django初探 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/python之Django初探/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/24361778.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/9883364.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/85859148.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/74340011.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/43849455.jpg">
+<meta property="og:updated_time" content="2016-11-08T12:50:57.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python之Django初探 | Hello,C">
+<meta name="twitter:description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">python之Django初探</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-08" class="post-meta__date date">2016-11-08</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、python之Django"><a href="#0x01、python之Django" class="headerlink" title="0x01、python之Django"></a>0x01、python之Django</h3><p>python中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。<br>Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。<br>大家可以参考<a href="http://docs.pythontab.com/django/django1.5/index.html" target="_blank" rel="external">Django中文文档</a>进行学习，这里有更全面的知识。<br><a id="more"></a></p>
+<h3 id="0x02、Django的安装"><a href="#0x02、Django的安装" class="headerlink" title="0x02、Django的安装"></a>0x02、Django的安装</h3><blockquote>
+<p>pip安装</p>
+</blockquote>
+<p>pip install Django</p>
+<blockquote>
+<p>下载源代码安装</p>
+</blockquote>
+<p>Django 下载地址：<a href="https://www.djangoproject.com/download/" target="_blank" rel="external">https://www.djangoproject.com/download/</a><br>下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行python setup.py install，然后开始安装，Django将要被安装到Python的Lib下site-packages。</p>
+<p><strong>安装完成后需要进行环境变量的设置，根据自己安装位置。如：C:/Python33/Lib/site-packages/django;C:/Python33/Scripts。</strong></p>
+<p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg" alt=""><br>出现如上提示表示我们的Django安装成功了。</p>
+<h3 id="0x03、Django创建项目"><a href="#0x03、Django创建项目" class="headerlink" title="0x03、Django创建项目"></a>0x03、Django创建项目</h3><p>安装完成后，我们可以使用管理工具django-admin.py来创建一个项目。</p>
+<p>使用django-admin.py可以查看一些基本命令<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/24361778.jpg" alt=""></p>
+<p>使用django，创建了一个HelloWorld的项目。<br><strong>django-admin.py startproject HelloWorld</strong><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/9883364.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/85859148.jpg" alt=""><br><strong>目录说明：</strong><br>HelloWorld: 项目的容器。<br>manage.py: 一个实用的命令行工具，可让你以各种方式与该 Django项目进行交互(django shell和数据库等)。<br>内层 HelloWorld 目录是项目中的实际 Python 包。该目录名就是 Python 包名，通过它你可以导入它里面的任何东西。<br>HelloWorld/<strong>init</strong>.py: 一个空文件，告诉 Python 该目录是一个 Python 包。<a href="https://docs.python.org/3/tutorial/modules.html#packages" target="_blank" rel="external">关于包的更多内容</a><br>HelloWorld/settings.py: 该 Django 项目的设置/配置。<br>HelloWorld/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。<br>HelloWorld/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。</p>
+<p><strong><em>注意：</em></strong>   </p>
+<blockquote>
+<p>有过PHP编程背景的话，我们可能习惯于将代码都放在 Web  服务器的文档根目录(例如 /var/www 这样的地方)。而在  Django中，我们不能这样做。把任何Python代码放到Web 服务器的文档根目录中都不是个好主意，因为这样一来，我们就要冒着别人透过页面直接看到代码的风险。这对于安全可不是件好事。所以，把代码放置在文档根目录之外的某些目录中。</p>
+</blockquote>
+<p>Django中带有一个内建的纯粹由Python编写的轻量级Web服务器，可供站点开发过程中使用。<br>运行<strong>python manage.py runserver 0.0.0.0:8000</strong>，Django  监听所有网络接口和IP地址，因此也就让其它电脑可连接到开发服务器了，访问我们的ip即可查看我们的初始化网页。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/74340011.jpg" alt=""><br>这是利用Django框架搭建的原始的web页面，这样我们可以在此基础上进行我们的修改。</p>
+<h3 id="0x04、Django框架的进阶"><a href="#0x04、Django框架的进阶" class="headerlink" title="0x04、Django框架的进阶"></a>0x04、Django框架的进阶</h3><p>当我们输入<a href="http://localhost/hello/时候，Django是如何处理请求的？" target="_blank" rel="external">http://localhost/hello/时候，Django是如何处理请求的？</a><br>首先一切都开始于setting文件。当我们运行python manage.py runserver时,脚本在manage.py同一个目录下查找 settings.py文件。这个文件中包含了了所有关于这个Django项目的配置信息。settings.py中包含一个ROOT_URLCONF配置指向自动生成的urls.py.ROOT_URLCONF = ‘HelloWorld.urls’<br>访问URL /hello/时，Django根据ROOT_URLCONF的设置装载URLConf。<br>然后按顺序逐个匹配URLConf里URLpatterns,直到找到匹配项。找到后，调用对应视图函数。并把HttpRequest对象做为第一个参数传入。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/43849455.jpg" alt=""></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/08/python之Django初探/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

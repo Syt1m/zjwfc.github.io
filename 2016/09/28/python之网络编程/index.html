@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      python 网络编程 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 python 网络编程python提供了两个基本的socket模块：
+1、socket:提供了标准的BSD Sockets API
+2、SocketServer:提供了服务器中心类，可以简化网络服务器的开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 网络编程 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/python之网络编程/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 python 网络编程python提供了两个基本的socket模块：
+1、socket:提供了标准的BSD Sockets API
+2、SocketServer:提供了服务器中心类，可以简化网络服务器的开发">
+<meta property="og:updated_time" content="2016-10-29T10:19:54.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 网络编程 | Hello,C">
+<meta name="twitter:description" content="0x01 python 网络编程python提供了两个基本的socket模块：
+1、socket:提供了标准的BSD Sockets API
+2、SocketServer:提供了服务器中心类，可以简化网络服务器的开发">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">python 网络编程</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-28" class="post-meta__date date">2016-09-28</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-python-网络编程"><a href="#0x01-python-网络编程" class="headerlink" title="0x01 python 网络编程"></a>0x01 python 网络编程</h3><p>python提供了两个基本的socket模块：</p>
+<p><strong><em>1、socket:</em></strong>提供了标准的BSD Sockets API</p>
+<p><strong><em>2、SocketServer:</em></strong>提供了服务器中心类，可以简化网络服务器的开发</p>
+<a id="more"></a>
+<h3 id="0x02-socket-函数"><a href="#0x02-socket-函数" class="headerlink" title="0x02 socket()函数"></a>0x02 socket()函数</h3><p><strong><em>socket ：面向连接的套接字（流套接字）和无连接的套接字</em></strong></p>
+<p><strong><em>1、创建套接字：</em></strong></p>
+<pre><code>socket.socket(family,type[,protocal])
+</code></pre><p>family: 套接字家族可以使AF_UNIX或者AF_INET</p>
+<p>type: 套接字类型可以根据是面向连接的还是非连接分为SOCK_STREAM或SOCK_DGRAM</p>
+<p>protocol: 一般不填默认为0.</p>
+<p><strong><em>2、常用函数：</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器端</td>
+<td></td>
+</tr>
+<tr>
+<td>s.bind()</td>
+<td>绑定地址(host,port)到套接字， 在AF_INET下,以元组（host,port）的形式表示地址</td>
+</tr>
+<tr>
+<td>s.listen()</td>
+<td>开始TCP监听，该值至少为1，大部分应用程序设为5就可以了</td>
+</tr>
+<tr>
+<td>s.accept()</td>
+<td>被动接受TCP客户端连接，（阻塞式）等待连接的到来</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td></td>
+</tr>
+<tr>
+<td>s.connect()</td>
+<td>主动初始化TCP服务器连接，。一般address的格式为元组（hostname,port），如果连接出错，返回socket.error错误</td>
+</tr>
+<tr>
+<td>s.connect_ex()</td>
+<td>出错时返回出错码,而不是抛出异常。<strong><em>注意：成功返回0，失败返回errno的值</em></strong></td>
+</tr>
+<tr>
+<td>普通的</td>
+<td></td>
+</tr>
+<tr>
+<td>s.recv()</td>
+<td>接受TCP消息</td>
+</tr>
+<tr>
+<td>s.send()</td>
+<td>发送TCP消息</td>
+</tr>
+<tr>
+<td>s.close()</td>
+<td>关闭套接字</td>
+</tr>
+<tr>
+<td>s.getpeername()</td>
+<td>返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）</td>
+</tr>
+<tr>
+<td>s.getsockname()</td>
+<td>返回套接字自己的地址。通常是一个元组(ipaddr,port)</td>
+</tr>
+<tr>
+<td>s.gettimeout()</td>
+<td>返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x03-编程思路"><a href="#0x03-编程思路" class="headerlink" title="0x03 编程思路"></a>0x03 编程思路</h3><p><strong><em>TCP服务器端:</em></strong>伪代码</p>
+<pre><code>ss = socket()                #创建服务器套接字
+ss.bin()                     #套接字与地址绑定
+ss.listen()                  #监听连接
+inf_loop:                    #服务器无限循环
+    cs = cs.accept()         #接受客户端连接
+    comm_loop:               #通信循环
+        cs.tecv()/cs.send()  #对话
+    cs.close()               #关闭客户端套接字
+ss.close()                   #关闭服务器套接字
+</code></pre><p><strong><em>TCP客户端：</em></strong>伪代码</p>
+<pre><code>cs = socket()                #创建客户端套接字
+cs.connect()                 #尝试连接服务器
+comm_loop:                   #通信循环
+    cs.send()/cs.recv()      #对话
+cs.close()                   #关闭客户端套接字
+</code></pre><h3 id="0x04-socket编程"><a href="#0x04-socket编程" class="headerlink" title="0x04 socket编程"></a>0x04 socket编程</h3><p>TCP服务器端：</p>
+<pre><code>from socket import *
+from  time import  ctime
+
+HOST = &apos;&apos;
+PORT = 4444
+BUFSIZ = 1024       #设置缓冲区为1kb
+ADDR = (HOST,PORT)
+
+tcpSersock = socket(AF_INET,SOCK_STREAM)
+tcpSersock.bind(ADDR)
+tcpSersock.listen(5)
+
+while True:
+    print &apos;waiting for connection...&apos;
+    tcpClisock,addr = tcpSersock.accept()
+    print &apos;..connented from:&apos;,addr
+
+    while True:
+        data = tcpSersock.recv(BUFSIZ)
+        if not data:
+            break
+        tcpClisock.send (&apos;[%s]%s&apos;%(ctime(),data))
+
+tcpClisock.close()
+tcpSersock.close()
+</code></pre><p>TCP客户端：</p>
+<pre><code>from socket import *
+
+HOST = &apos;localhost&apos;
+PORT = 4444
+BUFSIZ = 1024       #设置缓冲区为1kb
+ADDR = (HOST,PORT)
+
+tcpClisock = socket(AF_INET,SOCK_STREAM)
+tcpClisock.connect(ADDR)
+
+while True:
+    data = raw_input(&apos;&gt;&apos;)
+    if not data:
+        break
+    tcpClisock.send(data)
+    data = tcpClisock.recv(BUFSIZ)
+    if not data:
+        break
+    print data
+
+tcpClisock.close()
+</code></pre>
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/09/28/python之网络编程/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

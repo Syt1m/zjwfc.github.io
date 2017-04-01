@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      SSRF漏洞初探 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、SSRF服务器端请求伪造，也称XSPA(跨站端口攻击)，它是由攻击者构造形成由服务端发起请求的一个安全漏洞。原因：大部分都是由于服务器端提供了从其他服务器应用获取数据的功能且没有对目标地址进行过滤与限制。比如指定的URL获取网页文本内容，加载指定地址图片，下载等等，这个功能如果被恶意使用，可以利用存在缺陷的web应用作为代理攻击远程和本地的服务器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSRF漏洞初探 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/19/SSRF漏洞初探/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、SSRF服务器端请求伪造，也称XSPA(跨站端口攻击)，它是由攻击者构造形成由服务端发起请求的一个安全漏洞。原因：大部分都是由于服务器端提供了从其他服务器应用获取数据的功能且没有对目标地址进行过滤与限制。比如指定的URL获取网页文本内容，加载指定地址图片，下载等等，这个功能如果被恶意使用，可以利用存在缺陷的web应用作为代理攻击远程和本地的服务器。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/25e9440c2b35aa12.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/fdbdad9959d1121c.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/a5e528d7b0c36226.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/3f796ed1a6530d34.png">
+<meta property="og:updated_time" content="2016-11-19T09:07:55.876Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSRF漏洞初探 | Hello,C">
+<meta name="twitter:description" content="0x01、SSRF服务器端请求伪造，也称XSPA(跨站端口攻击)，它是由攻击者构造形成由服务端发起请求的一个安全漏洞。原因：大部分都是由于服务器端提供了从其他服务器应用获取数据的功能且没有对目标地址进行过滤与限制。比如指定的URL获取网页文本内容，加载指定地址图片，下载等等，这个功能如果被恶意使用，可以利用存在缺陷的web应用作为代理攻击远程和本地的服务器。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/25e9440c2b35aa12.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">SSRF漏洞初探</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-19" class="post-meta__date date">2016-11-19</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、SSRF"><a href="#0x01、SSRF" class="headerlink" title="0x01、SSRF"></a>0x01、SSRF</h3><p>服务器端请求伪造，也称XSPA(跨站端口攻击)，它是由攻击者构造形成由服务端发起请求的一个安全漏洞。<br>原因：大部分都是由于服务器端提供了从其他服务器应用获取数据的功能且没有对目标地址进行过滤与限制。比如指定的URL获取网页文本内容，加载指定地址图片，下载等等，这个功能如果被恶意使用，可以利用存在缺陷的web应用作为代理攻击远程和本地的服务器。<br><a id="more"></a></p>
+<h3 id="0x02、SSRF产生过程"><a href="#0x02、SSRF产生过程" class="headerlink" title="0x02、SSRF产生过程"></a>0x02、SSRF产生过程</h3><p>网站访问大致步骤：<br>用户在地址栏输入网址 — 向目标网站发送请求 — 目标网站接受请求并在服务器端验证请求是否合法，然后返回用户所需要的页面 — 用户接收页面并在浏览器中显示<br>例如此处访问URL：www.xxx.com/a.php?image=（地址）<br>产生的原因：服务器端的验证并没有对其请求获取图片的参数（image=）做出严格的过滤以及限制，导致可以从其他服务器的获取一定量的数据</p>
+<p>访问www.xxx.com/a.php?image=<a href="http://www.abc.com/1.jpg" target="_blank" rel="external">http://www.abc.com/1.jpg</a><br>如果我们将<a href="http://www.abc.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？" target="_blank" rel="external">http://www.abc.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？</a><br>如果存在该内网地址就会返回1xx 2xx 之类的状态码，不存在就会其他的状态码<br>SSRF漏洞就是通过篡改获取资源的请求发送给服务器，但是服务器并没有发现在这个请求是合法的，然后服务器以他的身份来访问其他服务器的资源。</p>
+<h3 id="0x03、常见的从服务端获取其他服务器信息的的功能"><a href="#0x03、常见的从服务端获取其他服务器信息的的功能" class="headerlink" title="0x03、常见的从服务端获取其他服务器信息的的功能"></a>0x03、常见的从服务端获取其他服务器信息的的功能</h3><p>1、通过URL地址分享页面内容<br>2、转码服务：通过URL地址把原地址的网页内容调优使其适合手机屏幕浏览<br>3、在线翻译：通过URL地址翻译对应文本的内容。提供此功能的国内公司有百度、有道等<br>4、图片加载与下载：通过URL地址加载或下载图片<br>5、图片、文章收藏功能<br>6、未公开的api实现以及其他调用URL的功能</p>
+<h3 id="0x04、SSRF攻击的利用方式和危害"><a href="#0x04、SSRF攻击的利用方式和危害" class="headerlink" title="0x04、SSRF攻击的利用方式和危害"></a>0x04、SSRF攻击的利用方式和危害</h3><p><strong>利用方式</strong><br>1、可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的<a href="http://baike.baidu.com/link?url=81ciEDPmQgVCTAtGzyAd_UMPQt4CLxswEA50iZW56hG-VRqlTgDRObDH32wUDBq3aWfvpiXfGee4_NSmA7zZqq" target="_blank" rel="external">banner</a>信息；<br>2、攻击运行在内网或本地的应用程序（比如溢出）；<br>3、对内网web应用进行指纹识别，通过访问默认文件实现；<br>4、攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）；<br>5、利用file协议读取本地文件等。</p>
+<p><strong>危害</strong><br>1、URL为内网IP或域名，攻击者将可以通过SSRF漏洞扫描目标内网，查找内网内的漏洞，并想办法反弹权限<br>2、URL中包含端口，攻击者将可以扫描并发现内网中机器的其他服务，再进一步进行利用<br>3、当请求方法允许其他协议的时候，将可能利用gophar、file等协议进行第三方服务利用，如利用内网的redis获取权限、利用fastcgi进行getshell等</p>
+<h3 id="0x05、SSRF挖掘"><a href="#0x05、SSRF挖掘" class="headerlink" title="0x05、SSRF挖掘"></a>0x05、SSRF挖掘</h3><p>1、从上述所说的6个web功能上进行查找；<br>2、从URL关键字中查找</p>
+<pre><code>share、wap、url、link、src、source、target、u、3g、display、surceURL、imageURL、damain....
+</code></pre><p> 利用Google语法加上关键字寻找ssrf漏洞。  </p>
+<h3 id="0x06、SSRF验证"><a href="#0x06、SSRF验证" class="headerlink" title="0x06、SSRF验证"></a>0x06、SSRF验证</h3><p>在大部分web服务器架构中，web服务器自身都可以访问互联网和服务器所在的内网。下图展示了web服务器的请求可以到达的地方。<br><img src="http://p1.bqimg.com/567571/25e9440c2b35aa12.png" alt=""></p>
+<p>1、排除法<br>例如：<a href="http://www.douban.com/***/service?image=http://www.baidu.com/img/bd_logo1.png" target="_blank" rel="external">http://www.douban.com/***/service?image=http://www.baidu.com/img/bd_logo1.png</a><br>排除法一：<br>直接右键图片，在新窗口打开图片，如果是浏览器上URL地址栏是<a href="http://www.baidu.com/img/bd_logo1.png，说明不存在SSRF漏洞。" target="_blank" rel="external">http://www.baidu.com/img/bd_logo1.png，说明不存在SSRF漏洞。</a></p>
+<p>排除法二：<br>使用burpsuite等抓包工具来判断是否不是SSRF，首先SSRF是由服务端发起的请求，因此在加载图片的时候，是由服务端发起的，所以在我们本地浏览器的请求中就不应该存在图片的请求，在此例子中，如果刷新当前页面，有如下请求，则可判断不是SSRF。（前提设置burpsuite截断图片的请求，默认是放行的）<br><img src="http://p1.bqimg.com/567571/fdbdad9959d1121c.png" alt=""></p>
+<p>2、实例验证<br>经过简单的排除后，我们验证次URL是否可以来请求对应的内网地址<br>找存在HTTP服务的内网地址：<br>一、从漏洞平台中的历史漏洞寻找泄漏的存在web应用内网地址<br>二、通过二级域名暴力猜解工具模糊猜测内网地址</p>
+<p>1）因为SSRF漏洞是构造服务器发送请求的安全漏洞，所以我们就可以通过抓包分析发送的请求是否是由服务器的发送的来判断是否存在SSRF漏洞</p>
+<p>2）在页面源码中查找访问的资源地址 ，如果该资源地址类型为 <a href="http://www.xxx.com/a.php?image=（地址）的就可能存在SSRF漏洞" target="_blank" rel="external">http://www.xxx.com/a.php?image=（地址）的就可能存在SSRF漏洞</a></p>
+<h3 id="0x07、SSRF中URL地址过滤的绕过"><a href="#0x07、SSRF中URL地址过滤的绕过" class="headerlink" title="0x07、SSRF中URL地址过滤的绕过"></a>0x07、SSRF中URL地址过滤的绕过</h3><p>1、<a href="http://www.baidu.com@10.10.10.10" target="_blank" rel="external">http://www.baidu.com@10.10.10.10</a> 与<a href="http://10.10.10.10" target="_blank" rel="external">http://10.10.10.10</a> 请求是相同的<br>2、ip地址转换成进制来访问（利用八进制、十六进制、十进制、IP地址的省略等写法绕过）<br> ping [-t] [-a] [-n count] [-l size] [-f] [-i TTL] [-v TOS] [-r count] [-s count] [[-j host-list] : [-k host-list]]                        [-w timeout] target_name<br><img src="http://i1.piimg.com/567571/a5e528d7b0c36226.jpg" alt=""></p>
+<p><strong>附上SSRF漏洞导图一张</strong><br><img src="http://i1.piimg.com/567571/3f796ed1a6530d34.png" alt=""></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/19/SSRF漏洞初探/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

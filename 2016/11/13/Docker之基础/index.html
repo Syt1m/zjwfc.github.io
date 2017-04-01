@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Docker之基础 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、Docker基础Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。而容器是一种轻量级的虚拟技术。Docker的主要部件：Docker：开源的容器虚拟化平台Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker之基础 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/13/Docker之基础/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、Docker基础Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。而容器是一种轻量级的虚拟技术。Docker的主要部件：Docker：开源的容器虚拟化平台Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台">
+<meta property="og:image" content="http://i1.piimg.com/567571/4b9bd4946c177a72.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/613ebc06dc0d80a4.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/7373.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/19544.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/201605.jpg">
+<meta property="og:updated_time" content="2016-11-13T13:23:38.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker之基础 | Hello,C">
+<meta name="twitter:description" content="0x01、Docker基础Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。而容器是一种轻量级的虚拟技术。Docker的主要部件：Docker：开源的容器虚拟化平台Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/4b9bd4946c177a72.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Docker之基础</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-13" class="post-meta__date date">2016-11-13</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Docker/">Docker</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、Docker基础"><a href="#0x01、Docker基础" class="headerlink" title="0x01、Docker基础"></a>0x01、Docker基础</h3><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br>而容器是一种轻量级的虚拟技术。<br><strong>Docker的主要部件：</strong><br>Docker：开源的容器虚拟化平台<br><a href="https://hub.docker.com/" target="_blank" rel="external">Docker Hub</a>: 用于分享、管理 Docker 容器的 Docker SaaS 平台<br><a id="more"></a></p>
+<h3 id="0X02、Docker平台的基本构成"><a href="#0X02、Docker平台的基本构成" class="headerlink" title="0X02、Docker平台的基本构成"></a>0X02、Docker平台的基本构成</h3><p><img src="http://i1.piimg.com/567571/4b9bd4946c177a72.png" alt=""><br>基本由三部分组成：<br>1、客户端：用户使用Docker提供的工具（CLI 以及 API 等）来构建，上传镜像并发布命令来创建和启动容器；<br>2、Docker 主机：从 Docker registry 上下载镜像并启动容器<br>3、Docker registry：Docker 镜像仓库，用于保存镜像，并提供镜像上传和下载</p>
+<h3 id="0x03、Docker基本语法"><a href="#0x03、Docker基本语法" class="headerlink" title="0x03、Docker基本语法"></a>0x03、Docker基本语法</h3><p>三个重要概念：镜像、容器、库<br><strong>镜像：</strong> 是一个包含了应用程序和其运行时依赖环境的只读文件；利用 Union FS 的技术，将其设计为分层存储的架构<br><strong>容器：</strong> 通过一个镜像我们可以构造出很多相互独立但运行环境一样的容器；容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等<br><strong>仓库：</strong> Docker提供了Hub来保存公有或私有的镜像，也允许第三方搭建。每个仓库可以包含多个标签（Tag），每个标签对应一个镜像。<br>下表清楚的表示出了三者之间的关系<br><img src="http://p1.bpimg.com/567571/613ebc06dc0d80a4.png" alt=""></p>
+<p><strong>命令分类：</strong></p>
+<blockquote>
+<p>镜像操作：</p>
+</blockquote>
+<pre><code>build     Build an image from a Dockerfile
+commit    Create a new image from a container&apos;s changes
+images    List images
+load      Load an image from a tar archive or STDIN
+pull      Pull an image or a repository from a registry
+push      Push an image or a repository to a registry
+rmi       Remove one or more images
+search    Search the Docker Hub for images
+tag       Tag an image into a repository
+save      Save one or more images to a tar archive (streamed to STDOUT by default)
+history   显示某镜像的历史
+inspect   获取镜像的详细信息
+</code></pre><blockquote>
+<p>容器及其中应用的生命周期操作：</p>
+</blockquote>
+<pre><code>create    Create a new container （创建一个容器）        
+kill      Kill one or more running containers
+inspect   Return low-level information on a container, image or task
+pause     Pause all processes within one or more containers
+ps        List containers
+rm        Remove one or more containers （删除一个或者多个容器）
+rename    Rename a container
+restart   Restart a container
+run       Run a command in a new container （创建并启动一个容器）
+start     Start one or more stopped containers （启动一个处于停止状态的容器）
+stats     Display a live stream of container(s) resource usage statistics （显示容器实时的资源消耗信息）
+stop      Stop one or more running containers （停止一个处于运行状态的容器）
+top       Display the running processes of a container
+unpause   Unpause all processes within one or more containers
+update    Update configuration of one or more containers
+wait      Block until a container stops, then print its exit code
+attach    Attach to a running container
+exec      Run a command in a running container
+port      List port mappings or a specific mapping for the container
+logs      获取容器的日志    
+</code></pre><blockquote>
+<p>容器文件系统操作：</p>
+</blockquote>
+<pre><code>cp        Copy files/folders between a container and the local filesystem
+diff      Inspect changes on a container&apos;s filesystem
+export    Export a container&apos;s filesystem as a tar archive
+import    Import the contents from a tarball to create a filesystem image
+</code></pre><blockquote>
+<p>Docker registry 操作：</p>
+</blockquote>
+<pre><code>login     Log in to a Docker registry.
+logout    Log out from a Docker registry.
+</code></pre><blockquote>
+<p>Volume 操作:</p>
+</blockquote>
+<pre><code>volume    Manage Docker volumes
+</code></pre><blockquote>
+<p>网络操作:</p>
+</blockquote>
+<pre><code>network   Manage Docker networks
+</code></pre><blockquote>
+<p>Swarm 相关操作:</p>
+</blockquote>
+<pre><code>swarm     Manage Docker Swarm
+service   Manage Docker services
+node      Manage Docker Swarm nodes       
+</code></pre><blockquote>
+<p>系统操作：</p>
+</blockquote>
+<pre><code>version   Show the Docker version information
+events    Get real time events from the server  (持续返回docker 事件)
+info      Display system-wide information （显示Docker 主机系统范围内的信息）
+</code></pre><h3 id="0x04、Docker的应用场景"><a href="#0x04、Docker的应用场景" class="headerlink" title="0x04、Docker的应用场景"></a>0x04、Docker的应用场景</h3><p>Docker 使用客户端-服务器 (C/S) 架构模式。Docker 客户端会与 Docker 守护进程进行通信。Docker 守护进程会处理复杂繁重的任务，例如建立、运行、发布我们的Docker容器。Docker 客户端和守护进程可以运行在同一个系统上，当然你也可以使用Docker客户端去连接一个远程的Docker守护进程。Docker客户端和守护进程之间通过 socket 或者 RESTful API 进行通信。<br><strong>Docker的应用场景有:</strong></p>
+<blockquote>
+<p>加速本地开发：快速搭建好开发环境和运行环境。<br>自动打包和部署应用。<br>创建轻量级的私有Paas环境。<br>自动化测试和持续集成。<br>创建安全沙盒。</p>
+</blockquote>
+<h3 id="0x05、基于centos-7-的安装"><a href="#0x05、基于centos-7-的安装" class="headerlink" title="0x05、基于centos 7 的安装"></a>0x05、基于centos 7 的安装</h3><p>查看系统版本</p>
+<pre><code>cat /etc/redhat-release 
+</code></pre><p>安装docker</p>
+<pre><code>yum install docker
+</code></pre><p>检查是否安装成功</p>
+<pre><code>docker version
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/7373.jpg" alt=""><br>运行docker</p>
+<pre><code>service docker start
+</code></pre><p>设置为开机自启</p>
+<pre><code>systemctl enable docker.service
+</code></pre><p>在Docker Hub 注册用户，他可以为我们提供私有仓库，我们可以上传存储我们自己的镜像，Docker通过docer search、pull、login和push等命令提供了连接Docker Hub服务的功能<br>使用sudo docker login 我们可以登录到Docker Hub。（sudo，是允许系统管理员让普通用户执行一些或者全部的root命令的一个工具）<br><img src="http://obh1qcqek.bkt.clouddn.com/19544.jpg" alt=""></p>
+<p>搜索镜像</p>
+<pre><code>docker search centos
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/201605.jpg" alt=""><br>我们可以看到 docker.io/centos 和docker.io/jdeathe/centos-ssh，第二个表示从jdeathe/的用户仓库中搜索到的，而第一个没有用户空间表示他是可信的顶级命名空间。/字符分割用户镜像和存储库的名称。</p>
+<p>下载镜像</p>
+<pre><code>docker pull &lt;imagename&gt;
+</code></pre>
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/13/Docker之基础/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      简单的渗透测试实验 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 渗透测试项目一0x01 实验要求请以下列任务为目标（10.1.1.178）进行入侵渗透 ：
+1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+0X02 信息搜集信息搜集，使用nmap进行信息搜集和探测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的渗透测试实验 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2017/01/16/简单的渗透测试实验/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 渗透测试项目一0x01 实验要求请以下列任务为目标（10.1.1.178）进行入侵渗透 ：
+1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+0X02 信息搜集信息搜集，使用nmap进行信息搜集和探测">
+<meta property="og:image" content="http://i1.piimg.com/567571/efaaf2b8eb1b5952.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/82bbb977f5d08aca.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/adc605a7eafae789.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/a7f184558629ad8e.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/5a176e0d226c680f.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/7289c2c0b74f0523.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/9766a2e3e8072e72.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/a656eb75ed3b25e2.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/ebf6ecd11da1a299.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/e47025c39af10fb6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/11e6529198b20df3.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/e37919f8e2ebd6b3.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/56f82eb4a5d12aa2.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/c0f0d1cf93461763.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/fbbe363a304f8bbd.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/4219c912b158c8ca.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/66fa3248c56f28f5.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/f21e2a71a6629b6f.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/183482040be90c4c.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/35322.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/610.jpg">
+<meta property="og:updated_time" content="2017-03-04T03:21:40.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的渗透测试实验 | Hello,C">
+<meta name="twitter:description" content="0x01 渗透测试项目一0x01 实验要求请以下列任务为目标（10.1.1.178）进行入侵渗透 ：
+1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+0X02 信息搜集信息搜集，使用nmap进行信息搜集和探测">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/efaaf2b8eb1b5952.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">简单的渗透测试实验</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-16" class="post-meta__date date">2017-01-16</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-渗透测试项目一"><a href="#0x01-渗透测试项目一" class="headerlink" title="0x01 渗透测试项目一"></a>0x01 渗透测试项目一</h3><h4 id="0x01-实验要求"><a href="#0x01-实验要求" class="headerlink" title="0x01 实验要求"></a>0x01 实验要求</h4><p>请以下列任务为目标（10.1.1.178）进行入侵渗透 ：</p>
+<pre><code>1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+</code></pre><h4 id="0X02-信息搜集"><a href="#0X02-信息搜集" class="headerlink" title="0X02 信息搜集"></a>0X02 信息搜集</h4><p>信息搜集，使用nmap进行信息搜集和探测<br><a id="more"></a><br><img src="http://i1.piimg.com/567571/efaaf2b8eb1b5952.jpg" alt=""></p>
+<h4 id="0x03-漏洞挖掘"><a href="#0x03-漏洞挖掘" class="headerlink" title="0x03 漏洞挖掘"></a>0x03 漏洞挖掘</h4><p>查看目标网站，查看常见的漏洞，如SQL注入、文件上传、xss等主要漏洞。<br>可以看到有一个上传图片的地方，试试文件上传漏洞，构造一句话图片马<br><img src="http://p1.bqimg.com/567571/82bbb977f5d08aca.png" alt=""></p>
+<h4 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04 漏洞利用"></a>0x04 漏洞利用</h4><p>文件上传漏洞，使用burp进行拦截，这次是简单的使用00截断拿webshell<br><img src="http://i1.piimg.com/567571/adc605a7eafae789.png" alt=""></p>
+<p>可以看见已经上传成功<br><img src="http://i1.piimg.com/567571/a7f184558629ad8e.png" alt=""><br>访问上传的页面，使用菜刀成功进行连接<br><img src="http://p1.bpimg.com/567571/5a176e0d226c680f.png" alt=""><br><img src="http://p1.bpimg.com/567571/7289c2c0b74f0523.png" alt=""></p>
+<h4 id="0x05-权限提升"><a href="#0x05-权限提升" class="headerlink" title="0x05 权限提升"></a>0x05 权限提升</h4><p>查看开放了那些端口 <strong>netstat -an</strong><br><img src="http://p1.bpimg.com/567571/9766a2e3e8072e72.png" alt=""></p>
+<p>查看我们的权限 <strong>whoami</strong>，发现是system权限，可以直接添加用户<br><img src="http://p1.bqimg.com/567571/a656eb75ed3b25e2.png" alt=""></p>
+<p><strong>net user hacker 123 /add</strong> 添加用户名<br><img src="http://p1.bpimg.com/567571/ebf6ecd11da1a299.png" alt=""><br><strong>net localgroup administrators hacker /add</strong> 添加到本地管理组<br><img src="http://p1.bpimg.com/567571/e47025c39af10fb6.png" alt=""><br>可是使用<strong>net user hacker</strong>具体查看时发现并没有添加组成功</p>
+<p><img src="http://p1.bpimg.com/567571/11e6529198b20df3.png" alt=""></p>
+<p>用<strong>whoami /all</strong>查看获取本地系统上所有用户(访问令牌)的用户名和组信息。<br><img src="http://p1.bpimg.com/567571/e37919f8e2ebd6b3.png" alt=""></p>
+<p>管理员组肯定不是Everyone，我们注意到第一个的类型是别名，另外两个是已知，那肯定是改名了，管理员组如无意外就是useras了。直接上命令，将hacker添加到管理组，成功执行，可以看到组成员多了一项。<br><img src="http://p1.bpimg.com/567571/56f82eb4a5d12aa2.png" alt=""></p>
+<h4 id="0x06-远程连接"><a href="#0x06-远程连接" class="headerlink" title="0x06 远程连接"></a>0x06 远程连接</h4><p>远程桌面成功，但是无法访问文件夹<br><img src="http://p1.bpimg.com/567571/c0f0d1cf93461763.png" alt=""></p>
+<p>修改文件夹的安全设置，将我们的用户添加上去<br><img src="http://p1.bpimg.com/567571/fbbe363a304f8bbd.png" alt=""><br><img src="http://p1.bqimg.com/567571/4219c912b158c8ca.png" alt=""></p>
+<p>经过安全设置后我们可以查看文件，任务完成。<br><img src="http://p1.bqimg.com/567571/66fa3248c56f28f5.png" alt=""></p>
+<h3 id="0x02-渗透测试项目二"><a href="#0x02-渗透测试项目二" class="headerlink" title="0x02 渗透测试项目二"></a>0x02 渗透测试项目二</h3><h4 id="0x01-实验要求-1"><a href="#0x01-实验要求-1" class="headerlink" title="0x01 实验要求"></a>0x01 实验要求</h4><p>ip地址为10.1.1.191，在C盘的根目录下存储有两个敏感文件（key1.txt,key2.txt），开放端口不详。</p>
+<pre><code>现要求利用已有的条件和所学的知识（可自己编写工具）来获取敏感文件
+</code></pre><h4 id="0x02-信息搜集"><a href="#0x02-信息搜集" class="headerlink" title="0x02 信息搜集"></a>0x02 信息搜集</h4><p>继续使用nmap进行端口扫描<br><img src="http://i1.piimg.com/567571/f21e2a71a6629b6f.png" alt=""></p>
+<h4 id="0x03-漏洞挖掘-1"><a href="#0x03-漏洞挖掘-1" class="headerlink" title="0x03 漏洞挖掘"></a>0x03 漏洞挖掘</h4><p>打开网址发现为织网CMS，首先就想到搜集之前织网爆出来的漏洞进行利用。</p>
+<p>使用<strong>/data/admin/ver.txt</strong>判断出目标网站所使用的织梦dedecms是哪个版本的，打了哪一天的补丁<br><img src="http://i1.piimg.com/567571/183482040be90c4c.png" alt=""><br>对网站进行测试，发现20140814版本没有什么漏洞，而发现的后台常用后户名和万能密码都不好使。<br>所以根据提示：<strong>漏洞发现，针对服务（如web服务里面就有apache2，iis..），可以去看看其使用的软件版本是否存在漏洞</strong>查看软件是否存在漏洞。</p>
+<p><strong><em>IIS写权限漏洞 (HTTP PUT方法利用)</em></strong><br>该漏洞的产生原因来源于服务器配置不当造成，利用IIS PUT Scaner扫描有漏洞的iis，此漏洞主要是因为服务器开启了<br>webdav的组件导致的可以扫描到当前的操作，具体操作其实是通过webdav的OPTION来查询是否支持PUT。<br><img src="http://obh1qcqek.bkt.clouddn.com/35322.jpg" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/610.jpg" alt=""><br>然后提交数据包，会在服务端生成一个1.txt的文件，但是这个文件是无法被iis解析的，所以要利用到的是MOVE，<br>主要目的是为了将txt的文件修改为php的，从而可以将文件变成可执行的脚本文件。</p>
+<p>这次实验也是比较简单的渗透过程，但这些都是基础，在训练中不足的是提权过程以及内网渗透过程，以后得在这两个方面多加练习。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/01/16/简单的渗透测试实验/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

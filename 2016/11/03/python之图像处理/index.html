@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      python之图像处理 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、PIL库python提供了PIL图像处理库，Image类是PIL库中一个非常重要的类，通过这个类创建实例可以有直接载入图像文件，读取处理过的图像和通过抓取的方法得到的图像这三种方法。功能上，虽然还不能跟Matlab比较，但是还是比较强大的。安装过程使用pip进行安装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python之图像处理 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/python之图像处理/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、PIL库python提供了PIL图像处理库，Image类是PIL库中一个非常重要的类，通过这个类创建实例可以有直接载入图像文件，读取处理过的图像和通过抓取的方法得到的图像这三种方法。功能上，虽然还不能跟Matlab比较，但是还是比较强大的。安装过程使用pip进行安装。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/3b64d4ee68bcca5f.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/0218eb82ee3afe9d.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/ca0bc1ebf394dab6.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/74ef6d3530b591f3.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/33341da6123dc8cb.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/46c6bb920ae57e34.png">
+<meta property="og:updated_time" content="2016-11-03T07:35:45.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python之图像处理 | Hello,C">
+<meta name="twitter:description" content="0x01、PIL库python提供了PIL图像处理库，Image类是PIL库中一个非常重要的类，通过这个类创建实例可以有直接载入图像文件，读取处理过的图像和通过抓取的方法得到的图像这三种方法。功能上，虽然还不能跟Matlab比较，但是还是比较强大的。安装过程使用pip进行安装。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/3b64d4ee68bcca5f.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">python之图像处理</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-03" class="post-meta__date date">2016-11-03</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、PIL库"><a href="#0x01、PIL库" class="headerlink" title="0x01、PIL库"></a>0x01、PIL库</h3><p>python提供了PIL图像处理库，Image类是PIL库中一个非常重要的类，通过这个类创建实例可以有直接载入图像文件，读取处理过的图像和通过抓取的方法得到的图像这三种方法。功能上，虽然还不能跟Matlab比较，但是还是比较强大的。<br>安装过程使用pip进行安装。<br><a id="more"></a></p>
+<h3 id="0x02、PIL常见函数"><a href="#0x02、PIL常见函数" class="headerlink" title="0x02、PIL常见函数"></a>0x02、PIL常见函数</h3><p>1.导入图像库<br>import Image<br>2.读取一张图片<br>im=Image.open(‘/home/Picture/test.jpg’)<br>3.显示一张图片<br>im.show()<br>4.保存图片<br>im.save(“save.gif”,”GIF”) #保存图像为gif格式<br>5.创建新图片<br>Image.new(mode,size)<br>Image.new(mode,size,color)</p>
+<pre><code>newImg = Image.new(&quot;RGBA&quot;,(640,480),(0,255,0))
+newImg.save(&quot;newImg.png&quot;,&quot;PNG&quot;)
+</code></pre><p>6.两张图片相加<br>Image.blend(img1,img2,alpha) # 这里alpha表示img1和img2的比例参数<br>7.点操作<br>im.point(function) #,这个function接受一个参数，且对图片中的每一个点执行这个函数</p>
+<pre><code>out=im.point(lambdai:i*1.5)#对每个点进行50%的加强
+</code></pre><p>8.查看图像信息<br>im.format, im.size, im.mode<br>9.图片裁剪<br>box=(100,100,500,500) #设置要裁剪的区域<br>region=im.crop(box) #此时，region是一个新的图像对象。<br>10.图像黏贴（合并）<br>im.paste(region,box)#粘贴box大小的region到原先的图片对象中。<br>11.通道分离<br>r,g,b=im.split()#分割成三个通道，此时r,g,b分别为三个图像对象。<br>12.通道合并<br>im=Image.merge(“RGB”,(b,g,r))#将b,r两个通道进行翻转。<br>13.改变图像的大小<br>out=img.resize((128,128))#resize成128*128像素大小<br>14.旋转图像<br>out=img.rotate(45) #逆时针旋转45度<br>有更方便的：<br>region = region.transpose(Image.ROTATE_180）<br>15.图像转换<br>out = im.transpose(Image.FLIP_LEFT_RIGHT) #左右对换。<br>out = im.transpose(Image.FLIP_TOP_BOTTOM) #上下对换<br>16.图像类型转换：<br>im=im.convert(“RGBA”)<br>17.获取某个像素位置的值：<br>im.getpixel((4,4))<br>18.写某个像素位置的值：<br>img.putpixel((4,4),(255,0,0))</p>
+<h3 id="0x03、PIL库基本操作"><a href="#0x03、PIL库基本操作" class="headerlink" title="0x03、PIL库基本操作"></a>0x03、PIL库基本操作</h3><p><img src="http://p1.bqimg.com/567571/3b64d4ee68bcca5f.jpg" alt=""><br>1、图片属性</p>
+<pre><code>from PIL import Image
+
+im = Image.open(&quot;1.jpg&quot;)
+print im.format,im.size,im.mode
+</code></pre><p><img src="http://p1.bqimg.com/567571/0218eb82ee3afe9d.png" alt=""></p>
+<p>format:识别图像的源格式，如果该文件不是从文件中读取的，则被置为 None 值。<br>size:返回的一个元组，有两个元素，其值为象素意义上的宽和高。<br>mode : RGB（true color image），此外还有，L（luminance），CMTK（pre-press image）。</p>
+<p>2、图形缩放</p>
+<pre><code>from PIL import Image
+
+im = Image.open(&quot;1.jpg&quot;)  #打开图片
+w,h = im.size    #获取图形尺寸
+im.thumbnail((w/2,h/2))  #缩放
+im.save(&quot;2.jpg&quot;)   #保存图片
+</code></pre><p><img src="http://p1.bqimg.com/567571/ca0bc1ebf394dab6.jpg" alt=""></p>
+<p>3、图片的模糊化处理</p>
+<pre><code>from PIL import Image,ImageFilter
+
+im = Image.open(&quot;1.jpg&quot;)
+im2 = im.filter(ImageFilter.BLUR)  #模糊化处理
+im2.save(&quot;3.jpg&quot;)
+</code></pre><p><img src="http://p1.bqimg.com/567571/74ef6d3530b591f3.png" alt=""></p>
+<p>4、图片旋转</p>
+<pre><code>from PIL import Image,ImageFilter
+
+im = Image.open(&quot;1.jpg&quot;)
+out = im.rotate(45)   #逆时针旋转 45 度角
+out = im.transpose(Image.FLIP_LEFT_RIGHT) #左右对换
+out = im.transpose(Image.FLIP_TOP_BOTTOM)   #上下对换
+out = im.transpose(Image.ROTATE_90)    #旋转 90 度角
+out = im.transpose(Image.ROTATE_180)    #旋转 180 度角
+out = im.transpose(Image.ROTATE_270)    #旋转 270 度角
+
+out.save(&quot;4.jpg&quot;)
+</code></pre><p><img src="http://p1.bqimg.com/567571/33341da6123dc8cb.png" alt=""></p>
+<p>5、它可以进行很多图片的操作，甚者可以生成我们常见的字母验证码<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140767171357714f87a053a824ffd811d98a83b58ec13000" target="_blank" rel="external">廖雪峰python学习</a></p>
+<h3 id="oxo4、PIL库的高级用法"><a href="#oxo4、PIL库的高级用法" class="headerlink" title="oxo4、PIL库的高级用法"></a>oxo4、PIL库的高级用法</h3><p>这是一道CTF的mise题，从流量包提取出一个TXT文件，里面全是一些数字，当时完全懵逼了，最后才说是图片的像素点<a href="http://tool.oschina.net/commons?type=3" target="_blank" rel="external">RGB</a><br>，可以用连续的三个数字表示一种颜色。</p>
+<pre><code>254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+254, 255, 255
+......
+</code></pre><p>这么多懵逼了，只能靠python脚本进行处理了。</p>
+<pre><code>from PIL import Image
+import re
+if __name__ == &apos;__main__&apos;:
+    x = 887
+    y = 111
+    i = 0
+    j = 0
+
+    c = Image.new(&quot;RGB&quot;, (x,y))  #创建一个新的图片
+    file_object = open(&apos;1.txt&apos;)  #打开txt文件
+
+    for i in range(0,  x):
+        for j in range(0,  y):
+            line = file_object.next() #逐行读取txt的内容
+            lst = line.split(&quot;,&quot;) #分割成三个通道，r,g,b分别为三个图像对象
+            c.putpixel((i, j), (int(lst[0]), int(lst[1]), int(lst[2]))) #将对应的rgb写入相应的位置
+
+    c.show()
+    c.save(&quot;c.png&quot;)
+</code></pre><p><img src="http://p1.bqimg.com/567571/46c6bb920ae57e34.png" alt=""></p>
+<p>这样就会把原图片还原回来，十分的快速方便。</p>
+<p>链接：<a href="http://www.aichengxu.com/view/39904" target="_blank" rel="external">http://www.aichengxu.com/view/39904</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/03/python之图像处理/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

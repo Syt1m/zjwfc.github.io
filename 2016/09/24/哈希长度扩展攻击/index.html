@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      哈希长度扩展攻击 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希长度扩展攻击 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/09/24/哈希长度扩展攻击/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta property="og:image" content="http://i1.piimg.com/567571/75dc9e2816f2c44d.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/6fc2344caa5dc423.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/b1fc05a7c29df98b.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/dacf6929df975a03.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/826ea80a47fe2b70.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/30efa690d92b5345.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/c70c04838f787386.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/ee0387f8903c1a83.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/32f9c2767107fdd6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/8448ea9f3114514f.png">
+<meta property="og:updated_time" content="2016-09-24T07:46:42.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈希长度扩展攻击 | Hello,C">
+<meta name="twitter:description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/75dc9e2816f2c44d.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">哈希长度扩展攻击</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-24" class="post-meta__date date">2016-09-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/CTF/">CTF</a>, <a class="tags-link" href="/tags/writeup/">writeup</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h3><pre><code>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可以推出H（密钥||消息||padding||append）的哈希值，padding是要填充的字段，append则是要附加的消息。其实如果不知道密钥长度，可通过暴力猜解得到，已知的有长度扩展攻击缺陷的函数有MD5，SHA-1，SHA-256等等,。
+</code></pre><a id="more"></a>
+<blockquote>
+<p>如果一个应用程序是这样操作的：</p>
+<p>1、准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）</p>
+<p>2、让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文</p>
+<p>3、服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值</p>
+</blockquote>
+<pre><code>这个时候，该应用程序就易受长度扩展攻击，攻击者可以构造出{secret || data || attacker_controlled_data}的哈希值。
+</code></pre><h3 id="0x02-sha1的原理"><a href="#0x02-sha1的原理" class="headerlink" title="0x02 sha1的原理"></a>0x02 sha1的原理</h3><pre><code>首先，当hash函数拿到需要被hash的字符串后，先将其字节长度整除64，取得余数。如果该余数正好等于56，那么就在该字符串最后添加上8个字节的长度描述符（具体用bit表示）。如果不等于56，就先对字符串进行长度填充，填充时第一个字节为hex(80)，其他字节均用hex(00)填充，填充至余数为56后，同样增加8个字节的长度描述符（该长度描述符为需要被hash的字符串的长度，不是填充之后整个字符串的长度）。以上过程，称之为补位。
+补位完成后，字符串以64位一组进行分组（因为上面的余数为56,加上8个字节的长度描述符后，正好是64位，凑成一组）。字符串能被分成几组就会进行多少次“复杂的数学变化”。
+</code></pre><h3 id="0x03-举个例子"><a href="#0x03-举个例子" class="headerlink" title="0x03 举个例子"></a>0x03 举个例子</h3><pre><code>想要对123456进行hash,首先判断len(str_a) % 64 == 56是否成立。这里很明显不成立，那么程序就进行补位操作。首先补位成余数为56的长度。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/75dc9e2816f2c44d.png" alt=""></p>
+<pre><code>如上图，蓝色字体就为程序对该字符串进行补位的数据。当满足len(str_a) % 64 == 56后，程序就在该字符串的后面添加8个字节的长度描述符。注意，此处的长度为原始需要被hash的长度。也就是len(str_a) = 6字节*8bit/字节= 48bit=0x30bit。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/6fc2344caa5dc423.png" alt=""></p>
+<pre><code>补位+长度描述符=64个字节，正好是一个分组。所以此处只要进行一次复杂的数学变化就可以了。程序根据该64个字节的数据和registers值0生成新的registers值1。那么该新的registers值1就是str_a的sha1值.
+</code></pre><h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><pre><code>简单来说，就是服务器上会生成一个salt值，该salt值你是不可预测的。但是你又知道了sha1(salt+filename)的值，该filename的值你也是知道的。假设此处的filename的值report.pdf，最后sha1的值为：0a8d538b724c6f2b4288526eb540ee7c。为了方便理解，我们继续假设salt的长度为16位。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/b1fc05a7c29df98b.png" alt=""></p>
+<pre><code>同样先进行整除，然后取余。最后再补上8位的长度描述符。补位+添加长度描述符后的字符串如下图：
+</code></pre><p>   <img src="http://i1.piimg.com/567571/dacf6929df975a03.png" alt=""></p>
+<pre><code>该长度也就满足了64位的分组，只需要进行一次“复杂的数学运算”就可以得到最后的sha1值了。 同样字符串进行sha1操作    
+</code></pre><p><img src="http://p1.bpimg.com/567571/826ea80a47fe2b70.png" alt=""></p>
+<pre><code>同样，还是先进行分组。由于该字符串的长度大于64个字节，且小于128个字节，所以要分成两组，需要进行两次“复杂的数学运算”。这个时候我们发现，第一个分组的数据和上图中补码后的数据完全一样，又因为他们都是第一个分组，初始的registers值也一样。那么经过第一轮“复杂的数学运算”，他们各自生成的registers值也同样是相同的。唯一不同的是，由于上面的长度小于64字节，所以只需要进行一轮运算便得到了最后的sha1值。然后这里的字符串有两个分组，需要将第一轮更新的registers值（也就是第一轮运算出来的sha1值）作为第二轮“复杂的数学运算”的registers值，然后才能得出最终的sha1值。
+
+总上讲的，如果salt的值你不知道，但是你知道长度，又知道sha1(salt)，那么就也就可以知道sha1(salt+“填充数据”+“任意可控数据”).这里的salt+“填充数据”就是对salt进行sha1时所补全的数据+最后8位的长度描述符。一般来说，salt+”填充数据”的长度就是64字节，正好是一个分组。如果salt的长度就大于了56个字节，那么加入填充数据后的长度应该是N个64字节，等于N个分组。sha1程序再对（salt+“填充数据”+“任意可控数据”）进行hash时，只需要进行第二轮及第二轮以后的运算。因为第一轮运算后的registers值就是sha1(salt)的值，该值你已经知道了。
+</code></pre><h3 id="实验吧实例分析"><a href="#实验吧实例分析" class="headerlink" title="实验吧实例分析"></a>实验吧实例分析</h3><p><a href="http://ctf4.shiyanbar.com/web/kzhan.php" target="_blank" rel="external">http://ctf4.shiyanbar.com/web/kzhan.php</a></p>
+<p>1、抓包进行分析</p>
+<p><img src="http://p1.bpimg.com/567571/30efa690d92b5345.png" alt=""></p>
+<p>将source=0改为1出现代码</p>
+<pre><code>&lt;pre&gt;
+$flag = &quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;;
+$secret = &quot;XXXXXXXXXXXXXXX&quot;; // This secret is 15 characters long for         security!
+
+$username = $_POST[&quot;username&quot;];
+$password = $_POST[&quot;password&quot;];
+
+if (!empty($_COOKIE[&quot;getmein&quot;])) {
+if (urldecode($username) === &quot;admin&quot; &amp;&amp; urldecode($password) !=         &quot;admin&quot;) {
+    if ($COOKIE[&quot;getmein&quot;] === md5($secret . urldecode($username . $password))) {
+        echo &quot;Congratulations! You are a registered user.\n&quot;;
+        die (&quot;The flag is &quot;. $flag);
+    }
+    else {
+        die (&quot;Your cookies don&apos;t match up! STOP HACKING THIS SITE.&quot;);
+    }
+}
+else {
+    die (&quot;You are not an admin! LEAVE.&quot;);
+}
+}
+
+    setcookie(&quot;sample-hash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;admin&quot;)), time() + (60 * 60 * 24 * 7));
+cookie生命周期时间7天
+if (empty($_COOKIE[&quot;source&quot;])) {
+setcookie(&quot;source&quot;, 0, time() + (60 * 60 * 24 * 7));
+}
+else {
+if ($_COOKIE[&quot;source&quot;] != 0) {
+    echo &quot;&quot;; // This source code is outputted here
+}
+}
+&lt;/pre&gt;
+</code></pre><p>2、进行代码审计</p>
+<pre><code>$secret = &quot;XXXXXXXXXXXXXXX&quot;; // This secret is 15 characters long for security!
+setcookie(&quot;sample-hash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;admin&quot;)), time() + (60 * 60 * 24 * 7));
+</code></pre><p>可以看出来sample-hash这个值是由15字节长的salt串上adminadmin后经md5得出</p>
+<p>password不能是admin，但可以输入adminxxxx这种，使计算getmein时前25字节和计算sample-hash时前25字节输入相同，又知道了salt的位数，使用hash长度扩展攻击。</p>
+<p><strong><em>Hashpump：</em></strong></p>
+<p>HashPump是一个借助于OpenSSL实现了针对多种散列函数的攻击的工具，支持针对MD5、CRC32、SHA1、SHA256和SHA512等长度扩展攻击。而MD2、SHA224和SHA384算法不受此攻击的影响，因其部分避免了对状态变量的输出，并不输出全部的状态变量。</p>
+<pre><code>安装linux下：
+git clone https://github.com/bwall/HashPump
+apt-get install g++ libssl-dev
+cd HashPump
+make
+make install
+</code></pre><p><img src="http://p1.bpimg.com/567571/c70c04838f787386.png" alt=""></p>
+<p>Python爱好者若想直接在python里实现hashpump，可以使用zachriggle编写的这个叫做hashpumpy的Python插件</p>
+<p> <strong><em>python安装</em></strong></p>
+<pre><code>pip install hashpumpy
+</code></pre><p><strong><em>使用</em></strong></p>
+<pre><code>&gt;&gt;&gt; import hashpumpy
+&gt;&gt;&gt; help(hashpumpy.hashpump)
+Help on built-in function hashpump in module hashpumpy:
+hashpump(...)
+   hashpump(hexdigest, original_data, data_to_add, key_length) -&gt; (digest, message)
+   Arguments:
+    hexdigest(str):      Hex-encoded result of hashing key + original_data.
+  original_data(str):  Known data used to get the hash result hexdigest.
+  data_to_add(str):    Data to append
+  key_length(int):     Length of unknown data prepended to the hash
+Returns:
+  A tuple containing the new hex digest and the new message.
+  &gt;&gt;&gt; hashpumpy.hashpump(&apos;ffffffff&apos;, &apos;original_data&apos;, &apos;data_to_add&apos;, len(&apos;KEYKEYKEY&apos;))
+  (&apos;e3c4a05f&apos;, &apos;original_datadata_to_add&apos;)
+</code></pre><blockquote>
+<p>分析上题</p>
+</blockquote>
+<p>md5($secret.”adminadmin”)的值为571580b26c65f306376d4f64e53cb5c7</p>
+<p>$secret是密文，长度为15，如果再算上后面第一个admin，长度就是20<br>而数据是admin<br>签名（哈希值）是571580b26c65f306376d4f64e53cb5c7</p>
+<p>使用hashpump直接运行<br>hashpump -s 571580b26c65f306376d4f64e53cb5c7 -d admin -k 20 -a admin</p>
+<p><img src="http://p1.bpimg.com/567571/ee0387f8903c1a83.png" alt=""></p>
+<pre><code>e18dfd8404515016d3aeeea2aa196909
+admin\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00admin
+ 第一个是新的签名，把它设置到cookies的getmein里。
+第二个先把\x替换为%后，post提交
+password=admin%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%c8%00%00%00%00%00%00%00admin
+</code></pre><p><img src="http://p1.bpimg.com/567571/32f9c2767107fdd6.png" alt=""></p>
+<p><img src="http://p1.bpimg.com/567571/8448ea9f3114514f.png" alt=""></p>
+<p>即可得到flag。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/09/24/哈希长度扩展攻击/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

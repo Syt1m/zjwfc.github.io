@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      代理IP是否会被追查到 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理IP是否会被追查到 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2017/02/19/代理IP是否会被追查到/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？">
+<meta property="og:image" content="http://i1.piimg.com/567571/3bd2d1150884b87e.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/b99ade94ddbd3929.jpg">
+<meta property="og:updated_time" content="2017-02-19T01:23:17.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代理IP是否会被追查到 | Hello,C">
+<meta name="twitter:description" content="在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/3bd2d1150884b87e.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">代理IP是否会被追查到</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-02-19" class="post-meta__date date">2017-02-19</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/杂谈/">杂谈</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>   在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？<br><img src="http://i1.piimg.com/567571/3bd2d1150884b87e.jpg" alt=""><br><a id="more"></a></p>
+<h3 id="代理服务器的主要用途："><a href="#代理服务器的主要用途：" class="headerlink" title="代理服务器的主要用途："></a>代理服务器的主要用途：</h3><p>  <strong>1、共享网络</strong><br>最常见的可能是用代理服务器共享上网，很多人不知不觉中就在用，比如通过sygate，wingate，isa，ccproxy，NT系统自带的网络共享等，可以提供企业级的文件缓存、复制和地址过滤等服务，充分利用局域网出口的有限带宽，加快内网用户的 访问速度，可以解决仅仅有一条线路一个IP，IP资源不足，带局域网很多用户上网的功能，同时可以做为一个防火墙，隔离内网与外网，并且能提供监控网络和记录传输信息的功能，加强了局域网的安全性，又便于对上网用户进行管理。<br>  <strong>2、访问代理</strong><br>加快访问网站速度，在网络出现拥挤或故障时，可通过代理服务器访问目的网站。比如A要访问C网站，但A到C网络出现问题，可以通过绕道，假设B是代理服务器，A可通过B， 再由B到C。大家还记得前几个月，有段时间网络不正常，基本访问不了外国网站，如GOOGLE，YAHOO， 甚至连CCF都访问不了，心里很着急。结果通过一个代理服务器，发现都可以访问，速度还不错，在这样的情况下，代理服务器就可以发挥很大的作用了。还有一类代理服务器备份有相当数量的缓存文件，如果我们当前所访问的数据在代理服务器的缓存文件中，则可直接 读取，而无需再连接到远端Web服务器。这样，加快了访问速度。<br>  <strong>3、防止攻击</strong><br>隐藏自己的真实地址信息，还可隐藏自己的IP，防止被黑客攻击。通过分析指定IP地址，可以查询到网络用户的所在地。例如，大家在一些论坛上看到，论坛中明确标出了发帖用户所在地，这就是根据论坛会员登录时的IP地址解析的。还有平日里我们最为常 用的显IP版QQ，在“发送消息”窗口中，可以查看对方的IP及解析出的地理位置。而当我们使用相应协议的代理服务器后，就可以达到隐藏自己当前所在地地址的目的了。<br>  <strong>4、突破限制</strong><br>代理服务器还可以突破网络限制。比如局域网对上网用户的端口、目的网站、协议、游戏、即时通讯软件等的限制，都可以突破这些限制，可参见我这篇帖子，如何突破局域网对上网用户的一些限制 不再重复。举个例子：GOOGLE我们都喜欢用，其实GOOGLE有一个功能就有点类似于代理服务器的功能，就是网页快照，网站经常发生变动，地址或者网站关了，网站服务器发生故障了，或者已经更新了，但我们仍然要查以前非常有用的资料，网页快照就排 上用场了，Google以其复杂而全自动的搜索方法排除了任何人为因素对搜索结果的影响，保证了网页排名的客观公正，Google可以方便、诚实、客观地帮您在网上找到有价值的资料。GOOGLE有一个海量的数据库，如果找不到服务器，Google储存的网页快照也可救急。虽然网页快照中的信息可能不是最新的，但在网页快照中查找资料要比在实际网页中快得多，这时可以通过加密代理访问Google，再访问其网页快照来救急。<br>  <strong>5、掩藏身份</strong><br>代理服务器知识是黑客基本功，黑客的很多活动都是通过代理服务器，比如扫描、刺探，对局域网内机器进行渗透，黑客一般攻击的时候都是中转了很多级跳板，才攻击目标机器。隐藏了身份，保证了自己的安全。<br>  <strong>6、提高速度</strong><br>提高下载速度，突破下载限制。比如有的网站提供的下载资源，做了一IP一线程的限制，这时候可以用影音传送带，设置多线程，为每个线程设置一个代理。对于限制一个IP的情况很好突破，只要用不同的代理服务器，就可同时下载多个资源，适用于从WEB和FTP 上下载的情况。不过如果是论坛里面的资源，每个用户一个账号，并且限制一账号一IP，代理服务器就突破不了。还有一种情况，比如我们这里，电信的用户上不了联通的电影网站，联通的用户上不了的电信电影网站，这种情况只要电信的找一个联通地代理，IP地址属联通就行。联通找一个电信代理。就可以去电影网站下载其电影。教育网还可以通过代理服 务器可使无出国权限或无访问某IP段权限的计算机访问相关资源。<br>  <strong>7、充当防火墙</strong><br>因为所有使用代理服务器的用户都必须通过代理服务器访问远程站点，因此在代理服务器上就可以设置相应的限制，以过滤或屏蔽某些信息。<br>  <strong>8、用户管理</strong><br>通过代理服务器，管理员可以设置用户验证和记账功能，对用户进行登记，并对用户的访问时间、访问地点、信息浏览进行统计。没有登记的用户无权通过代理服务器访问Internet</p>
+<p>   举个简单的例子：比如说“A”使用了一个美国VPN代理，VPN的地址为142.54.168.75，入侵了某网站。如果想要追查他的真实IP地址，首先可以直接到VPN供应商那里，通过查看服务器日志等方式找出此人真实IP地址.</p>
+<p>   但如果VPN供应商和验证服务器都在美国，恐怕用这个方法不太现实。那么有人可能会说，还可以通过国内的ISP运营商查找路由器记录日志，直接找142.54.168.75相关记录。</p>
+<p>   那么就会出现以下问题：</p>
+<p>   1、如果通过国内ISP运营路由找记录，首先应该确定大体方位，比如确定为某省某市，然后再到这个省市找下级ISP路由器记录，总不能直接到ISP去查全国的数据库吧？那么请问单凭一个美国VPN地址，有何技术手段能确认大体的方位和省份？</p>
+<p>   2、如果确实是重要案件的话，一定要动用ISP全国性数据库，海量的数据库，可能有很多国内用友在当天同样登陆过这个VPN代理142.54.168.75，所以在路由器上会产生很多跟142.54.168.75不相关的记录，那么怎么能揪出A？ （貌似在路由器上能看到的有很多有局限性，比如“A”通过这个美国VPN入侵的某网站，在这个过程中，一些重要的数据和日志记录，都是通过美国VPN服务器中转的，日志都存储在美国VPN服务器上，路由器貌似也捕获不到什么重要信息。）</p>
+<p>   3、即使“A”用的不是美国VPN代理，是国内一些不正规供应商的国内代理，同样在无法到VPN供应商查服务器日志的情况下，并且这些代理和“A”不是一个省份的，通过ISP路由，有什么技术手段确定“A”真实的省份？</p>
+<p>   4、另外在多级代理情况下，如，A节点韩国-B节点美国-C节点广东“A”，很难确定使用代理者真实省份。又该怎么追踪。</p>
+<p><img src="http://i1.piimg.com/567571/b99ade94ddbd3929.jpg" alt=""></p>
+<p><strong>思路如下：</strong></p>
+<p>   方法一：中国出口网络核心层由北京、上海、广州、沈阳、南京、武汉、成都、西安等8个城市，主要控制权在北京上海广州，分别控制着青岛，上海，汕头的国际网络出口。现在很多高级设备都支持基于应用层采取策略（例如网页内容过滤），只需要在几个国际网络出口做上这些策略，而A使用的VPN代理又没有经过高级加密，是很容易筛选出上级IP的。<br>因为计算机不像人，不存在筛选困难。只要条件确定，查到记录也就是瞬间的事情。</p>
+<p>   方法二：考虑到一般黑客都会清除痕迹，在使用VPN代理的时候一般也会使用高级加密或者多层次代理。这样从网络上下手就可能比较困难了。只有从现实着手。可以打着ZF的名义要求，已知国内所有的VPN代理运营商的数据库查找该IP的代理情况，以及其他相关信息，逐层排查。如果查询不到，该VPN代理可能就是A自己架设的了。这种情况下查下IP所在的国外供应商，直接以ZF的名义要求查询，结果肯定能查到。就是不知道国外的这些供应商会不会一定配合你查。</p>
+<p>   综上，代理IP是绝对能被追踪名到的。想查的话，首先你得有敦实的技术，庞大的资源，丰厚的人脉，光凭技术实现的可能性相当小。当然一般已知的vpn代理，你可以直接找管理说明情况配合让其调查。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/02/19/代理IP是否会被追查到/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      CTF中常见图片隐写 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="在CTF比赛中，图片隐写往往有着独特的方法，这几天做了几道题感觉挺新颖的额，于是就总结总结。
+1、常见的基本隐写binwalk : kali自带的图片分析以及提取,很强大的作用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF中常见图片隐写 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/CTF中常见图片隐写/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="在CTF比赛中，图片隐写往往有着独特的方法，这几天做了几道题感觉挺新颖的额，于是就总结总结。
+1、常见的基本隐写binwalk : kali自带的图片分析以及提取,很强大的作用">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/sim.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/1.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/2.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/4.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/5.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/6.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/7.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/12.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/11.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/10.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/9.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/8.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/13.png">
+<meta property="og:updated_time" content="2016-11-18T12:00:01.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTF中常见图片隐写 | Hello,C">
+<meta name="twitter:description" content="在CTF比赛中，图片隐写往往有着独特的方法，这几天做了几道题感觉挺新颖的额，于是就总结总结。
+1、常见的基本隐写binwalk : kali自带的图片分析以及提取,很强大的作用">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/sim.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">CTF中常见图片隐写</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-08-18" class="post-meta__date date">2016-08-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/CTF/">CTF</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <pre><code>在CTF比赛中，图片隐写往往有着独特的方法，这几天做了几道题感觉挺新颖的额，于是就总结总结。
+</code></pre><h2 id="1、常见的基本隐写"><a href="#1、常见的基本隐写" class="headerlink" title="1、常见的基本隐写"></a>1、常见的基本隐写</h2><pre><code>binwalk : kali自带的图片分析以及提取,很强大的作用
+</code></pre><a id="more"></a>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/sim.jpg" alt="test"></p>
+<p>进入到kali改图片目录下，运行命令 binwalk sim.jpg</p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/1.jpg" alt="test"></p>
+<p>可以很清晰的看到图片中隐藏着一个压缩包，继续运行命令<br>binwalk -e sim.jpg,可以将里面的压缩包提取出来。其实提取的方式有好几种，可以使用winhex、foremost等进行提取。</p>
+<pre><code>foremost : 也是kali自带的一款，它不仅仅局限于图片一种模式，还可以提取流量包等等，当binwalk无法提取时，不妨试试它
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/2.jpg" alt="test"></p>
+<pre><code>Stegsolve : 基于java环境下的图片通道查看器，也是一款不错的工具
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/4.jpg" alt="test"></p>
+<p>它的功能也很强大，大家可以下载一个玩玩。</p>
+<h2 id="2、F5（刷新）隐写"><a href="#2、F5（刷新）隐写" class="headerlink" title="2、F5（刷新）隐写"></a>2、F5（刷新）隐写</h2><p><img src="http://obh1qcqek.bkt.clouddn.com/5.jpg" alt="test"></p>
+<pre><code>首先下载F5解密的代码：
+https://github.com/matthewgao/F5-steganography
+切换到改目录下：
+cd F5-steganography
+继续运行命令：
+java Extract ../123456.jpg -p 123456
+然后会生成output.txt文件，里面就有flag了。
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/6.jpg" alt="test"></p>
+<h2 id="3、jphide隐写"><a href="#3、jphide隐写" class="headerlink" title="3、jphide隐写"></a>3、jphide隐写</h2><h4 id="0x00-隐写原理"><a href="#0x00-隐写原理" class="headerlink" title="0x00 隐写原理"></a>0x00 隐写原理</h4><pre><code>Jphide是基于最低有效位LSB的JPEG格式图像隐写算法，使用JPEG图像作为载体是因为相比其他图像格式更不容易发现隐藏信息，因为JPEG图像在DCT变换域上进行隐藏比空间域隐藏更难检测，并且鲁棒性更强，同时Blowfish算法有较强的抗统计检测能力。
+由于JPEG图像格式使用离散余弦变换(Discrete Cosine Transform，DCT)函数来压缩图像，而这个图像压缩方法的核心是：通过识别每个8×8像素块中相邻像素中的重复像素来减少显示图像所需的位数，并使用近似估算法降低其冗余度。因此，我们可以把DCT看作一个用于执行压缩的近似计算方法。因为丢失了部分数据，所以DCT是一种有损压缩(Loss Compression)技术，但一般不会影响图像的视觉效果。
+</code></pre><h4 id="0x01-隐写过程"><a href="#0x01-隐写过程" class="headerlink" title="0x01 隐写过程"></a>0x01 隐写过程</h4><pre><code>Jphide隐写过程大致为：先解压压缩JPEG图像，得到DCT系数;然后对隐藏信息用户给定的密码进行Blowfish加密;再利用Blowfish算法生成伪随机序列，并据此找到需要改变的DCT系数，将其末位变为需要隐藏的信息的值。最后把DCT系数重新压回成JPEG图片。
+</code></pre><h4 id="0x02-隐写实现"><a href="#0x02-隐写实现" class="headerlink" title="0x02 隐写实现"></a>0x02 隐写实现</h4><blockquote>
+<p>(1)Stegdetect</p>
+</blockquote>
+<pre><code>实现JPEG图像Jphide隐写算法工具有多个，比如由Neils Provos开发通过统计分析技术评估JPEG文件的DCT频率系数的隐写工具Stegdetect，它可以检测到通过JSteg、JPHide、OutGuess、Invisible Secrets、F5、appendX和Camouflage等这些隐写工具隐藏的信息，并且还具有基于字典暴力破解密码方法提取通过Jphide、outguess和jsteg-shell方式嵌入的隐藏信息。
+</code></pre><blockquote>
+<p>(2)JPHS</p>
+</blockquote>
+<pre><code>JPEG图像的信息隐藏软件JPHS，它是由Allan Latham开发设计实现在Windows和Linux系统平台针对有损压缩JPEG文件进行信息加密隐藏和探测提取的工具。软件里面主要包含了两个程序JPHIDE和JPSEEK， JPHIDE程序主要是实现将信息文件加密隐藏到JPEG图像功能，而JPSEEK程序主要实现从用JPHIDE程序加密隐藏得到的JPEG图像探测提取信息文件，Windows版本的JPHS里的JPHSWIN程序具有图形化操作界面且具备JPHIDE和JPSEEK的功能。
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/7.jpg" alt="test"></p>
+<p>下载链接：<a href="http://www.scanwith.com/JPHS_for_Windows_download.htm" target="_blank" rel="external">http://www.scanwith.com/JPHS_for_Windows_download.htm</a></p>
+<blockquote>
+<h5 id="1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。"><a href="#1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。" class="headerlink" title="1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。"></a>1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。</h5><h5 id="2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg"><a href="#2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg" class="headerlink" title="2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg"></a>2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg</h5></blockquote>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/12.jpg" alt="test"></p>
+<blockquote>
+<h5 id="3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"><a href="#3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。" class="headerlink" title="3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"></a>3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。</h5></blockquote>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/11.jpg" alt="test"><br><img src="http://obh1qcqek.bkt.clouddn.com/10.jpg" alt="test"></p>
+<blockquote>
+<h5 id="4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。"><a href="#4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。" class="headerlink" title="4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。"></a>4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。</h5></blockquote>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/9.jpg" alt="test"></p>
+<blockquote>
+<h5 id="5、之后便可以看到生成结果和相关信息。"><a href="#5、之后便可以看到生成结果和相关信息。" class="headerlink" title="5、之后便可以看到生成结果和相关信息。"></a>5、之后便可以看到生成结果和相关信息。</h5></blockquote>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/8.jpg" alt="test"></p>
+<p>这几步做的是Jhide方式信息隐藏，接下来我们从qq.jpg图片提取出隐藏信息。</p>
+<blockquote>
+<p>1、如果之前并不知道图片是基于什么方式进行信息隐藏，可以先使用Stegdetect先进行探测。</p>
+</blockquote>
+<pre><code>Stegdetect的主要选项如下：
+ -q 仅显示可能包含隐藏内容的图像。
+ -n 启用检查JPEG文件头功能，以降低误报率。如果启用，所有带有批注区域的文件将被视为没有被嵌入信息。如果JPEG文件的JFIF标识符中的版本号不是1.1，则禁用OutGuess检测。
+ -s 修改检测算法的敏感度，该值的默认值为1。检测结果的匹配度与检测算法的敏感度成正比，算法敏感度的值越大，检测出的可疑文件包含敏感信息的可能性越大。
+ -d 打印带行号的调试信息。
+ -t 设置要检测哪些隐写工具(默认检测jopi)，可设置的选项如下：
+ j 检测图像中的信息是否是用jsteg嵌入的。
+ o 检测图像中的信息是否是用outguess嵌入的。
+ p 检测图像中的信息是否是用jphide嵌入的。
+ i 检测图像中的信息是否是用invisible secrets嵌入的。
+ -V 显示软件版本号。
+ 如果检测结果显示该文件可能包含隐藏信息，那么Stegdetect会在检测结果后面使用1～3颗星来标识 隐藏信息存在的可能性大小，3颗星表示隐藏信息存在的可能性最大。
+</code></pre><p>从下图可以看出很可能是Jphide的信息隐藏方式：<br><img src="http://obh1qcqek.bkt.clouddn.com/13.png" alt="test"></p>
+<blockquote>
+<p>2、在知道隐藏方式之后可以开始进行信息提取，和使用JPHS进行信息隐藏过程类似，打开需要提取隐藏信息的图片C4n-u-find-f14g.jpg，输入对应密码(在不知道密码的情况不可以尝试Stegdetect工具里的Stegbreak程序进行基于字典的暴力攻击)flag，密码验证通过JPHS会自动提取隐藏信息，之后便可以另存提取出的信息。</p>
+<p>3、打开提取得到的find.txt便可以得到我们想要的隐藏信息。</p>
+</blockquote>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/08/18/CTF中常见图片隐写/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

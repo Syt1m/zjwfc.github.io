@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      php弱类型 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="php作为受欢迎的开源脚本语言，php是世界上最好的语言，越来越多的应用于Web开发领域。php属于弱类型语言，即定义变量的时候不用声明它是什么类型。作为一个程序员，弱类型确实给程序员书写代码带来了很大的便利，但是也带来了一些不必要的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php弱类型 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/php弱类型/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="php作为受欢迎的开源脚本语言，php是世界上最好的语言，越来越多的应用于Web开发领域。php属于弱类型语言，即定义变量的时候不用声明它是什么类型。作为一个程序员，弱类型确实给程序员书写代码带来了很大的便利，但是也带来了一些不必要的问题。">
+<meta property="og:image" content="http://p1.bpimg.com/567571/d639114e8d2fd2b8.png">
+<meta property="og:updated_time" content="2016-10-09T15:25:17.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php弱类型 | Hello,C">
+<meta name="twitter:description" content="php作为受欢迎的开源脚本语言，php是世界上最好的语言，越来越多的应用于Web开发领域。php属于弱类型语言，即定义变量的时候不用声明它是什么类型。作为一个程序员，弱类型确实给程序员书写代码带来了很大的便利，但是也带来了一些不必要的问题。">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/d639114e8d2fd2b8.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">php弱类型</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-09" class="post-meta__date date">2016-10-09</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/php/">php</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>php作为受欢迎的开源脚本语言，php是世界上最好的语言，越来越多的应用于Web开发领域。php属于弱类型语言，即定义变量的时候不用声明它是什么类型。作为一个程序员，弱类型确实给程序员书写代码带来了很大的便利，但是也带来了一些不必要的问题。</p>
+<a id="more"></a>
+<h3 id="0x01、-和-的问题"><a href="#0x01、-和-的问题" class="headerlink" title="0x01、==和===的问题"></a>0x01、==和===的问题</h3><p>==是比较运算，它不会去检查条件式的表达式的类型</p>
+<p>===是恒等，它会检查查表达式的值与类型是否相等。</p>
+<p>NULL,0,”0”,array()使用==和false比较时，都是会返回true的，而使用===却不会</p>
+<blockquote>
+<p>比较操作</p>
+</blockquote>
+<p>一个数字和一个字符串进行比较，PHP会把字符串转换成数字再进行比较。PHP转换的规则的是：<strong><em>若字符串以数字开头，则取开头数字作为转换结果，若无则输出0。</em></strong>例如：123abc转换后应该是123，而abc则为0，0==0这当然是成立的啦！所以，0 ==’abc’是成立的。当有一个对比参数是整数的时候，会把另外一个参数强制转换为整数。</p>
+<blockquote>
+<p>Hash比较</p>
+</blockquote>
+<pre><code>&quot;0e132456789&quot;==&quot;0e7124511451155&quot; //true
+&quot;0e123456abc&quot;==&quot;0e1dddada&quot; //false
+&quot;0e1abc&quot;==&quot;0&quot;     //true
+</code></pre><p>在进行比较运算时，如果遇到了0e\d+这种字符串，就会将这种字符串解析为科学计数法。所以上面例子中2个数的值都是0因而就相等了。如果不满足0e\d+这种模式就不会相等。</p>
+<blockquote>
+<p>md5比较</p>
+</blockquote>
+<pre><code>&lt;?php
+$a = md5(&apos;240610708&apos;); // = 0e462097431906509019562988736854
+$b = md5(&apos;QNKCDZO&apos;); // = 0e830400451993494058024219903391
+var_dump($a == $b);
+?&gt;
+</code></pre><p>返回结果<strong><em>bool(true)</em></strong></p>
+<p>240610708 和 QNKCDZO md5值类型相似，但并不相同，在“==”相等操作符的运算下，结果返回了true。这是个经典的漏洞，只需要找到md5值为<strong><em>0exxx（xxx全为数字,共30位）</em></strong>，这里我提供4个都可以通过的值：<strong><em>240610708、QNKCDZO、aabg7XSs、aabC9RqS</em></strong></p>
+<p><strong><em>扩展：</em></strong></p>
+<pre><code>先注册密码为240610708的用户A。
+然后用密码QNKCDZO尝试登录用户A。
+倘若成功登录，则证明此网站采用了不完备的加密体制md5一次加密。
+
+先注册密码为0E33455555的用户A。
+然后用密码0E234230570345尝试登录用户A。
+倘若成功登录，则证明此网站采用了明文进行存储密码！
+</code></pre><h3 id="0x02、转换问题"><a href="#0x02、转换问题" class="headerlink" title="0x02、转换问题"></a>0x02、转换问题</h3><blockquote>
+<p>类型转换</p>
+</blockquote>
+<p>string转int：intval()函数</p>
+<pre><code>var_dump(intval(&apos;2&apos;)) //2
+var_dump(intval(&apos;3abcd&apos;)) //3
+var_dump(intval(&apos;abcd&apos;)) //0
+</code></pre><p>说明intval()转换的时候，会将从字符串的开始进行转换知道遇到一个非数字的字符。即使出现无法转换的字符串，intval()不会报错而是返回0。</p>
+<blockquote>
+<p>十六进制转换</p>
+</blockquote>
+<pre><code>&quot;0x1e240&quot;==&quot;123456&quot; //true
+&quot;0x1e240&quot;==123456 //true
+&quot;0x1e240&quot;==&quot;1e240&quot; //false
+</code></pre><p>当其中的一个字符串是0x开头的时候，ox开头表示16进制，PHP会将此字符串解析成为十进制然后再进行比较，0×1e240解析成为十进制就是123456，所以与int类型和string类型的123456比较都是相等。   </p>
+<p>这样在不让输入数字但是后面还要和一串数字比较的情况下可以使用这种方法，将后面要比较的数字转为16进制，这样就可以绕过。</p>
+<h3 id="0x03、数组问题"><a href="#0x03、数组问题" class="headerlink" title="0x03、数组问题"></a>0x03、数组问题</h3><pre><code>if (isset($_GET[&apos;name&apos;]) and isset($_GET[&apos;password&apos;])) {
+    if ($_GET[&apos;name&apos;] == $_GET[&apos;password&apos;])
+        print &apos;Your password can not be your name.&apos;;
+    else if (sha1($_GET[&apos;name&apos;]) === sha1($_GET[&apos;password&apos;]))
+        die(&apos;Flag: &apos;.$flag);
+else
+    print &apos;Invalid password&apos;;
+</code></pre><p>name和password的值不能相同，其次，sha1加密之后的name和password的值又必须完全相同 我们知道，在php中，$a[] = 1;代表着$a[x] = 1;所以name[] = 1和password[]= 2相比较，可以跳过第一个判断，而如果使用sha1对一个数组进行加密，返回的将是NULL，NULL===NULL，这是成立的，所以构造两个数组绕过</p>
+<h3 id="0x04、常见函数问题"><a href="#0x04、常见函数问题" class="headerlink" title="0x04、常见函数问题"></a>0x04、常见函数问题</h3><blockquote>
+<p>md5()</p>
+</blockquote>
+<p><strong><em>string md5 ( string $str [, bool $raw_output = false ] )</em></strong></p>
+<p>md5()中需要传入的是一个string类型的参数，当我们传递一个array时，它是不会报错的，函数无法求出array的MD5值，这样导致任意两个array的MD5值都相等，从而绕过输入数值的判断，在ctf代码审计中经常遇见。</p>
+<blockquote>
+<p>strcmp()</p>
+</blockquote>
+<p><strong><em>int strcmp ( string $str1 , string $str2 )</em></strong></p>
+<p>进行字符串长度的比较，传入两个string的参数。如果str1小于str2,返回-1，相等返回0，否则返回1。strcmp函数比较字符串的本质是将两个变量转换为ascii，然后进行减法运算，然后根据运算结果来决定返回值。如果传入的参数为数字或数组</p>
+<pre><code>例1：
+$array=[1,2,3];
+var_dump(strcmp($array,&apos;123&apos;)); //null,在某种意义上null也就是相当于false。
+
+例2：
+if (isset($_GET[&apos;password&apos;])) {
+if (strcmp($_GET[&apos;password&apos;], $flag) == 0)
+    die(&apos;Flag: &apos;.$flag);
+else
+    print &apos;Invalid password&apos;;
+}
+</code></pre><p>此处使用strcmp()对pass和flag进行判断，如果==0，则输出flag。但是strcmp()函数只有在相等的情况下返回0。那么我们传入一个数组，它会返回NULL，而判断使用了==，而NULL==0是bool(true)，这样就成功绕过。</p>
+<blockquote>
+<p>switch()</p>
+</blockquote>
+<p>如果switch是数字类型的case的判断时，switch会将其中的参数转换为int类型。</p>
+<blockquote>
+<p>in_array()</p>
+</blockquote>
+<p><strong><em>bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )</em></strong></p>
+<p>如果strict参数没有提供，那么in_array就会使用松散比较来判断$needle是否在$haystack中。当strince的值为true时，in_array()会比较needls的类型和haystack中的类型是否相同。</p>
+<pre><code>$array=[0,1,2,&apos;3&apos;];
+var_dump(in_array(&apos;abc&apos;, $array));  //true
+var_dump(in_array(&apos;1bc&apos;, $array)); //true
+</code></pre><p>可以看到上面的情况返回的都是true,因为’abc’会转换为0，’1bc’转换为1。</p>
+<blockquote>
+<p>ereg()</p>
+</blockquote>
+<p><strong><em>int ereg(string pattern, string string, array [regs]);</em></strong></p>
+<p>字符串对比解析，ereg函数存在NULL截断漏洞，当ereg读取字符串string时,如果遇到了%00,后面的字符串就不会被解析。</p>
+<blockquote>
+<p>bool类型的true跟任意字符串可以弱类型相等</p>
+</blockquote>
+<p>目前就整理这么多，以后有新的会继续添加上去</p>
+<p><strong><em>松散比较的表格</em></strong><br><img src="http://p1.bpimg.com/567571/d639114e8d2fd2b8.png" alt=""></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/09/php弱类型/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

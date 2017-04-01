@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      简单的端口扫描 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、端口扫描端口扫描是指一些别有用心的人发送一组端口扫描消息，试图以此侵入某台计算机，并了解其提供的计算机网络服务类型。(服务类型与端口号有关)端口扫描器，是指客户端向服务器端端口发送请求信息，当我们收到回复时，就可以确定此端口的开放，也就了解了提供的网络服务。扫描器应该有三项功能：发现一个主机或网络的能力；一旦发现一台主机，有发现什么服务正运行在这台主机上的能力；通过测试这些服务，发现漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的端口扫描 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/22/简单的端口扫描/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、端口扫描端口扫描是指一些别有用心的人发送一组端口扫描消息，试图以此侵入某台计算机，并了解其提供的计算机网络服务类型。(服务类型与端口号有关)端口扫描器，是指客户端向服务器端端口发送请求信息，当我们收到回复时，就可以确定此端口的开放，也就了解了提供的网络服务。扫描器应该有三项功能：发现一个主机或网络的能力；一旦发现一台主机，有发现什么服务正运行在这台主机上的能力；通过测试这些服务，发现漏洞">
+<meta property="og:image" content="http://p1.bpimg.com/567571/6cfe675c096c6821.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/07f3bcc07c1ad160.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/ae4a8cc437eb41e3.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/9166557cd493187d.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/f6d9337765d24ddf.jpg">
+<meta property="og:updated_time" content="2016-11-18T12:02:24.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的端口扫描 | Hello,C">
+<meta name="twitter:description" content="0x01、端口扫描端口扫描是指一些别有用心的人发送一组端口扫描消息，试图以此侵入某台计算机，并了解其提供的计算机网络服务类型。(服务类型与端口号有关)端口扫描器，是指客户端向服务器端端口发送请求信息，当我们收到回复时，就可以确定此端口的开放，也就了解了提供的网络服务。扫描器应该有三项功能：发现一个主机或网络的能力；一旦发现一台主机，有发现什么服务正运行在这台主机上的能力；通过测试这些服务，发现漏洞">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/6cfe675c096c6821.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">简单的端口扫描</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-22" class="post-meta__date date">2016-10-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>, <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、端口扫描"><a href="#0x01、端口扫描" class="headerlink" title="0x01、端口扫描"></a>0x01、端口扫描</h3><p>端口扫描是指一些别有用心的人发送一组端口扫描消息，试图以此侵入某台计算机，并了解其提供的计算机网络服务类型。(服务类型与端口号有关)<br>端口扫描器，是指客户端向服务器端端口发送请求信息，当我们收到回复时，就可以确定此端口的开放，也就了解了提供的网络服务。<br>扫描器应该有三项功能：发现一个主机或网络的能力；一旦发现一台主机，有发现什么服务正运行在这台主机上的能力；通过测试这些服务，发现漏洞的能力<br><a id="more"></a></p>
+<h3 id="0x02、扫描原理"><a href="#0x02、扫描原理" class="headerlink" title="0x02、扫描原理"></a>0x02、扫描原理</h3><p><strong><em>端口扫描的分类:开放扫描、半开放扫描、隐蔽扫描</em></strong></p>
+<p><img src="http://p1.bpimg.com/567571/6cfe675c096c6821.png" alt=""></p>
+<p>1、connect扫描<br>利用TCP的三次握手来判断端口开放情况，连接成功则表示端口开放。准确度高，但是很容易被防火墙和IDS检测到，在日志中也会存在大量连接请求和错误信息。<br><img src="http://p1.bqimg.com/567571/07f3bcc07c1ad160.png" alt=""><br>2、SYN扫描<br>扫描器向目标主机的一个端口发送请求连接的SYN包，扫描器在收到SYN/ACK后，不是发送的ACK应答而是发送RST包请求断开连接。这样，三次握手就没有完成，无法建立正常的TCP连接，因此，这次扫描就不会被记录到系统日志中。这种扫描技术一般不会在目标主机上留下扫描痕迹。但是，这种扫描需要有root权限。</p>
+<p><img src="http://p1.bqimg.com/567571/ae4a8cc437eb41e3.png" alt=""></p>
+<p>端口开放：a、Client发送SYN; b、Server端发送SYN/ACK;c、Client发送RST断开（只需要前两步就可以判断端口开放）<br>端口关闭：a、Client发送SYN; b、Server端回复RST（表示端口关闭）</p>
+<p>3、ACK扫描<br>扫描主机向目标主机发送ACK数据包。根据返回的RST数据包有两种方法可以得到端口的信息。方法一是：若返回的RST数据包的TTL值小于或等于64，则端口开放，反之端口关闭</p>
+<p><img src="http://p1.bqimg.com/567571/9166557cd493187d.png" alt=""></p>
+<h3 id="0x04、常见端口对应的服务"><a href="#0x04、常见端口对应的服务" class="headerlink" title="0x04、常见端口对应的服务"></a>0x04、常见端口对应的服务</h3><pre><code>21----FTP             22----SSH
+23----TELNET          25----SMTP
+80----HTTP            110----P0P3
+443----HTTPS          1080----SOCKS
+1433----Sql Server    1521----Oracle
+3306----Mysql         3386----Misrosoft RDP
+</code></pre><h3 id="0x03、代码实现"><a href="#0x03、代码实现" class="headerlink" title="0x03、代码实现"></a>0x03、代码实现</h3><p>1、将具有代表性的端口和对应的服务列出；<br>2、端口扫描模块使用socke实现；<br>3、输出端口开放情况；</p>
+<p>定义get_remote_machine_info()函数获取输入网址的信息，socket.gethostbyname()获取ip</p>
+<p>定义scan函数对目标进行扫描，使用socket编程实现端口扫描</p>
+<p>总体代码如下：</p>
+<pre><code>#!/usr/bin/python
+# -*- coding:UTF-8 -*-
+
+Port = [80,21,23,22,25,110,443,1080,3306,3389,1521,1433]
+Server = [&apos;HTTP&apos;,&apos;FTP&apos;,&apos;TELNET&apos;,&apos;SSH&apos;,&apos;SMTP&apos;,&apos;POP3&apos;,&apos;HTTPS&apos;,&apos;SOCKS&apos;,&apos;MYSQL&apos;,&apos;Misrosoft RDP&apos;,&apos;Oracle&apos;,&apos;Sql Server&apos;]
+result = []
+
+import socket
+import sys
+import threading
+import time
+
+def get_remote_machine_info(Domain):
+    try:
+        return socket.gethostbyname(Domain)
+    except socket.error,e:
+        print &apos;%s: %s&apos;%(Domain,e)
+        return 0
+
+def scan(Domain,port,server):
+    temp = []
+    try:
+        s = socket.socket()
+        print &quot;Attempting to connect to &quot;+Domain+&apos;: &apos;+str(port)
+        s.connect((Domain,port))
+        temp.append(port)
+        temp.append(server)
+        result.append(temp)
+        s.close()
+    except:
+        pass
+
+
+def output(Domain,IP):
+    if result:
+        print &apos;\n&apos;+Domain+&apos;: --&gt; &apos;+IP
+        print &apos;\nThe Open Port:&apos;
+        for i in result:
+            print Domain+&apos;: %4d --&gt;%s&apos;%(i[0],i[1])
+    else:
+        print &apos;None Port!&apos;
+
+def main():
+    payload = sys.argv
+    IP = get_remote_machine_info(payload[1])
+    print &apos;\n&apos;
+    for port,server in zip(Port,Server):
+        t = threading.Thread(target=scan,args=(payload[1],port,server,)) #for循环创建线程，每个端口开一个线程
+        t.setDaemon(True) #将线程声明为守护线程,使其可快速退出
+        t.start()
+        time.sleep(0.1) #每个线程之间设置时间间隔，避免输出混乱
+    output(payload[1],IP)
+
+if __name__==&apos;__main__&apos;:
+    main()
+</code></pre><p>效果：<br><img src="http://p1.bpimg.com/567571/f6d9337765d24ddf.jpg" alt=""></p>
+<p>参考连接：<br><a href="http://www.360doc.com/content/12/0302/13/3725126_191092221.shtml" target="_blank" rel="external">http://www.360doc.com/content/12/0302/13/3725126_191092221.shtml</a><br><a href="http://www.runoob.com/python/python-socket.html" target="_blank" rel="external">http://www.runoob.com/python/python-socket.html</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/22/简单的端口扫描/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

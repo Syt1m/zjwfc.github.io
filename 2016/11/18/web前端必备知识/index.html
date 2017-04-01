@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      web前端必备知识 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、web前端所谓web前端，就是web给用户展示的东西，可能包含了设计、特效、用户交互等等。前端美工：平常就做一些平面设计，交互设计等，不需要参与太多代码问题，对于前端来说，这是最基本的。前端开发：会写js,应用js,用户交互等。前端架构：开发和优化框架，及服务器，用户体验等涉汲就比较广。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web前端必备知识 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/18/web前端必备知识/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、web前端所谓web前端，就是web给用户展示的东西，可能包含了设计、特效、用户交互等等。前端美工：平常就做一些平面设计，交互设计等，不需要参与太多代码问题，对于前端来说，这是最基本的。前端开发：会写js,应用js,用户交互等。前端架构：开发和优化框架，及服务器，用户体验等涉汲就比较广。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/1d027773b39f0476.png">
+<meta property="og:updated_time" content="2016-11-18T12:29:27.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web前端必备知识 | Hello,C">
+<meta name="twitter:description" content="0x01、web前端所谓web前端，就是web给用户展示的东西，可能包含了设计、特效、用户交互等等。前端美工：平常就做一些平面设计，交互设计等，不需要参与太多代码问题，对于前端来说，这是最基本的。前端开发：会写js,应用js,用户交互等。前端架构：开发和优化框架，及服务器，用户体验等涉汲就比较广。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/1d027773b39f0476.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">web前端必备知识</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-18" class="post-meta__date date">2016-11-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/web前端/">web前端</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、web前端"><a href="#0x01、web前端" class="headerlink" title="0x01、web前端"></a>0x01、web前端</h3><p>所谓web前端，就是web给用户展示的东西，可能包含了设计、特效、用户交互等等。<br>前端美工：平常就做一些平面设计，交互设计等，不需要参与太多代码问题，对于前端来说，这是最基本的。<br>前端开发：会写js,应用js,用户交互等。<br>前端架构：开发和优化框架，及服务器，用户体验等涉汲就比较广。<br><a id="more"></a></p>
+<h3 id="0x02、主要分类"><a href="#0x02、主要分类" class="headerlink" title="0x02、主要分类"></a>0x02、主要分类</h3><p>主要四大板块：<strong>理论知识，类库框架，编码开发，运行环境</strong><br>web前端知识框架大家可以看一看<br><img src="http://p1.bqimg.com/567571/1d027773b39f0476.png" alt=""></p>
+<p>框架图应该从下面往上面看，下面是上面的基础。我们首先必须了解一定的理论知识，这个是前提，具备了编码能力后可以使用第三方框架和类库帮助我们，比如：jquery,继而使用一些便捷的工具对我们的代码进行测试、调试，最后达到高效、稳定的运行在相应的环境中的目的。</p>
+<h3 id="0x03、具体分类"><a href="#0x03、具体分类" class="headerlink" title="0x03、具体分类"></a>0x03、具体分类</h3><pre><code>理论知识、类库框架、编码开发、运行环境
+</code></pre><blockquote>
+<p>理论知识</p>
+</blockquote>
+<p>最主要的是要了解http标准、W3C标准和ECMAScript标准以及设计思想、数据结构等。</p>
+<p>http标准主要掌握http请求过程、提交方法、状态码等，推荐《图解http》这本书；<br>W3C标准掌握html是结构 （网页一个架子，显示内容），css是样式（添加背景图片，边框等来修饰），js是行为（用户操作，华丽的动画），推荐<a href="http://www.w3cschool.cn/" target="_blank" rel="external">W3Cschool</a><br>ECMAScript标准,javascript继承了ES的这些特性</p>
+<blockquote>
+<p>类库框架</p>
+</blockquote>
+<p>jquery一定是大部分web前端开发者不可或缺的工具，极大地简化了JavaScript 编程。<br>Bootstrap，是目前最受欢迎的前端框架，是基于 HTML、CSS、JavaScript 的，它简洁灵活，使得 Web 开发更加快捷。<br>fontAwesome是全世界最强大的图标系统。相比于css制作图标来说，这个要好很多倍，不管是开发、效率还是维护上。<br>requirejs和seajs这种模块定义系统，也一定是系统中不可或缺的。</p>
+<blockquote>
+<p>编程开发</p>
+</blockquote>
+<p>当然编程最强的当然还是微软的visual studio<br>推荐使用sublime，其中有好多插件可以供我们选择使用，可以大大减轻我们的工作量。</p>
+<blockquote>
+<p>运行环境</p>
+</blockquote>
+<p>浏览器下考虑的最终的两点：<strong>web安全、性能优化</strong></p>
+<h3 id="0x04、总结"><a href="#0x04、总结" class="headerlink" title="0x04、总结"></a>0x04、总结</h3><p>这里只是简单的概述了我们所要掌握的必备知识，至于具体的小知识点、小细节还是要大家努力去学习，掌握了这么多的基础知识和编程技巧之后，我们就可以更好的进行web前端开发。</p>
+<p>另一个解释：<a href="https://zhuanlan.zhihu.com/p/22978846" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/22978846</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/18/web前端必备知识/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

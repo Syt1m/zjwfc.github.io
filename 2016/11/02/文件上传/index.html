@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      文件上传 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
+0x02、文件上传漏洞的利用方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/02/文件上传/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
+0x02、文件上传漏洞的利用方法">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/69798074.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/92689014.jpg">
+<meta property="og:updated_time" content="2016-11-02T03:44:21.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传 | Hello,C">
+<meta name="twitter:description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
+0x02、文件上传漏洞的利用方法">
+<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">文件上传</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-02" class="post-meta__date date">2016-11-02</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、文件上传"><a href="#0x01、文件上传" class="headerlink" title="0x01、文件上传"></a>0x01、文件上传</h3><p>文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。</p>
+<h3 id="0x02、文件上传漏洞的利用方法"><a href="#0x02、文件上传漏洞的利用方法" class="headerlink" title="0x02、文件上传漏洞的利用方法"></a>0x02、文件上传漏洞的利用方法</h3><a id="more"></a>
+<p>1、上传文件WEB脚本语言，服务器的WEB容器解释并执行了用户上传的脚本，导致代码执行；<br>2、上传文件FLASH策略文件crossdomain.xml，以此来控制Flash在该域下的行为；<br>3、上传文件是病毒、木马文件，攻击者用以诱骗用户或管理员下载执行；<br>4、上传文件是钓鱼图片或为包含了脚本的图片，某些浏览器会作为脚本执行，实施钓鱼或欺诈；</p>
+<h3 id="0x03、文件上传漏洞的原因"><a href="#0x03、文件上传漏洞的原因" class="headerlink" title="0x03、文件上传漏洞的原因"></a>0x03、文件上传漏洞的原因</h3><p>1、文件上传时检查不严；一些应用在文件上传时没有进行文件格式检查，导致攻击者可以直接上传恶意文件。这种现在已经挺少的了。<br>2、文件上传后修改文件名时处理不当；一些应用在服务器端进行了完整的黑名单和白名单过滤，在修改已上传文件文件名时却百密一疏，允许用户修改文件后缀。<br>3、使用第三方插件时引入；好多应用都引用了带有文件上传功能的第三方插件，这些插件的文件上传功能实现上可能有漏洞，攻击者可通过这些漏洞进行文件上传攻击。</p>
+<h3 id="0x04、文件上传漏洞挖掘"><a href="#0x04、文件上传漏洞挖掘" class="headerlink" title="0x04、文件上传漏洞挖掘"></a>0x04、文件上传漏洞挖掘</h3><p>1、白盒测试：大部分web应用都是基于框架来写的，上传的话都是调用同一个上传类，而上传函数只用move_uploaded_file()，所以我们在代码审计的时候，最直接快速的方法就是直接搜索move_uploaded_file()函数，再去查看调用此函数进行文件上传的代码是否存在上面所说的漏洞。<br>2、黑盒测试：对一些需要上传文件、图片等地方进行尝试</p>
+<p>经常出现在一些上传文件、头像、图片等验证不严谨的地方。在我们平时的CTF比赛中也是经常遇到的题型。</p>
+<h3 id="0x05、上传绕过方法"><a href="#0x05、上传绕过方法" class="headerlink" title="0x05、上传绕过方法"></a>0x05、上传绕过方法</h3><p>1、前台脚本检测扩展名，比较简单<br>2、Content-Type检测文件类型，修改数据包中文件的Content-Type类型(如改为:image/gif)，使其符合白名单的规则，达到上传的目的<br>3、文件系统00截断，通过抓包截断将【evil.php.jpg】后面的一个【.】换成【0x00】。在上传的时候，当文件系统读到【0x00】时，会认为文件已经结束，从而将【evil.php.jpg】的内容写入到【evil.php】中，从而达到攻击的目的。<br>4、服务器端扩展名检测黑名单，将一句话木马的文件名【evil.php】，改成【evil.php.abc】(奇怪的不被解析的后缀名都行)。首先，服务器验证文件扩展名的时候，验证的是【.abc】，只要该扩展名符合服务器端黑白名单规则，即可上传。另外，当在浏览器端访问该文件时，Apache如果解析不了【.abc】扩展名，会向前寻找可解析的扩展名，即【.php】<br>5、 JS检测上传文件，在本地浏览器客户端禁用JS即可。可使用火狐浏览器的NoScript插件、IE中禁用掉JS等方式实现。<br>6、重写解析规则，<br>在可以上传.htaccess文件时，先上传.htaccess文件，覆盖掉原先的.htaccess文件；再上传【evil.gif】文件。使用如下的.htaccess语句，即可将【evil.gif】文件以php脚本方式解析。</p>
+<pre><code>&lt;FilesMatch &quot;evil.gif&quot;&gt;
+    SetHandler application/x-httpd-php
+&lt;/FilesMatch&gt;
+</code></pre><p>7、后缀名大小写绕过<br>用于只将小写的脚本后缀名(如php)过滤掉的场合；<br>例如:将Burpsuite截获的数据包中的文件名【evil.php】改为【evil.Php】<br>8、双写后缀名绕过<br>用于只将文件后缀名，例如”php”字符串过滤的场合；<br>例如:上传时将Burpsuite截获的数据包中文件名【evil.php】改为【evil.pphphp】，那么过滤了第一个”php”字符串”后，开头的’p’和结尾的’hp’就组合又形成了【php】。<br>9、特殊后缀名绕过<br>用于检测文件合法性的脚本有问题的场合；<br>例如:将Burpsuite截获的数据包中【evil.php】名字改为【evil.php6】，或加个空格改为【evil.php 】等。php3 php4 php5 php7 PHP PHP3 phtml</p>
+<h3 id="0x06、对于上传文件php内容绕过"><a href="#0x06、对于上传文件php内容绕过" class="headerlink" title="0x06、对于上传文件php内容绕过"></a>0x06、对于上传文件php内容绕过</h3><p>1、过滤&lt;?php</p>
+<pre><code>&lt;script language = &quot;php&quot;&gt; @eval($_post[&apos;123&apos;]);&lt;/script&gt;
+</code></pre><p>2、使用require_once()</p>
+<pre><code>&lt;script language=&quot;PHP&quot;&gt;require_once(&quot;$_POST[id]&quot;) ;&lt;/script&gt;
+</code></pre><p>直接进行文件包含，使用php的filter流id=php://filter/convert.base64-encode/resource=../flag.php直接输出<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg" alt=""><br>3、使用linux命令</p>
+<pre><code>&lt;script language=&quot;PHP&quot;&gt;echo `$_POST[id]` ;&lt;/script&gt;
+反引号`，反引号（``） 执行运算符,PHP 将尝试将反引号中的内容作为外壳命令来执行，并将其输出信息返回
+</code></pre><p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/69798074.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/92689014.jpg" alt=""></p>
+<h3 id="0x07、防御方法"><a href="#0x07、防御方法" class="headerlink" title="0x07、防御方法"></a>0x07、防御方法</h3><p>1、使用白名单进行过滤，上传记录上传操作；<br>2、对上传的文件头进行判断，限制上传文件格式 、大小；<br>3、对上传的文件进行重命名操作，图片压缩；<br>4、存储目录与Web应用分离,存储目录无执行权限；</p>
+<p>链接：<a href="https://www.secpulse.com/archives/40617.html" target="_blank" rel="external">https://www.secpulse.com/archives/40617.html</a><br><a href="https://my.oschina.net/yonghan/blog/496483" target="_blank" rel="external">https://my.oschina.net/yonghan/blog/496483</a><br><a href="http://www.2cto.com/article/201308/233831.html" target="_blank" rel="external">http://www.2cto.com/article/201308/233831.html</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/02/文件上传/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

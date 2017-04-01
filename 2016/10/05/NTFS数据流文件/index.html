@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      NTFS数据流文件 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、流流(STREAM)是NTFS下的概念，目前只有NTFS支持流。流依附于文件而存在，可以在流中存储2进制数据，文字或者其它一些东西。每个文件可以含有多个流，当流所依附的文件被删除，流也随之消失。流的名字和文件名以“:”分隔，例如:ABC:A.ABC就是文件名，而流的名字为“A.”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NTFS数据流文件 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/05/NTFS数据流文件/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、流流(STREAM)是NTFS下的概念，目前只有NTFS支持流。流依附于文件而存在，可以在流中存储2进制数据，文字或者其它一些东西。每个文件可以含有多个流，当流所依附的文件被删除，流也随之消失。流的名字和文件名以“:”分隔，例如:ABC:A.ABC就是文件名，而流的名字为“A.”">
+<meta property="og:image" content="http://p1.bqimg.com/567571/571fc40f34eee5e6.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/22c39a74aee40b55.png">
+<meta property="og:updated_time" content="2016-10-05T06:14:42.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NTFS数据流文件 | Hello,C">
+<meta name="twitter:description" content="0x01、流流(STREAM)是NTFS下的概念，目前只有NTFS支持流。流依附于文件而存在，可以在流中存储2进制数据，文字或者其它一些东西。每个文件可以含有多个流，当流所依附的文件被删除，流也随之消失。流的名字和文件名以“:”分隔，例如:ABC:A.ABC就是文件名，而流的名字为“A.”">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/571fc40f34eee5e6.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">NTFS数据流文件</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-05" class="post-meta__date date">2016-10-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、流"><a href="#0x01、流" class="headerlink" title="0x01、流"></a>0x01、流</h3><p>流(STREAM)是NTFS下的概念，目前只有NTFS支持流。流依附于文件而存在，可以在流中存储2进制数据，文字或者其它一些东西。每个文件可以含有多个流，当流所依附的文件被删除，流也随之消失。流的名字和文件名以“:”分隔，例如:ABC:A.ABC就是文件名，而流的名字为“A.”</p>
+<a id="more"></a>
+<h3 id="0x02、NTFS数据流文件"><a href="#0x02、NTFS数据流文件" class="headerlink" title="0x02、NTFS数据流文件"></a>0x02、NTFS数据流文件</h3><p>NTFS是微软Windows NT内核的系列操作系统支持的、一个特别为网络和磁盘配额、文件加密等管理安全特性设计的磁盘格式。NTFS比FAT文件系统更稳定，更安全，功能也更为强大。</p>
+<p>NTFS数据流文件，也叫Alternate data streams，简称ADS，是NTFS文件系统的一个特性之一，允许单独的数据流文件存在，同时也允许一个文件附着多个数据流，即除了主文件流之外还允许许多非主文件流寄生在主文件流之中，它使用资源派生的方式来维持与文件相关信息，并且这些寄生的数据流文件我们使用资源管理器是看不到的。</p>
+<h3 id="0x03、为何我们看不到数据流文件"><a href="#0x03、为何我们看不到数据流文件" class="headerlink" title="0x03、为何我们看不到数据流文件"></a>0x03、为何我们看不到数据流文件</h3><p>我们之所以无法在系统中看到NTFS数据流文件，是因为Windows中的很多工具对数据流文件的支持并不是很好，就像“资源管理器”，我们无法在“资源管理器”中看到有关数据流文件的变化。</p>
+<h3 id="0x04、创建数据流文件"><a href="#0x04、创建数据流文件" class="headerlink" title="0x04、创建数据流文件"></a>0x04、创建数据流文件</h3><p>NTFS流文件分为两种，一种是附于宿主文件，另一种是单独的数据流文件。它有两种编辑的方法，一是系统自带的命令，另一种是使用<br>NTFS Streams info工具</p>
+<p><strong><em>1、系统自带命令</em></strong></p>
+<pre><code>echo &quot;this is a stream file&quot; &gt; :test1.txt
+</code></pre><p>这条命令创建了一个数据流，对于dir或者资源管理器是完全看不到的，其实就是隐藏的，就连del命令也不能够删除流文件。使用       </p>
+<pre><code>notepad :test1.txt
+</code></pre><p>才能够看到它<br><img src="http://p1.bqimg.com/567571/571fc40f34eee5e6.png" alt=""></p>
+<p>还可以关联到宿主文件下</p>
+<p>我们先创建一个test.txt文件，输入this is the main file，我们关联一个流文件给他</p>
+<p>输入</p>
+<pre><code>echo &quot;this is a stream file&quot; &gt; test.txt:stream.txt
+</code></pre><p>我们就创建了一个名为stream.txt，内容为“this is a stream file”的数据流文件，并与宿主文件test.txt进行了关联。当然我们没有办法找到这个流文件，同时查看宿主文件test.txt发现内容并没有什么变化，但是他的大小可能会变哦。这是我们输入</p>
+<pre><code>notepad test.txt:stream.txt
+</code></pre><p>就可以查看到我们刚才输入的流文件<br><img src="http://p1.bqimg.com/567571/22c39a74aee40b55.png" alt=""></p>
+<p>这样就是一些简单的数据流文件隐藏</p>
+<p><strong><em>2、使用NTFS Streams info工具</em></strong></p>
+<p><strong><em>数据流文件是不局限于文本文档的，任何文件都可以作为数据流文件，包括可执行程序，图片，声音等等。</em></strong><br>这就至少造成两个隐患：一是黑客入侵后可能将黑客工具通过数据流隐藏起来，当然也有病毒发作后将病毒文件进行隐藏的；二是通过某些途径，让数据流文件可以自动执行，起到隐藏木马的效果。</p>
+<h3 id="0x05、使用NTFS文件流与winrar-打造免杀木马"><a href="#0x05、使用NTFS文件流与winrar-打造免杀木马" class="headerlink" title="0x05、使用NTFS文件流与winrar 打造免杀木马"></a>0x05、使用NTFS文件流与winrar 打造免杀木马</h3><p>1、首先我们创建一个test文件夹，将事先准备好的木马程序muma.exe放入。进入命令提示符，输入命令“type muma.exe:muma.exe”，这样就为muma.exe创建了一个数据流文件，完成后将test文件夹中的muma.exe删除。返回到上一级目录，在test文件夹上单击右键，在出现的菜单中选择“添加到test.rar”。</p>
+<p>2、双击刚才创建的test.rar，点击Winrar工具栏上的“添加”按钮，浏览选中test文件夹。在出现的“压缩文件名和参数”面板中切换到“高级”选项卡，选中其中的“保存文件数据流”选项，点击“确定”即可。</p>
+<p>3、在Winrar中选中test文件夹，点击Winrar工具栏上的“自解压格式”按钮。在“自解压格式”标签的“自解压模块”中选中“Default.SFX”，然后点击“高级自解压选项”按钮。出现高级自解压面板后，在其“常规”标签的“解压后运行”中填入“test:muma.exe”。切换到“模式”标签，勾选其中的“全部隐藏”。全部设置完成后点击“确定”，这样就创建了一个极为隐蔽的自解压木马，甚至可以躲过杀毒软件的查杀，当用户双击这个自解压文件后，就会运行里面的数据流木马。</p>
+<h3 id="0x06、那么如何防范呢？"><a href="#0x06、那么如何防范呢？" class="headerlink" title="0x06、那么如何防范呢？"></a>0x06、那么如何防范呢？</h3><p>1、专业检测NTFS数据流文件的工具有Sfind.exe、Streams.exe、lads.exe等</p>
+<p>2、常见到的自解压文件，不要双击直接运行，可以在自解压文件上点击鼠标右键，选择“用Winrar打开”，如果发现其中的文件夹是空的，那么就要留个心眼了，很可能这就是一个数据流木马陷阱。 </p>
+<p>3、不管杀毒软件是不是能查杀NTFS数据流木马，木马程序运行后，在内存中还是会还原出来的，一般的杀毒软件都带有内存监控功能，可以将木马程序在内存中拦截下来。因此，勤升级杀毒软件也是防范NTFS数据流木马比较有效的办法。</p>
+<p>也有杀毒软件利用数据流的特性,如卡巴斯基扫描过文件之后,就以数据流的形式标记为白名单,这样却导致用户的硬盘空间被大量占用了,所谓的卡巴斯基吃硬盘就是这样,造成多少用户的困扰。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/05/NTFS数据流文件/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

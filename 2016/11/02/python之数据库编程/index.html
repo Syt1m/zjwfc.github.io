@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      python数据库编程 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
+在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python数据库编程 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/02/python之数据库编程/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
+在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/49380868.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/14808792.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/18715050.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13078060.jpg">
+<meta property="og:updated_time" content="2016-11-02T16:31:33.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python数据库编程 | Hello,C">
+<meta name="twitter:description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
+在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
+<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">python数据库编程</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-02" class="post-meta__date date">2016-11-02</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/python/">python</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、Python数据库编程"><a href="#0x01、Python数据库编程" class="headerlink" title="0x01、Python数据库编程"></a>0x01、Python数据库编程</h3><p>python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，<a href="https://wiki.python.org/moin/DatabaseInterfaces" target="_blank" rel="external">Python数据库接口及API</a>可以查看详细的支持数据库列表。</p>
+<p>在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。<br><a id="more"></a><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg" alt=""><br>使用DB-API之后,我们可以快速的调用DB-API对数据库进行连接，快速方便<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/49380868.jpg" alt=""></p>
+<h3 id="0x02、Python-DB-API使用流程"><a href="#0x02、Python-DB-API使用流程" class="headerlink" title="0x02、Python DB-API使用流程"></a>0x02、Python DB-API使用流程</h3><p>1、引入API模块；<br>2、获取与数据库的连接；<br>3、执行SQL语句和存储过程<br>4、关闭数据库连接；<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/14808792.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/18715050.jpg" alt=""></p>
+<p>这里我们使用mysql数据库进行连接<br>MySQLdb是用于python连接mysql的接口<br>安装MySQLdb，推荐大家先安装pip，这样我们以后安装其他库也就方便多了。<br>pip安装MySQLdb</p>
+<pre><code>pip install MySQL-python
+</code></pre><p><a href="http://www.jb51.net/article/48827.htm" target="_blank" rel="external">其他安装方法</a></p>
+<p>数据库的安装过程以及数据库的增删改查这里就不介绍了</p>
+<h3 id="0x03、数据库连接的基本操作"><a href="#0x03、数据库连接的基本操作" class="headerlink" title="0x03、数据库连接的基本操作"></a>0x03、数据库连接的基本操作</h3><pre><code>db = MySQLdb.connect(&quot;localhost&quot;,&quot;admin&quot;,&quot;123456&quot;,&quot;testdb&quot;)  #数据库连接
+cursor = db.cursor()  #使用cursor()获取操作游标
+cursor.execute(&quot;SELECT VERSION()&quot;)  #使用execute方法执行SQL操作
+data = cursor.fetchone()  #使用fetchone()方法获取一条数据库
+db.commit()   #提交到数据库执行
+cursor.close()   #关闭游标
+db.rollback()  #发生错误时回滚
+db.close()   #关闭数据库
+</code></pre><p><strong>对于支持事务的数据库， 在Python数据库编程中，当游标建立之时，就自动开始了一个隐形的数据库事务。<br>commit()方法游标的所有更新操作，rollback（）方法回滚当前游标的所有操作。每一个方法都开始了一个新的事务。</strong></p>
+<h3 id="0x04、举例操作"><a href="#0x04、举例操作" class="headerlink" title="0x04、举例操作"></a>0x04、举例操作</h3><pre><code>#！usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import MySQLdb
+
+db = MySQLdb.Connect(&quot;localhost&quot;,&quot;admin&quot;,&quot;123456&quot;,&quot;test&quot;)
+cursor = db.cursor()
+
+sql = &quot;&quot;&quot;CREATE TABLE test (
+         NAME  CHAR(20),
+         AGE INT,
+         SEX CHAR(1))&quot;&quot;&quot;
+#sql = &quot;&quot;&quot;INSERT INTO test(NAME,AGE, SEX, INCOME)VALUES (&apos;Mac&apos;, 20, &apos;M&apos;)&quot;&quot;&quot;
+
+try:
+    cursor.executr(sql)
+    db.commit()
+except:
+    db.rollback()
+db.close()
+</code></pre><h3 id="0x05、爬虫与数据库结合"><a href="#0x05、爬虫与数据库结合" class="headerlink" title="0x05、爬虫与数据库结合"></a>0x05、爬虫与数据库结合</h3><p>当我们使用爬虫爬取到了一些信息，我们可以一边爬取一边存储到数据库中，这样也比较方便</p>
+<pre><code>#!/usr/bin/python
+# -*-coding:utf-8 -*-
+
+import MySQLdb
+import requests
+from bs4 import BeautifulSoup
+
+url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
+r = requests.get(url=url)
+
+soup = BeautifulSoup(r.content,&apos;lxml&apos;)
+bbsnews = soup.find_all(name=&apos;a&apos;,attrs={&apos;class&apos;:&apos;ui_colorG&apos;})
+db = MySQLdb.Connect(&quot;localhost&quot;,&quot;root&quot;,&quot;&quot;,&quot;test&quot;,&quot;utf8&quot;)
+curcor = db.cursor()
+curcor.execute(&quot;CREATE TABLE xinxi (mingzi varchar(200))&quot;)
+count = 0
+for i in bbsnews:
+        curcor.execute(&quot;INSERT INTO xinxi (mingzi) VALUES (%s)&quot;,i)
+        count +=curcor.rowcount
+print(&apos;有%d行数据被插入&apos;%count)
+db.commit()
+curcor.close()
+db.close()
+</code></pre><p>这样我们就可以将我们爬取的想要的东西存储在了我们的数据库<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13078060.jpg" alt=""></p>
+<p>还有就是存储内容汉字无法显示，<br>1、数据库my.ini把字段类型设置为utf8<a href="http://jingyan.baidu.com/article/e2284b2b675cf1e2e7118d4b.html" target="_blank" rel="external">连接</a>；<br>2、在连接数据库的时候，加个参数，说明数据库那边的字段类型一致，charset=’utf8’。</p>
+<pre><code>conn=MySQLdb.connect(host=&quot;127.0.0.1&quot;,user=&quot;nimei&quot;,passwd=&quot;nimei&quot;,db=&quot;nimei&quot;,charset=&quot;utf8&quot;) 
+</code></pre>
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/02/python之数据库编程/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

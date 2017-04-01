@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      变量覆盖 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01 变量覆盖变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变量覆盖 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/11/30/变量覆盖/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01 变量覆盖变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。">
+<meta property="og:image" content="http://p1.bqimg.com/567571/283704e0491964bc.png">
+<meta property="og:image" content="http://p1.bqimg.com/567571/b04a08dda72e3da2.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/91c711dfdcea3bb8.png">
+<meta property="og:updated_time" content="2016-12-03T03:18:01.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="变量覆盖 | Hello,C">
+<meta name="twitter:description" content="0x01 变量覆盖变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/283704e0491964bc.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">变量覆盖</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-30" class="post-meta__date date">2016-11-30</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/php/">php</a>, <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01-变量覆盖"><a href="#0x01-变量覆盖" class="headerlink" title="0x01 变量覆盖"></a>0x01 变量覆盖</h3><p>变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。<br>变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。<br><a id="more"></a></p>
+<h3 id="0x02-变量覆盖函数"><a href="#0x02-变量覆盖函数" class="headerlink" title="0x02 变量覆盖函数"></a>0x02 变量覆盖函数</h3><p>2.1、全局变量覆盖</p>
+<blockquote>
+<p>$GLOBALS, 所有全局变量数组<br>$_SERVER， 服务器环境变量数组<br>$_GET，通过GET方法传递给脚本的变量数组<br>$_POST， 通过POST方法传递给脚本的变量数组<br>$_COOKIE，cookie变量数组<br>$_REQUEST，所有用户输入的变量数组，包括$_GET, $_POST和$_COOKIE所包含的输入内容<br>$_FILES，与文件上传相关得变量数组<br>$_ENV，环境变量数组<br>$_SESSION，会话变量数组</p>
+</blockquote>
+<p>2.1、遍历初始化变量</p>
+<pre><code>&lt;?php
+    $a=&apos;hello&apos;;
+    foreach($_GET as $key =&gt; $value{
+        $$key = $value;
+    }
+ print $a;
+ ?&gt;
+</code></pre><p><img src="http://p1.bqimg.com/567571/283704e0491964bc.png" alt=""><br><strong><em>在代码审计时需要注意类似“$$k”的变量赋值方式有可能覆盖已有的变量，从而导致一些不可控制的结果。</em></strong> </p>
+<p>2.2、parse_str()变量覆盖</p>
+<pre><code>&lt;?php
+$var=&apos;Hello&apos;;
+parse_str($_SERVER[&apos;QUERY_STRING&apos;]);
+print $var;
+?&gt;
+</code></pre><p><img src="http://p1.bqimg.com/567571/b04a08dda72e3da2.png" alt=""><br><strong><em>与parse_str()类似的函数还有mb_parse_str()，parse_str — 将字符串解析成多个变量，如果参数str是URL传递入的查询字符串（query string），则将它解析为变量并设置到当前作用域。</em></strong> </p>
+<p>2.3、import_request_variables()变量覆盖</p>
+<pre><code>&lt;?php  
+$a = &apos;0&apos;;  
+import_request_variables(&apos;G&apos;);  
+
+if($a == 1){  
+  echo &quot;true!&quot;;  
+}else{  
+  echo &quot;false!&quot;;  
+}  
+?&gt; 
+</code></pre><p><img src="http://i1.piimg.com/567571/91c711dfdcea3bb8.png" alt=""><br><strong><em>import_request_variables()，将 GET／POST／Cookie 变量导入到全局作用域中。如果你禁止了 register_globals，但又想用到一些全局变量，那么此函数就很有用。</em></strong></p>
+<p>2.4、extract()变量覆盖</p>
+<pre><code>&lt;?php  
+
+$a = &apos;0&apos;;  
+extract($_GET)；  
+
+if($a==1){  
+echo &quot;true!&quot;;  
+}else{  
+echo &quot;false!&quot;;  
+}  
+?&gt; 
+</code></pre><p>假设构造以下链接：<a href="http://www.a.com/1.php?a=1时，界面上会打印出true！" target="_blank" rel="external">http://www.a.com/1.php?a=1时，界面上会打印出true！</a><br>安全的做法是确定register_globals=OFF后，在调用extract()时使用EXTR_SKIP保证已有变量不会被覆盖。<br><strong><em>PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</em></strong></p>
+<h3 id="0x03-挖掘经验"><a href="#0x03-挖掘经验" class="headerlink" title="0x03 挖掘经验"></a>0x03 挖掘经验</h3><p>只要搜索敏感函数，然后回溯函数是否可控，当然也可以通过搜索”$$”关键字去挖掘。</p>
+<h3 id="0x04-漏洞防范"><a href="#0x04-漏洞防范" class="headerlink" title="0x04 漏洞防范"></a>0x04 漏洞防范</h3><p>1、<strong>使用原始变量</strong><br>最直接方法就是不进行变量注册，直接使用原生的$_GET、$_POST等数组变量进行操作；<br>2、<strong>验证变量存在</strong><br>注册变量前判断变量是否存在。最重要的一点，自行申明的变量一定要初始化，不然即使注册变量代码在执行流程最前面也能覆盖掉这些未初始化的变量。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="http://music.163.com/outchain/player?type=2&id=63650&auto=1&height=66"></iframe>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/11/30/变量覆盖/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

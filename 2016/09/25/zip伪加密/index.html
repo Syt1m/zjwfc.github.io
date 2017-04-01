@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      zip伪加密 | Hello,C 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    
+
+    <meta name="description" content="0x01、原理
+zip伪加密是在文件头的加密标志位做修改，进而再打开文件时识被别为加密压缩包。
+
+0x02、zip结构一个 ZIP 文件由三个部分组成：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zip伪加密 | Hello,C">
+<meta property="og:url" content="http://yoursite.com/2016/09/25/zip伪加密/index.html">
+<meta property="og:site_name" content="Hello,C">
+<meta property="og:description" content="0x01、原理
+zip伪加密是在文件头的加密标志位做修改，进而再打开文件时识被别为加密压缩包。
+
+0x02、zip结构一个 ZIP 文件由三个部分组成：">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20160908150435955.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20160908150325435.jpg">
+<meta property="og:updated_time" content="2016-11-18T12:00:39.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zip伪加密 | Hello,C">
+<meta name="twitter:description" content="0x01、原理
+zip伪加密是在文件头的加密标志位做修改，进而再打开文件时识被别为加密压缩包。
+
+0x02、zip结构一个 ZIP 文件由三个部分组成：">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20160908150435955.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个小白的独白！
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+                
+                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    
+      <li class="navigation__item">
+        <a href="https://www.douban.com/" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+ 
+
+
+
+  </ul>
+</nav>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">zip伪加密</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-25" class="post-meta__date date">2016-09-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/CTF/">CTF</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="0x01、原理"><a href="#0x01、原理" class="headerlink" title="0x01、原理"></a>0x01、原理</h3><blockquote>
+<p>zip伪加密是在文件头的加密标志位做修改，进而再打开文件时识被别为加密压缩包。</p>
+</blockquote>
+<h3 id="0x02、zip结构"><a href="#0x02、zip结构" class="headerlink" title="0x02、zip结构"></a>0x02、zip结构</h3><p><strong><em>一个 ZIP 文件由三个部分组成：</em></strong><br><a id="more"></a></p>
+<blockquote>
+<p>压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志 </p>
+</blockquote>
+<p>1、压缩源文件数据区<br>    在这个数据区中每一个压缩的源文件/目录都是一条记录，记录的格式如下：</p>
+<pre><code>文件头+ 文件数据 + 数据描述符
+</code></pre><blockquote>
+<p>a、文件头结构</p>
+</blockquote>
+<pre><code>   组成    　                长度
+文件头标记                   4 bytes  (0x04034b50)
+解压文件所需 pkware 版本      2 bytes
+全局方式位标记                2 bytes
+压缩方式                     2 bytes
+最后修改文件时间              2 bytes
+最后修改文件日期              2 bytes
+CRC-32校验                  4 bytes
+压缩后尺寸                   4 bytes
+未压缩尺寸                   4 bytes
+文件名长度                   2 bytes
+扩展记录长度                 2 bytes                                文件名                     （不定长度）
+扩展字段                   （不定长度）
+</code></pre><blockquote>
+<p>b、文件数据</p>
+<p>c、数据描述符</p>
+</blockquote>
+<pre><code>   组成    　         长度
+CRC-32校验          4 bytes
+压缩后尺寸           4 bytes
+未压缩尺寸           4 bytes
+</code></pre><p>2、压缩源文件目录区</p>
+<p>  在这个数据区中每一条纪录对应在压缩源文件数据区中的一条数据</p>
+<pre><code>   组成               　长度
+　　目录中文件文件头标记             4 bytes  (0x02014b50)
+　　压缩使用的　pkware 版本          2 bytes
+　　解压文件所需 pkware 版本         2 bytes
+　　全局方式位标记                   2 bytes
+　　压缩方式                        2 bytes
+　　最后修改文件时间                 2 bytes
+　　最后修改文件日期                 2 bytes
+　　ＣＲＣ－３２校验                 4 bytes
+　　压缩后尺寸                      4 bytes
+　　未压缩尺寸                      4 bytes
+　　文件名长度                      2 bytes
+　　扩展字段长度                    2 bytes
+　　文件注释长度                    2 bytes
+　　磁盘开始号                      2 bytes
+　　内部文件属性                    2 bytes
+　　外部文件属性                    4 bytes
+局部头部偏移量                  4 bytes
+　　文件名                       （不定长度）
+　　扩展字段                     （不定长度）
+文件注释                     （不定长度）
+</code></pre><p>3、压缩源文件目录结束标志</p>
+<pre><code> 组成               　          长度
+目录结束标记                    4 bytes  (0x02014b50)
+当前磁盘编号                    2 bytes
+目录区开始磁盘编号              2 bytes
+　　本磁盘上纪录总数                 2 bytes
+　　目录区中纪录总数                 2 bytes
+　　目录区尺寸大小                   4 bytes
+　　目录区对第一张磁盘的偏移量        4 bytes
+　　ZIP 文件注释长度                 2 bytes
+　　ZIP 文件注释                   （不定长度）
+</code></pre><h3 id="0x03、实例分析"><a href="#0x03、实例分析" class="headerlink" title="0x03、实例分析"></a>0x03、实例分析</h3><pre><code>压缩源文件数据区： 
+50 4B 03 04：这是头文件标记（0x04034b50） 
+14 00：解压文件所需 pkware 版本 
+00 00：全局方式位标记（有无加密） 
+08 00：压缩方式 
+9D AE：最后修改文件时间 
+25 49：最后修改文件日期 
+F2 EC 52 25：CRC-32校验（1480B516） 
+4D 03 00 00：压缩后尺寸（25） 
+69 06 00 00：未压缩尺寸（23） 
+10 00：文件名长度 
+00 00：扩展记录长度 
+6B65792E7478740BCECC750E71ABCE48CDC9C95728CECC2DC849AD284DAD0500 
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20160908150435955.jpg" alt=""></p>
+<blockquote>
+<p>压缩源文件目录区： </p>
+</blockquote>
+<pre><code>50 4B 01 02：目录中文件文件头标记(0x02014b50) 
+3F 00：压缩使用的 pkware 版本 
+14 00：解压文件所需 pkware 版本 
+00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了） 
+08 00：压缩方式 
+1C 51：最后修改文件时间 
+08 49：最后修改文件日期 
+16 B5 80 14：CRC-32校验（1480B516） 
+19 00 00 00：压缩后尺寸（25） 
+17 00 00 00：未压缩尺寸（23） 
+07 00：文件名长度 
+24 00：扩展字段长度 
+00 00：文件注释长度 
+00 00：磁盘开始号 
+00 00：内部文件属性 
+20 00 00 00：外部文件属性 
+00 00 00 00：局部头部偏移量 
+B65792E7478740A00200000000000010018006558F04A1CC5D001BDEBDD3B1CC5D001BDEBDD3B1CC5D001
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20160908150325435.jpg" alt=""> </p>
+<blockquote>
+<p>压缩源文件目录结束标志：</p>
+</blockquote>
+<pre><code>50 4B 05 06：目录结束标记 
+00 00：当前磁盘编号 
+00 00：目录区开始磁盘编号 
+01 00：本磁盘上纪录总数 
+01 00：目录区中纪录总数 
+63 00 00 00：目录区尺寸大小 
+2B D8 05 00：目录区对第一张磁盘的偏移量 
+00 00：ZIP 文件注释长度
+</code></pre><h3 id="0x04、结果"><a href="#0x04、结果" class="headerlink" title="0x04、结果"></a>0x04、结果</h3><p>所以如果把一个zip文件的文件头或者加密标志位进行适当修改，那就可能会改变文件的可读性<br>在压缩源文件目录区，将全局方式位标记的数字进行修改，偶数为未加密模式，奇数为伪加密模式。</p>
+
+  </section>
+
+ 
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/09/25/zip伪加密/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"zjwfc"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript">
+		window.onload = function(){
+			var config = {
+				vx: 4,
+				vy:  4,
+				height: 2,
+				width: 2,
+				count: 100,
+				color: "121, 162, 185",
+				stroke: "100,200,180",
+				dist: 6000,
+				e_dist: 20000,
+				max_conn: 10
+			}
+			CanvasParticle(config);
+		}
+</script>
+<script type="text/javascript" src="js/canvas-particle.js"></script>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
