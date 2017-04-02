@@ -1,229 +1,105 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
+  <meta charset="UTF-8">
+  
+    <title>常见漏洞总结 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
     
 
-    <title>
-      常见漏洞总结 | Hello,C 
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-    
-
     <meta name="description" content="0x01 安全配置错误0x01 漏洞描述   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见漏洞总结 | Hello,C">
+<meta property="og:title" content="常见漏洞总结">
 <meta property="og:url" content="http://yoursite.com/2017/03/14/常见漏洞总结/index.html">
-<meta property="og:site_name" content="Hello,C">
+<meta property="og:site_name" content="Hello_C技术博客">
 <meta property="og:description" content="0x01 安全配置错误0x01 漏洞描述   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者">
 <meta property="og:updated_time" content="2017-03-14T12:09:32.910Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见漏洞总结 | Hello,C">
+<meta name="twitter:title" content="常见漏洞总结">
 <meta name="twitter:description" content="0x01 安全配置错误0x01 漏洞描述   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css">
 
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
 
-    <span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
-    
-
-<header class="panel-cover panel-cover--collapsed">
-
-
-  <div class="panel-main">
-
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Hello,C</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-        <p class="panel-cover__description">
-          一个小白的独白！
-        </p>
-        <hr class="panel-cover__divider panel-cover__divider--secondary" />
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-                
-                <li class="navigation__item"><a href="/links" title="" class="">友情链接</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
-
-
-
-<nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-      <!-- Github -->
-      <li class="navigation__item">
-        <a href="https://github.com/zjwfc?tab=activity" title="Huno on GitHub">
-          <i class='icon icon-social-github'></i>
-          <span class="label">GitHub</span>
-        </a>
-      </li>
+      <a href="/2017/03/14/常见漏洞总结/" title="常见漏洞总结" itemprop="url">常见漏洞总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-14T12:00:08.000Z" itemprop="datePublished"> 发表于 2017-03-14</time>
     
-
-    <!-- China social icon -->
-    
-    
-      <li class="navigation__item">
-        <a href="https://www.douban.com/" title="">
-          <i class='icon cs-icon-douban'></i>
-          <span class="label">douban</span>
-        </a>
-      </li>
-
-      <li class="navigation__item">
-        <a href="http://weibo.com/5664757301/profile?topnav=1&wvr=6&is_all=1" title="">
-          <i class='icon cs-icon-weibo'></i>
-          <span class="label">Weibo</span>
-        </a>
-      </li>
-
- 
-
-
-
-  </ul>
-</nav>
-
-
-
-
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay"></div>
-  </div>
+  </p>
 </header>
-
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
-    
-    <h1 class="post-title">常见漏洞总结</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2017-03-14" class="post-meta__date date">2017-03-14</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/渗透测试/">渗透测试</a>
-            </font>
-          
-
-      </span>
-    </div>
-    
-    
-
-  </header>
-
-  <section id="post-content" class="article-content post">
-    <h3 id="0x01-安全配置错误"><a href="#0x01-安全配置错误" class="headerlink" title="0x01 安全配置错误"></a>0x01 安全配置错误</h3><h4 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。<br>   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。<a id="more"></a></p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-安全配置错误"><span class="toc-number">1.</span> <span class="toc-text">0x01 安全配置错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-形成原因"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 形成原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-危害性"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 危害性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-防御方法"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 防御方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-业务逻辑"><span class="toc-number">2.</span> <span class="toc-text">0x02 业务逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-逻辑错误分类"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 逻辑错误分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-利用方法"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 利用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-弱口令"><span class="toc-number">3.</span> <span class="toc-text">0x03 弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述-2"><span class="toc-number">3.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-形成原因-1"><span class="toc-number">3.2.</span> <span class="toc-text">0x02 形成原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-危害性-1"><span class="toc-number">3.3.</span> <span class="toc-text">0x03 危害性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-防御方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">0x04 防御方法</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01-安全配置错误"><a href="#0x01-安全配置错误" class="headerlink" title="0x01 安全配置错误"></a>0x01 安全配置错误</h3><h4 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。<br>   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。<a id="more"></a></p>
 <h4 id="0x02-形成原因"><a href="#0x02-形成原因" class="headerlink" title="0x02 形成原因"></a>0x02 形成原因</h4><p>1、软件没有被及时更新，包括操作系统、web应用服务器、数据库管理系统、应用程序和其他所有的代码库文件<br>2、apache服务器配置为显示目录索引，能够查看目录结构；没有关闭错误显示，可以根据错误提示获取敏感信息；没有删除默认的文件如phpinfo文件等<br>3、nginx服务器使用了autoindex模块、开启服务器标记、没有对IP连接数做限制、文件类型错误解析等等<br>4、开发框架（例如Struts、Spring等）和库文件中的安全设置没有配置恰当</p>
 <h4 id="0x03-危害性"><a href="#0x03-危害性" class="headerlink" title="0x03 危害性"></a>0x03 危害性</h4><p>不当的安全配置，攻击者能访问一些未授权的系统数据或功能，会使系统处于高风险中，随时都有可能被攻破，造成不可估量的损失。</p>
 <h4 id="0x04-防御方法"><a href="#0x04-防御方法" class="headerlink" title="0x04 防御方法"></a>0x04 防御方法</h4><p>1、自动化安装部署，保证开发、QA、产品环境的配置尽量相同，减少部署一个新安全环境的耗费。<br>2、及时了解并部署每个环境的软件更新和补丁信息，确保所有应用都何如了最新的安全补丁，包括第三方软件或平台，特别是开源软件，需要及时升级和更新安全补丁。<br>3、提供有效分离和安全性强大的应用程序架构。<br>4、实施漏洞扫描和安全审计，以帮助检查错误的配置或者未安装的补丁，推荐使用nessus，AppScan等扫描软件对应用程序和服务器进行安全扫描。<br>5、使用最小权限原则，给用户分配刚好能够满足业务范畴的权限。<br>6、禁止将.old, .bak, .test等测试文件或备份文件随产品发布，禁止将文件上传到Web服务器目录，禁止给上传的文件可执行权限。<br>7、对使用的Web容器，操作系统进行加固，不要使用管理员账户运行应用程序和数据库服务，如禁用Web容器的控制台，不要使用数据库管理严账户运行数据库，配置SSL通道，采用安全的TSL协议版本，配置安全加密套件，合理控制文件权限。<br>8、合理处理应用程序错误，不要将敏感信息随意泄露和展现到客户端，被攻击者利用从而轻易攻破系统。</p>
@@ -235,115 +111,467 @@ classes that you can use:
 <h4 id="0x03-危害性-1"><a href="#0x03-危害性-1" class="headerlink" title="0x03 危害性"></a>0x03 危害性</h4><p>   在当今很多地方以用户名(帐号)和口令作为鉴权的世界，口令的重要性就可想而知了。口令就相当于进入家门的钥匙，当他人有一把可以进入你家的钥匙，想想你的安全、你的财物、你的隐私。因为弱口令很容易被他人猜到或破解，所以如果你使用弱口令，就像把家门钥匙放在家门口的垫子下面，是非常危险的。</p>
 <h4 id="0x04-防御方法-1"><a href="#0x04-防御方法-1" class="headerlink" title="0x04 防御方法"></a>0x04 防御方法</h4><p>设置密码通常遵循以下原则：<br>（1）不使用空口令或系统缺省的口令，这些口令众所周之，为典型的弱口令。<br>（2）口令长度不小于8 个字符。<br>（3）口令不应该为连续的某个字符（例如：AAAAAAAA）或重复某些字符的组合（例如：tzf.tzf.）。<br>（4）口令应该为以下四类字符的组合，大写字母(A-Z)、小写字母(a-z)、数字(0-9)和特殊字符。每类字符至少包含一个。如果某类字符只包含一个，那么该字符不应为首字符或尾字符。<br>（5）口令中不应包含本人、父母、子女和配偶的姓名和出生日期、纪念日期、登录名、E-mail 地址等等与本人有关的信息，以及字典中的单词。<br>（6）口令不应该为用数字或符号代替某些字母的单词。<br>（7）口令应该易记且可以快速输入，防止他人从你身后很容易看到你的输入。<br>（8）至少90 天内更换一次口令，防止未被发现的入侵者继续使用该口令。</p>
 <p><strong>附：弱口令top100</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line">123456789</div><div class="line">a123456</div><div class="line">123456</div><div class="line">a123456789</div><div class="line">1234567890</div><div class="line">woaini1314</div><div class="line">qq123456</div><div class="line">abc123456</div><div class="line">123456a</div><div class="line">123456789a</div><div class="line">147258369</div><div class="line">zxcvbnm</div><div class="line">987654321</div><div class="line">12345678910</div><div class="line">abc123</div><div class="line">qq123456789</div><div class="line">123456789.</div><div class="line">7708801314520</div><div class="line">woaini</div><div class="line">5201314520</div><div class="line">q123456</div><div class="line">123456abc</div><div class="line">1233211234567</div><div class="line">123123123</div><div class="line">123456.</div><div class="line">0123456789</div><div class="line">asd123456</div><div class="line">aa123456</div><div class="line">135792468</div><div class="line">q123456789</div><div class="line">abcd123456</div><div class="line">12345678900</div><div class="line">woaini520</div><div class="line">woaini123</div><div class="line">zxcvbnm123</div><div class="line">1111111111111111</div><div class="line">w123456</div><div class="line">aini1314</div><div class="line">abc123456789</div><div class="line">111111</div><div class="line">woaini521</div><div class="line">qwertyuiop</div><div class="line">1314520520</div><div class="line">1234567891</div><div class="line">qwe123456</div><div class="line">asd123</div><div class="line">000000</div><div class="line">1472583690</div><div class="line">1357924680</div><div class="line">789456123</div><div class="line">123456789abc</div><div class="line">z123456</div><div class="line">1234567899</div><div class="line">aaa123456</div><div class="line">abcd1234</div><div class="line">www123456</div><div class="line">123456789q</div><div class="line">123abc</div><div class="line">qwe123</div><div class="line">w123456789</div><div class="line">7894561230</div><div class="line">123456qq</div><div class="line">zxc123456</div><div class="line">123456789qq</div><div class="line">1111111111</div><div class="line">111111111</div><div class="line">0000000000000000</div><div class="line">1234567891234567</div><div class="line">qazwsxedc</div><div class="line">qwerty</div><div class="line">123456..</div><div class="line">zxc123</div><div class="line">asdfghjkl</div><div class="line">0000000000</div><div class="line">1234554321</div><div class="line">123456q</div><div class="line">123456aa</div><div class="line">9876543210</div><div class="line">110120119</div><div class="line">qaz123456</div><div class="line">qq5201314</div><div class="line">123698745</div><div class="line">5201314</div><div class="line">000000000</div><div class="line">as123456</div><div class="line">123123</div><div class="line">5841314520</div><div class="line">z123456789</div><div class="line">52013145201314</div><div class="line">a123123</div><div class="line">caonima</div><div class="line">a5201314</div><div class="line">wang123456</div><div class="line">abcd123</div><div class="line">123456789..</div><div class="line">woaini1314520</div><div class="line">123456asd</div><div class="line">aa123456789</div><div class="line">741852963</div><div class="line">a12345678</div></pre></td></tr></table></figure></p>
-
-  </section>
-
- 
   
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-<section class="post-comments">
 
-    <div class="ds-thread" data-thread-key="2017/03/14/常见漏洞总结/"></div>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
 
-    <script type="text/javascript">
-      var duoshuoQuery = {short_name:"zjwfc"};
-      (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-      })();
-    </script> 
+</div>
 
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/16/php正则的经典漏洞/" title="php正则的经典漏洞">
+  <strong>上一篇：</strong><br/>
+  <span>
+  php正则的经典漏洞</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/07/提权思路/"  title="提权思路">
+ <strong>下一篇：</strong><br/> 
+ <span>提权思路
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/14/常见漏洞总结/" data-title="常见漏洞总结" data-url="http://yoursite.com/2017/03/14/常见漏洞总结/"></div>
 </section>
 
 
-</article>
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-安全配置错误"><span class="toc-number">1.</span> <span class="toc-text">0x01 安全配置错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-形成原因"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 形成原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-危害性"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 危害性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-防御方法"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 防御方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-业务逻辑"><span class="toc-number">2.</span> <span class="toc-text">0x02 业务逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-逻辑错误分类"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 逻辑错误分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-利用方法"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 利用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-弱口令"><span class="toc-number">3.</span> <span class="toc-text">0x03 弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-漏洞描述-2"><span class="toc-number">3.1.</span> <span class="toc-text">0x01 漏洞描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-形成原因-1"><span class="toc-number">3.2.</span> <span class="toc-text">0x02 形成原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-危害性-1"><span class="toc-number">3.3.</span> <span class="toc-text">0x03 危害性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-防御方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">0x04 防御方法</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
 
 
 
+  
 
-            <footer class="footer">
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
 
-    <span class="footer__copyright">&copy; 2017-2018. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
-    
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
 </script>
 
 <script type="text/javascript">
-		window.onload = function(){
-			var config = {
-				vx: 4,
-				vy:  4,
-				height: 2,
-				width: 2,
-				count: 100,
-				color: "121, 162, 185",
-				stroke: "100,200,180",
-				dist: 6000,
-				e_dist: 20000,
-				max_conn: 10
-			}
-			CanvasParticle(config);
-		}
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
 </script>
-<script type="text/javascript" src="js/canvas-particle.js"></script>
-
-<span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
-
-
-<span id="busuanzi_container_page_pv">
-  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-</span>
-        </div>
-    </div>
-
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
 
 
 
 
-    
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
-    <script src="/js/awesome-toc.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
 
 
-    
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]-->
 
-</body>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
 </html>
