@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-31T07:54:52.412Z</updated>
+  <updated>2017-04-02T07:28:21.924Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/03/31/%E6%97%B6%E5%85%89%E4%B8%8D%E8%80%81-%E6%88%91%E4%BB%AC%E4%B8%8D%E6%95%A3/"/>
     <id>http://yoursite.com/2017/03/31/时光不老-我们不散/</id>
     <published>2017-03-31T07:42:30.000Z</published>
-    <updated>2017-03-31T07:54:52.412Z</updated>
+    <updated>2017-04-02T07:28:21.924Z</updated>
     
     <content type="html"><![CDATA[<h3 id="时光不老，我们不散；岁月不逝，我们不弃"><a href="#时光不老，我们不散；岁月不逝，我们不弃" class="headerlink" title="时光不老，我们不散；岁月不逝，我们不弃"></a>时光不老，我们不散；岁月不逝，我们不弃</h3><p>   天空不知何时划过一颗颗流星，<br>　　飞向同一个星球，<br>　　宛如我们来自不同的城市，<a id="more"></a><br>　　但却相聚在这小小的房子里。<br>　　生命是个漫长又遥远的过程，<br>　　经历着陌生和熟悉，冷漠和温暖。<br>　　时光消磨着岁月的痕迹，<br>　　追着青春的步伐，<br>　　我们哼着歌回忆往昔;<br>　　我们读着书品味诗意;<br>　　我们说着笑讲述自己;<br>　　我们谈着天细数日子。</p>
 <p><img src="http://i2.muimg.com/567571/5fcda118895c7351.jpg" alt=""></p>
@@ -34,6 +34,8 @@
     
     </summary>
     
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
     
       <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
     
@@ -44,7 +46,7 @@
     <link href="http://yoursite.com/2017/03/18/natas%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C/"/>
     <id>http://yoursite.com/2017/03/18/natas通关手册/</id>
     <published>2017-03-18T09:12:44.000Z</published>
-    <updated>2017-03-18T09:23:43.619Z</updated>
+    <updated>2017-04-02T07:29:10.401Z</updated>
     
     <content type="html"><![CDATA[<p>前几天看博客发现了一个很不错的网站，natas overthewire是一个和web安全相关的CTF网站，题目设计的还是很精巧的，很值得我们这些学习web安全的做一做。<br>地址：<a href="http://overthewire.org/wargames/natas/" target="_blank" rel="external">http://overthewire.org/wargames/natas/</a></p>
 <p><strong>level 0</strong><br>直接查看源代码，即可从注释中看到密码；<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto --&gt;</div></pre></td></tr></table></figure></p>
@@ -84,6 +86,8 @@
     
     </summary>
     
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
     
       <category term="writeup" scheme="http://yoursite.com/tags/writeup/"/>
     
@@ -94,7 +98,7 @@
     <link href="http://yoursite.com/2017/03/16/php%E6%AD%A3%E5%88%99%E7%9A%84%E7%BB%8F%E5%85%B8%E6%BC%8F%E6%B4%9E/"/>
     <id>http://yoursite.com/2017/03/16/php正则的经典漏洞/</id>
     <published>2017-03-16T08:57:01.000Z</published>
-    <updated>2017-03-16T09:09:55.190Z</updated>
+    <updated>2017-04-02T07:29:28.717Z</updated>
     
     <content type="html"><![CDATA[<p>p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">if(!isset($_GET[&apos;option&apos;])) die();</div><div class="line">$str = addslashes($_GET[&apos;option&apos;]);</div><div class="line">$file = file_get_contents(&apos;./config.php&apos;);</div><div class="line">$file = preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;, &quot;\$option=&apos;$str&apos;;&quot;, $file);</div><div class="line">file_put_contents(&apos;./config.php&apos;, $file);</div></pre></td></tr></table></figure>
@@ -138,6 +142,8 @@ NULL
     
     </summary>
     
+      <category term="代码" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81/"/>
+    
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
@@ -150,7 +156,7 @@ NULL
     <link href="http://yoursite.com/2017/03/14/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2017/03/14/常见漏洞总结/</id>
     <published>2017-03-14T12:00:08.000Z</published>
-    <updated>2017-03-14T12:09:32.910Z</updated>
+    <updated>2017-04-02T07:30:36.049Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-安全配置错误"><a href="#0x01-安全配置错误" class="headerlink" title="0x01 安全配置错误"></a>0x01 安全配置错误</h3><h4 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。<br>   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。<a id="more"></a></p>
 <h4 id="0x02-形成原因"><a href="#0x02-形成原因" class="headerlink" title="0x02 形成原因"></a>0x02 形成原因</h4><p>1、软件没有被及时更新，包括操作系统、web应用服务器、数据库管理系统、应用程序和其他所有的代码库文件<br>2、apache服务器配置为显示目录索引，能够查看目录结构；没有关闭错误显示，可以根据错误提示获取敏感信息；没有删除默认的文件如phpinfo文件等<br>3、nginx服务器使用了autoindex模块、开启服务器标记、没有对IP连接数做限制、文件类型错误解析等等<br>4、开发框架（例如Struts、Spring等）和库文件中的安全设置没有配置恰当</p>
@@ -172,6 +178,8 @@ NULL
     
     </summary>
     
+      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
+    
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
@@ -182,7 +190,7 @@ NULL
     <link href="http://yoursite.com/2017/03/07/%E6%8F%90%E6%9D%83%E6%80%9D%E8%B7%AF/"/>
     <id>http://yoursite.com/2017/03/07/提权思路/</id>
     <published>2017-03-07T14:52:04.000Z</published>
-    <updated>2017-03-07T14:55:29.597Z</updated>
+    <updated>2017-04-02T07:30:02.862Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-mysql提权"><a href="#0x01-mysql提权" class="headerlink" title="0x01 mysql提权"></a>0x01 mysql提权</h3><h4 id="0x01-UDF提权"><a href="#0x01-UDF提权" class="headerlink" title="0x01 UDF提权"></a>0x01 UDF提权</h4><p>1、利用UDF提权<br>udf提权这是最常见的提权方式，也就是User defined Function,用户定义函数。是一类对MYSQL服务器功能进行扩充的代码，通常是用C（或C++）写的。通过添加新函数，性质就象使用本地MYSQL函数abs()或concat()。当你需要扩展MYSQL服务器功能时，UDF通常是最好的选择。但同时，UDF也是黑客们在拥有低权限mysql账号时比较好用的一种提权方法。<a id="more"></a></p>
 <p><strong>适用场合：</strong><br>1、目标主机系统是Windows（Win2000、XP、Win2003）。<br>2、拥有该主机mysql中的某个用户账号，该账号需要有对mysql的insert和delete权限。</p>
@@ -240,6 +248,8 @@ about       说明与帮助函数;
     
     </summary>
     
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
     
       <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
     
@@ -250,7 +260,7 @@ about       说明与帮助函数;
     <link href="http://yoursite.com/2017/03/05/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
     <id>http://yoursite.com/2017/03/05/命令执行/</id>
     <published>2017-03-05T03:13:23.000Z</published>
-    <updated>2017-03-05T03:27:40.750Z</updated>
+    <updated>2017-04-02T07:30:17.903Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-命令注入"><a href="#0x01-命令注入" class="headerlink" title="0x01 命令注入"></a>0x01 命令注入</h3><p>PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。</p>
 <p><strong>Command Injection，即命令注入攻击</strong>，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。<a id="more"></a></p>
@@ -283,6 +293,8 @@ popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
 &lt;p&gt;&lt;strong&gt;Command Injection，即命令注入攻击&lt;/strong&gt;，是指由于Web应用程序对用户提交的数据过滤不严格，导致黑客可以通过构造特殊命令字符串的方式，将数据提交至Web应用程序中，并利用该方式执行外部程序或系统命令实施攻击，非法获取数据或者网络资源等。
     
     </summary>
+    
+      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
@@ -561,7 +573,7 @@ print c
     <link href="http://yoursite.com/2017/01/16/%E7%AE%80%E5%8D%95%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C/"/>
     <id>http://yoursite.com/2017/01/16/简单的渗透测试实验/</id>
     <published>2017-01-16T02:57:43.000Z</published>
-    <updated>2017-03-04T03:21:40.871Z</updated>
+    <updated>2017-04-02T07:31:19.542Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-渗透测试项目一"><a href="#0x01-渗透测试项目一" class="headerlink" title="0x01 渗透测试项目一"></a>0x01 渗透测试项目一</h3><h4 id="0x01-实验要求"><a href="#0x01-实验要求" class="headerlink" title="0x01 实验要求"></a>0x01 实验要求</h4><p>请以下列任务为目标（10.1.1.178）进行入侵渗透 ：</p>
 <pre><code>1、利用网站漏洞获取该服务器shell；（网页关入侵--铜牌任务）
@@ -599,6 +611,8 @@ print c
 &lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;0X02-信息搜集&quot;&gt;&lt;a href=&quot;#0X02-信息搜集&quot; class=&quot;headerlink&quot; title=&quot;0X02 信息搜集&quot;&gt;&lt;/a&gt;0X02 信息搜集&lt;/h4&gt;&lt;p&gt;信息搜集，使用nmap进行信息搜集和探测&lt;br&gt;
     
     </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
@@ -1745,7 +1759,7 @@ if __name__ == &quot;__main__&quot;:
     <link href="http://yoursite.com/2016/11/27/Metinfo5-3-10-CMS-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
     <id>http://yoursite.com/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含/</id>
     <published>2016-11-27T14:55:21.000Z</published>
-    <updated>2017-03-14T12:18:45.221Z</updated>
+    <updated>2017-04-02T07:29:43.674Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
 <h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br><a id="more"></a><br><strong>文件包含：</strong>由于程序员未对用户可控的变量进行输入检查，导致用户可以控制被包含的文件，成功利用时可以使web server会将特定文件当成php执行，从而导致用户可获取一定的服务器权限。</p>
@@ -1832,6 +1846,8 @@ action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit
 &lt;h3 id=&quot;0x01-命令执行-文件包含&quot;&gt;&lt;a href=&quot;#0x01-命令执行-文件包含&quot; class=&quot;headerlink&quot; title=&quot;0x01 命令执行 文件包含&quot;&gt;&lt;/a&gt;0x01 命令执行 文件包含&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;命令执行：&lt;/strong&gt;应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、&lt;br&gt;passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令&lt;br&gt;拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。&lt;br&gt;
     
     </summary>
+    
+      <category term="审计" scheme="http://yoursite.com/categories/%E5%AE%A1%E8%AE%A1/"/>
     
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
