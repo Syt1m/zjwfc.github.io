@@ -1,0 +1,738 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>哈希长度扩展攻击 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希长度扩展攻击">
+<meta property="og:url" content="http://yoursite.com/CTF/2016/09/24/哈希长度扩展攻击.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta property="og:image" content="http://i1.piimg.com/567571/75dc9e2816f2c44d.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/6fc2344caa5dc423.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/b1fc05a7c29df98b.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/dacf6929df975a03.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/826ea80a47fe2b70.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/30efa690d92b5345.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/c70c04838f787386.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/ee0387f8903c1a83.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/32f9c2767107fdd6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/8448ea9f3114514f.png">
+<meta property="og:updated_time" content="2017-04-02T07:36:24.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈希长度扩展攻击">
+<meta name="twitter:description" content="0x01 简介哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/75dc9e2816f2c44d.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/CTF/2016/09/24/哈希长度扩展攻击.html" title="哈希长度扩展攻击" itemprop="url">哈希长度扩展攻击</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-24T07:26:39.000Z" itemprop="datePublished"> 发表于 2016-09-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-简介"><span class="toc-number">1.</span> <span class="toc-text">0x01 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sha1的原理"><span class="toc-number">2.</span> <span class="toc-text">0x02 sha1的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-举个例子"><span class="toc-number">3.</span> <span class="toc-text">0x03 举个例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运用"><span class="toc-number">4.</span> <span class="toc-text">运用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验吧实例分析"><span class="toc-number">5.</span> <span class="toc-text">实验吧实例分析</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h3><pre><code>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可以推出H（密钥||消息||padding||append）的哈希值，padding是要填充的字段，append则是要附加的消息。其实如果不知道密钥长度，可通过暴力猜解得到，已知的有长度扩展攻击缺陷的函数有MD5，SHA-1，SHA-256等等,。
+</code></pre><a id="more"></a>
+<blockquote>
+<p>如果一个应用程序是这样操作的：</p>
+<p>1、准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）</p>
+<p>2、让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文</p>
+<p>3、服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值</p>
+</blockquote>
+<pre><code>这个时候，该应用程序就易受长度扩展攻击，攻击者可以构造出{secret || data || attacker_controlled_data}的哈希值。
+</code></pre><h3 id="0x02-sha1的原理"><a href="#0x02-sha1的原理" class="headerlink" title="0x02 sha1的原理"></a>0x02 sha1的原理</h3><pre><code>首先，当hash函数拿到需要被hash的字符串后，先将其字节长度整除64，取得余数。如果该余数正好等于56，那么就在该字符串最后添加上8个字节的长度描述符（具体用bit表示）。如果不等于56，就先对字符串进行长度填充，填充时第一个字节为hex(80)，其他字节均用hex(00)填充，填充至余数为56后，同样增加8个字节的长度描述符（该长度描述符为需要被hash的字符串的长度，不是填充之后整个字符串的长度）。以上过程，称之为补位。
+补位完成后，字符串以64位一组进行分组（因为上面的余数为56,加上8个字节的长度描述符后，正好是64位，凑成一组）。字符串能被分成几组就会进行多少次“复杂的数学变化”。
+</code></pre><h3 id="0x03-举个例子"><a href="#0x03-举个例子" class="headerlink" title="0x03 举个例子"></a>0x03 举个例子</h3><pre><code>想要对123456进行hash,首先判断len(str_a) % 64 == 56是否成立。这里很明显不成立，那么程序就进行补位操作。首先补位成余数为56的长度。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/75dc9e2816f2c44d.png" alt=""></p>
+<pre><code>如上图，蓝色字体就为程序对该字符串进行补位的数据。当满足len(str_a) % 64 == 56后，程序就在该字符串的后面添加8个字节的长度描述符。注意，此处的长度为原始需要被hash的长度。也就是len(str_a) = 6字节*8bit/字节= 48bit=0x30bit。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/6fc2344caa5dc423.png" alt=""></p>
+<pre><code>补位+长度描述符=64个字节，正好是一个分组。所以此处只要进行一次复杂的数学变化就可以了。程序根据该64个字节的数据和registers值0生成新的registers值1。那么该新的registers值1就是str_a的sha1值.
+</code></pre><h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><pre><code>简单来说，就是服务器上会生成一个salt值，该salt值你是不可预测的。但是你又知道了sha1(salt+filename)的值，该filename的值你也是知道的。假设此处的filename的值report.pdf，最后sha1的值为：0a8d538b724c6f2b4288526eb540ee7c。为了方便理解，我们继续假设salt的长度为16位。
+</code></pre><p>   <img src="http://i1.piimg.com/567571/b1fc05a7c29df98b.png" alt=""></p>
+<pre><code>同样先进行整除，然后取余。最后再补上8位的长度描述符。补位+添加长度描述符后的字符串如下图：
+</code></pre><p>   <img src="http://i1.piimg.com/567571/dacf6929df975a03.png" alt=""></p>
+<pre><code>该长度也就满足了64位的分组，只需要进行一次“复杂的数学运算”就可以得到最后的sha1值了。 同样字符串进行sha1操作    
+</code></pre><p><img src="http://p1.bpimg.com/567571/826ea80a47fe2b70.png" alt=""></p>
+<pre><code>同样，还是先进行分组。由于该字符串的长度大于64个字节，且小于128个字节，所以要分成两组，需要进行两次“复杂的数学运算”。这个时候我们发现，第一个分组的数据和上图中补码后的数据完全一样，又因为他们都是第一个分组，初始的registers值也一样。那么经过第一轮“复杂的数学运算”，他们各自生成的registers值也同样是相同的。唯一不同的是，由于上面的长度小于64字节，所以只需要进行一轮运算便得到了最后的sha1值。然后这里的字符串有两个分组，需要将第一轮更新的registers值（也就是第一轮运算出来的sha1值）作为第二轮“复杂的数学运算”的registers值，然后才能得出最终的sha1值。
+
+总上讲的，如果salt的值你不知道，但是你知道长度，又知道sha1(salt)，那么就也就可以知道sha1(salt+“填充数据”+“任意可控数据”).这里的salt+“填充数据”就是对salt进行sha1时所补全的数据+最后8位的长度描述符。一般来说，salt+”填充数据”的长度就是64字节，正好是一个分组。如果salt的长度就大于了56个字节，那么加入填充数据后的长度应该是N个64字节，等于N个分组。sha1程序再对（salt+“填充数据”+“任意可控数据”）进行hash时，只需要进行第二轮及第二轮以后的运算。因为第一轮运算后的registers值就是sha1(salt)的值，该值你已经知道了。
+</code></pre><h3 id="实验吧实例分析"><a href="#实验吧实例分析" class="headerlink" title="实验吧实例分析"></a>实验吧实例分析</h3><p><a href="http://ctf4.shiyanbar.com/web/kzhan.php" target="_blank" rel="external">http://ctf4.shiyanbar.com/web/kzhan.php</a></p>
+<p>1、抓包进行分析</p>
+<p><img src="http://p1.bpimg.com/567571/30efa690d92b5345.png" alt=""></p>
+<p>将source=0改为1出现代码</p>
+<pre><code>&lt;pre&gt;
+$flag = &quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;;
+$secret = &quot;XXXXXXXXXXXXXXX&quot;; // This secret is 15 characters long for         security!
+
+$username = $_POST[&quot;username&quot;];
+$password = $_POST[&quot;password&quot;];
+
+if (!empty($_COOKIE[&quot;getmein&quot;])) {
+if (urldecode($username) === &quot;admin&quot; &amp;&amp; urldecode($password) !=         &quot;admin&quot;) {
+    if ($COOKIE[&quot;getmein&quot;] === md5($secret . urldecode($username . $password))) {
+        echo &quot;Congratulations! You are a registered user.\n&quot;;
+        die (&quot;The flag is &quot;. $flag);
+    }
+    else {
+        die (&quot;Your cookies don&apos;t match up! STOP HACKING THIS SITE.&quot;);
+    }
+}
+else {
+    die (&quot;You are not an admin! LEAVE.&quot;);
+}
+}
+
+    setcookie(&quot;sample-hash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;admin&quot;)), time() + (60 * 60 * 24 * 7));
+cookie生命周期时间7天
+if (empty($_COOKIE[&quot;source&quot;])) {
+setcookie(&quot;source&quot;, 0, time() + (60 * 60 * 24 * 7));
+}
+else {
+if ($_COOKIE[&quot;source&quot;] != 0) {
+    echo &quot;&quot;; // This source code is outputted here
+}
+}
+&lt;/pre&gt;
+</code></pre><p>2、进行代码审计</p>
+<pre><code>$secret = &quot;XXXXXXXXXXXXXXX&quot;; // This secret is 15 characters long for security!
+setcookie(&quot;sample-hash&quot;, md5($secret . urldecode(&quot;admin&quot; . &quot;admin&quot;)), time() + (60 * 60 * 24 * 7));
+</code></pre><p>可以看出来sample-hash这个值是由15字节长的salt串上adminadmin后经md5得出</p>
+<p>password不能是admin，但可以输入adminxxxx这种，使计算getmein时前25字节和计算sample-hash时前25字节输入相同，又知道了salt的位数，使用hash长度扩展攻击。</p>
+<p><strong><em>Hashpump：</em></strong></p>
+<p>HashPump是一个借助于OpenSSL实现了针对多种散列函数的攻击的工具，支持针对MD5、CRC32、SHA1、SHA256和SHA512等长度扩展攻击。而MD2、SHA224和SHA384算法不受此攻击的影响，因其部分避免了对状态变量的输出，并不输出全部的状态变量。</p>
+<pre><code>安装linux下：
+git clone https://github.com/bwall/HashPump
+apt-get install g++ libssl-dev
+cd HashPump
+make
+make install
+</code></pre><p><img src="http://p1.bpimg.com/567571/c70c04838f787386.png" alt=""></p>
+<p>Python爱好者若想直接在python里实现hashpump，可以使用zachriggle编写的这个叫做hashpumpy的Python插件</p>
+<p> <strong><em>python安装</em></strong></p>
+<pre><code>pip install hashpumpy
+</code></pre><p><strong><em>使用</em></strong></p>
+<pre><code>&gt;&gt;&gt; import hashpumpy
+&gt;&gt;&gt; help(hashpumpy.hashpump)
+Help on built-in function hashpump in module hashpumpy:
+hashpump(...)
+   hashpump(hexdigest, original_data, data_to_add, key_length) -&gt; (digest, message)
+   Arguments:
+    hexdigest(str):      Hex-encoded result of hashing key + original_data.
+  original_data(str):  Known data used to get the hash result hexdigest.
+  data_to_add(str):    Data to append
+  key_length(int):     Length of unknown data prepended to the hash
+Returns:
+  A tuple containing the new hex digest and the new message.
+  &gt;&gt;&gt; hashpumpy.hashpump(&apos;ffffffff&apos;, &apos;original_data&apos;, &apos;data_to_add&apos;, len(&apos;KEYKEYKEY&apos;))
+  (&apos;e3c4a05f&apos;, &apos;original_datadata_to_add&apos;)
+</code></pre><blockquote>
+<p>分析上题</p>
+</blockquote>
+<p>md5($secret.”adminadmin”)的值为571580b26c65f306376d4f64e53cb5c7</p>
+<p>$secret是密文，长度为15，如果再算上后面第一个admin，长度就是20<br>而数据是admin<br>签名（哈希值）是571580b26c65f306376d4f64e53cb5c7</p>
+<p>使用hashpump直接运行<br>hashpump -s 571580b26c65f306376d4f64e53cb5c7 -d admin -k 20 -a admin</p>
+<p><img src="http://p1.bpimg.com/567571/ee0387f8903c1a83.png" alt=""></p>
+<pre><code>e18dfd8404515016d3aeeea2aa196909
+admin\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00admin
+ 第一个是新的签名，把它设置到cookies的getmein里。
+第二个先把\x替换为%后，post提交
+password=admin%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%c8%00%00%00%00%00%00%00admin
+</code></pre><p><img src="http://p1.bpimg.com/567571/32f9c2767107fdd6.png" alt=""></p>
+<p><img src="http://p1.bpimg.com/567571/8448ea9f3114514f.png" alt=""></p>
+<p>即可得到flag。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CTF/">CTF</a><a href="/tags/writeup/">writeup</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/代码/2016/09/25/python之爬虫抓站技巧.html" title="python 爬虫抓站技巧">
+  <strong>上一篇：</strong><br/>
+  <span>
+  python 爬虫抓站技巧</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/代码/2016/09/19/python-os-sys-模块初探.html"  title="python os sys 模块初探">
+ <strong>下一篇：</strong><br/> 
+ <span>python os sys 模块初探
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="CTF/2016/09/24/哈希长度扩展攻击.html" data-title="哈希长度扩展攻击" data-url="http://yoursite.com/CTF/2016/09/24/哈希长度扩展攻击.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-简介"><span class="toc-number">1.</span> <span class="toc-text">0x01 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sha1的原理"><span class="toc-number">2.</span> <span class="toc-text">0x02 sha1的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-举个例子"><span class="toc-number">3.</span> <span class="toc-text">0x03 举个例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运用"><span class="toc-number">4.</span> <span class="toc-text">运用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验吧实例分析"><span class="toc-number">5.</span> <span class="toc-text">实验吧实例分析</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,715 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>简易搭建LAMP环境 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简易搭建LAMP环境">
+<meta property="og:url" content="http://yoursite.com/渗透/2016/10/29/简易搭建LAMP环境.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta property="og:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/64feffc46c6e7666.png">
+<meta property="og:updated_time" content="2017-04-02T07:39:05.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简易搭建LAMP环境">
+<meta name="twitter:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
+cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/渗透/2016/10/29/简易搭建LAMP环境.html" title="简易搭建LAMP环境" itemprop="url">简易搭建LAMP环境</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-29T06:30:50.000Z" itemprop="datePublished"> 发表于 2016-10-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、所需准备：CentOS7最小化安装"><span class="toc-number">1.</span> <span class="toc-text">1、所需准备：CentOS7最小化安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、更新源"><span class="toc-number">2.</span> <span class="toc-text">2、更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、安装Apache"><span class="toc-number">3.</span> <span class="toc-text">3、安装Apache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、安装php"><span class="toc-number">4.</span> <span class="toc-text">4、安装php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、安装mysql"><span class="toc-number">5.</span> <span class="toc-text">5、安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><span class="toc-number">6.</span> <span class="toc-text">6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="1、所需准备：CentOS7最小化安装"><a href="#1、所需准备：CentOS7最小化安装" class="headerlink" title="1、所需准备：CentOS7最小化安装"></a>1、所需准备：CentOS7最小化安装</h3><p>安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。<br>由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置<br>首先进入目录 </p>
+<pre><code>cd /etc/sysconfig/network-scripts       
+vi ifcfg-eno16777736
+</code></pre><a id="more"></a>    
+<p><img src="http://i1.piimg.com/567571/c1788cd6c10c8620.png" alt=""><br>将最后一行的no改为yes即可<br>重启网络服务 service network restart 即可<br>使用ip  address 进行测试</p>
+<p>静态IP地址设置</p>
+<pre><code>添加代码
+//需要把之前的dhcp设置为static
+BOOTPROTO=static
+IPADDR=192.168.1.110     //你的静态IP地址
+GATEWAY=192.168.1.1     //默认网关
+NETMASK=255.255.255.0  //子网掩码
+//子网掩码也可以这样表示
+#PREFIX=24
+DNS=223.5.5.5                   //DNS地址
+NM_CONTROLLED=no        //不使用Network Manager
+</code></pre><p>注意我们刚才的MAC地址和ip address的两个MAC地址是否一致。</p>
+<p>使用service network restart 或者systemctl restart network.service 命令，可能不会立即生效。使用ifdown eno16777736，然后ifup eno16777736 即可。</p>
+<p><strong><em>注意：CentOS 7.0默认使用的是firewall作为防火墙，最小化安装查看网络配置使用ip address</em></strong></p>
+<h3 id="2、更新源"><a href="#2、更新源" class="headerlink" title="2、更新源"></a>2、更新源</h3><p>我们可以使用阿里云源或者163源<br>最小化安装时，wget不会迷人被安装，所以我们得首先安装wget</p>
+<pre><code>yum -y install wget  安装wget
+</code></pre><p>首先我们备份我们的源，以免更换出错还可以恢复</p>
+<pre><code>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+</code></pre><p>更换阿里云</p>
+<pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+</code></pre><p>生成缓存</p>
+<pre><code>yum makecache
+</code></pre><p>这样我们就成功更换了源。</p>
+<p>还可以使用WinSCP，直接连接到我们的linux，找到配置额、文件的目录，找到/etc/yum.repos.d/CentOS-Base.repo将我们下载到的其他源直接进行覆盖上面，然后yum updata更新源就可以了。</p>
+<h3 id="3、安装Apache"><a href="#3、安装Apache" class="headerlink" title="3、安装Apache"></a>3、安装Apache</h3><p>3.1、安装Apache</p>
+<pre><code>yum install httpd   #安装，一直选择y
+</code></pre><p>3.2、设置配置文件<br>由于我们刚开始安装的，只能在它内部访问，那么我们想要在其他主机访问，那么就要修改一下配置文件</p>
+<pre><code>vi /etc/httpd/conf/httpd.conf  //进入配置文件
+</code></pre><p>找到</p>
+<pre><code>&lt;Directory /&gt;
+AllowOverride none
+Require all denied
+&lt;/Directory &gt;
+修改为：
+&lt;Directory /&gt;
+AllowOverride none
+Require all granted
+&lt;/Directory &gt;
+</code></pre><p><img src="http://i1.piimg.com/567571/64feffc46c6e7666.png" alt=""></p>
+<p>systemctl start httpd.service        //启动<br>systemctl stop  httpd.service    //停止<br>systemctl status httpd.service    //查看状态<br>systemctl restart httpd.service   //重启</p>
+<p>3.3、我们将httpd设置为开机启动，那么我们<br>systemctl enable httpd.service   //开机启动</p>
+<p>这样我们可以访问ip看到测试页面。</p>
+<h3 id="4、安装php"><a href="#4、安装php" class="headerlink" title="4、安装php"></a>4、安装php</h3><p>4.1、安装php</p>
+<pre><code>yum install php  #一直选择y就ok
+</code></pre><p>4.2、验证是否安装成功<br>在Apche的目录下面新建一文件test.php</p>
+<pre><code>cd /var/www/html
+vi test.php
+</code></pre><p>可以键入相关PHP代码，以输入hello world为例，</p>
+<pre><code>&lt;?php
+echo &quot;hello world&quot;;
+?&gt;
+</code></pre><p>访问网站ip+/test.php,如果正常解析，则说明PHP环境完成。</p>
+<h3 id="5、安装mysql"><a href="#5、安装mysql" class="headerlink" title="5、安装mysql"></a>5、安装mysql</h3><p>CentOS 7 版本将MySQL数据库软件从默认的程序列表中移除，用mariadb代替了，mariadb系统是MySQL的一个分支，主要由开源社区在维护，MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。</p>
+<p>5.1、安装mysql，首先得从官网下载源码</p>
+<pre><code>wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum install mysql-community-server
+</code></pre><p>5.2、安装完成后重启mysql服务</p>
+<pre><code>service mysqld restart
+</code></pre><p>5.3、测试mysql能否正常配合php的工作</p>
+<pre><code>&lt;?php
+   $con = mysql_conncet(&apos;localhost&apos;,&apos;root&apos;,&apos;root&apos;);
+   if(!$con){
+      die(&quot;connet mysql failed&quot;.mysql.error());     
+    }
+   echo &quot;connet mysql successful&quot;;       
+?&gt;
+</code></pre><p>默认情况下，php没有打开错误调试，需要在/etc/php.ini中将错误调试打开，即</p>
+<pre><code>;dispaly_errors
+;error_reporting
+</code></pre><p>前面的；去掉。</p>
+<p>5.4、如果不能成功，那就是php没有支持mysql</p>
+<pre><code>PHP Fatal error:  Call to undefined function mysql_connect()；
+</code></pre><p>在使用中出现了这个问题，查看了一下phpinfo发现没有mysql扩展。<br>步骤如下：<br>1 进入php的安装目录</p>
+<pre><code>cd 到ext/mysql 
+/usr/local/bin/phpize 
+./configure --with-php-config=/usr/local/bin/php-config --with-mysql=/usr/local/mysql/
+make
+make install
+</code></pre><p>在mysql/modules下看到了mysql.so<br>2 修改php.ini</p>
+<pre><code>添加extensions = &quot;mysql.so&quot;
+</code></pre><p>3 将mysql.so拷贝到extension_dir目录下，extension_dir在php.ini中设置<br>4重启apache就可以了。</p>
+<h3 id="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><a href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进" class="headerlink" title="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"></a>6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</h3><p>参考链接：<a href="http://www.jb51.net/os/188488.html" target="_blank" rel="external">http://www.jb51.net/os/188488.html</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/渗透/">渗透</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a><a href="/tags/LAMP环境搭建/">LAMP环境搭建</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/CTF/2016/10/29/第七届极客大挑战.html" title="第七届极客大挑战">
+  <strong>上一篇：</strong><br/>
+  <span>
+  第七届极客大挑战</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/代码/2016/10/22/python之爬虫.html"  title="python爬虫">
+ <strong>下一篇：</strong><br/> 
+ <span>python爬虫
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="渗透/2016/10/29/简易搭建LAMP环境.html" data-title="简易搭建LAMP环境" data-url="http://yoursite.com/渗透/2016/10/29/简易搭建LAMP环境.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、所需准备：CentOS7最小化安装"><span class="toc-number">1.</span> <span class="toc-text">1、所需准备：CentOS7最小化安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、更新源"><span class="toc-number">2.</span> <span class="toc-text">2、更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、安装Apache"><span class="toc-number">3.</span> <span class="toc-text">3、安装Apache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、安装php"><span class="toc-number">4.</span> <span class="toc-text">4、安装php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、安装mysql"><span class="toc-number">5.</span> <span class="toc-text">5、安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><span class="toc-number">6.</span> <span class="toc-text">6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

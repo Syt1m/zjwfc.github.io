@@ -1,0 +1,654 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Nessus的安装与使用 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x01 NessusNessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nessus的安装与使用">
+<meta property="og:url" content="http://yoursite.com/渗透/2016/12/09/Nessus的安装与使用.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01 NessusNessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界">
+<meta property="og:image" content="http://p1.bpimg.com/567571/6ec33aad587f3471.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/db56dc5804cc5821.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/38128b3572ee39aa.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/34a490f3315f95ba.jpg">
+<meta property="og:image" content="http://p1.bpimg.com/567571/437bbac928385710.jpg">
+<meta property="og:image" content="http://p1.bpimg.com/567571/a77837b85e6f9b5e.jpg">
+<meta property="og:image" content="http://p1.bqimg.com/567571/1f9a96a8e1a52b78.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/66303c2cb0d23f96.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/b5f6c370711653d6.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/dfc6556a2e860e3d.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/6c229631a09ac3ee.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/0314871f662ed476.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/0696b240d9420569.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/972addeef3888ae1.png">
+<meta property="og:updated_time" content="2017-04-02T07:40:48.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nessus的安装与使用">
+<meta name="twitter:description" content="0x01 NessusNessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界">
+<meta name="twitter:image" content="http://p1.bpimg.com/567571/6ec33aad587f3471.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/渗透/2016/12/09/Nessus的安装与使用.html" title="Nessus的安装与使用" itemprop="url">Nessus的安装与使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-12-09T13:30:50.000Z" itemprop="datePublished"> 发表于 2016-12-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Nessus"><span class="toc-number">1.</span> <span class="toc-text">0x01 Nessus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-Nessus-安装"><span class="toc-number">2.</span> <span class="toc-text">0x02 Nessus 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-Nessus配置和使用"><span class="toc-number">3.</span> <span class="toc-text">0x03 Nessus配置和使用</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01-Nessus"><a href="#0x01-Nessus" class="headerlink" title="0x01 Nessus"></a>0x01 Nessus</h3><p>Nessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。<br>Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界面和有效的报告。Nessus之所以被人们喜爱，是因为该工具具有几个特点。如下所示：<a id="more"></a></p>
+<blockquote>
+<p>1、提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库;<br>2、不同于传统的漏洞扫描软件。Nessus可同时在本机或远程控制，进行系统的漏洞分析扫描;<br>3、其运作效能随着系统的资源而自行调整。如果将主机配置更多的资源（如加快CPU速度或增加内存大小），其效率表现可因为丰富资源而提高;<br>4、可自行定义插件;<br>5、NASL（Nessus Attack Scripting Language）是由Tenable所发出的语言，用来写入Nessus的安全测试选项;<br>完全支持SSL（Secure Socket Layer）;</p>
+</blockquote>
+<h3 id="0x02-Nessus-安装"><a href="#0x02-Nessus-安装" class="headerlink" title="0x02 Nessus 安装"></a>0x02 Nessus 安装</h3><p>1.1 获取安装包<br>官网下载：<a href="http://www.tenable.com/products/nessus/select-your-operating-system" target="_blank" rel="external">http://www.tenable.com/products/nessus/select-your-operating-system</a><br><img src="http://p1.bpimg.com/567571/6ec33aad587f3471.png" alt=""><br>可以根据我们自己的需求选择安装包。Nessus有两个版本，分别是Home（家庭版）和Professional（专业版）。这两个版本的区别如下所示：<br>家庭版：家庭版是免费的，主要是供非商业性或个人使用。该版比较适合个人使用，并且可以用于非专业的环境。<br>专业版：专业版是需要付费的。但是，可以免费使用七天。该版主要是供商业人士使用。它包括技术支持或附加功能，如无线并发连接等。<br>对于大部分人来说，家庭版的功能都可以满足。所以，这里选择下载家庭版。在该界面单击Nessus Home下面的Download按钮。<br>1.2 获取激活码<br><a href="http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code" target="_blank" rel="external">http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code</a><br>选择免费的家庭版进行注册。<br><img src="http://p1.bpimg.com/567571/db56dc5804cc5821.png" alt=""><br>在该界面填写一些信息，为了获取激活码。在该界面First Name和Last Name文本框中，用户可以任意填写。但是，Email下的文本框必须填写一个合法的邮件地址，用来获取邮件。当以上信息设置完成后，单击Register按钮。接下来，将会在注册的邮箱中收到一份关于Nessus的邮件。进入邮箱打开收到的邮件，将会看到一串数字，类似XXXX-XXXX-XXXX-XXXX，即激活码。<br><a href="http://www.tenable.com/products/nessus-home" target="_blank" rel="external">http://www.tenable.com/products/nessus-home</a></p>
+<p>1.3 Liunx安装</p>
+<pre><code>dpkg -i Nessus-6.9.1-debian6_amd64.deb   ##安装Nessus
+service nessusd start     ##启动Nessus
+</code></pre><p><img src="http://p1.bpimg.com/567571/38128b3572ee39aa.png" alt=""></p>
+<p><strong>在Linux系统中，Nessus工具默认安装在/opt/nessus目录中。</strong><br>1.4 Nessus启用<br>使用浏览器进行访问，例如，你的IP为192.168.0.179，则浏览器输入<a href="https://192.168.0.179:8834。" target="_blank" rel="external">https://192.168.0.179:8834。</a> <strong>需要注意的是Linux下https协议。</strong><br>首先我们需要注册一个登录名和密码。<br><img src="http://p1.bpimg.com/567571/34a490f3315f95ba.jpg" alt=""><br>接下来就是填写注册码，就是刚才我们邮箱获得的注册码，注意此处选择家庭版。<br><img src="http://p1.bpimg.com/567571/437bbac928385710.jpg" alt=""><br>接下来就是等待安装插件了。<br><img src="http://p1.bpimg.com/567571/a77837b85e6f9b5e.jpg" alt=""><br>成功安装成功进入主页面。<br><img src="http://p1.bqimg.com/567571/1f9a96a8e1a52b78.png" alt=""><br>1.5 可能会出现下载插件出错的情况<br><img src="http://p1.bpimg.com/567571/66303c2cb0d23f96.png" alt=""><br>那么我们可以使用命令行进行更新下载插件</p>
+<pre><code>/opt/nessus/sbin/nessuscli update --plugins-only
+/opt/nessus/sbin/nessuscli update --all 来更新所有（软件更新+插件更新）
+</code></pre><p><img src="http://p1.bpimg.com/567571/b5f6c370711653d6.png" alt=""><br><img src="http://p1.bpimg.com/567571/dfc6556a2e860e3d.png" alt=""></p>
+<p>另外可以使用离线包进行更新安装。<br>离线更新的网址：<br><a href="https://plugins.nessus.org/v2/offline.php" target="_blank" rel="external">https://plugins.nessus.org/v2/offline.php</a><br>需要输入两个信息，一个是challenge code，另一个是activation code 。challenge code获得由/opt/nessus/sbin下的./nessuscli fetch –challenge命令。Activation code由邮件重新获得，之前一个已经被使用过而失效。<br>提交信息获得离线的plugin以及license。统统下载放置到/opt/nessus/sbin下。大小有140+M下载速度奇慢。</p>
+<pre><code>首先导入license。到/opt/nessus/sbin下，执行./nessuscli fetch --register-offline nessus.license
+加载nessus plugins 将all-2.0.tar.gz放到目录下，然后通过nessuscli update all-2.0.tar.gz进行升级 
+</code></pre><p>国内速度比较慢，使用命令更新了好多了才成功了，更新过程可能需要十几分钟吧。</p>
+<p>2.1 Windows安装<br>Windows下比较简单，选择对应的安装包，安装就一直点下一步就行了，注册以及更新就和Linux一样，这里我们就不多介绍了。</p>
+<h3 id="0x03-Nessus配置和使用"><a href="#0x03-Nessus配置和使用" class="headerlink" title="0x03 Nessus配置和使用"></a>0x03 Nessus配置和使用</h3><p>3.1 Nessus配置</p>
+<p>3.2 Nessus扫描<br>首先创建一个扫描，选择一个模板<br><img src="http://p1.bpimg.com/567571/6c229631a09ac3ee.png" alt=""><br>假如现在有一个XP系统，IP 192.168.0.146需要进行扫描的，则配置如下：<br><img src="http://p1.bpimg.com/567571/0314871f662ed476.png" alt=""><br>配置好之后就可以进行扫描了<br><img src="http://p1.bpimg.com/567571/0696b240d9420569.png" alt=""><br>扫描完成后可以查看扫描结果,也可以导出扫描结果。<br><img src="http://p1.bpimg.com/567571/972addeef3888ae1.png" alt=""></p>
+<p>这里看到的只是简单的扫描配置，还有好多的设置和使用方法,还可以创建策略以及设置一些插件。还可以与其他一些工具联合使用，以后的具体用法还会继续学习。<br><strong>生命不息，学习不止！！！</strong></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/渗透/">渗透</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/uncategorized/2016/12/13/同源策略详解及绕过-转.html" title="同源策略详解及绕过(转)">
+  <strong>上一篇：</strong><br/>
+  <span>
+  同源策略详解及绕过(转)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html"  title="基于Metasploit的简单渗透测试">
+ <strong>下一篇：</strong><br/> 
+ <span>基于Metasploit的简单渗透测试
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="渗透/2016/12/09/Nessus的安装与使用.html" data-title="Nessus的安装与使用" data-url="http://yoursite.com/渗透/2016/12/09/Nessus的安装与使用.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Nessus"><span class="toc-number">1.</span> <span class="toc-text">0x01 Nessus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-Nessus-安装"><span class="toc-number">2.</span> <span class="toc-text">0x02 Nessus 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-Nessus配置和使用"><span class="toc-number">3.</span> <span class="toc-text">0x03 Nessus配置和使用</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

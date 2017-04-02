@@ -1,0 +1,692 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python 爬虫抓站技巧 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="1、最基本的抓站import urllib2
+content = urllib2.urlopen(&amp;apos;http://xxxx&amp;apos;).read()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 爬虫抓站技巧">
+<meta property="og:url" content="http://yoursite.com/代码/2016/09/25/python之爬虫抓站技巧.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="1、最基本的抓站import urllib2
+content = urllib2.urlopen(&amp;apos;http://xxxx&amp;apos;).read()">
+<meta property="og:image" content="http://p1.bqimg.com/567571/3247916ab81b9554.png">
+<meta property="og:updated_time" content="2017-04-02T07:39:18.574Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 爬虫抓站技巧">
+<meta name="twitter:description" content="1、最基本的抓站import urllib2
+content = urllib2.urlopen(&amp;apos;http://xxxx&amp;apos;).read()">
+<meta name="twitter:image" content="http://p1.bqimg.com/567571/3247916ab81b9554.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/代码/2016/09/25/python之爬虫抓站技巧.html" title="python 爬虫抓站技巧" itemprop="url">python 爬虫抓站技巧</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-25T09:48:33.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、最基本的抓站"><span class="toc-number">1.</span> <span class="toc-text">1、最基本的抓站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、使用代理服务器"><span class="toc-number">2.</span> <span class="toc-text">2、使用代理服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3、需要登录的网址"><span class="toc-number">2.1.</span> <span class="toc-text">3、需要登录的网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、多线程抓取"><span class="toc-number">2.2.</span> <span class="toc-text">4、多线程抓取</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="1、最基本的抓站"><a href="#1、最基本的抓站" class="headerlink" title="1、最基本的抓站"></a>1、最基本的抓站</h2><pre><code>import urllib2
+content = urllib2.urlopen(&apos;http://xxxx&apos;).read()
+</code></pre><a id="more"></a>
+<h2 id="2、使用代理服务器"><a href="#2、使用代理服务器" class="headerlink" title="2、使用代理服务器"></a>2、使用代理服务器</h2><p>   这在某些情况下比较有用，比如IP被封了，或者比如IP访问的次数受到限制等等</p>
+<pre><code>import urllib2
+proxy_support = urllib2.ProxyHandler({&apos;http&apos;:&apos;127.0.0.1:8087&apos;})
+opener = urllib2.build_opener(proxy_support,HTTPHandler)
+urllib2.install_opener(opener)
+content = urllib2.urlopen(&apos;http://xxxx&apos;).read()
+</code></pre><p>使用本机8087端口代理访问</p>
+<h3 id="3、需要登录的网址"><a href="#3、需要登录的网址" class="headerlink" title="3、需要登录的网址"></a>3、需要登录的网址</h3><p><strong><em>3.1  cookie的处理</em></strong></p>
+<pre><code>import urllib2,cookielib
+cookie_support = urllib2.HTTPCookieProcessor(cookielib.CookieJar)
+opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
+urllib2.install_opener(opener)
+content = urllib2.urlopen(&apos;http://XXXX&apos;).read()
+</code></pre><p>若同时使用代理和cookie，那么就在<strong><em>opener</em></strong>加上<strong><em>proxy_support</em></strong>,改为：</p>
+<pre><code>opener = urllib2.build_opener(proxy_support,cookie_support,urllib2.HTTPHandler)
+</code></pre><p><strong><em>3.2 表单的处理</em></strong></p>
+<p>对于一些需要登录的网页如何进行爬取呢？这里我们可以使用火狐的httpfox插件进行查看，这里登录网站进行查看表格<br><img src="http://p1.bqimg.com/567571/3247916ab81b9554.png" alt=""></p>
+<p>登录需要username/password/yzm等，我们接下来可以进行构造postdata</p>
+<pre><code>import urllib,urllib2
+postdata = urllib.urlencode({
+ &apos;username&apos;:&apos;xxxx&apos;,
+ &apos;password&apos;:&apos;xxxx&apos;,
+ &apos;yzm&apos;:&apos;&apos;
+})
+req = urllib2.Request(url = &apos;http://xxxxx&apos;,data = postdata)
+result = urllib2.urlopen(req).read()
+</code></pre><p><strong><em>3.3 伪装成浏览器进行访问</em></strong></p>
+<p>当然有些网站禁止我们进行爬虫，这时只要我们伪装成浏览器即可，通过修改http包中的header来实现</p>
+<pre><code>headers = {
+&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&apos;
+}
+req = urllib2.Request(
+   url = &apos;http://xxxx&apos;,
+   data = postdata,
+   headers = headers
+ )
+</code></pre><p><strong><em>3.4 反“反盗链”</em></strong></p>
+<p>反盗链就是我们发送的请求中header里面，判断referer站点是不是来自该网址，那么我们就在headers添加该网址就ok咯</p>
+<pre><code>headers = {
+  &apos;Referer&apos; = : &apos;http://xxxx&apos;
+  }
+</code></pre><blockquote>
+<p>headers是一个dict数据结构，我们可以放入任何想要的header，来做一些伪装。</p>
+</blockquote>
+<h3 id="4、多线程抓取"><a href="#4、多线程抓取" class="headerlink" title="4、多线程抓取"></a>4、多线程抓取</h3><p><strong><em>线程和进程</em></strong></p>
+<blockquote>
+<p>进程：程序的一次执行，都有自己的地址空间、内存。数据栈以及其他记录其运动轨迹的辅助数据</p>
+<p>线程：所有线程运行在同一个进程当中，共享相同的运行环境。线程有开始顺序执行和结束三个部分</p>
+</blockquote>
+<p>一般，使用线程有两种模式，一种是创建线程要执行的函数，把这个函数传递进Thread对象里，让他来执行，另一种是直接从Thread继承，创建一个新的class，把线程执行的代码放到这个新的class里。</p>
+<p><strong><em>thread</em></strong> 提供基本的线程和锁定支持但是对于进程何时退出没有控制，当主线程结束时，所有其他线程也都强制结束，不会发出警告或者进行适当的处理</p>
+<p><strong><em>threading</em></strong> 提供更高几倍的功能更全的线程管理</p>
+<p><strong><em>Queue</em></strong> 可以创建一个队列数据结构，用于在多线程之间进行共享</p>
+<blockquote>
+<p>thread模块中含函数和常量</p>
+</blockquote>
+<pre><code>import thread
+
+thread.LockType   #锁对象的一种，用于线程的同步
+thread.error      #线程的异常
+
+thread.start_new_thread(function,args[,kwargs])
+
+thread.exit()     #线程退出函数
+thread.allocate_lock()   #生成一个未锁状态的锁对象
+</code></pre><p>   <strong><em>function:</em></strong>线程执行函数  <strong><em>args:</em></strong>线程执行函数的参数，类似tuple  <strong><em>kwargs:</em></strong> 是一个字典，可选参数</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/代码/">代码</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/uncategorized/2016/09/25/zip伪加密.html" title="zip伪加密">
+  <strong>上一篇：</strong><br/>
+  <span>
+  zip伪加密</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/CTF/2016/09/24/哈希长度扩展攻击.html"  title="哈希长度扩展攻击">
+ <strong>下一篇：</strong><br/> 
+ <span>哈希长度扩展攻击
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="代码/2016/09/25/python之爬虫抓站技巧.html" data-title="python 爬虫抓站技巧" data-url="http://yoursite.com/代码/2016/09/25/python之爬虫抓站技巧.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、最基本的抓站"><span class="toc-number">1.</span> <span class="toc-text">1、最基本的抓站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、使用代理服务器"><span class="toc-number">2.</span> <span class="toc-text">2、使用代理服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3、需要登录的网址"><span class="toc-number">2.1.</span> <span class="toc-text">3、需要登录的网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、多线程抓取"><span class="toc-number">2.2.</span> <span class="toc-text">4、多线程抓取</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

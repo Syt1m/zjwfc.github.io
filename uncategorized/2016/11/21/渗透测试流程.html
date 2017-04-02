@@ -1,0 +1,626 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>渗透测试流程 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x01 渗透测试渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试流程">
+<meta property="og:url" content="http://yoursite.com/uncategorized/2016/11/21/渗透测试流程.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01 渗透测试渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。">
+<meta property="og:image" content="http://i1.piimg.com/567571/1560e1318d6bfc4f.png">
+<meta property="og:updated_time" content="2016-11-21T12:52:31.761Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渗透测试流程">
+<meta name="twitter:description" content="0x01 渗透测试渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/1560e1318d6bfc4f.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/uncategorized/2016/11/21/渗透测试流程.html" title="渗透测试流程" itemprop="url">渗透测试流程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-21T12:48:12.000Z" itemprop="datePublished"> 发表于 2016-11-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-渗透测试"><span class="toc-number">1.</span> <span class="toc-text">0x01 渗透测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-主要步骤"><span class="toc-number">2.</span> <span class="toc-text">0x02 主要步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-信息搜集"><span class="toc-number">3.</span> <span class="toc-text">0x03 信息搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-漏洞挖掘"><span class="toc-number">4.</span> <span class="toc-text">0x04 漏洞挖掘</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-漏洞利用"><span class="toc-number"></span> <span class="toc-text">0x05 漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-权限提升"><span class="toc-number">1.</span> <span class="toc-text">0x06 权限提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-后门"><span class="toc-number">2.</span> <span class="toc-text">0x07 后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x08-日志清理"><span class="toc-number">3.</span> <span class="toc-text">0x08 日志清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x09-经验总结（检测报告）"><span class="toc-number">4.</span> <span class="toc-text">0x09 经验总结（检测报告）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x10-后记"><span class="toc-number">5.</span> <span class="toc-text">0x10 后记</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01-渗透测试"><a href="#0x01-渗透测试" class="headerlink" title="0x01 渗透测试"></a>0x01 渗透测试</h3><p>渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。<br>测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。<br><a id="more"></a><br>现在主要有<strong>黑盒测试、白盒测试和灰盒测试</strong>，黑盒测试就是提供一个网站，我们完全模拟黑客攻击进行测试，白盒测试提供源代码，主要是代码审计找漏洞，而灰盒测试则两者都提供。<br>下面我们介绍的主要是黑盒测试流程。</p>
+<h3 id="0x02-主要步骤"><a href="#0x02-主要步骤" class="headerlink" title="0x02 主要步骤"></a>0x02 主要步骤</h3><p>渗透主要有以下七个步骤：<strong>信息搜集、漏洞挖掘、漏洞利用、权限提升、后门、日志清扫、经验总结</strong>。</p>
+<h3 id="0x03-信息搜集"><a href="#0x03-信息搜集" class="headerlink" title="0x03 信息搜集"></a>0x03 信息搜集</h3><p>当我们检测一个网站时，首先要做的就是信息搜集工作，这个是十分有必要的，可以为我们后期测试提供事半功倍的效果。<br>Whois信息–注册人、电话、邮箱、DNS、地址，必要时可以进行社工；<br>Googlehack–敏感目录、敏感文件、更多信息收集；<br>服务器IP–Nmap扫描、端口对应的服务、C段；<br>旁注–Bing查询、脚本工具，当主网站拿不下是，我们可以利用旁注、C段等继而拿下主站；<br>如果遇到CDN–Cloudflare（绕过）、从子域入手（mail，postfix）、DNS传送域漏洞；<br>服务器、组件（指纹）–操作系统、web server（apache，nginx，iis）、脚本语言；</p>
+<p>通过信息收集阶段，我们已经基本上能够获取到网站的绝大部分信息，当然信息收集作为网站入侵的第一步，决定着后续入侵的成功。</p>
+<h3 id="0x04-漏洞挖掘"><a href="#0x04-漏洞挖掘" class="headerlink" title="0x04 漏洞挖掘"></a>0x04 漏洞挖掘</h3><p>漏洞挖掘得靠我们平时的基本功和积累了，白盒测试的话主要看我们的代码审计能力。<br>探测Web应用指纹–Discuz、PHPwind、Dedecms、Ecshop…，可以判断是否存在爆出来的一些漏洞，有开源的还可以进行代码审计；<br>XSS、CSRF、XSIO、SQL注入、权限绕过、任意文件读取、文件包含…等常见OWASP-Top 10漏洞；<br>上传漏洞–截断、修改、解析漏洞；<br>有无验证码–可以对其进行暴力破解；<br>经过前期两个阶段，我们手里已经掌握了网站的大量信息以及不大不小的漏洞若干，下一步我们就可以进一步利用这些漏洞获取网站权限。</p>
+<h2 id="0x05-漏洞利用"><a href="#0x05-漏洞利用" class="headerlink" title="0x05 漏洞利用"></a>0x05 漏洞利用</h2><p>这一步也是重要的一步，具有承上启下的作用<br>遇到一些特殊情况，需要自己挖掘漏洞；<br>思考目的性–想要达到什么样的效果；<br>隐藏，破坏性–根据探测到的应用指纹寻找对应的EXP攻击载荷或者自己编写；<br>开始漏洞攻击，获取相应权限，根据场景不同变化思路拿到webshell；<br>还可以利用DDOS或者社工；</p>
+<h3 id="0x06-权限提升"><a href="#0x06-权限提升" class="headerlink" title="0x06 权限提升"></a>0x06 权限提升</h3><p>根据自己的目的确定是否需要进行提权；<br>根据服务器类型选择不同的攻击载荷进行权限提升；<br>法进行权限提升，结合获取的资料开始密码猜解，回溯信息收集；</p>
+<h3 id="0x07-后门"><a href="#0x07-后门" class="headerlink" title="0x07 后门"></a>0x07 后门</h3><p>植入后门是方便我们下次进入的方便；<br>要具有隐蔽性；<br>定期查看并更新，保持周期性；<br>做好免杀工作（web层、系统层）；</p>
+<h3 id="0x08-日志清理"><a href="#0x08-日志清理" class="headerlink" title="0x08 日志清理"></a>0x08 日志清理</h3><p>为了隐蔽我们的痕迹，日志清理<br>伪装性，隐蔽性，避免激警他们通常选择删除指定日志<br>根据时间段，find相应日志文件；<br>要具有严谨性，贯穿整个渗透过程；</p>
+<h3 id="0x09-经验总结（检测报告）"><a href="#0x09-经验总结（检测报告）" class="headerlink" title="0x09 经验总结（检测报告）"></a>0x09 经验总结（检测报告）</h3><p>平时渗透测试的就总结、归纳、整理每次渗透的经验，以及遇到的问题和解决方法，在总结中不断地提升自己。<br>而作为渗透测试人员，测试报告是对工作的总结，包括管理层报告（风险级别。风险分类、整改规划）和技术报告（漏洞细节、漏洞复现、修补方案）。</p>
+<h3 id="0x10-后记"><a href="#0x10-后记" class="headerlink" title="0x10 后记"></a>0x10 后记</h3><p>在我们渗透测试的时候只需要进行前三步骤就达到了我们的测试要求了，后面那些是没有必要继续进行的，但是总结报告还是要写的，有助于提升我们的实例。<br><strong><em>附上一个渗透测试流程图：</em></strong><br><img src="http://i1.piimg.com/567571/1560e1318d6bfc4f.png" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/渗透/2016/11/22/w3af初级.html" title="w3af初级">
+  <strong>上一篇：</strong><br/>
+  <span>
+  w3af初级</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/uncategorized/2016/11/20/XSS-Challenges.html"  title="XSS Challenges">
+ <strong>下一篇：</strong><br/> 
+ <span>XSS Challenges
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="uncategorized/2016/11/21/渗透测试流程.html" data-title="渗透测试流程" data-url="http://yoursite.com/uncategorized/2016/11/21/渗透测试流程.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-渗透测试"><span class="toc-number">1.</span> <span class="toc-text">0x01 渗透测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-主要步骤"><span class="toc-number">2.</span> <span class="toc-text">0x02 主要步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-信息搜集"><span class="toc-number">3.</span> <span class="toc-text">0x03 信息搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-漏洞挖掘"><span class="toc-number">4.</span> <span class="toc-text">0x04 漏洞挖掘</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-漏洞利用"><span class="toc-number"></span> <span class="toc-text">0x05 漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-权限提升"><span class="toc-number">1.</span> <span class="toc-text">0x06 权限提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-后门"><span class="toc-number">2.</span> <span class="toc-text">0x07 后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x08-日志清理"><span class="toc-number">3.</span> <span class="toc-text">0x08 日志清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x09-经验总结（检测报告）"><span class="toc-number">4.</span> <span class="toc-text">0x09 经验总结（检测报告）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x10-后记"><span class="toc-number">5.</span> <span class="toc-text">0x10 后记</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

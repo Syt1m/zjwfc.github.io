@@ -1,0 +1,640 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python之Django初探 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python之Django初探">
+<meta property="og:url" content="http://yoursite.com/uncategorized/2016/11/08/python之Django初探.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/24361778.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/9883364.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/85859148.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/74340011.jpg">
+<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/43849455.jpg">
+<meta property="og:updated_time" content="2016-11-08T12:50:57.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python之Django初探">
+<meta name="twitter:description" content="0x01、python之Djangopython中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。大家可以参">
+<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/uncategorized/2016/11/08/python之Django初探.html" title="python之Django初探" itemprop="url">python之Django初探</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-08T12:48:59.000Z" itemprop="datePublished"> 发表于 2016-11-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01、python之Django"><span class="toc-number">1.</span> <span class="toc-text">0x01、python之Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02、Django的安装"><span class="toc-number">2.</span> <span class="toc-text">0x02、Django的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03、Django创建项目"><span class="toc-number">3.</span> <span class="toc-text">0x03、Django创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、Django框架的进阶"><span class="toc-number">4.</span> <span class="toc-text">0x04、Django框架的进阶</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01、python之Django"><a href="#0x01、python之Django" class="headerlink" title="0x01、python之Django"></a>0x01、python之Django</h3><p>python中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。<br>Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。<br>大家可以参考<a href="http://docs.pythontab.com/django/django1.5/index.html" target="_blank" rel="external">Django中文文档</a>进行学习，这里有更全面的知识。<br><a id="more"></a></p>
+<h3 id="0x02、Django的安装"><a href="#0x02、Django的安装" class="headerlink" title="0x02、Django的安装"></a>0x02、Django的安装</h3><blockquote>
+<p>pip安装</p>
+</blockquote>
+<p>pip install Django</p>
+<blockquote>
+<p>下载源代码安装</p>
+</blockquote>
+<p>Django 下载地址：<a href="https://www.djangoproject.com/download/" target="_blank" rel="external">https://www.djangoproject.com/download/</a><br>下载 Django 压缩包，解压并和Python安装目录放在同一个根目录，进入 Django 目录，执行python setup.py install，然后开始安装，Django将要被安装到Python的Lib下site-packages。</p>
+<p><strong>安装完成后需要进行环境变量的设置，根据自己安装位置。如：C:/Python33/Lib/site-packages/django;C:/Python33/Scripts。</strong></p>
+<p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/19378000.jpg" alt=""><br>出现如上提示表示我们的Django安装成功了。</p>
+<h3 id="0x03、Django创建项目"><a href="#0x03、Django创建项目" class="headerlink" title="0x03、Django创建项目"></a>0x03、Django创建项目</h3><p>安装完成后，我们可以使用管理工具django-admin.py来创建一个项目。</p>
+<p>使用django-admin.py可以查看一些基本命令<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/24361778.jpg" alt=""></p>
+<p>使用django，创建了一个HelloWorld的项目。<br><strong>django-admin.py startproject HelloWorld</strong><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/9883364.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/85859148.jpg" alt=""><br><strong>目录说明：</strong><br>HelloWorld: 项目的容器。<br>manage.py: 一个实用的命令行工具，可让你以各种方式与该 Django项目进行交互(django shell和数据库等)。<br>内层 HelloWorld 目录是项目中的实际 Python 包。该目录名就是 Python 包名，通过它你可以导入它里面的任何东西。<br>HelloWorld/<strong>init</strong>.py: 一个空文件，告诉 Python 该目录是一个 Python 包。<a href="https://docs.python.org/3/tutorial/modules.html#packages" target="_blank" rel="external">关于包的更多内容</a><br>HelloWorld/settings.py: 该 Django 项目的设置/配置。<br>HelloWorld/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。<br>HelloWorld/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。</p>
+<p><strong><em>注意：</em></strong>   </p>
+<blockquote>
+<p>有过PHP编程背景的话，我们可能习惯于将代码都放在 Web  服务器的文档根目录(例如 /var/www 这样的地方)。而在  Django中，我们不能这样做。把任何Python代码放到Web 服务器的文档根目录中都不是个好主意，因为这样一来，我们就要冒着别人透过页面直接看到代码的风险。这对于安全可不是件好事。所以，把代码放置在文档根目录之外的某些目录中。</p>
+</blockquote>
+<p>Django中带有一个内建的纯粹由Python编写的轻量级Web服务器，可供站点开发过程中使用。<br>运行<strong>python manage.py runserver 0.0.0.0:8000</strong>，Django  监听所有网络接口和IP地址，因此也就让其它电脑可连接到开发服务器了，访问我们的ip即可查看我们的初始化网页。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/74340011.jpg" alt=""><br>这是利用Django框架搭建的原始的web页面，这样我们可以在此基础上进行我们的修改。</p>
+<h3 id="0x04、Django框架的进阶"><a href="#0x04、Django框架的进阶" class="headerlink" title="0x04、Django框架的进阶"></a>0x04、Django框架的进阶</h3><p>当我们输入<a href="http://localhost/hello/时候，Django是如何处理请求的？" target="_blank" rel="external">http://localhost/hello/时候，Django是如何处理请求的？</a><br>首先一切都开始于setting文件。当我们运行python manage.py runserver时,脚本在manage.py同一个目录下查找 settings.py文件。这个文件中包含了了所有关于这个Django项目的配置信息。settings.py中包含一个ROOT_URLCONF配置指向自动生成的urls.py.ROOT_URLCONF = ‘HelloWorld.urls’<br>访问URL /hello/时，Django根据ROOT_URLCONF的设置装载URLConf。<br>然后按顺序逐个匹配URLConf里URLpatterns,直到找到匹配项。找到后，调用对应视图函数。并把HttpRequest对象做为第一个参数传入。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-7/43849455.jpg" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/uncategorized/2016/11/13/渗透测试之初探越权.html" title="渗透测试之初探越权">
+  <strong>上一篇：</strong><br/>
+  <span>
+  渗透测试之初探越权</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/uncategorized/2016/11/03/python之图像处理.html"  title="python之图像处理">
+ <strong>下一篇：</strong><br/> 
+ <span>python之图像处理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="uncategorized/2016/11/08/python之Django初探.html" data-title="python之Django初探" data-url="http://yoursite.com/uncategorized/2016/11/08/python之Django初探.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01、python之Django"><span class="toc-number">1.</span> <span class="toc-text">0x01、python之Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02、Django的安装"><span class="toc-number">2.</span> <span class="toc-text">0x02、Django的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03、Django创建项目"><span class="toc-number">3.</span> <span class="toc-text">0x03、Django创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、Django框架的进阶"><span class="toc-number">4.</span> <span class="toc-text">0x04、Django框架的进阶</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
