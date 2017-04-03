@@ -82,154 +82,26 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html" title="Metinfo5.3.10 CMS 命令执行 文件包含" itemprop="url">Metinfo5.3.10 CMS 命令执行 文件包含</a>
+      <a href="/uncategorized/2016/11/13/渗透测试之初探越权.html" title="渗透测试之初探越权" itemprop="url">渗透测试之初探越权</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-27T14:55:21.000Z" itemprop="datePublished"> 发表于 2016-11-27</time>
+    <time datetime="2016-11-13T08:01:32.000Z" itemprop="datePublished"> 发表于 2016-11-13</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
-<h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br>
+        <h3 id="0x01、越权漏洞"><a href="#0x01、越权漏洞" class="headerlink" title="0x01、越权漏洞"></a>0x01、越权漏洞</h3><p>越权（或者说权限提升，Privilege Escalation）是指攻击者能够执行他本身没有资格执行的一些操作，属于“访问控制”的问题。越权也就是“超越了我们所拥有的权限，干了我们本来不可能干的事儿”。越权漏洞是Web应用程序中一种常见的安全漏洞。</p>
+<h3 id="0x02、web网站常见的访问控制"><a href="#0x02、web网站常见的访问控制" class="headerlink" title="0x02、web网站常见的访问控制"></a>0x02、web网站常见的访问控制</h3><p>常见的访问控制方式有三种：垂直访问控制、水平访问控制和上下文相关的访问控制。<br>
         
         
         <p class="article-more-link">
           
-            <a href="/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/审计/">审计</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/php/">php</a><a href="/tags/代码审计/">代码审计</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html#comments" class="ds-thread-count comments-count-link" data-thread-key="审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/渗透/2016/11/22/w3af初级.html" title="w3af初级" itemprop="url">w3af初级</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
-		
-  <p class="article-time">
-    <time datetime="2016-11-22T04:09:54.000Z" itemprop="datePublished"> 发表于 2016-11-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="0x01-w3af"><a href="#0x01-w3af" class="headerlink" title="0x01 w3af"></a>0x01 w3af</h3><p>w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。<br>w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/渗透/2016/11/22/w3af初级.html#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/渗透/">渗透</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/渗透/2016/11/22/w3af初级.html#comments" class="ds-thread-count comments-count-link" data-thread-key="渗透/2016/11/22/w3af初级.html" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/uncategorized/2016/11/21/渗透测试流程.html" title="渗透测试流程" itemprop="url">渗透测试流程</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
-		
-  <p class="article-time">
-    <time datetime="2016-11-21T12:48:12.000Z" itemprop="datePublished"> 发表于 2016-11-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="0x01-渗透测试"><a href="#0x01-渗透测试" class="headerlink" title="0x01 渗透测试"></a>0x01 渗透测试</h3><p>渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。可以对一些网站等进行安全风险评估，以便提高其安全性。<br>测试人员在不同的位置（比如从内网、从外网等位置）利用各种手段对某个特定网络进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给网络所有者。网络所有者根据渗透人员提供的渗透测试报告，可以清晰知晓系统中存在的安全隐患和问题。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/uncategorized/2016/11/21/渗透测试流程.html#more">Read More</a>
+            <a href="/uncategorized/2016/11/13/渗透测试之初探越权.html#more">Read More</a>
           
        </p>
     </div>
@@ -250,7 +122,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/uncategorized/2016/11/21/渗透测试流程.html#comments" class="ds-thread-count comments-count-link" data-thread-key="uncategorized/2016/11/21/渗透测试流程.html" data-count-type="comments">&nbsp;</a>
+		<a href="/uncategorized/2016/11/13/渗透测试之初探越权.html#comments" class="ds-thread-count comments-count-link" data-thread-key="uncategorized/2016/11/13/渗透测试之初探越权.html" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -270,25 +142,25 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/uncategorized/2016/11/20/XSS-Challenges.html" title="XSS Challenges" itemprop="url">XSS Challenges</a>
+      <a href="/uncategorized/2016/11/08/python之Django初探.html" title="python之Django初探" itemprop="url">python之Django初探</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-20T06:12:56.000Z" itemprop="datePublished"> 发表于 2016-11-20</time>
+    <time datetime="2016-11-08T12:48:59.000Z" itemprop="datePublished"> 发表于 2016-11-08</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h3 id="0x01、前言"><a href="#0x01、前言" class="headerlink" title="0x01、前言"></a>0x01、前言</h3><p>最近发现了一个挺好玩的XSS练习平台，大家可以没事了玩一玩。至于相关知识，已经在以前的博客上介绍过，大家对于基础可去看看。<a href="http://xss-quiz.int21h.jp">练习平台</a>、<a href="http://zjw.dropsec.xyz/2016/08/05/xss%E5%9F%BA%E7%A1%80/">基础知识</a>，好了，不多说，我们开撸<br>
+        <h3 id="0x01、python之Django"><a href="#0x01、python之Django" class="headerlink" title="0x01、python之Django"></a>0x01、python之Django</h3><p>python中有许多不同款的开放源代码的Web应用框架，而Django是其中最最有代表性的，许多成功的网站和APP都是基于Django。<br>Django采用了MVC的软件设计模式，即模型M，视图V和控制器C。Django是走大而全的方向，它最出名的是其全自动化的管理后台：只需要使用起ORM，做简单的对象定义，它就能自动生成数据库结构、以及全功能的管理后台。<br>大家可以参考<a href="http://docs.pythontab.com/django/django1.5/index.html">Django中文文档</a>进行学习，这里有更全面的知识。<br>
         
         
         <p class="article-more-link">
           
-            <a href="/uncategorized/2016/11/20/XSS-Challenges.html#more">Read More</a>
+            <a href="/uncategorized/2016/11/08/python之Django初探.html#more">Read More</a>
           
        </p>
     </div>
@@ -298,7 +170,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/XSS/">XSS</a><a href="/tags/writeup/">writeup</a>
+  <span></span> <a href="/tags/python/">python</a>
   </div>
 
 </div>
@@ -309,7 +181,260 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/uncategorized/2016/11/20/XSS-Challenges.html#comments" class="ds-thread-count comments-count-link" data-thread-key="uncategorized/2016/11/20/XSS-Challenges.html" data-count-type="comments">&nbsp;</a>
+		<a href="/uncategorized/2016/11/08/python之Django初探.html#comments" class="ds-thread-count comments-count-link" data-thread-key="uncategorized/2016/11/08/python之Django初探.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/uncategorized/2016/11/03/python之图像处理.html" title="python之图像处理" itemprop="url">python之图像处理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-03T07:31:51.000Z" itemprop="datePublished"> 发表于 2016-11-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01、PIL库"><a href="#0x01、PIL库" class="headerlink" title="0x01、PIL库"></a>0x01、PIL库</h3><p>python提供了PIL图像处理库，Image类是PIL库中一个非常重要的类，通过这个类创建实例可以有直接载入图像文件，读取处理过的图像和通过抓取的方法得到的图像这三种方法。功能上，虽然还不能跟Matlab比较，但是还是比较强大的。<br>安装过程使用pip进行安装。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/uncategorized/2016/11/03/python之图像处理.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/uncategorized/2016/11/03/python之图像处理.html#comments" class="ds-thread-count comments-count-link" data-thread-key="uncategorized/2016/11/03/python之图像处理.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/代码/2016/11/02/python之数据库编程.html" title="python数据库编程" itemprop="url">python数据库编程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-02T12:40:21.000Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01、Python数据库编程"><a href="#0x01、Python数据库编程" class="headerlink" title="0x01、Python数据库编程"></a>0x01、Python数据库编程</h3><p>python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，<a href="https://wiki.python.org/moin/DatabaseInterfaces">Python数据库接口及API</a>可以查看详细的支持数据库列表。</p>
+<p>在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/代码/2016/11/02/python之数据库编程.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/代码/">代码</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/代码/2016/11/02/python之数据库编程.html#comments" class="ds-thread-count comments-count-link" data-thread-key="代码/2016/11/02/python之数据库编程.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/漏洞/2016/11/02/文件上传.html" title="文件上传" itemprop="url">文件上传</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-02T03:41:47.000Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01、文件上传"><a href="#0x01、文件上传" class="headerlink" title="0x01、文件上传"></a>0x01、文件上传</h3><p>文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。</p>
+<h3 id="0x02、文件上传漏洞的利用方法"><a href="#0x02、文件上传漏洞的利用方法" class="headerlink" title="0x02、文件上传漏洞的利用方法"></a>0x02、文件上传漏洞的利用方法</h3>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/漏洞/2016/11/02/文件上传.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/漏洞/">漏洞</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/漏洞/2016/11/02/文件上传.html#comments" class="ds-thread-count comments-count-link" data-thread-key="漏洞/2016/11/02/文件上传.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/CTF/2016/10/29/第七届极客大挑战.html" title="第七届极客大挑战" itemprop="url">第七届极客大挑战</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-29T10:09:06.000Z" itemprop="datePublished"> 发表于 2016-10-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01、Social-Engineering-社工"><a href="#0x01、Social-Engineering-社工" class="headerlink" title="0x01、Social Engineering(社工)"></a>0x01、Social Engineering(社工)</h3><p>有一天我捕了一只狗师傅，嘴里叼着一张纸，纸上赫然写着:<a href="http://web.sycsec.com/36da077bd47665ae/">http://web.sycsec.com/36da077bd47665ae/</a> (解题不需要联系题目邮箱和电话号码，请不要试图联系题目的邮箱和电话号码)<br>第一次碰到社工题，套路不咋懂，比较尴尬。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/CTF/2016/10/29/第七届极客大挑战.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/writeup/">writeup</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/CTF/2016/10/29/第七届极客大挑战.html#comments" class="ds-thread-count comments-count-link" data-thread-key="CTF/2016/10/29/第七届极客大挑战.html" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -325,7 +450,7 @@
 
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
   </nav>
 
 </div>
@@ -363,6 +488,10 @@
 		  
 		
 		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/渗透/" title="渗透">渗透<sup>8</sup></a></li>
 		  
 		
@@ -384,7 +513,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>23</sup></a></li>
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>24</sup></a></li>
 			
 		
 			
@@ -408,15 +537,11 @@
 			
 		
 			
-				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
@@ -424,7 +549,11 @@
 			
 		
 			
-				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
 			
 		
 			
