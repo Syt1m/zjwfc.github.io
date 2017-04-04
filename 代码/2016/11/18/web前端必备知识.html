@@ -420,14 +420,23 @@
   
 
 
-  <div class="hotarticles">
-  <p class="asidetitle">hot_articles</p>
+  <p class="asidetitle">��������</p>
 
-  <!-- ��˵�������� start -->
-  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
-  <!-- ��˵�������� end -->
+<div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
 
-</div>
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"whatbeg"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
 
   <div class="weiboshow">
   <p class="asidetitle">新浪微博</p>
