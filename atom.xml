@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-03T13:34:26.487Z</updated>
+  <updated>2017-04-04T11:07:06.752Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://yoursite.com/uncategorized/2017/04/04/test.html"/>
+    <id>http://yoursite.com/uncategorized/2017/04/04/test.html</id>
+    <published>2017-04-04T11:07:06.000Z</published>
+    <updated>2017-04-04T11:07:06.752Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>PhpMyadmin分析（二）</title>
@@ -1988,67 +2002,6 @@ action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
       <category term="代码审计" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>w3af初级</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2016/11/22/w3af%E5%88%9D%E7%BA%A7.html"/>
-    <id>http://yoursite.com/渗透/2016/11/22/w3af初级.html</id>
-    <published>2016-11-22T04:09:54.000Z</published>
-    <updated>2017-04-02T07:40:32.005Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-w3af"><a href="#0x01-w3af" class="headerlink" title="0x01 w3af"></a>0x01 w3af</h3><p>w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。<br>w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等<br><a id="more"></a></p>
-<h3 id="0x02-Linux下安装与启动"><a href="#0x02-Linux下安装与启动" class="headerlink" title="0x02 Linux下安装与启动"></a>0x02 Linux下安装与启动</h3><pre><code>apt-get install w3af   #安装
-cd +安装目录             #启动
-./w3af_console
-</code></pre><p><strong><em>补充一个小知识点：</em></strong><br>Linux下查看运行文件所在路径：<strong>which</strong><br>eg:which w3af<br>Linux下查看文件安装路径：<strong>whereis</strong><br>eg:whereis w3af<br><img src="http://obh1qcqek.bkt.clouddn.com/329.jpg" alt=""></p>
-<p>由于kali Linux自带有w3af，所以我们可以直接启动它，</p>
-<pre><code>w3af           #图形界面
-w3af_console   #控制台界面
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/833.jpg" alt=""></p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/658.jpg" alt=""><br>推荐大家使用控制台界面</p>
-<h3 id="0x03-w3af基本插件"><a href="#0x03-w3af基本插件" class="headerlink" title="0x03 w3af基本插件"></a>0x03 w3af基本插件</h3><p>W3af主要有三种主要类型的插件：<br><strong>Discovery：</strong>抓取插件，主要负责寻找url，其实就是网络爬虫。<br><strong>Audit：</strong>审计插件，主要负责发现抓取插件爬取的url中是否存在安全漏洞。<br><strong>Attack：</strong>攻击插件，主要是去利用审计插件发现的漏洞。<br>其他插件：<br>discovery:漏洞挖掘<br>exploit: 漏洞利用<br>Infrastructure：确定目标的基本信息，如安装的waf、操作系统等。<br>Grep：分析其他插件发送的HTTP请求和响应，并确定漏洞。<br>Output：输出插件，可以将数据保存到文本文件、XML文件或HTML文件。<br>Mangle：允许以基于正则表达式的方式修改网络请求和响应。<br>Bruteforce：进行暴力破解登录信息<br>Evasion：用于逃避简单的入侵检测。</p>
-<p>首先我们查看帮助信息，有利于我们了解它的操作使用<br><img src="http://obh1qcqek.bkt.clouddn.com/391.jpg" alt=""></p>
-<h3 id="0x04-w3af基本原理和使用"><a href="#0x04-w3af基本原理和使用" class="headerlink" title="0x04 w3af基本原理和使用"></a>0x04 w3af基本原理和使用</h3><h4 id="1、基本原理"><a href="#1、基本原理" class="headerlink" title="1、基本原理"></a>1、基本原理</h4><p>1.1 <strong>漏洞挖掘(Discovery)</strong><br>搜寻新的URL、表单和其他注入点，使用Crawl抓取插件进行漏洞挖掘。Web spider是一个经典的漏洞挖掘插件。这个插件以一个URL为输入，然后得到一个或多个注入点。当用户使用多个这种类型的插件时，这些插件会运行这样的循环：如果插件A在第一次运行时发现了一个新的URL，w3af内核将这个URL传递给插件B。如果插件B发现了一个新的URL，也将发送给A。这个过程将一直持续下去，所有的插件都将会工作。占用应用资源，直到无法运行漏洞挖掘应用。<br>1.2 <strong>漏洞分析(Audit)</strong><br>分析那些有漏洞挖掘插件找到的注入点，为了发现漏洞，漏洞分析插件会向所有可注入点发送他别设计好的数据。例如使用一个漏洞分析插件来获取SQL注入的漏洞<br>1.3 <strong>漏洞攻击(Attack)</strong><br>利用分析插件发现的漏洞。他们通常会得到一个远程服务器的shell或者一个利用SQL注入漏洞获取的远程数据库表。</p>
-<h4 id="2、基本使用"><a href="#2、基本使用" class="headerlink" title="2、基本使用"></a>2、基本使用</h4><p>2.1 <strong>插件配置</strong><br>plugins，遇到问题都可以使用help查看帮助<br><img src="http://obh1qcqek.bkt.clouddn.com/4146.jpg" alt=""></p>
-<pre><code>w3af&gt;&gt;&gt; plugins    #进入插件模块
-w3af/plugins&gt;&gt;&gt; list crawl   #列出所有用于发现的插件
-w3af/plugins&gt;&gt;&gt; crawl find_backdoors phpinfo web_spider      //启用这三个扫描插件插件
-w3af/plugins&gt;&gt;&gt; list audit    #列出所有用于漏洞的插件
-w3af/plugins&gt;&gt;&gt; audit blindSqli fileUpload osCommanding sqli xss     #启用blindSqli fileUpload osCommanding sqli xss这五个插件
-w3af/plugins&gt;&gt;&gt; back    #返回主模块
-</code></pre><p>查看某一插件内部信息</p>
-<pre><code>w3af/plugins&gt;&gt;&gt;audit desc xss  #了解插件作用
-w3af/plugins&gt;&gt;&gt;audit config xss
-w3af/plugins/audit/config:xss&gt;&gt;&gt;view
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/825.jpg" alt=""></p>
-<p>2.2 <strong>漏洞扫描</strong><br>设置扫描目标,自己本地搭建环境进行测试</p>
-<pre><code>w3af&gt;&gt;&gt; target    #进入配置目标的模块
-w3af/config:target&gt;&gt;&gt; set target http://192.168.1.105/sqli-labs/Less-1/ #设置攻击目标
-w3af/config:target&gt;&gt;&gt; back
-w3af&gt;&gt;&gt; start     #开始扫描
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/257.jpg" alt=""><br>2.3 <strong>漏洞利用</strong><br>使用扫描出的漏洞进行攻击</p>
-<pre><code>w3af&gt;&gt;&gt; exploit    #进入漏洞利用模块
-w3af/exploit&gt;&gt;&gt; list exploit    #列出所有用于漏洞利用的插件
-w3af/exploit&gt;&gt;&gt; exploit sqlmap  #选择sqlmap进行利用
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/786.jpg" alt=""><br>他可以和sqlmap进行联动,发现存在sql注入</p>
-<pre><code>w3af/exploit&gt;&gt;&gt; interact 0  #获得交换式模块
-w3af/exploit/sqlmap-0&gt;&gt;&gt; dbs #获得数据库名
-</code></pre><p>其实w3af还有好多的功能和用处，功能还不错，这里只是简单的介绍了他的初级使用，大家有兴趣的话可以继续研究下去。</p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/785.jpg" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-w3af&quot;&gt;&lt;a href=&quot;#0x01-w3af&quot; class=&quot;headerlink&quot; title=&quot;0x01 w3af&quot;&gt;&lt;/a&gt;0x01 w3af&lt;/h3&gt;&lt;p&gt;w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。&lt;br&gt;w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等&lt;br&gt;
-    
-    </summary>
-    
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
