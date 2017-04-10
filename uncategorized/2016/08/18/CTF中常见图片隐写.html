@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/9.jpg">
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/8.jpg">
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/13.png">
-<meta property="og:updated_time" content="2016-11-18T12:00:01.369Z">
+<meta property="og:updated_time" content="2017-04-10T02:11:57.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTF中常见图片隐写">
 <meta name="twitter:description" content="在CTF比赛中，图片隐写往往有着独特的方法，这几天做了几道题感觉挺新颖的额，于是就总结总结。
@@ -114,7 +114,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、常见的基本隐写"><span class="toc-number">1.</span> <span class="toc-text">1、常见的基本隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、F5（刷新）隐写"><span class="toc-number">2.</span> <span class="toc-text">2、F5（刷新）隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、jphide隐写"><span class="toc-number">3.</span> <span class="toc-text">3、jphide隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-隐写原理"><span class="toc-number">3.0.1.</span> <span class="toc-text">0x00 隐写原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-隐写过程"><span class="toc-number">3.0.2.</span> <span class="toc-text">0x01 隐写过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-隐写实现"><span class="toc-number">3.0.3.</span> <span class="toc-text">0x02 隐写实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"><span class="toc-number">3.0.3.3.</span> <span class="toc-text">3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。"><span class="toc-number">3.0.3.4.</span> <span class="toc-text">4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、之后便可以看到生成结果和相关信息。"><span class="toc-number">3.0.3.5.</span> <span class="toc-text">5、之后便可以看到生成结果和相关信息。</span></a></li></ol></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、常见的基本隐写"><span class="toc-number">1.</span> <span class="toc-text">1、常见的基本隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、F5（刷新）隐写"><span class="toc-number">2.</span> <span class="toc-text">2、F5（刷新）隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、jphide隐写"><span class="toc-number">3.</span> <span class="toc-text">3、jphide隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-隐写原理"><span class="toc-number">3.0.1.</span> <span class="toc-text">0x00 隐写原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-隐写过程"><span class="toc-number">3.0.2.</span> <span class="toc-text">0x01 隐写过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-隐写实现"><span class="toc-number">3.0.3.</span> <span class="toc-text">0x02 隐写实现</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -153,16 +153,21 @@ java Extract ../123456.jpg -p 123456
 </code></pre><p><img src="http://obh1qcqek.bkt.clouddn.com/7.jpg" alt="test"></p>
 <p>下载链接：<a href="http://www.scanwith.com/JPHS_for_Windows_download.htm" target="_blank" rel="external">http://www.scanwith.com/JPHS_for_Windows_download.htm</a></p>
 <blockquote>
-<h5 id="1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。"><a href="#1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。" class="headerlink" title="1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。"></a>1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。</h5><h5 id="2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg"><a href="#2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg" class="headerlink" title="2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg"></a>2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg</h5></blockquote>
+<p>1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。</p>
+<p>2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg</p>
+</blockquote>
 <p><img src="http://obh1qcqek.bkt.clouddn.com/12.jpg" alt="test"></p>
 <blockquote>
-<h5 id="3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"><a href="#3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。" class="headerlink" title="3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"></a>3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。</h5></blockquote>
+<p>3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。</p>
+</blockquote>
 <p><img src="http://obh1qcqek.bkt.clouddn.com/11.jpg" alt="test"><br><img src="http://obh1qcqek.bkt.clouddn.com/10.jpg" alt="test"></p>
 <blockquote>
-<h5 id="4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。"><a href="#4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。" class="headerlink" title="4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。"></a>4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。</h5></blockquote>
+<p>4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。</p>
+</blockquote>
 <p><img src="http://obh1qcqek.bkt.clouddn.com/9.jpg" alt="test"></p>
 <blockquote>
-<h5 id="5、之后便可以看到生成结果和相关信息。"><a href="#5、之后便可以看到生成结果和相关信息。" class="headerlink" title="5、之后便可以看到生成结果和相关信息。"></a>5、之后便可以看到生成结果和相关信息。</h5></blockquote>
+<p>5、之后便可以看到生成结果和相关信息。</p>
+</blockquote>
 <p><img src="http://obh1qcqek.bkt.clouddn.com/8.jpg" alt="test"></p>
 <p>这几步做的是Jhide方式信息隐藏，接下来我们从qq.jpg图片提取出隐藏信息。</p>
 <blockquote>
@@ -268,7 +273,7 @@ java Extract ../123456.jpg -p 123456
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、常见的基本隐写"><span class="toc-number">1.</span> <span class="toc-text">1、常见的基本隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、F5（刷新）隐写"><span class="toc-number">2.</span> <span class="toc-text">2、F5（刷新）隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、jphide隐写"><span class="toc-number">3.</span> <span class="toc-text">3、jphide隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-隐写原理"><span class="toc-number">3.0.1.</span> <span class="toc-text">0x00 隐写原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-隐写过程"><span class="toc-number">3.0.2.</span> <span class="toc-text">0x01 隐写过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-隐写实现"><span class="toc-number">3.0.3.</span> <span class="toc-text">0x02 隐写实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、分别准备一个JPEG格式的图片-example-jpg-和一个文本文件-flag-txt-。"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">1、分别准备一个JPEG格式的图片(example.jpg)和一个文本文件(flag.txt)。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open-jpeg”打开示例JPEG格式图片example-jpg"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">2、Windows版本可以使用具有图形化操作界面的Jphswin，选择“Open jpeg”打开示例JPEG格式图片example.jpg</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。"><span class="toc-number">3.0.3.3.</span> <span class="toc-text">3、选择“Hide”选项之后在两次文本框输入相同的密码，这里以输入flag作为密码为例，然后输入要包含隐藏信息的文本。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、选择“Save-jpeg-as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq-jpg。"><span class="toc-number">3.0.3.4.</span> <span class="toc-text">4、选择“Save jpeg as”选项将图片另存为jpeg格式并输入文件的名称为新的图像文件如qq.jpg。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、之后便可以看到生成结果和相关信息。"><span class="toc-number">3.0.3.5.</span> <span class="toc-text">5、之后便可以看到生成结果和相关信息。</span></a></li></ol></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、常见的基本隐写"><span class="toc-number">1.</span> <span class="toc-text">1、常见的基本隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、F5（刷新）隐写"><span class="toc-number">2.</span> <span class="toc-text">2、F5（刷新）隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、jphide隐写"><span class="toc-number">3.</span> <span class="toc-text">3、jphide隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-隐写原理"><span class="toc-number">3.0.1.</span> <span class="toc-text">0x00 隐写原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-隐写过程"><span class="toc-number">3.0.2.</span> <span class="toc-text">0x01 隐写过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-隐写实现"><span class="toc-number">3.0.3.</span> <span class="toc-text">0x02 隐写实现</span></a></li></ol></li></ol></li></ol>
  
   </div>
 

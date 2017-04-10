@@ -11,13 +11,15 @@
     
 
     
-    <meta name="description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+    <meta name="description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做
+一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
 老规矩，先看看源代码有没有提示什么的，发现有提示啊">
 <meta property="og:type" content="article">
 <meta property="og:title" content="百度杯writeup">
 <meta property="og:url" content="http://yoursite.com/CTF/2016/09/28/百度杯writeup.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+<meta property="og:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做
+一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
 老规矩，先看看源代码有没有提示什么的，发现有提示啊">
 <meta property="og:image" content="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/fe37b38389a4c340.png">
@@ -28,10 +30,11 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/755f2a7c990ec6d0.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/2cc0c7a687cae994.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/6ccee19102cc3f80.png">
-<meta property="og:updated_time" content="2017-04-02T07:36:44.829Z">
+<meta property="og:updated_time" content="2017-04-10T02:15:26.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百度杯writeup">
-<meta name="twitter:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
+<meta name="twitter:description" content="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做
+一、123http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php提示：12341234，然后就解开了
 老规矩，先看看源代码有没有提示什么的，发现有提示啊">
 <meta name="twitter:image" content="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png">
 
@@ -110,11 +113,12 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"><span class="toc-number">1.</span> <span class="toc-text">百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、123"><span class="toc-number">2.</span> <span class="toc-text">一、123</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、注入"><span class="toc-number"></span> <span class="toc-text">二、注入</span></a>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、123"><span class="toc-number">1.</span> <span class="toc-text">一、123</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、注入"><span class="toc-number"></span> <span class="toc-text">二、注入</span></a>
 		
 		</div>
 		
-		<h3 id="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"><a href="#百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做" class="headerlink" title="百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"></a>百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做</h3><h3 id="一、123"><a href="#一、123" class="headerlink" title="一、123"></a>一、123</h3><p><a href="http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php" target="_blank" rel="external">http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php</a><br>提示：12341234，然后就解开了</p>
+		<p>　　百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做</p>
+<h3 id="一、123"><a href="#一、123" class="headerlink" title="一、123"></a>一、123</h3><p><a href="http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php" target="_blank" rel="external">http://3314e738918246a0bb89cd7d73b4000ad41ccb304b974710.game.ichunqiu.com/login.php</a><br>提示：12341234，然后就解开了</p>
 <p>老规矩，先看看源代码有没有提示什么的，发现有提示啊</p>
 <a id="more"></a>
 <p><img src="http://p1.bpimg.com/567571/3a0ecd82c61b4414.png" alt=""></p>
@@ -251,7 +255,7 @@ echo &apos;flag is here&apos;;
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做"><span class="toc-number">1.</span> <span class="toc-text">百度杯有点难度啊，做了好久还是不会做，参考其他人做了几道。还有几道没有做，以后继续做做</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、123"><span class="toc-number">2.</span> <span class="toc-text">一、123</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、注入"><span class="toc-number"></span> <span class="toc-text">二、注入</span></a>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、123"><span class="toc-number">1.</span> <span class="toc-text">一、123</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、注入"><span class="toc-number"></span> <span class="toc-text">二、注入</span></a>
  
   </div>
 
