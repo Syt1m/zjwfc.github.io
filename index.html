@@ -82,6 +82,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/CTF/2017/04/24/CBC字节翻转攻击.html" title="CBC字节翻转攻击" itemprop="url">CBC字节翻转攻击</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-24T01:51:18.000Z" itemprop="datePublished"> 发表于 2017-04-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01-CBC翻转技术"><a href="#0x01-CBC翻转技术" class="headerlink" title="0x01 CBC翻转技术"></a>0x01 CBC翻转技术</h3><p>　　<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">CBC</a>模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。<br><img src="http://i2.muimg.com/567571/0b694168b633add3.png" alt=""><br>　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始化向量（Initialization vector),通常缩写为IV,如果每次都使用相同的初始化向量（IV），当用同一密钥对同一明文进行加密时，所得到的密码一定是相同的，所以每次加密时都会随机产生一个不同的比特序列来作为初始化向量，避免这种情况产生。即：
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/CTF/2017/04/24/CBC字节翻转攻击.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CTF/">CTF</a><a href="/tags/密码学/">密码学</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/CTF/2017/04/24/CBC字节翻转攻击.html#comments" class="ds-thread-count comments-count-link" data-thread-key="CTF/2017/04/24/CBC字节翻转攻击.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/代码/2017/04/09/PHP伪协议.html" title="PHP伪协议" itemprop="url">PHP伪协议</a>
   </h1>
   <p class="article-author">By
@@ -465,75 +529,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/代码/2017/03/16/php正则的经典漏洞.html" title="php正则的经典漏洞" itemprop="url">php正则的经典漏洞</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
-		
-  <p class="article-time">
-    <time datetime="2017-03-16T08:57:01.000Z" itemprop="datePublished"> 发表于 2017-03-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>p师傅前几天的小密圈的一个问题，这是一个经典的配置文件写入问题漏洞:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">if(!isset($_GET[&apos;option&apos;])) die();</div><div class="line">$str = addslashes($_GET[&apos;option&apos;]);</div><div class="line">$file = file_get_contents(&apos;./config.php&apos;);</div><div class="line">$file = preg_replace(&apos;|\$option=\&apos;.*\&apos;;|&apos;, &quot;\$option=&apos;$str&apos;;&quot;, $file);</div><div class="line">file_put_contents(&apos;./config.php&apos;, $file);</div></pre></td></tr></table></figure>
-<p>config.php的内容：
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/代码/2017/03/16/php正则的经典漏洞.html#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/代码/">代码</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/php/">php</a><a href="/tags/代码审计/">代码审计</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/代码/2017/03/16/php正则的经典漏洞.html#comments" class="ds-thread-count comments-count-link" data-thread-key="代码/2017/03/16/php正则的经典漏洞.html" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -559,7 +557,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/CTF/" title="CTF">CTF<sup>7</sup></a></li>
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>8</sup></a></li>
 		  
 		
 		  
@@ -612,19 +610,15 @@
 			
 		
 			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+				<li><a href="/tags/密码学/" title="密码学">密码学<sup>3</sup></a></li>
 			
 		
 			
@@ -632,19 +626,23 @@
 			
 		
 			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
 			
 		
 			
@@ -653,6 +651,10 @@
 		
 			
 				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 		</ul>

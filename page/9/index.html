@@ -82,6 +82,71 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/CTF/2016/09/24/哈希长度扩展攻击.html" title="哈希长度扩展攻击" itemprop="url">哈希长度扩展攻击</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-24T07:26:39.000Z" itemprop="datePublished"> 发表于 2016-09-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h3><pre><code>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。适用于已经确定哈希值和密钥长度的情况，即知道了哈希值和密钥的长度，可以推出H（密钥||消息||padding||append）的哈希值，padding是要填充的字段，append则是要附加的消息。其实如果不知道密钥长度，可通过暴力猜解得到，已知的有长度扩展攻击缺陷的函数有MD5，SHA-1，SHA-256等等,。
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/CTF/2016/09/24/哈希长度扩展攻击.html#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CTF/">CTF</a><a href="/tags/writeup/">writeup</a><a href="/tags/密码学/">密码学</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/CTF/2016/09/24/哈希长度扩展攻击.html#comments" class="ds-thread-count comments-count-link" data-thread-key="CTF/2016/09/24/哈希长度扩展攻击.html" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/代码/2016/09/19/python-os-sys-模块初探.html" title="python os sys 模块初探" itemprop="url">python os sys 模块初探</a>
   </h1>
   <p class="article-author">By
@@ -392,74 +457,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/漏洞/2016/08/05/xss基础.html" title="xss基础" itemprop="url">xss基础</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-05T04:35:00.000Z" itemprop="datePublished"> 发表于 2016-08-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="0x01、什么是xss"><a href="#0x01、什么是xss" class="headerlink" title="0x01、什么是xss"></a>0x01、什么是xss</h3><pre><code>跨站脚本攻击(Cross Site Scripting)，恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的特殊目的。
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/漏洞/2016/08/05/xss基础.html#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/漏洞/">漏洞</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a><a href="/tags/XSS/">XSS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/漏洞/2016/08/05/xss基础.html#comments" class="ds-thread-count comments-count-link" data-thread-key="漏洞/2016/08/05/xss基础.html" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next<span></span></a>
   </nav>
 
 </div>
@@ -485,7 +485,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/CTF/" title="CTF">CTF<sup>7</sup></a></li>
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>8</sup></a></li>
 		  
 		
 		  
@@ -538,19 +538,15 @@
 			
 		
 			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CTF/" title="CTF">CTF<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+				<li><a href="/tags/密码学/" title="密码学">密码学<sup>3</sup></a></li>
 			
 		
 			
@@ -558,19 +554,23 @@
 			
 		
 			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
 			
 		
 			
@@ -579,6 +579,10 @@
 		
 			
 				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 		</ul>

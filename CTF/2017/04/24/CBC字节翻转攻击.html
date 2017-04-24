@@ -1,0 +1,678 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CBC字节翻转攻击 | Hello_C技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hello_C">
+    
+
+    
+    <meta name="description" content="0x01 CBC翻转技术　　CBC模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CBC字节翻转攻击">
+<meta property="og:url" content="http://yoursite.com/CTF/2017/04/24/CBC字节翻转攻击.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01 CBC翻转技术　　CBC模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始">
+<meta property="og:image" content="http://i2.muimg.com/567571/0b694168b633add3.png">
+<meta property="og:image" content="http://i2.muimg.com/567571/f24e769a0be02a4c.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/72106305bef82c9d.jpg">
+<meta property="og:image" content="http://i2.muimg.com/567571/1ba83675efa713e6.png">
+<meta property="og:updated_time" content="2017-04-24T06:25:56.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CBC字节翻转攻击">
+<meta name="twitter:description" content="0x01 CBC翻转技术　　CBC模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始">
+<meta name="twitter:image" content="http://i2.muimg.com/567571/0b694168b633add3.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Hello_C技术博客" title="Hello_C技术博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hello_C技术博客">Hello_C技术博客</a></h1>
+				<h2 class="blog-motto">一个小白的独白！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Message">Message</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/CTF/2017/04/24/CBC字节翻转攻击.html" title="CBC字节翻转攻击" itemprop="url">CBC字节翻转攻击</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-24T01:51:18.000Z" itemprop="datePublished"> 发表于 2017-04-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-CBC翻转技术"><span class="toc-number">1.</span> <span class="toc-text">0x01 CBC翻转技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-翻转攻击"><span class="toc-number">2.</span> <span class="toc-text">0x02 翻转攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-实例说明"><span class="toc-number">3.</span> <span class="toc-text">0x03 实例说明</span></a></li></ol>
+		
+		</div>
+		
+		<h3 id="0x01-CBC翻转技术"><a href="#0x01-CBC翻转技术" class="headerlink" title="0x01 CBC翻转技术"></a>0x01 CBC翻转技术</h3><p>　　<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank" rel="external">CBC</a>模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。<br><img src="http://i2.muimg.com/567571/0b694168b633add3.png" alt=""><br>　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始化向量（Initialization vector),通常缩写为IV,如果每次都使用相同的初始化向量（IV），当用同一密钥对同一明文进行加密时，所得到的密码一定是相同的，所以每次加密时都会随机产生一个不同的比特序列来作为初始化向量，避免这种情况产生。即：<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">首先将明文分组(常见的以16字节为一组)，位数不足的使用特殊字符填充。</div><div class="line">生成一个随机的初始化向量(IV)和一个密钥。</div><div class="line">将IV和第一组明文异或。</div><div class="line">用密钥对3中xor后产生的密文加密。</div><div class="line">用4中产生的密文对第二组明文进行xor操作。</div><div class="line">用密钥对5中产生的密文加密。</div><div class="line">重复4-7，到最后一组明文。</div><div class="line">将IV和加密后的密文拼接在一起，得到最终的密文。</div></pre></td></tr></table></figure></p>
+<p>加密公式：</p>
+<ul>
+<li><p>Ciphertext-0 = Encrypt(Plaintext XOR IV) —只用于第一个组块</p>
+</li>
+<li><p>Ciphertext-N = Encrypt(Plaintext XOR Ciphertext-N-1) —用于第二及剩下的组块<br>　　<br><img src="http://i2.muimg.com/567571/f24e769a0be02a4c.png" alt=""></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">从密文中提取出IV，然后将密文分组。</div><div class="line">使用密钥对第一组的密文解密，然后和IV进行xor得到明文。</div><div class="line">使用密钥对第二组密文解密，然后和2中的密文xor得到明文。</div><div class="line">重复2-3，直到最后一组密文。</div></pre></td></tr></table></figure>
+<p>解密公式：</p>
+<ul>
+<li><p>Plaintext-0 = Decrypt(Ciphertext) XOR IV—只用于第一个组块</p>
+</li>
+<li><p>laintext-N = Decrypt(Ciphertext) XOR Ciphertext-N-1—用于第二及剩下的组块</p>
+</li>
+</ul>
+<h3 id="0x02-翻转攻击"><a href="#0x02-翻转攻击" class="headerlink" title="0x02 翻转攻击"></a>0x02 翻转攻击</h3><p>　　<strong>可以注意到Ciphertext-N-1用来产生下一块明文</strong>，这就是字节翻转攻击开始发挥作用的地方，如果我们改变Ciphertext-N-1中的一个字节，然后和下一块解密后的密文xor，就可以得到一个不同的明文，而这个明文是我们可以控制的。利用这一点，我们就欺骗服务端或者绕过过滤器。<br>　　CBC比特反转攻击的目的是攻击者通过修改密文来操纵解密后的明文，攻击者会对初始化向量（IV）中的任意比特位进行反转（1变0，0变1），则明文分组（解密后得到的明文分组）中相应的比特也会被反转。比如一个叫admin的用户，登录，经过CBC模式加密后，token为”aaabbbccc999”,现在有一个攻击者，叫john，登录，经过CBC模式加密后，token为cccbbbccc1111,现在john将token改为”ffcbbbccc1111”，发现登录名变成了ohn，所以他知道token第一个位的ff转换成了，经过几轮测试，他发现如果将token改为“7bcbbbccc1111”，则登录名变成了’aohn’，最后他通过发送token为7bdc995465到服务器，发现自己已经变成了admin。</p>
+<p><img src="http://i4.buimg.com/567571/72106305bef82c9d.jpg" alt=""></p>
+<p>　　根据解密流程，我们假设A为密文经过AES解密后的字串，B为前一组密文，C为明文：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A = Decrypt(Ciphertext)[0] = 6</div><div class="line">B = (Ciphertext-N-1)[0] = 13</div><div class="line">C = Plaintext[0] = 11</div></pre></td></tr></table></figure></p>
+<p>　　那么经过解密过程可知：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C = A xor B</div></pre></td></tr></table></figure></p>
+<p>　　那么<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A xor B xor C = 0 (任何数与自己异或都为0)</div></pre></td></tr></table></figure></p>
+<p>　　由于任何数与0异或都为自己本身，则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A xor B xor C xor 3 = 3</div></pre></td></tr></table></figure></p>
+<p>　　那么此时我们可以这样来看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A = A = 6</div><div class="line">B = B xor 3 = 13 xor 3 xor 11 = 5</div><div class="line">C = C = 11</div></pre></td></tr></table></figure></p>
+<p>　　现在我们修改密文对应的位让B = 5，那么当密文解密后，会发现，明文C会变成3，通过这种方法我们可以控制任何一位明文。</p>
+<h3 id="0x03-实例说明"><a href="#0x03-实例说明" class="headerlink" title="0x03 实例说明"></a>0x03 实例说明</h3><p>　　我们举例说明一下这个例子，这里有一个明文序列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a:2:&#123;s:4:&quot;name&quot;;s:6:&quot;sdsdsd&quot;;s:8:&quot;greeting&quot;;s:20:&quot;echo &apos;Hello sdsdsd!&apos;&quot;;&#125;</div></pre></td></tr></table></figure></p>
+<p>　　我们的目标是将“s:6”当中的数字6转换成数字“7”。我们需要做的第一件事就是把明文分成16个字节的块：</p>
+<ul>
+<li>Block 1:a:2:{s:4:”name”;</li>
+<li>Block 2:s:6:”sdsdsd”;s:8</li>
+<li>Block 3::”greeting”;s:20</li>
+<li>Block 4::”echo ‘Hello sd</li>
+<li>Block 5:sdsd!’”;}</li>
+</ul>
+<p>　　我们需要更改的字符位于<strong>块２</strong>，因此我们需要改变<strong>块1</strong>的密文来改变<strong>块2</strong>的明文。在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。<br>　　因此我们只需要改变在第一个密文块当中，偏移量是2的字节。在第2行我们得到了整个数据的密文，然后在第3行中，我们改变块1中偏移量为2的字节，最后我们再调用解密函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$v = &quot;a:2:&#123;s:4:&quot;name&quot;;s:6:&quot;sdsdsd&quot;;s:8:&quot;greeting&quot;;s:20:&quot;echo &apos;Hello sdsdsd!&apos;&quot;;&#125;&quot;;</div><div class="line">$enc = @encrypt($v);</div><div class="line">$enc[2] = chr(ord($enc[2]) ^ ord(&quot;6&quot;) ^ ord (&quot;7&quot;));</div><div class="line">$b = @decrypt($enc);</div></pre></td></tr></table></figure>
+<p><img src="http://i2.muimg.com/567571/1ba83675efa713e6.png" alt=""><br>　　这样我们就把“s:6”当中的数字6转换成数字“7”，达到来了我们想要的目的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">define(&apos;MY_AES_KEY&apos;, &quot;abcdef0123456789&quot;);</div><div class="line">function aes($data, $encrypt) &#123;</div><div class="line">    $aes = mcrypt_module_open(MCRYPT_RIJNDAEL_128, &apos;&apos;, MCRYPT_MODE_CBC, &apos;&apos;);</div><div class="line">    $iv = &quot;1234567891234567&quot;;</div><div class="line">    mcrypt_generic_init($aes, MY_AES_KEY, $iv);</div><div class="line">    return $encrypt ? mcrypt_generic($aes,$data) : mdecrypt_generic($aes,$data);</div><div class="line">&#125;</div><div class="line"></div><div class="line">define(&apos;MY_MAC_LEN&apos;, 40);</div><div class="line"></div><div class="line">function encrypt($data) &#123;</div><div class="line">    return aes($data, true);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function decrypt($data) &#123;</div><div class="line">    $data = rtrim(aes($data, false), &quot;\0&quot;);ss</div><div class="line">    return $data;</div><div class="line">&#125;</div><div class="line">$v = &quot;a:2:&#123;s:4:\&quot;name\&quot;;s:6:\&quot;sdsdsd\&quot;;s:8:\&quot;greeting\&quot;;s:20:\&quot;echo &apos;Hello sdsdsd!&apos;\&quot;;&#125;&quot;;</div><div class="line">echo &quot;Plaintext before attack: $v\n&quot;;</div><div class="line">$b = array();</div><div class="line">$enc = array();</div><div class="line">$enc = @encrypt($v);</div><div class="line">$enc[2] =  chr(ord($enc[2]) ^ ord(&quot;6&quot;) ^ ord (&quot;7&quot;));</div><div class="line">$b = @decrypt($enc);</div><div class="line">echo &quot;Plaintext AFTER attack : $b\n&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p>参考链接：<br><a href="http://drops.wooyun.org/tips/4975" target="_blank" rel="external">使用CBC比特反转攻击绕过加密的会话令牌</a><br><a href="http://zke1ev3n.me/2015/12/15/CBC%E5%AD%97%E8%8A%82%E5%8F%8D%E8%BD%AC%E6%94%BB%E5%87%BB/" target="_blank" rel="external">CBC字节反转攻击</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CTF/">CTF</a><a href="/tags/密码学/">密码学</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/代码/2017/04/09/PHP伪协议.html"  title="PHP伪协议">
+ <strong>下一篇：</strong><br/> 
+ <span>PHP伪协议
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="CTF/2017/04/24/CBC字节翻转攻击.html" data-title="CBC字节翻转攻击" data-url="http://yoursite.com/CTF/2017/04/24/CBC字节翻转攻击.html"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-CBC翻转技术"><span class="toc-number">1.</span> <span class="toc-text">0x01 CBC翻转技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-翻转攻击"><span class="toc-number">2.</span> <span class="toc-text">0x02 翻转攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-实例说明"><span class="toc-number">3.</span> <span class="toc-text">0x03 实例说明</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="zjwfc" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CTF/" title="CTF">CTF<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码/" title="代码">代码<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/审计/" title="审计">审计<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透/" title="渗透">渗透<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞/" title="漏洞">漏洞<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>25</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/writeup/" title="writeup">writeup<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CTF/" title="CTF">CTF<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/密码学/" title="密码学">密码学<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码审计/" title="代码审计">代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql注入/" title="sql注入">sql注入<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Metasploit/" title="Metasploit">Metasploit<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARP攻击/" title="ARP攻击">ARP攻击<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP环境搭建/" title="LAMP环境搭建">LAMP环境搭建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.dropsec.xyz/" target="_blank" title="Drops团队主页">Drops团队主页</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ctf.dropsec.xyz" target="_blank" title="Drops攻防平台">Drops攻防平台</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://fgp.dropsec.xyz" target="_blank" title="F.G.PNotes">F.G.PNotes</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lyx.dropsec.xyz" target="_blank" title="lazy">lazy</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://byd.dropsec.xyz" target="_blank" title="Joy_nick">Joy_nick</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wkh.dropsec.xyz" target="_blank" title="X加油,未来">X加油,未来</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://jdrops.dropsec.xyz/" target="_blank" title="J_Drops">J_Drops</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lzx.dropsec.xyz/" target="_blank" title="凡尘">凡尘</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://cq.dropsec.xyz/" target="_blank" title="qiqi">qiqi</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yunnigu.dropsec.xyz/" target="_blank" title="云">云</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://isron.dropsec.xyz/" target="_blank" title="Isron">Isron</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://flashsec.cn/" target="_blank" title="Flash|Sec">Flash|Sec</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="hotarticles">
+  <p class="asidetitle">热评文章</p>
+
+  <!-- ��˵�������� start -->
+  <div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+  <!-- ��˵�������� end -->
+
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5664757301&verifier=8450466f&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hello_C. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5664757301" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/zjwfc" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/duan-zuo-yu-yun-zhi-dian" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:845352945@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Hello_C">Hello_C</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zjwfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261655448'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1261655448' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
