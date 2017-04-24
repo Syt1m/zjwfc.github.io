@@ -700,17 +700,17 @@ popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
     <link href="http://yoursite.com/CTF/2017/03/02/CTF%E4%B8%AD%E7%9A%84CRYPTO.html"/>
     <id>http://yoursite.com/CTF/2017/03/02/CTF中的CRYPTO.html</id>
     <published>2017-03-02T11:29:28.000Z</published>
-    <updated>2017-04-24T01:53:35.641Z</updated>
+    <updated>2017-04-24T07:43:33.011Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="0x01-CRC32碰撞"><a href="#0x01-CRC32碰撞" class="headerlink" title="0x01 CRC32碰撞"></a>0x01 CRC32碰撞</h3><h4 id="0x01-CRC32"><a href="#0x01-CRC32" class="headerlink" title="0x01 CRC32"></a>0x01 CRC32</h4><p>CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。<br>CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。<a id="more"></a><br>尽管CRC32在错误检测中非常有用，但是并不能可靠地校验数据完整性（即数据没有发生任何变化），这是因为CRC多项式是线性结构，可以非常容易地故意改变数据而维持CRC不变，即存在产生碰撞的可能性。</p>
-<h4 id="0x02-CRC32计算"><a href="#0x02-CRC32计算" class="headerlink" title="0x02 CRC32计算"></a>0x02 CRC32计算</h4><p>为了快速方便的还原压缩包的内容，我们需要编程来计算CRC32的值。计算CRC32可以有多种方法，可以从网上找一个实现好的C/C++源文件，也可以使用Python提供的库函数来进行计算，这里我们选择后者。<br>Python的binascii模块提供了一个crc32方法，可以方便的计算所给参数的CRC32值。但是这里的计算结果有一点问题，因为计算出来的结果是一个有符号数，所以可能会看到结果为负数，因此需要将结果和0xFFFFFFFF进行一个位运算与操作。Python计算CRC32的代码如下：</p>
+    <content type="html"><![CDATA[<h3 id="0x01-CRC32碰撞"><a href="#0x01-CRC32碰撞" class="headerlink" title="0x01 CRC32碰撞"></a>0x01 CRC32碰撞</h3><h4 id="0x01-CRC32"><a href="#0x01-CRC32" class="headerlink" title="0x01 CRC32"></a>0x01 CRC32</h4><p>　　CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。<br>　　CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。<a id="more"></a><br>　　尽管CRC32在错误检测中非常有用，但是并不能可靠地校验数据完整性（即数据没有发生任何变化），这是因为CRC多项式是线性结构，可以非常容易地故意改变数据而维持CRC不变，即存在产生碰撞的可能性。</p>
+<h4 id="0x02-CRC32计算"><a href="#0x02-CRC32计算" class="headerlink" title="0x02 CRC32计算"></a>0x02 CRC32计算</h4><p>　　为了快速方便的还原压缩包的内容，我们需要编程来计算CRC32的值。计算CRC32可以有多种方法，可以从网上找一个实现好的C/C++源文件，也可以使用Python提供的库函数来进行计算，这里我们选择后者。<br>Python的binascii模块提供了一个crc32方法，可以方便的计算所给参数的CRC32值。但是这里的计算结果有一点问题，因为计算出来的结果是一个有符号数，所以可能会看到结果为负数，因此需要将结果和0xFFFFFFFF进行一个位运算与操作。Python计算CRC32的代码如下：</p>
 <pre><code>import binascii
 def calcCRC32(s):
     crc = binascii.crc32(s)
     return crc &amp; 0xFFFFFFFF
-</code></pre><p>需要注意的是，前面提到CRC32会存在冲突的可能，也就是说，不同的内容在经过计算后得到的CRC32散列值可能是一样的。</p>
+</code></pre><p>　　需要注意的是，前面提到CRC32会存在冲突的可能，也就是说，不同的内容在经过计算后得到的CRC32散列值可能是一样的。</p>
 <p><img src="http://p1.bpimg.com/4851/7d3305badacd27ba.png" alt=""></p>
-<h4 id="0x03-使用脚本进行快速破解"><a href="#0x03-使用脚本进行快速破解" class="headerlink" title="0x03 使用脚本进行快速破解"></a>0x03 使用脚本进行快速破解</h4><p>经过前面的分析，我们已经知道了可以通过CRC32来还原压缩包中的4字节文本，以及通过Python计算CRC32的方法，现在只需要给Python脚本添加枚举功能即可，代码如下</p>
+<h4 id="0x03-使用脚本进行快速破解"><a href="#0x03-使用脚本进行快速破解" class="headerlink" title="0x03 使用脚本进行快速破解"></a>0x03 使用脚本进行快速破解</h4><p>　　经过前面的分析，我们已经知道了可以通过CRC32来还原压缩包中的4字节文本，以及通过Python计算CRC32的方法，现在只需要给Python脚本添加枚举功能即可，代码如下</p>
 <pre><code>#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
@@ -742,7 +742,7 @@ if __name__ == &quot;__main__&quot;:
     crack()
     showTime()
 </code></pre><p><img src="http://p1.bpimg.com/4851/344187c4eab2c70d.jpg" alt=""></p>
-<h3 id="0x02-RSA算法"><a href="#0x02-RSA算法" class="headerlink" title="0x02 RSA算法"></a>0x02 RSA算法</h3><p>RSA属于非对称加密算法，因为RSA使用了两个不同的密钥分别用于加密和解密，这两个密钥称之为公私钥对，其中公钥用于加密，且公钥是公开的，而私钥用于解密，私钥是私有的。</p>
+<h3 id="0x02-RSA算法"><a href="#0x02-RSA算法" class="headerlink" title="0x02 RSA算法"></a>0x02 RSA算法</h3><p>　　RSA属于非对称加密算法，因为RSA使用了两个不同的密钥分别用于加密和解密，这两个密钥称之为公私钥对，其中公钥用于加密，且公钥是公开的，而私钥用于解密，私钥是私有的。</p>
 <h4 id="0x01-RSA的计算过程如下"><a href="#0x01-RSA的计算过程如下" class="headerlink" title="0x01 RSA的计算过程如下"></a>0x01 RSA的计算过程如下</h4><pre><code>1. 找到两个大素数p和q，计算出n = pq；
 2. 计算出φ(n) = (p-1)*(q-1)，选择一个e，满足1 &lt; e &lt;φ(n)，且gcd(φ(n), e) = 1；
 3. 计算出d，使得d满足ed % φ(n) = 1；
@@ -750,21 +750,24 @@ if __name__ == &quot;__main__&quot;:
 4. 对于明文M，有密文C = M^e % n，此为加密过程；
 5. 对于密文C，有明文M = C^d % n，此为解密过程；
 </code></pre><h4 id="0x02-相关知识"><a href="#0x02-相关知识" class="headerlink" title="0x02 相关知识"></a>0x02 相关知识</h4><p>一、素数</p>
-<pre><code>素数（Prime Number）又称质数，是指在大于1的自然数中，约数只有1和它本身的数。
-
-根据素数的定义，要判断一个数n是否是素数，只需要看n是否能够被2, 3, 4, …, n-1里面的任意一个数整除，如果存在则说明不是素数。实际上，只需要判断2, 3, …, sqrt(n)里面的数即可。
-</code></pre><p>二、最大公约数</p>
-<pre><code>假如整数n除以m，结果是一个整数（即余数为0），那么m为n的约数。最大公约数（Greatest Common Divisor，GCD）指某几个整数共有约数中最大的一个，我们使用gcd(a, b)表示a和b的最大公约数。
-
-使用辗转相除法（也称之为欧几里得算法），可以求出两个数的最大公约数。假设a &gt; b，则欧几里得算法的核心表示为gcd(a, b) = gcd(b, a%b)，这样不断的递归进行计算，直到b等于0，则此时的a即为最大公约数。
-</code></pre><p>三、扩展欧几里得算法</p>
-<pre><code>欧几里得算法用于求出最大公约数d = gcd(a, b)，而扩展欧几里得算法不仅计算出最大公约数d，而且还有另外两个整数x和y，他们满足如下方程：ax + by = d = gcd(a, b)。很明显，这里x和y具有相反的正负号。
-</code></pre><p>四、乘法逆元</p>
+<ul>
+<li>素数（Prime Number）又称质数，是指在大于1的自然数中，约数只有1和它本身的数。</li>
+<li>根据素数的定义，要判断一个数n是否是素数，只需要看n是否能够被2, 3, 4, …, n-1里面的任意一个数整除，如果存在则说明不是素数。实际上，只需要判断2, 3, …, sqrt(n)里面的数即可。</li>
+</ul>
+<p>二、最大公约数</p>
+<ul>
+<li>假如整数n除以m，结果是一个整数（即余数为0），那么m为n的约数。最大公约数（Greatest Common Divisor，GCD）指某几个整数共有约数中最大的一个，我们使用gcd(a, b)表示a和b的最大公约数。</li>
+<li>使用辗转相除法（也称之为欧几里得算法），可以求出两个数的最大公约数。假设a &gt; b，则欧几里得算法的核心表示为gcd(a, b) = gcd(b, a%b)，这样不断的递归进行计算，直到b等于0，则此时的a即为最大公约数。</li>
+</ul>
+<p>三、扩展欧几里得算法</p>
+<ul>
+<li>欧几里得算法用于求出最大公约数d = gcd(a, b)，而扩展欧几里得算法不仅计算出最大公约数d，而且还有另外两个整数x和y，他们满足如下方程：ax + by = d = gcd(a, b)。很明显，这里x和y具有相反的正负号。</li>
+</ul>
+<p>四、乘法逆元</p>
 <pre><code>对于给定的书x和n，如果存在另外一个数y，使得xy % n = 1，那么我们称x模n的乘法逆元为y。乘法逆元的概念类似于小学数学中的倒数的概念，只不过此时为xy = 1。
 </code></pre><h4 id="0x03-RSA计算"><a href="#0x03-RSA计算" class="headerlink" title="0x03 RSA计算"></a>0x03 RSA计算</h4><p>给定RSA密文[971,922,605,1446,1704,889,2090,605,1899,1915,2088,1988,1235,1032,65,922,958,1988,2144,591,1988,2270,2088,1032,65,958,2233]，已知RSA的公钥为{7,2449}，请还原出对应的明文。</p>
 <p><strong>质因数分解</strong></p>
-<p>RSA面临的一种攻击方式为数学攻击，实质上就是试图分解两个素数的乘积，给定RSA的公钥{e, n}，根据RSA的定义，如果能够将n分解为两个素数的乘积，即n = pq，那么就可以计算出d了，也就是得到私钥{d, n}。</p>
-<p>需要指出的是，如果n非常大，那么这样的攻击基本上是不可行的，以Gmail为例，其n的长度为256字节，即所说的2048位，就目前的计算条件而言，在私钥不泄露的情况下是安全的。对于本题给定的n=2449而言，我们可以轻易的将其分解为两个素数的乘积。进行质因数分解的代码如下：</p>
+<p>　　RSA面临的一种攻击方式为数学攻击，实质上就是试图分解两个素数的乘积，给定RSA的公钥{e, n}，根据RSA的定义，如果能够将n分解为两个素数的乘积，即n = pq，那么就可以计算出d了，也就是得到私钥{d, n}。<br>　　需要指出的是，如果n非常大，那么这样的攻击基本上是不可行的，以Gmail为例，其n的长度为256字节，即所说的2048位，就目前的计算条件而言，在私钥不泄露的情况下是安全的。对于本题给定的n=2449而言，我们可以轻易的将其分解为两个素数的乘积。进行质因数分解的代码如下：</p>
 <pre><code>import math
 def isPrime(n):
 
@@ -780,8 +783,8 @@ def crack(n):
         for q in xrange(p+1, n):
             if p*q == n and isPrime(p) and isPrime(q):
                 return (p, q)
-</code></pre><p>其中，isPrime用于判断一个数是否是素数，执行crack即可返回分解的结果。执行上面的代码，可以将2449分解为31与79的乘积。</p>
-<p><strong>私钥获取</strong><br>在前面，我们已经将2449分解为31与79的乘积，即p=31，q=79，因此可以计算出φ(n) = (p-1)<em>(q-1) = 30</em>78 = 2340，现在已经给定了e=7，只需要找到一个d，使得ed % φ(n) = 1即可。在数据量很小的情况下，这里直接枚举也是可以求出d的，但是更加正式的方法是使用扩展欧几里得算法进行求解。<br>对于扩展欧几里得算法的具体求解过程，因为篇幅原因这里不进行讲解，有兴趣的同学可以查阅相关资料。这里主要讲解为什么通过扩展欧几里得算法可以求出d。<br>对于给定的两个数a和b，扩展欧几里得可以求出最大公约数gcd(a,b)以及x,y使得：<br>      ax + by = gcd(a, b)<br> 在RSA中，已知φ(n)和e，要求求出d，使得ed % φ(n) = 1。应用到扩展欧几里得算法中，另a=φ(n)，b=e，已知 gcd(φ(n), e) = 1，则有：<br>      φ(n)<em>x + e</em>y = 1<br> 因为φ(n)<em>x %φ(n) = 0，所以自然有ey %φ(n) = 1，即扩展欧几里得求出的y就是我们所要的d。需要注意的是，求出来的y可能是负数，因此y需要不断的加上φ(n)，直到大于0，因为φ(n)</em>x + e<em>y =φ(n)</em>(x-e) + e*(y+φ(n))<br>求解私钥d的代码如下：</p>
+</code></pre><p>　　其中，isPrime用于判断一个数是否是素数，执行crack即可返回分解的结果。执行上面的代码，可以将2449分解为31与79的乘积。</p>
+<p><strong>私钥获取</strong><br>　　在前面，我们已经将2449分解为31与79的乘积，即p=31，q=79，因此可以计算出φ(n) = (p-1)<em>(q-1) = 30</em>78 = 2340，现在已经给定了e=7，只需要找到一个d，使得ed % φ(n) = 1即可。在数据量很小的情况下，这里直接枚举也是可以求出d的，但是更加正式的方法是使用扩展欧几里得算法进行求解。<br>　　对于扩展欧几里得算法的具体求解过程，因为篇幅原因这里不进行讲解，有兴趣的同学可以查阅相关资料。这里主要讲解为什么通过扩展欧几里得算法可以求出d。<br>　　对于给定的两个数a和b，扩展欧几里得可以求出最大公约数gcd(a,b)以及x,y使得：<br>      ax + by = gcd(a, b)<br>　　在RSA中，已知φ(n)和e，要求求出d，使得ed % φ(n) = 1。应用到扩展欧几里得算法中，另a=φ(n)，b=e，已知 gcd(φ(n), e) = 1，则有：<br>      φ(n)<em>x + e</em>y = 1<br>　　因为φ(n)<em>x %φ(n) = 0，所以自然有ey %φ(n) = 1，即扩展欧几里得求出的y就是我们所要的d。需要注意的是，求出来的y可能是负数，因此y需要不断的加上φ(n)，直到大于0，因为φ(n)</em>x + e<em>y =φ(n)</em>(x-e) + e*(y+φ(n))<br>求解私钥d的代码如下：</p>
 <pre><code>def extGcd(a, b):
     if a &lt; b:
         return extGcd(b, a)
@@ -796,7 +799,7 @@ def getD(n, e):
     while y &lt; 0:
         y += fai
     return y
-</code></pre><p><strong>RSA解密</strong><br> 经过前面的推导分析，我们已经成功计算出了RSA的私钥{d, n}，现在只需要执行解密操作即可，解密过程为C^d % n。但是现在面临的一个问题是，在计算C^d时可能存在一些问题，比如当C和d都非常大时，C^d的计算可能非常耗时且结果非常大，实际上并不需要计算出完整的C^d，这里可以在数学上做一些优化，具体不进行讲解，有兴趣请自行查阅了解。Python自带的pow函数可以快速计算出C^d % n，即pow(C, d, n)。</p>
+</code></pre><p><strong>RSA解密</strong><br>　　经过前面的推导分析，我们已经成功计算出了RSA的私钥{d, n}，现在只需要执行解密操作即可，解密过程为C^d % n。但是现在面临的一个问题是，在计算C^d时可能存在一些问题，比如当C和d都非常大时，C^d的计算可能非常耗时且结果非常大，实际上并不需要计算出完整的C^d，这里可以在数学上做一些优化，具体不进行讲解，有兴趣请自行查阅了解。Python自带的pow函数可以快速计算出C^d % n，即pow(C, d, n)。</p>
 <pre><code>#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 import math
@@ -885,7 +888,7 @@ print c
     
     <summary type="html">
     
-      &lt;h3 id=&quot;0x01-CRC32碰撞&quot;&gt;&lt;a href=&quot;#0x01-CRC32碰撞&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32碰撞&quot;&gt;&lt;/a&gt;0x01 CRC32碰撞&lt;/h3&gt;&lt;h4 id=&quot;0x01-CRC32&quot;&gt;&lt;a href=&quot;#0x01-CRC32&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32&quot;&gt;&lt;/a&gt;0x01 CRC32&lt;/h4&gt;&lt;p&gt;CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。&lt;br&gt;CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。
+      &lt;h3 id=&quot;0x01-CRC32碰撞&quot;&gt;&lt;a href=&quot;#0x01-CRC32碰撞&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32碰撞&quot;&gt;&lt;/a&gt;0x01 CRC32碰撞&lt;/h3&gt;&lt;h4 id=&quot;0x01-CRC32&quot;&gt;&lt;a href=&quot;#0x01-CRC32&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32&quot;&gt;&lt;/a&gt;0x01 CRC32&lt;/h4&gt;&lt;p&gt;　　CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。&lt;br&gt;　　CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。
     
     </summary>
     
