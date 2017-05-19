@@ -4,32 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>简易搭建LAMP环境 | Hello_C技术博客</title>
+    <title>windows权限提升基础 | Hello_C技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Hello_C">
     
 
     
-    <meta name="description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
-cd /etc/sysconfig/network-scripts       
-vi ifcfg-eno16777736">
+    <meta name="description" content="0x01 获取操作系统信息
+识别操作系统名称及版本
+12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
+
+识别系统体系结构
+1echo %PROCESSOR_ARCHITE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简易搭建LAMP环境">
-<meta property="og:url" content="http://yoursite.com/渗透/2016/10/29/简易搭建LAMP环境.html">
+<meta property="og:title" content="windows权限提升基础">
+<meta property="og:url" content="http://yoursite.com/渗透/2017/05/19/windows权限提升基础.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
-cd /etc/sysconfig/network-scripts       
-vi ifcfg-eno16777736">
-<meta property="og:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
-<meta property="og:image" content="http://i1.piimg.com/567571/64feffc46c6e7666.png">
-<meta property="og:updated_time" content="2017-04-02T07:39:05.418Z">
+<meta property="og:description" content="0x01 获取操作系统信息
+识别操作系统名称及版本
+12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
+
+识别系统体系结构
+1echo %PROCESSOR_ARCHITE">
+<meta property="og:updated_time" content="2017-05-19T13:55:20.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简易搭建LAMP环境">
-<meta name="twitter:description" content="1、所需准备：CentOS7最小化安装安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置首先进入目录 
-cd /etc/sysconfig/network-scripts       
-vi ifcfg-eno16777736">
-<meta name="twitter:image" content="http://i1.piimg.com/567571/c1788cd6c10c8620.png">
+<meta name="twitter:title" content="windows权限提升基础">
+<meta name="twitter:description" content="0x01 获取操作系统信息
+识别操作系统名称及版本
+12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
+
+识别系统体系结构
+1echo %PROCESSOR_ARCHITE">
 
     
     <link rel="alternative" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml">
@@ -90,14 +96,14 @@ vi ifcfg-eno16777736">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/渗透/2016/10/29/简易搭建LAMP环境.html" title="简易搭建LAMP环境" itemprop="url">简易搭建LAMP环境</a>
+      <a href="/渗透/2017/05/19/windows权限提升基础.html" title="windows权限提升基础" itemprop="url">windows权限提升基础</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Hello_C" target="_blank" itemprop="author">Hello_C</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-29T06:30:50.000Z" itemprop="datePublished"> 发表于 2016-10-29</time>
+    <time datetime="2017-05-19T13:50:40.000Z" itemprop="datePublished"> 发表于 2017-05-19</time>
     
   </p>
 </header>
@@ -106,98 +112,86 @@ vi ifcfg-eno16777736">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、所需准备：CentOS7最小化安装"><span class="toc-number">1.</span> <span class="toc-text">1、所需准备：CentOS7最小化安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、更新源"><span class="toc-number">2.</span> <span class="toc-text">2、更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、安装Apache"><span class="toc-number">3.</span> <span class="toc-text">3、安装Apache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、安装php"><span class="toc-number">4.</span> <span class="toc-text">4、安装php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、安装mysql"><span class="toc-number">5.</span> <span class="toc-text">5、安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><span class="toc-number">6.</span> <span class="toc-text">6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-获取操作系统信息"><span class="toc-number">1.</span> <span class="toc-text">0x01 获取操作系统信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-获取网络信息"><span class="toc-number">2.</span> <span class="toc-text">0x02 获取网络信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-应用程序及服务信息"><span class="toc-number">3.</span> <span class="toc-text">0x03 应用程序及服务信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-敏感数据和目录"><span class="toc-number">4.</span> <span class="toc-text">0x04 敏感数据和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-文件系统"><span class="toc-number">5.</span> <span class="toc-text">0x05 文件系统</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="1、所需准备：CentOS7最小化安装"><a href="#1、所需准备：CentOS7最小化安装" class="headerlink" title="1、所需准备：CentOS7最小化安装"></a>1、所需准备：CentOS7最小化安装</h3><p>安装过程我就不演示，我们选择最小化安装，然后选择设置root的密码即可进行安装。<br>由于我们选择的是最小化安装CentOS,所以第一件事就是网络设置，包括静态ip设置和DHCP设置<br>首先进入目录 </p>
-<pre><code>cd /etc/sysconfig/network-scripts       
-vi ifcfg-eno16777736
-</code></pre><a id="more"></a>    
-<p><img src="http://i1.piimg.com/567571/c1788cd6c10c8620.png" alt=""><br>将最后一行的no改为yes即可<br>重启网络服务 service network restart 即可<br>使用ip  address 进行测试</p>
-<p>静态IP地址设置</p>
-<pre><code>添加代码
-//需要把之前的dhcp设置为static
-BOOTPROTO=static
-IPADDR=192.168.1.110     //你的静态IP地址
-GATEWAY=192.168.1.1     //默认网关
-NETMASK=255.255.255.0  //子网掩码
-//子网掩码也可以这样表示
-#PREFIX=24
-DNS=223.5.5.5                   //DNS地址
-NM_CONTROLLED=no        //不使用Network Manager
-</code></pre><p>注意我们刚才的MAC地址和ip address的两个MAC地址是否一致。</p>
-<p>使用service network restart 或者systemctl restart network.service 命令，可能不会立即生效。使用ifdown eno16777736，然后ifup eno16777736 即可。</p>
-<p><strong><em>注意：CentOS 7.0默认使用的是firewall作为防火墙，最小化安装查看网络配置使用ip address</em></strong></p>
-<h3 id="2、更新源"><a href="#2、更新源" class="headerlink" title="2、更新源"></a>2、更新源</h3><p>我们可以使用阿里云源或者163源<br>最小化安装时，wget不会迷人被安装，所以我们得首先安装wget</p>
-<pre><code>yum -y install wget  安装wget
-</code></pre><p>首先我们备份我们的源，以免更换出错还可以恢复</p>
-<pre><code>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-</code></pre><p>更换阿里云</p>
-<pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-</code></pre><p>生成缓存</p>
-<pre><code>yum makecache
-</code></pre><p>这样我们就成功更换了源。</p>
-<p>还可以使用WinSCP，直接连接到我们的linux，找到配置额、文件的目录，找到/etc/yum.repos.d/CentOS-Base.repo将我们下载到的其他源直接进行覆盖上面，然后yum updata更新源就可以了。</p>
-<h3 id="3、安装Apache"><a href="#3、安装Apache" class="headerlink" title="3、安装Apache"></a>3、安装Apache</h3><p>3.1、安装Apache</p>
-<pre><code>yum install httpd   #安装，一直选择y
-</code></pre><p>3.2、设置配置文件<br>由于我们刚开始安装的，只能在它内部访问，那么我们想要在其他主机访问，那么就要修改一下配置文件</p>
-<pre><code>vi /etc/httpd/conf/httpd.conf  //进入配置文件
-</code></pre><p>找到</p>
-<pre><code>&lt;Directory /&gt;
-AllowOverride none
-Require all denied
-&lt;/Directory &gt;
-修改为：
-&lt;Directory /&gt;
-AllowOverride none
-Require all granted
-&lt;/Directory &gt;
-</code></pre><p><img src="http://i1.piimg.com/567571/64feffc46c6e7666.png" alt=""></p>
-<p>systemctl start httpd.service        //启动<br>systemctl stop  httpd.service    //停止<br>systemctl status httpd.service    //查看状态<br>systemctl restart httpd.service   //重启</p>
-<p>3.3、我们将httpd设置为开机启动，那么我们<br>systemctl enable httpd.service   //开机启动</p>
-<p>这样我们可以访问ip看到测试页面。</p>
-<h3 id="4、安装php"><a href="#4、安装php" class="headerlink" title="4、安装php"></a>4、安装php</h3><p>4.1、安装php</p>
-<pre><code>yum install php  #一直选择y就ok
-</code></pre><p>4.2、验证是否安装成功<br>在Apche的目录下面新建一文件test.php</p>
-<pre><code>cd /var/www/html
-vi test.php
-</code></pre><p>可以键入相关PHP代码，以输入hello world为例，</p>
-<pre><code>&lt;?php
-echo &quot;hello world&quot;;
-?&gt;
-</code></pre><p>访问网站ip+/test.php,如果正常解析，则说明PHP环境完成。</p>
-<h3 id="5、安装mysql"><a href="#5、安装mysql" class="headerlink" title="5、安装mysql"></a>5、安装mysql</h3><p>CentOS 7 版本将MySQL数据库软件从默认的程序列表中移除，用mariadb代替了，mariadb系统是MySQL的一个分支，主要由开源社区在维护，MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。</p>
-<p>5.1、安装mysql，首先得从官网下载源码</p>
-<pre><code>wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-community-server
-</code></pre><p>5.2、安装完成后重启mysql服务</p>
-<pre><code>service mysqld restart
-</code></pre><p>5.3、测试mysql能否正常配合php的工作</p>
-<pre><code>&lt;?php
-   $con = mysql_conncet(&apos;localhost&apos;,&apos;root&apos;,&apos;root&apos;);
-   if(!$con){
-      die(&quot;connet mysql failed&quot;.mysql.error());     
-    }
-   echo &quot;connet mysql successful&quot;;       
-?&gt;
-</code></pre><p>默认情况下，php没有打开错误调试，需要在/etc/php.ini中将错误调试打开，即</p>
-<pre><code>;dispaly_errors
-;error_reporting
-</code></pre><p>前面的；去掉。</p>
-<p>5.4、如果不能成功，那就是php没有支持mysql</p>
-<pre><code>PHP Fatal error:  Call to undefined function mysql_connect()；
-</code></pre><p>在使用中出现了这个问题，查看了一下phpinfo发现没有mysql扩展。<br>步骤如下：<br>1 进入php的安装目录</p>
-<pre><code>cd 到ext/mysql 
-/usr/local/bin/phpize 
-./configure --with-php-config=/usr/local/bin/php-config --with-mysql=/usr/local/mysql/
-make
-make install
-</code></pre><p>在mysql/modules下看到了mysql.so<br>2 修改php.ini</p>
-<pre><code>添加extensions = &quot;mysql.so&quot;
-</code></pre><p>3 将mysql.so拷贝到extension_dir目录下，extension_dir在php.ini中设置<br>4重启apache就可以了。</p>
-<h3 id="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><a href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进" class="headerlink" title="6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"></a>6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</h3><p>参考链接：<a href="http://www.jb51.net/os/188488.html" target="_blank" rel="external">http://www.jb51.net/os/188488.html</a></p>
+		<h3 id="0x01-获取操作系统信息"><a href="#0x01-获取操作系统信息" class="headerlink" title="0x01 获取操作系统信息"></a>0x01 获取操作系统信息</h3><ul>
+<li><p>识别操作系统名称及版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot;</div><div class="line">systeminfo | findstr /B /C:&quot;OS 名称&quot; /C:&quot;OS 版本&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>识别系统体系结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo %PROCESSOR_ARCHITECTURE%</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>查看所有环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SET</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看在线用户，有时候低权限看不到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">query user</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询终端端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看某特定用户信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net user test</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x02-获取网络信息"><a href="#0x02-获取网络信息" class="headerlink" title="0x02 获取网络信息"></a>0x02 获取网络信息</h3><ul>
+<li><p>查看路由表信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">route print</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看ARP缓存信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arp -a</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看网络连接和防火墙规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">netstat -ano</div><div class="line">netsh firewall show config</div><div class="line">netsh firewall show state</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x03-应用程序及服务信息"><a href="#0x03-应用程序及服务信息" class="headerlink" title="0x03 应用程序及服务信息"></a>0x03 应用程序及服务信息</h3><ul>
+<li><p>查看计划任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schtasks /QUERY /fo LIST /v</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务进程ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tasklist /SVC</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看已经启动Windows 服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net start</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DRIVERQUERY</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装程序和版本信息（漏洞利用线索）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic product list brief</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务、进程和启动程序信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wmic service list brief</div><div class="line">wmic process list brief</div><div class="line">wmic startup list brief</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sc qc mysqla</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装补丁和时间信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看特定漏洞补丁信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:&quot;KBxxxxxxx&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x04-敏感数据和目录"><a href="#0x04-敏感数据和目录" class="headerlink" title="0x04 敏感数据和目录"></a>0x04 敏感数据和目录</h3><ul>
+<li>查找密码文件或其它敏感文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd/</div><div class="line">dir /b/s password.txt # Will search for all password.txt files on the filesystem.</div><div class="line">dir /b/s config.* # Will search for all files starting with &apos;config&apos; on the filesystem.</div><div class="line">findstr /si password *.xml *.ini *.txt</div><div class="line">findstr /si login *.xml *.ini *.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x05-文件系统"><a href="#0x05-文件系统" class="headerlink" title="0x05 文件系统"></a>0x05 文件系统</h3><ul>
+<li><p>打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rar a -k -r -s -m3 c:\1.rar c:\folde</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查文件夹可写状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dir /a-r-d /s /b</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考：<a href="http://www.goldfire.cc/index.php/archives/660" target="_blank" rel="external">http://www.goldfire.cc/index.php/archives/660</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -211,7 +205,7 @@ make install
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/渗透测试/">渗透测试</a><a href="/tags/LAMP环境搭建/">LAMP环境搭建</a>
+  <span></span> <a href="/tags/渗透测试，提权/">渗透测试，提权</a>
   </div>
 
 </div>
@@ -255,19 +249,11 @@ make install
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/CTF/2016/10/29/第七届极客大挑战.html" title="第七届极客大挑战">
-  <strong>上一篇：</strong><br/>
-  <span>
-  第七届极客大挑战</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/代码/2016/10/22/python之爬虫.html"  title="python爬虫">
+<a href="/渗透/2017/05/18/一次基于Linux的渗透测试.html"  title="一次基于Linux的渗透测试">
  <strong>下一篇：</strong><br/> 
- <span>python爬虫
+ <span>一次基于Linux的渗透测试
 </span>
 </a>
 </div>
@@ -276,7 +262,7 @@ make install
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="渗透/2016/10/29/简易搭建LAMP环境.html" data-title="简易搭建LAMP环境" data-url="http://yoursite.com/渗透/2016/10/29/简易搭建LAMP环境.html"></div>
+	<div class="ds-thread" data-thread-key="渗透/2017/05/19/windows权限提升基础.html" data-title="windows权限提升基础" data-url="http://yoursite.com/渗透/2017/05/19/windows权限提升基础.html"></div>
 </section>
 
 
@@ -286,7 +272,7 @@ make install
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、所需准备：CentOS7最小化安装"><span class="toc-number">1.</span> <span class="toc-text">1、所需准备：CentOS7最小化安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、更新源"><span class="toc-number">2.</span> <span class="toc-text">2、更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、安装Apache"><span class="toc-number">3.</span> <span class="toc-text">3、安装Apache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、安装php"><span class="toc-number">4.</span> <span class="toc-text">4、安装php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、安装mysql"><span class="toc-number">5.</span> <span class="toc-text">5、安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进"><span class="toc-number">6.</span> <span class="toc-text">6、安装完之后，我们基本的LAMP环境搭建完毕，还有一些小的配置文件要根据我们的实际要求做进一步改进</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-获取操作系统信息"><span class="toc-number">1.</span> <span class="toc-text">0x01 获取操作系统信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-获取网络信息"><span class="toc-number">2.</span> <span class="toc-text">0x02 获取网络信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-应用程序及服务信息"><span class="toc-number">3.</span> <span class="toc-text">0x03 应用程序及服务信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-敏感数据和目录"><span class="toc-number">4.</span> <span class="toc-text">0x04 敏感数据和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-文件系统"><span class="toc-number">5.</span> <span class="toc-text">0x05 文件系统</span></a></li></ol>
  
   </div>
 

