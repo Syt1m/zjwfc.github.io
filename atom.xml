@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-30T04:37:02.124Z</updated>
+  <updated>2017-05-30T04:40:14.226Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/05/19/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%9F%BA%E7%A1%80.html"/>
     <id>http://yoursite.com/渗透/2017/05/19/windows权限提升基础.html</id>
     <published>2017-05-19T13:50:40.000Z</published>
-    <updated>2017-05-30T04:37:02.124Z</updated>
+    <updated>2017-05-30T04:40:14.226Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-获取操作系统信息"><a href="#0x01-获取操作系统信息" class="headerlink" title="0x01 获取操作系统信息"></a>0x01 获取操作系统信息</h3><ul>
 <li><p>识别操作系统名称及版本</p>
@@ -115,8 +115,6 @@
     
       <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
     
