@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-30T04:40:14.226Z</updated>
+  <updated>2017-06-16T13:59:21.793Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,147 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[转]黑客入侵应急分析手工排查</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/06/16/%E8%BD%AC-%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5%E5%BA%94%E6%80%A5%E5%88%86%E6%9E%90%E6%89%8B%E5%B7%A5%E6%8E%92%E6%9F%A5.html"/>
+    <id>http://yoursite.com/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html</id>
+    <published>2017-06-16T12:55:01.000Z</published>
+    <updated>2017-06-16T13:59:21.793Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x00-事件分类"><a href="#0x00-事件分类" class="headerlink" title="0x00 事件分类"></a>0x00 事件分类</h3><p>常见的安全事件：<br>　　Web入侵：挂马、篡改、Webshell<br>　　系统入侵：系统异常、RDP爆破、SSH爆破、主机漏洞<br>　　病毒木马：远控、后门、勒索软件<br>　　信息泄漏：拖裤、数据库登录（弱口令）<br>　　网络流量：频繁发包、批量请求、DDOS攻击<br><a id="more"></a></p>
+<h3 id="0x01-排查思路"><a href="#0x01-排查思路" class="headerlink" title="0x01 排查思路"></a>0x01 排查思路</h3><p><strong>一个常规的入侵事件后的系统排查思路：</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/44445401.jpg" alt=""></p>
+<ul>
+<li>文件分析<br>​a) 文件日期、新增文件、可疑/异常文件、最近使用文件、浏览器下载文件<br>​b) Webshell 排查与分析<br>​c) 核心应用关联目录文件分析</li>
+<li><p>进程分析<br>a) 当前活动进程 &amp; 远程连接<br>​b) 启动进程&amp;计划任务<br>​c) 进程工具分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Windows:Pchunter</div><div class="line">Linux: Chkrootkit&amp;Rkhunter</div></pre></td></tr></table></figure>
+</li>
+<li><p>系统信息<br>a) 环境变量<br>​b) 帐号信息<br>​c) History<br>​d) 系统配置文件</p>
+</li>
+<li>日志分析<br>a) 操作系统日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Windows: 事件查看器（eventvwr）</div><div class="line">Linux: /var/log/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​b) 应用日志分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Access.log</div><div class="line">Error.log</div></pre></td></tr></table></figure>
+<h3 id="0x02-分析排查"><a href="#0x02-分析排查" class="headerlink" title="0x02 分析排查"></a>0x02 分析排查</h3><h4 id="0x01-Linux系列分析排查"><a href="#0x01-Linux系列分析排查" class="headerlink" title="0x01 Linux系列分析排查"></a>0x01 Linux系列分析排查</h4><p>1、文件分析</p>
+<ul>
+<li>敏感目录的文件分析（类/tmp目录，命令目录/usr/bin /usr/sbin）<br>例如:<br>​查看tmp目录下的文件： ls –alt /tmp/<br>​查看开机启动项内容：ls -alt /etc/init.d/<br>​查看指定目录下文件时间的排序：ls  -alt  | head -n 10<br>　​针对可疑文件可以使用stat进行创建修改时间、访问时间的详细查看，若修改时间距离事件日期接近，有线性关联，说明可能被篡改或者其他。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/4337956.jpg" alt=""></li>
+<li><p>新增文件分析<br>​例如要查找24小时内被修改的JSP文件： find ./ -mtime 0 -name “*.jsp”<br>（最后一次修改发生在距离当前时间n24小时至(n+1)24 小时）<br>​查找72小时内新增的文件find / -ctime -2<br>​PS：-ctime 内容未改变权限改变时候也可以查出<br>根据确定时间去反推变更的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​ls -al /tmp | grep &quot;Feb 27&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>特殊权限的文件<br>　　查找777的权限的文件   find  /  *.jsp  -perm 4777  </p>
+</li>
+<li>隐藏的文件（以 “.”开头的具有隐藏属性的文件）</li>
+<li>在文件分析过程中，手工排查频率较高的命令是 find grep ls 核心目的是为了关联推理出可疑文件。</li>
+</ul>
+<p>2、进程命令</p>
+<ul>
+<li>使用netstat 网络连接命令，分析可疑端口、可疑IP、可疑PID及程序进程<br>netstat –antlp | more<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/75256723.jpg" alt=""></li>
+<li>使用ps命令，分析进程<br>ps aux | grep pid | grep –v grep<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/97053272.jpg" alt=""><br>将netstat与ps 结合，可参考vinc牛的案例：<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/11388717.jpg" alt=""><br>（可以使用lsof -i:1677 查看指定端口对应的程序）</li>
+<li>使用ls 以及 stat 查看系统命令是否被替换<br>​两种思路：第一种查看命令目录最近的时间排序，第二种根据确定时间去匹配。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">​ls -alt /usr/bin   | head -10</div><div class="line">​ls -al /bin /usr/bin /usr/sbin/ /sbin/ | grep &quot;Jan 15&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/40654881.jpg" alt=""><br><strong>PS：如果日期数字&lt;10，中间需要两个空格。比如1月1日，grep “Jan  1”</strong></p>
+<ul>
+<li>隐藏进程查看<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ps -ef | awk &apos;&#123;print&#125;&apos; | sort -n | uniq &gt;1</div><div class="line">ls /proc | sort -n |uniq &gt;2</div><div class="line">diff 1 2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3、系统信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">history (cat /root/.bash_history)</div><div class="line">/etc/passwd</div><div class="line">crontab  /etc/cron*</div><div class="line">rc.local  /etc/init.d chkconfig</div><div class="line">last</div><div class="line">$PATH</div><div class="line">strings</div></pre></td></tr></table></figure></p>
+<ul>
+<li>查看分析history (cat /root/.bash_history)，曾经的命令操作痕迹，以便进一步排查溯源。运气好有可能通过记录关联到如下信息：<br>a) wget 远程某主机（域名&amp;IP）的远控文件；<br>b) 尝试连接内网某主机（ssh scp），便于分析攻击者意图;<br>c) 打包某敏感数据或代码，tar zip 类命令<br>d) 对系统进行配置，包括命令修改、远控木马类，可找到攻击者关联信息</li>
+<li>查看分析用户相关分析<br>​a) useradd userdel 的命令时间变化（stat），以及是否包含可疑信息<br>b) cat /etc/passwd 分析可疑帐号，可登录帐号<br>　　查看UID为0的帐号：awk -F: ‘{if($3==0)print $1}’ /etc/passwd<br>　　查看能够登录的帐号：cat /etc/passwd  | grep -E “/bin/bash$”<br><strong>PS：UID为0的帐号也不一定都是可疑帐号，Freebsd默认存在toor帐号，且uid为0.（toor 在BSD官网解释为root替代帐号，属于可信帐号）</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/30173410.jpg" alt=""></li>
+<li>查看分析任务计划<br>a) 通过crontabl –l 查看当前的任务计划有哪些，是否有后门木马程序启动相关信息；<br>b) 查看etc目录任务计划相关文件，ls /etc/cron*</li>
+<li>查看linux 开机启动程序<br>a) 查看rc.local文件（/etc/init.d/rc.local     /etc/rc.local）<br>b) ls –alt /etc/init.d/<br>c) chkconfig</li>
+<li>查看系统用户登录信息<br>a) 使用lastlog命令，系统中所有用户最近一次登录信息。<br>b) 使用lastb命令，用于显示用户错误的登录列表<br>c) 使用last命令，用于显示用户最近登录信息（数据源为/var/log/wtmp，var/log/btmp）<br>　　utmp文件中保存的是当前正在本系统中的用户的信息。<br>　　wtmp文件中保存的是登录过本系统的用户的信息。<br>　　/var/log/wtmp 文件结构和/var/run/utmp 文件结构一样，都是引用/usr/include/bits/utmp.h 中的struct utmp<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/87352127.jpg" alt=""></li>
+<li>系统路径分析<br>a) echo $PATH 分析有无敏感可疑信息</li>
+<li>指定信息检索<br>a) strings命令在对象文件或二进制文件中查找可打印的字符串<br>b) 分析sshd 文件，是否包括IP信息strings /usr/bin/.sshd | egrep ‘[1-9]{1,3}.[1-9]{1,3}.’<br>　<strong>PS：此正则不严谨，但匹配IP已够用</strong><br>c) 根据关键字匹配命令内是否包含信息（如IP地址、时间信息、远控信息、木马特征、代号名称）</li>
+<li>查看ssh相关目录有无可疑的公钥存在。<br>a) Redis（6379） 未授权恶意入侵，即可直接通过redis到目标主机导入公钥。<br>b) 目录： /etc/ssh    ./.ssh/</li>
+</ul>
+<p>4、后门排查<br>除以上文件、进程、系统 分析外，推荐工具：</p>
+<blockquote>
+<p>chkrootkit  rkhunter（www.chkrootkit.org   rkhunter.sourceforge.net）</p>
+</blockquote>
+<ul>
+<li>chkrootkit<br>(迭代更新了20年)主要功能：<br>　　检测是否被植入后门、木马、rootkit<br>　　检测系统命令是否正常<br>　　检测登录日志<br>　　详细参考README<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/12792542.jpg" alt=""></li>
+<li>rkhunter<br>主要功能：<br>　　系统命令（Binary）检测，包括Md5 校验<br>　　Rootkit检测<br>　　本机敏感目录、系统配置、服务及套间异常检测<br>　　三方应用版本检测<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/87352127.jpg" alt=""></li>
+<li>RPM check检查<br>　　系统完整性也可以通过rpm自带的-Va来校验检查所有的rpm软件包,有哪些被篡改了,防止rpm也被替换,上传一个安全干净稳定版本rpm二进制到服务器上进行检查<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./rpm -Va &gt; rpm.log</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>　　如果一切均校验正常将不会产生任何输出。如果有不一致的地方，就会显示出来。输出格式是8位长字符串,  c 用以指配置文件, 接着是文件名. 8位字符的每一个 用以表示文件与RPM数据库中一种属性的比较结果 。 . (点) 表示测试通过。.下面的字符表示对RPM软件包进行的某种测试失败：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">5 MD5 校验码</div><div class="line">S 文件尺寸</div><div class="line">L 符号连接</div><div class="line">T 文件修改日期</div><div class="line">D 设备</div><div class="line">U 用户</div><div class="line">G 用户组</div><div class="line">M 模式e (包括权限和文件类型)</div></pre></td></tr></table></figure></p>
+<p>借用sobug文章案例：如下图可知ps, pstree, netstat, sshd等等系统关键进程被篡改了<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/63507042.jpg" alt=""></p>
+<ul>
+<li>Webshell查找<br>　　Webshell的排查可以通过<strong>文件、流量、日志</strong>三种方式进行分析，基于文件的命名特征和内容特征，相对操作性较高，在入侵后应急过程中频率也比较高。可根据webshell特征进行命令查找，简单的可使用(当然会存在漏报和误报)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /var/www/ -name &quot;*.php&quot; |xargs egrep &apos;assert|phpspy|c99sh|milw0rm|eval|\(gunerpress|\(base64_decoolcode|spider_bc|shell_exec|passthru|\(\$\_\POST\[|eval \(str_rot13|\.chr\(|\$\&#123;\&quot;\_P|eval\(\$\_R|file_put_contents\(\.\*\$\_|base64_decode&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>综上所述，通过chkrootkit 、rkhunter、RPM check、Webshell Check 等手段得出以下应对措施：</p>
+<ul>
+<li>根据进程、连接等信息关联的程序，查看木马活动信息。</li>
+<li>假如系统的命令（例如netstat ls 等）被替换，为了进一步排查，需要下载一新的或者从其他未感染的主机拷贝新的命令。</li>
+<li>发现可疑可执行的木马文件，不要急于删除，先打包备份一份。</li>
+<li>发现可疑的文本木马文件，使用文本工具对其内容进行分析，包括回连IP地址、加密方式、关键字（以便扩大整个目录的文件特征提取）等。</li>
+</ul>
+<p>5、日志分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">日志文件 /var/log/message       </div><div class="line">包括整体系统信息 /var/log/auth.log        </div><div class="line">包含系统授权信息，包括用户登录和使用的权限机制等 /var/log/userlog         </div><div class="line">记录所有等级用户信息的日志。 /var/log/cron           </div><div class="line">记录crontab命令是否被正确的执行 /var/log/xferlog(vsftpd.log)</div><div class="line">记录Linux FTP日志 /var/log/lastlog         </div><div class="line">记录登录的用户，可以使用命令lastlog查看 /var/log/secure         </div><div class="line">记录大多数应用输入的账号与密码，登录成功与否 var/log/wtmp　　      </div><div class="line">记录登录系统成功的账户信息，等同于命令last var/log/faillog　记录登录系统不成功的账号信息，一般会被黑客删除</div></pre></td></tr></table></figure></p>
+<ul>
+<li>日志查看分析，grep,sed,sort,awk综合运用</li>
+<li>基于时间的日志管理：<br>　　/var/log/wtmp<br>　　/var/run/utmp<br>　　/var/log/lastlog(lastlog)<br>　　/var/log/btmp(lastb)</li>
+<li>登录日志可以关注Accepted、Failed password 、invalid特殊关键字</li>
+<li><p>登录相关命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lastlog 记录最近几次成功登录的事件和最后一次不成功的登录    </div><div class="line">who 命令查询utmp文件并报告当前登录的每个用户。Who的缺省输出包括用户名、终端类型、登录日期及远程主机    </div><div class="line">w 命令查询utmp文件并显示当前系统中每个用户和它所运行的进程信息    </div><div class="line">users 用单独的一行打印出当前登录的用户，每个显示的用户名对应一个登录会话。如果一个用户有不止一个登录会话，那他的用户名把显示相同的次数    </div><div class="line">last 命令往回搜索wtmp来显示自从文件第一次创建以来登录过的用户    </div><div class="line">finger 命令用来查找并显示用户信息，系统管理员通过使用该命令可以知道某个时候到底有多少用户在使用这台Linux主机。</div></pre></td></tr></table></figure>
+</li>
+<li><p>几个语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">定位有多少IP在爆破主机的root帐号    grep &quot;Failed password for root&quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more    </div><div class="line">登录成功的IP有哪些    grep &quot;Accepted &quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more      </div><div class="line">tail -400f demo.log #监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）      less demo.log #查看日志文件，支持上下滚屏，查找功能      </div><div class="line">uniq -c demo.log  #标记该行重复的数量，不重复值为1    </div><div class="line">grep -c &apos;ERROR&apos; demo.log   #输出文件demo.log中查找所有包行ERROR的行的数量</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>6、相关处置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kill -9</div><div class="line">chattr –i</div><div class="line">rm</div><div class="line">setfacl</div><div class="line">ssh</div><div class="line">chmod</div></pre></td></tr></table></figure></p>
+<h4 id="0x02-Windows系列分析排查"><a href="#0x02-Windows系列分析排查" class="headerlink" title="0x02 Windows系列分析排查"></a>0x02 Windows系列分析排查</h4><p>1、文件分析</p>
+<ul>
+<li>开机启动有无异常文件</li>
+<li>各个盘下的temp(tmp)相关目录下查看有无异常文件</li>
+<li>浏览器浏览痕迹、浏览器下载文件、浏览器cookie信息</li>
+<li>查看文件时间，创建时间、修改时间、访问时间。<br>　　对应linux的ctime mtime atime，通过对文件右键属性即可看到详细的时间（也可以通过dir /tc 1.aspx 来查看创建时间），黑客通过菜刀类工具改变的是修改时间。所以如果修改时间在创建时间之前明显是可疑文件。</li>
+<li>查看用户recent相关文件，通过分析最近打开分析可疑文件<br>　　a) C:\Documents and Settings\Administrator\Recent<br>　　b) C:\Documents and Settings\Default User\Recent<br>　　c) 开始,运行   %UserProfile%\Recent</li>
+<li>根据文件夹内文件列表时间进行排序，查找可疑文件。当然也可以搜索指定日期范围的文件及文件件<br>Server 2008 R2系列<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/51943553.jpg" alt=""><br>Win10系列<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/55788321.jpg" alt=""></li>
+<li>关键字匹配，通过确定后的入侵时间，以及webshell或js文件的关键字（比如博彩类），可以在IIS 日志中进行过滤匹配，比如经常使用:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">知道是上传目录，在web log 中查看指定时间范围包括上传文件夹的访问请求 : findstr /s /m /I “UploadFiles” *.log</div><div class="line">某次博彩事件中的六合彩信息是six.js: findstr /s /m /I “six.js” *.aspx</div><div class="line">根据shell名关键字去搜索D盘spy相关的文件有哪些 :for /r d:\ %i in (*spy*.aspx) do @echo %i</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>2、进程命令</p>
+<ul>
+<li>netstat -ano 查看目前的网络连接，定位可疑的ESTABLISHED</li>
+<li>根据netstat 定位出的pid，再通过tasklist命令进行进程定位<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/65298749.jpg" alt=""></li>
+<li>通过tasklist命令查看可疑程序</li>
+</ul>
+<p>3、系统信息</p>
+<ul>
+<li>使用set命令查看变量的设置</li>
+<li>Windows 的计划任务；</li>
+<li>Windows 的帐号信息，如隐藏帐号等</li>
+<li>配套的注册表信息检索查看，SAM文件以及远控软件类</li>
+<li>查看systeminfo 信息，系统版本以及补丁信息<br>例如系统的远程命令执行漏洞MS08-067、MS09-001、MS17-010（永恒之蓝）…<br>若进行漏洞比对，建议使用Windows-Exploit-Suggester<br><a href="https://github.com/GDSSecurity/Windows-Exploit-Suggester/" target="_blank" rel="external">https://github.com/GDSSecurity/Windows-Exploit-Suggester/</a></li>
+</ul>
+<p>4、后门排查<br>PC Hunter是一个Windows系统信息查看软件<br><a href="http://www.xuetr.com/" target="_blank" rel="external">http://www.xuetr.com/</a><br>功能列表如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">1.进程、线程、进程模块、进程窗口、进程内存信息查看，杀进程、杀线程、卸载模块等功能</div><div class="line">2.内核驱动模块查看，支持内核驱动模块的内存拷贝</div><div class="line">3.SSDT、Shadow SSDT、FSD、KBD、TCPIP、Classpnp、Atapi、Acpi、SCSI、IDT、GDT信息查看，并能检测和恢复ssdt hook和inline hook</div><div class="line">4.CreateProcess、CreateThread、LoadImage、CmpCallback、BugCheckCallback、Shutdown、Lego等Notify Routine信息查看，并支持对这些Notify Routine的删除</div><div class="line">5.端口信息查看，目前不支持2000系统</div><div class="line">6.查看消息钩子</div><div class="line">7.内核模块的iat、eat、inline hook、patches检测和恢复</div><div class="line">8.磁盘、卷、键盘、网络层等过滤驱动检测，并支持删除</div><div class="line">9.注册表编辑</div><div class="line">10.进程iat、eat、inline hook、patches检测和恢复</div><div class="line">11.文件系统查看，支持基本的文件操作</div><div class="line">12.查看（编辑）IE插件、SPI、启动项、服务、Host文件、映像劫持、文件关联、系统防火墙规则、IME</div><div class="line">13.ObjectType Hook检测和恢复</div><div class="line">14.DPC定时器检测和删除</div><div class="line">15.MBR Rootkit检测和修复</div><div class="line">16.内核对象劫持检测</div><div class="line">17.WorkerThread枚举</div><div class="line">18.Ndis中一些回调信息枚举</div><div class="line">19.硬件调试寄存器、调试相关API检测</div><div class="line">20.枚举SFilter/Fltmgr的回调</div></pre></td></tr></table></figure></p>
+<p><strong>PS：最简单的使用方法，根据颜色去辨识——可疑进程，隐藏服务、被挂钩函数：红色，然后根据程序右键功能去定位具体的程序和移除功能。根据可疑的进程名等进行互联网信息检索然后统一清除并关联注册表。</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/93373789.jpg" alt=""></p>
+<p>5、后门排查</p>
+<ul>
+<li>可以使用hm</li>
+<li>也可以使用盾类（D盾、暗组盾），如果可以把web目录导出，可以在自己虚拟机进行分析<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/27229232.jpg" alt=""><br>6、日志分析</li>
+<li>打开事件管理器（开始—管理工具—事件查看/开始运行eventvwr）</li>
+<li>主要分析安全日志，可以借助自带的筛选功能<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/14268899.jpg" alt=""></li>
+</ul>
+<p>转载连接：<a href="https://xianzhi.aliyun.com/forum/read/1655.html" target="_blank" rel="external">https://xianzhi.aliyun.com/forum/read/1655.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x00-事件分类&quot;&gt;&lt;a href=&quot;#0x00-事件分类&quot; class=&quot;headerlink&quot; title=&quot;0x00 事件分类&quot;&gt;&lt;/a&gt;0x00 事件分类&lt;/h3&gt;&lt;p&gt;常见的安全事件：&lt;br&gt;　　Web入侵：挂马、篡改、Webshell&lt;br&gt;　　系统入侵：系统异常、RDP爆破、SSH爆破、主机漏洞&lt;br&gt;　　病毒木马：远控、后门、勒索软件&lt;br&gt;　　信息泄漏：拖裤、数据库登录（弱口令）&lt;br&gt;　　网络流量：频繁发包、批量请求、DDOS攻击&lt;br&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>windows权限提升基础</title>
@@ -312,9 +453,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1136,9 +1277,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -2093,49 +2234,6 @@ remote_xhr = new XMLHttpRequest(); remote_xhr.onreadystatechange = function () {
     </summary>
     
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nessus的安装与使用</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2016/12/09/Nessus%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html"/>
-    <id>http://yoursite.com/渗透/2016/12/09/Nessus的安装与使用.html</id>
-    <published>2016-12-09T13:30:50.000Z</published>
-    <updated>2017-04-02T07:40:48.423Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-Nessus"><a href="#0x01-Nessus" class="headerlink" title="0x01 Nessus"></a>0x01 Nessus</h3><p>Nessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。<br>Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界面和有效的报告。Nessus之所以被人们喜爱，是因为该工具具有几个特点。如下所示：<a id="more"></a></p>
-<blockquote>
-<p>1、提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库;<br>2、不同于传统的漏洞扫描软件。Nessus可同时在本机或远程控制，进行系统的漏洞分析扫描;<br>3、其运作效能随着系统的资源而自行调整。如果将主机配置更多的资源（如加快CPU速度或增加内存大小），其效率表现可因为丰富资源而提高;<br>4、可自行定义插件;<br>5、NASL（Nessus Attack Scripting Language）是由Tenable所发出的语言，用来写入Nessus的安全测试选项;<br>完全支持SSL（Secure Socket Layer）;</p>
-</blockquote>
-<h3 id="0x02-Nessus-安装"><a href="#0x02-Nessus-安装" class="headerlink" title="0x02 Nessus 安装"></a>0x02 Nessus 安装</h3><p>1.1 获取安装包<br>官网下载：<a href="http://www.tenable.com/products/nessus/select-your-operating-system" target="_blank" rel="external">http://www.tenable.com/products/nessus/select-your-operating-system</a><br><img src="http://p1.bpimg.com/567571/6ec33aad587f3471.png" alt=""><br>可以根据我们自己的需求选择安装包。Nessus有两个版本，分别是Home（家庭版）和Professional（专业版）。这两个版本的区别如下所示：<br>家庭版：家庭版是免费的，主要是供非商业性或个人使用。该版比较适合个人使用，并且可以用于非专业的环境。<br>专业版：专业版是需要付费的。但是，可以免费使用七天。该版主要是供商业人士使用。它包括技术支持或附加功能，如无线并发连接等。<br>对于大部分人来说，家庭版的功能都可以满足。所以，这里选择下载家庭版。在该界面单击Nessus Home下面的Download按钮。<br>1.2 获取激活码<br><a href="http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code" target="_blank" rel="external">http://www.tenable.com/products/nessus/nessus-plugins/obtain-an-activation-code</a><br>选择免费的家庭版进行注册。<br><img src="http://p1.bpimg.com/567571/db56dc5804cc5821.png" alt=""><br>在该界面填写一些信息，为了获取激活码。在该界面First Name和Last Name文本框中，用户可以任意填写。但是，Email下的文本框必须填写一个合法的邮件地址，用来获取邮件。当以上信息设置完成后，单击Register按钮。接下来，将会在注册的邮箱中收到一份关于Nessus的邮件。进入邮箱打开收到的邮件，将会看到一串数字，类似XXXX-XXXX-XXXX-XXXX，即激活码。<br><a href="http://www.tenable.com/products/nessus-home" target="_blank" rel="external">http://www.tenable.com/products/nessus-home</a></p>
-<p>1.3 Liunx安装</p>
-<pre><code>dpkg -i Nessus-6.9.1-debian6_amd64.deb   ##安装Nessus
-service nessusd start     ##启动Nessus
-</code></pre><p><img src="http://p1.bpimg.com/567571/38128b3572ee39aa.png" alt=""></p>
-<p><strong>在Linux系统中，Nessus工具默认安装在/opt/nessus目录中。</strong><br>1.4 Nessus启用<br>使用浏览器进行访问，例如，你的IP为192.168.0.179，则浏览器输入<a href="https://192.168.0.179:8834。" target="_blank" rel="external">https://192.168.0.179:8834。</a> <strong>需要注意的是Linux下https协议。</strong><br>首先我们需要注册一个登录名和密码。<br><img src="http://p1.bpimg.com/567571/34a490f3315f95ba.jpg" alt=""><br>接下来就是填写注册码，就是刚才我们邮箱获得的注册码，注意此处选择家庭版。<br><img src="http://p1.bpimg.com/567571/437bbac928385710.jpg" alt=""><br>接下来就是等待安装插件了。<br><img src="http://p1.bpimg.com/567571/a77837b85e6f9b5e.jpg" alt=""><br>成功安装成功进入主页面。<br><img src="http://p1.bqimg.com/567571/1f9a96a8e1a52b78.png" alt=""><br>1.5 可能会出现下载插件出错的情况<br><img src="http://p1.bpimg.com/567571/66303c2cb0d23f96.png" alt=""><br>那么我们可以使用命令行进行更新下载插件</p>
-<pre><code>/opt/nessus/sbin/nessuscli update --plugins-only
-/opt/nessus/sbin/nessuscli update --all 来更新所有（软件更新+插件更新）
-</code></pre><p><img src="http://p1.bpimg.com/567571/b5f6c370711653d6.png" alt=""><br><img src="http://p1.bpimg.com/567571/dfc6556a2e860e3d.png" alt=""></p>
-<p>另外可以使用离线包进行更新安装。<br>离线更新的网址：<br><a href="https://plugins.nessus.org/v2/offline.php" target="_blank" rel="external">https://plugins.nessus.org/v2/offline.php</a><br>需要输入两个信息，一个是challenge code，另一个是activation code 。challenge code获得由/opt/nessus/sbin下的./nessuscli fetch –challenge命令。Activation code由邮件重新获得，之前一个已经被使用过而失效。<br>提交信息获得离线的plugin以及license。统统下载放置到/opt/nessus/sbin下。大小有140+M下载速度奇慢。</p>
-<pre><code>首先导入license。到/opt/nessus/sbin下，执行./nessuscli fetch --register-offline nessus.license
-加载nessus plugins 将all-2.0.tar.gz放到目录下，然后通过nessuscli update all-2.0.tar.gz进行升级 
-</code></pre><p>国内速度比较慢，使用命令更新了好多了才成功了，更新过程可能需要十几分钟吧。</p>
-<p>2.1 Windows安装<br>Windows下比较简单，选择对应的安装包，安装就一直点下一步就行了，注册以及更新就和Linux一样，这里我们就不多介绍了。</p>
-<h3 id="0x03-Nessus配置和使用"><a href="#0x03-Nessus配置和使用" class="headerlink" title="0x03 Nessus配置和使用"></a>0x03 Nessus配置和使用</h3><p>3.1 Nessus配置</p>
-<p>3.2 Nessus扫描<br>首先创建一个扫描，选择一个模板<br><img src="http://p1.bpimg.com/567571/6c229631a09ac3ee.png" alt=""><br>假如现在有一个XP系统，IP 192.168.0.146需要进行扫描的，则配置如下：<br><img src="http://p1.bpimg.com/567571/0314871f662ed476.png" alt=""><br>配置好之后就可以进行扫描了<br><img src="http://p1.bpimg.com/567571/0696b240d9420569.png" alt=""><br>扫描完成后可以查看扫描结果,也可以导出扫描结果。<br><img src="http://p1.bpimg.com/567571/972addeef3888ae1.png" alt=""></p>
-<p>这里看到的只是简单的扫描配置，还有好多的设置和使用方法,还可以创建策略以及设置一些插件。还可以与其他一些工具联合使用，以后的具体用法还会继续学习。<br><strong>生命不息，学习不止！！！</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-Nessus&quot;&gt;&lt;a href=&quot;#0x01-Nessus&quot; class=&quot;headerlink&quot; title=&quot;0x01 Nessus&quot;&gt;&lt;/a&gt;0x01 Nessus&lt;/h3&gt;&lt;p&gt;Nessus号称是世界上最流行的漏洞扫描程序，全世界有超过75000个组织在使用它。该工具提供完整的电脑漏洞扫描服务，并随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。对应渗透测试人员来说，Nessus是必不可少的工具之一。&lt;br&gt;Nessus通常包括成千上万的最新的漏洞，各种各样的扫描选项，及易于使用的图形界面和有效的报告。Nessus之所以被人们喜爱，是因为该工具具有几个特点。如下所示：
-    
-    </summary>
-    
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
