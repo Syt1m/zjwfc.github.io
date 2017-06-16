@@ -312,9 +312,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1136,9 +1136,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
