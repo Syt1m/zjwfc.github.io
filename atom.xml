@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-16T13:59:21.793Z</updated>
+  <updated>2017-06-17T05:32:04.928Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,25 +20,19 @@
     <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/06/16/%E8%BD%AC-%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5%E5%BA%94%E6%80%A5%E5%88%86%E6%9E%90%E6%89%8B%E5%B7%A5%E6%8E%92%E6%9F%A5.html"/>
     <id>http://yoursite.com/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html</id>
     <published>2017-06-16T12:55:01.000Z</published>
-    <updated>2017-06-16T13:59:21.793Z</updated>
+    <updated>2017-06-17T05:32:04.928Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x00-事件分类"><a href="#0x00-事件分类" class="headerlink" title="0x00 事件分类"></a>0x00 事件分类</h3><p>常见的安全事件：<br>　　Web入侵：挂马、篡改、Webshell<br>　　系统入侵：系统异常、RDP爆破、SSH爆破、主机漏洞<br>　　病毒木马：远控、后门、勒索软件<br>　　信息泄漏：拖裤、数据库登录（弱口令）<br>　　网络流量：频繁发包、批量请求、DDOS攻击<br><a id="more"></a></p>
 <h3 id="0x01-排查思路"><a href="#0x01-排查思路" class="headerlink" title="0x01 排查思路"></a>0x01 排查思路</h3><p><strong>一个常规的入侵事件后的系统排查思路：</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/44445401.jpg" alt=""></p>
 <ul>
 <li>文件分析<br>​a) 文件日期、新增文件、可疑/异常文件、最近使用文件、浏览器下载文件<br>​b) Webshell 排查与分析<br>​c) 核心应用关联目录文件分析</li>
-<li><p>进程分析<br>a) 当前活动进程 &amp; 远程连接<br>​b) 启动进程&amp;计划任务<br>​c) 进程工具分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Windows:Pchunter</div><div class="line">Linux: Chkrootkit&amp;Rkhunter</div></pre></td></tr></table></figure>
-</li>
-<li><p>系统信息<br>a) 环境变量<br>​b) 帐号信息<br>​c) History<br>​d) 系统配置文件</p>
-</li>
-<li>日志分析<br>a) 操作系统日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Windows: 事件查看器（eventvwr）</div><div class="line">Linux: /var/log/</div></pre></td></tr></table></figure>
-</li>
+<li>进程分析<br>a) 当前活动进程 &amp; 远程连接<br>​b) 启动进程&amp;计划任务<br>​c) 进程工具分析<br>　　Windows:Pchunter<br>　　Linux: Chkrootkit&amp;Rkhunter</li>
+<li>系统信息<br>a) 环境变量<br>​b) 帐号信息<br>​c) History<br>​d) 系统配置文件</li>
+<li>日志分析<br>a) 操作系统日志<br>　　Windows: 事件查看器（eventvwr）<br>　　Linux: /var/log/<br>​b) 应用日志分析<br>　　Access.log<br>　　Error.log</li>
 </ul>
-<p>​b) 应用日志分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Access.log</div><div class="line">Error.log</div></pre></td></tr></table></figure>
 <h3 id="0x02-分析排查"><a href="#0x02-分析排查" class="headerlink" title="0x02 分析排查"></a>0x02 分析排查</h3><h4 id="0x01-Linux系列分析排查"><a href="#0x01-Linux系列分析排查" class="headerlink" title="0x01 Linux系列分析排查"></a>0x01 Linux系列分析排查</h4><p>1、文件分析</p>
 <ul>
-<li>敏感目录的文件分析（类/tmp目录，命令目录/usr/bin /usr/sbin）<br>例如:<br>​查看tmp目录下的文件： ls –alt /tmp/<br>​查看开机启动项内容：ls -alt /etc/init.d/<br>​查看指定目录下文件时间的排序：ls  -alt  | head -n 10<br>　​针对可疑文件可以使用stat进行创建修改时间、访问时间的详细查看，若修改时间距离事件日期接近，有线性关联，说明可能被篡改或者其他。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/4337956.jpg" alt=""></li>
+<li>敏感目录的文件分析（类/tmp目录，命令目录/usr/bin /usr/sbin）<br>例如:<br>　　​查看tmp目录下的文件： ls –alt /tmp/<br>　　​查看开机启动项内容：ls -alt /etc/init.d/<br>　　​查看指定目录下文件时间的排序：ls  -alt  | head -n 10<br>　　​针对可疑文件可以使用stat进行创建修改时间、访问时间的详细查看，若修改时间距离事件日期接近，有线性关联，说明可能被篡改或者其他。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/4337956.jpg" alt=""></li>
 <li><p>新增文件分析<br>​例如要查找24小时内被修改的JSP文件： find ./ -mtime 0 -name “*.jsp”<br>（最后一次修改发生在距离当前时间n24小时至(n+1)24 小时）<br>​查找72小时内新增的文件find / -ctime -2<br>​PS：-ctime 内容未改变权限改变时候也可以查出<br>根据确定时间去反推变更的文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​ls -al /tmp | grep &quot;Feb 27&quot;</div></pre></td></tr></table></figure>
 </li>
@@ -102,7 +96,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lastlog 记录最近几次成功登录的事件和最后一次不成功的登录    </div><div class="line">who 命令查询utmp文件并报告当前登录的每个用户。Who的缺省输出包括用户名、终端类型、登录日期及远程主机    </div><div class="line">w 命令查询utmp文件并显示当前系统中每个用户和它所运行的进程信息    </div><div class="line">users 用单独的一行打印出当前登录的用户，每个显示的用户名对应一个登录会话。如果一个用户有不止一个登录会话，那他的用户名把显示相同的次数    </div><div class="line">last 命令往回搜索wtmp来显示自从文件第一次创建以来登录过的用户    </div><div class="line">finger 命令用来查找并显示用户信息，系统管理员通过使用该命令可以知道某个时候到底有多少用户在使用这台Linux主机。</div></pre></td></tr></table></figure>
 </li>
 <li><p>几个语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">定位有多少IP在爆破主机的root帐号    grep &quot;Failed password for root&quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more    </div><div class="line">登录成功的IP有哪些    grep &quot;Accepted &quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more      </div><div class="line">tail -400f demo.log #监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）      less demo.log #查看日志文件，支持上下滚屏，查找功能      </div><div class="line">uniq -c demo.log  #标记该行重复的数量，不重复值为1    </div><div class="line">grep -c &apos;ERROR&apos; demo.log   #输出文件demo.log中查找所有包行ERROR的行的数量</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">grep &quot;Failed password for root&quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more  #定位有多少IP在爆破主机的root帐号       </div><div class="line">grep &quot;Accepted &quot; /var/log/auth.log | awk &apos;&#123;print $11&#125;&apos; | sort | uniq -c | sort -nr | more  #登录成功的IP有哪些         </div><div class="line">tail -400f demo.log  #监控最后400行日志文件的变化 等价与 tail -n 400 -f （-f参数是实时）      less demo.log  #查看日志文件，支持上下滚屏，查找功能      </div><div class="line">uniq -c demo.log  #标记该行重复的数量，不重复值为1    </div><div class="line">grep -c &apos;ERROR&apos; demo.log  #输出文件demo.log中查找所有包行ERROR的行的数量</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>6、相关处置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kill -9</div><div class="line">chattr –i</div><div class="line">rm</div><div class="line">setfacl</div><div class="line">ssh</div><div class="line">chmod</div></pre></td></tr></table></figure></p>
@@ -136,10 +130,41 @@
 <p>5、后门排查</p>
 <ul>
 <li>可以使用hm</li>
-<li>也可以使用盾类（D盾、暗组盾），如果可以把web目录导出，可以在自己虚拟机进行分析<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/27229232.jpg" alt=""><br>6、日志分析</li>
-<li>打开事件管理器（开始—管理工具—事件查看/开始运行eventvwr）</li>
-<li>主要分析安全日志，可以借助自带的筛选功能<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/14268899.jpg" alt=""></li>
+<li>也可以使用盾类（D盾、暗组盾），如果可以把web目录导出，可以在自己虚拟机进行分析<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/27229232.jpg" alt=""></li>
 </ul>
+<p>6、日志分析</p>
+<ul>
+<li>打开事件管理器（开始—管理工具—事件查看/开始运行eventvwr）</li>
+<li>主要分析安全日志，可以借助自带的筛选功能<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/14268899.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/38480079.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/86908955.jpg" alt=""></li>
+<li>可以把日志导出为文本格式，然后使用notepad++ 打开，使用正则模式去匹配远程登录过的IP地址，在界定事件日期范围的基础，可以提高效率正则是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">((?:(?:25[0-5]|2[0-4]\d|((1\d&#123;2&#125;)|([1-9]?\d))).)&#123;3&#125;(?:25[0-5]|2[0-4]\d|((1\d&#123;2&#125;)|([1-9]?\d))))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/11899177.jpg" alt=""></p>
+<ul>
+<li>强大的日志分析工具Log Parser<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/68829847.jpg" alt=""><br>分析IIS日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LogParser.exe &quot;select top 10 time, c-ip,cs-uri-stem, sc-status, time-taken from C:\Users\sm0nk\Desktop\iis.log&quot; -o:datagrid</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/75777904.jpg" alt=""><br>　　有了这些我们就可以对windows日志进行分析了 比如我们分析域控日志的时候，想要查询账户登陆过程中，用户正确，密码错误的情况，我们需要统计出源IP，时间，用户名时，我们可以这么写（当然也可以结合一些统计函数，分组统计等等）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LogParser.exe -i:EVT &quot;SELECT TimeGenerated,EXTRACT\_TOKEN(Strings,0,&apos;|&apos;) AS USERNAME,EXTRACT\_TOKEN(Strings,2,&apos;|&apos;) AS SERVICE\_NAME,EXTRACT\_TOKEN(Strings,5,&apos;|&apos;) AS Client_IP FROM &apos;e:\logparser\xx.evtx&apos; WHERE EventID=675&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/75777904.jpg" alt=""><br>事件ID是很好的索引<br>Windows server 2008系列参考event ID：<br>4624 - 帐户已成功登录<br>4625 - 帐户登录失败<br>4648 - 试图使用明确的凭证登录（例如远程桌面）</p>
+<p>7、相关处置<br>　　通过网络连接锁定的可疑进程，进行定位恶意程序后删除(taskkill)<br>　　木马查杀，可配合pchunter 进行进一步专业分析，使用工具功能进行强制停止以及删除<br>　　最后清理后，统一查看网络连接、进程、内核钩子等是否正常。</p>
+<h4 id="0x03-应用类"><a href="#0x03-应用类" class="headerlink" title="0x03 应用类"></a>0x03 应用类</h4><p><strong>Apache、tomcat、Nginx、IIS</strong><br>　　无论任何web服务器其实日志需要关注的东西是一致的，即access_log和error_log。一般在确定ip地址后，通过:</p>
+<ul>
+<li>find . access_log |grep xargs ip攻击地址</li>
+<li>find . access_log| grep xargs 木马文件名</li>
+<li>cat access.log | cut -f1 -d “ “ | sort | uniq -c | sort -k 1 -r | head -10 页面访问排名前十的IP</li>
+<li>cat access.log | cut -f4 -d “ “ | sort | uniq -c | sort -k 1 -r | head -10 页面访问排名前十的URL</li>
+<li>cat access.log | sort -k 2 -n -r | head 10 查看最耗时的页面<br>在对WEB日志进行安全分析时，可以按照下面两种思路展开，逐步深入，还原整个攻击过程。<br>1、首先确定受到攻击、入侵的时间范围，以此为线索，查找这个时间范围内可疑的日志，进一步排查，最终确定攻击者，还原攻击过程。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/58627823.jpg" alt=""><br>2、一般攻击者在入侵网站后，通常会上传一个后门文件，以方便自己以后访问。我们也可以以该文件为线索来展开分析。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-17/62810890.jpg" alt=""></li>
+</ul>
+<h3 id="0x04-应急总结"><a href="#0x04-应急总结" class="headerlink" title="0x04 应急总结"></a>0x04 应急总结</h3><ul>
+<li>核心思路是“顺藤摸瓜”</li>
+<li>碎片信息的关联分析</li>
+<li>时间范围的界定以及关键操作时间点串联</li>
+<li>Web入侵类，shell定位很重要</li>
+<li>假设与求证</li>
+<li>攻击画像与路线确认</li>
+</ul>
+<h3 id="0x05-渗透反辅"><a href="#0x05-渗透反辅" class="headerlink" title="0x05 渗透反辅"></a>0x05 渗透反辅</h3><p>1、密码读取<br>a) Windows: Mimikatz<br>b) Linux: mimipenguin<br>2、帐号信息<br>a) 操作系统帐号<br>b) 数据库帐号<br>c) 应用帐号信息<br>3、敏感信息<br>a) 配置信息<br>b) 数据库信息<br>c) 服务端口信息<br>d) 指纹信息<br>4、滚雪球式线性拓展<br>a) 密码口令类拓展（远控）<br>b) 典型漏洞批量利用<br>5、常见的入侵方式Getshell方法<br>a) WEB入侵<br>　　i. 典型漏洞：注入Getshell , 上传Getshell，命令执行Getshell，文件包含Getshell，代码执行Getshell，编辑器getshell，后台管理Getshell，数据库操作Getshell<br>　　ii. 容器相关：Tomcat、Axis2、WebLogic等中间件弱口令上传war包等，Websphere、weblogic、jboss反序列化，Struts2代码执行漏洞，Spring命令执行漏洞<br>b) 系统入侵<br>　　i. SSH 破解后登录操作<br>　　ii. RDP 破解后登录操作<br>　　iii. MSSQL破解后远控操作<br>　　iv. SMB远程命令执行（MS08-067、MS17-010、CVE-2017-7494）<br>c) 典型应用<br>　　i. Mail暴力破解后信息挖掘及漏洞利用<br>　　ii. VPN暴力破解后绕过边界<br>　　iii. Redis 未授权访问或弱口令可导ssh公钥或命令执行<br>　　iv. Rsync 未授权访问类<br>　　v. Mongodb未授权访问类<br>　　vi. Elasticsearch命令执行漏洞<br>　　vii. Memcache未授权访问漏洞<br>　　viii. 服务相关口令（mysql ldap zebra squid vnc smb）</p>
+<h3 id="0x06-资源参考"><a href="#0x06-资源参考" class="headerlink" title="0x06 资源参考"></a>0x06 资源参考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">https://www.waitalone.cn/linux-find-webshell.html</div><div class="line">http://vinc.top/category/yjxy/</div><div class="line">http://www.shellpub.com/</div><div class="line">http://linux.vbird.org/linux_security/0420rkhunter.php</div><div class="line">https://cisofy.com/download/lynis/</div><div class="line">https://sobug.com/article/detail/27?from=message&amp;isappinstalled=1</div><div class="line">http://www.freebuf.com/articles/web/23358.html</div><div class="line">https://www.microsoft.com/en-us/download/details.aspx?id=24659</div><div class="line">http://www.cnblogs.com/downmoon/archive/2009/09/02/1558409.html</div><div class="line">http://wooyun.jozxing.cc/static/drops/tips-7462.html</div><div class="line">http://bobao.360.cn/learning/detail/3830.html</div><div class="line">https://yq.aliyun.com/ziliao/65679</div><div class="line">http://secsky.sinaapp.com/188.html</div><div class="line">http://blog.sina.com.cn/s/blog_d7058b150102wu07.html</div><div class="line">http://www.sleuthkit.org/autopsy/</div></pre></td></tr></table></figure>
 <p>转载连接：<a href="https://xianzhi.aliyun.com/forum/read/1655.html" target="_blank" rel="external">https://xianzhi.aliyun.com/forum/read/1655.html</a></p>
 ]]></content>
     
@@ -153,6 +178,8 @@
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="应急响应" scheme="http://yoursite.com/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
     
   </entry>
   
