@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-17T05:32:04.928Z</updated>
+  <updated>2017-06-18T02:19:37.342Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/06/16/%E8%BD%AC-%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5%E5%BA%94%E6%80%A5%E5%88%86%E6%9E%90%E6%89%8B%E5%B7%A5%E6%8E%92%E6%9F%A5.html"/>
     <id>http://yoursite.com/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html</id>
     <published>2017-06-16T12:55:01.000Z</published>
-    <updated>2017-06-17T05:32:04.928Z</updated>
+    <updated>2017-06-18T02:19:37.342Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x00-事件分类"><a href="#0x00-事件分类" class="headerlink" title="0x00 事件分类"></a>0x00 事件分类</h3><p>常见的安全事件：<br>　　Web入侵：挂马、篡改、Webshell<br>　　系统入侵：系统异常、RDP爆破、SSH爆破、主机漏洞<br>　　病毒木马：远控、后门、勒索软件<br>　　信息泄漏：拖裤、数据库登录（弱口令）<br>　　网络流量：频繁发包、批量请求、DDOS攻击<br><a id="more"></a></p>
 <h3 id="0x01-排查思路"><a href="#0x01-排查思路" class="headerlink" title="0x01 排查思路"></a>0x01 排查思路</h3><p><strong>一个常规的入侵事件后的系统排查思路：</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-16/44445401.jpg" alt=""></p>
@@ -429,7 +429,7 @@
     <link href="http://yoursite.com/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html"/>
     <id>http://yoursite.com/CTF/2017/04/24/CBC字节翻转攻击.html</id>
     <published>2017-04-24T01:51:18.000Z</published>
-    <updated>2017-04-24T06:29:56.136Z</updated>
+    <updated>2017-06-18T02:19:46.188Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-CBC翻转技术"><a href="#0x01-CBC翻转技术" class="headerlink" title="0x01 CBC翻转技术"></a>0x01 CBC翻转技术</h3><p>　　<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank" rel="external">CBC</a>模式的全称是密文分组链接模式（Cipher Block Chainning)，之所以叫这个名字，是因为密文分组是像链条一样相互连接在一起的。<br><img src="http://i2.muimg.com/567571/0b694168b633add3.png" alt=""><a id="more"></a><br>　　在CBC模式中，首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密，当加密第一个明文分组时，由于不存在“前一个密文分组”，因此需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组”，这个比特序列称为初始化向量（Initialization vector),通常缩写为IV,如果每次都使用相同的初始化向量（IV），当用同一密钥对同一明文进行加密时，所得到的密码一定是相同的，所以每次加密时都会随机产生一个不同的比特序列来作为初始化向量，避免这种情况产生。即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">首先将明文分组(常见的以16字节为一组)，位数不足的使用特殊字符填充。</div><div class="line">生成一个随机的初始化向量(IV)和一个密钥。</div><div class="line">将IV和第一组明文异或。</div><div class="line">用密钥对3中xor后产生的密文加密。</div><div class="line">用4中产生的密文对第二组明文进行xor操作。</div><div class="line">用密钥对5中产生的密文加密。</div><div class="line">重复4-7，到最后一组明文。</div><div class="line">将IV和加密后的密文拼接在一起，得到最终的密文。</div></pre></td></tr></table></figure></p>
 <p>加密公式：</p>
@@ -480,9 +480,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -1304,9 +1304,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
