@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fbe9ff;
+  background: #ff4f12;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2779,7 +2779,7 @@ hr {
     text-align: center;
   }
 }
-site-author-image {
+.site-author-image {
   border-radius: 100%;
   padding: 2px;
   border: 2px dashed #fff;

