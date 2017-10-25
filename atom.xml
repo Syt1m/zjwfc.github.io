@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-26T14:17:51.848Z</updated>
+  <updated>2017-10-25T15:28:41.188Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/%E6%B5%8B%E8%AF%95/2017/09/26/Linux%E6%B8%97%E9%80%8F%E4%B9%8BOpenSSH%E5%90%8E%E9%97%A8.html"/>
     <id>http://yoursite.com/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html</id>
     <published>2017-09-26T12:59:04.000Z</published>
-    <updated>2017-09-26T14:17:51.848Z</updated>
+    <updated>2017-10-25T15:28:41.188Z</updated>
     
     <content type="html"><![CDATA[<p>　　当我们拿到一个服务器的shell之后，肯定需要维持好我们的权限，这里我们需要留个后门方便我们进出。这里我们不讨论提权的问题，前提我们通过各种方式提权到root，拿到root之后才是我们留后门的开始。做了个openssh的后门，也就是root双密码，管理一个密码、我们的后门一个密码，不影响管理的那个密码。<br>　　这里我们讨论两个Linux，实验环境为Centos 7和Ubuntu 16.0.4</p>
 <h3 id="0x01-查看版本"><a href="#0x01-查看版本" class="headerlink" title="0x01 查看版本"></a>0x01 查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -V</div></pre></td></tr></table></figure>
