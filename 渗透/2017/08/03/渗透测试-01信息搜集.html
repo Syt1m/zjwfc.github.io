@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="渗透测试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="信息搜集是渗透目标的最重要的阶段，占据整个渗透测试的60%，可见信息搜集的重要性。根据收集的有用信息，可以大大提高我们渗透测试的成功率。
+0x01 搜索引擎Google、Bing、ZoomEye（钟馗之眼）、Shodan（撒旦）
+
+Google hacking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试--01信息搜集">
+<meta property="og:url" content="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="信息搜集是渗透目标的最重要的阶段，占据整个渗透测试的60%，可见信息搜集的重要性。根据收集的有用信息，可以大大提高我们渗透测试的成功率。
+0x01 搜索引擎Google、Bing、ZoomEye（钟馗之眼）、Shodan（撒旦）
+
+Google hacking">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/68826948.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/30726785.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/43361731.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/9882144.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/35679591.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/63954749.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/41569206.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/59779587.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/30086518.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/9339095.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/85651442.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/82233595.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/40502374.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/88130402.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-1/25287351.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/36784113.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/71646913.jpg">
+<meta property="og:updated_time" content="2017-08-03T08:34:38.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渗透测试--01信息搜集">
+<meta name="twitter:description" content="信息搜集是渗透目标的最重要的阶段，占据整个渗透测试的60%，可见信息搜集的重要性。根据收集的有用信息，可以大大提高我们渗透测试的成功率。
+0x01 搜索引擎Google、Bing、ZoomEye（钟馗之眼）、Shodan（撒旦）
+
+Google hacking">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/17-8-3/68826948.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html"/>
+
+
+
+
+
+  <title>渗透测试--01信息搜集 | Hello_C技术博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261655448&web_id=1261655448" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello_C技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个小白的独白！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hello_C">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello_C技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">渗透测试--01信息搜集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T12:06:17+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/渗透/2017/08/03/渗透测试-01信息搜集.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2017/08/03/渗透测试-01信息搜集.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/渗透/2017/08/03/渗透测试-01信息搜集.html" class="leancloud_visitors" data-flag-title="渗透测试--01信息搜集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count">℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,537
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+          
+		  
+         
+                <span id="busuanzi_container_page_pv">  |  热度<span id="busuanzi_value_page_pv"></span>℃</span>
+         
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　信息搜集是渗透目标的最重要的阶段，占据整个渗透测试的60%，可见信息搜集的重要性。根据收集的有用信息，可以大大提高我们渗透测试的成功率。</p>
+<h2 id="0x01-搜索引擎"><a href="#0x01-搜索引擎" class="headerlink" title="0x01 搜索引擎"></a>0x01 搜索引擎</h2><p>Google、Bing、ZoomEye（钟馗之眼）、Shodan（撒旦）</p>
+<ul>
+<li><p>Google hacking<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">intext: 把网页中的正文内容中的某个字符做为搜索条件;</div><div class="line">allintext:使用方法和intext类似;</div><div class="line">intitle: 搜索网页标题中是否有我们所要找的字符; </div><div class="line">cache: 搜索GOOGLE里关于某些内容的缓存,有时候往往能找到一些好东西. </div><div class="line">define: 搜索某个词的定义;</div><div class="line">filetype: 搜索制定类型的文件;</div><div class="line">info: 查找指定站点的一些基本信息;</div><div class="line">inurl: 搜索我们指定的字符是否存在于URL中.常用于查找通用漏洞、注入点、管理员登录的URL;</div><div class="line">allinurl:也同INURL类似,可指定多个字符;</div><div class="line">LINKURL: 例如搜索:INURL:HDU.EDU.CN可以返回所有和HDU.EDU.CN做了链接的URL;</div><div class="line">site: 搜索指定域名,用于搜集二级域名;</div><div class="line"></div><div class="line">一些连接符</div><div class="line"></div><div class="line">+ 把GOOGLE可能忽略的字列如查询范围 </div><div class="line">– 把某个字忽略 </div><div class="line">~ 同意词 </div><div class="line">. 单一的通配符 </div><div class="line">* 通配符，可代表多个字母 </div><div class="line">“” 精确查询</div></pre></td></tr></table></figure>
+</li>
+<li><p>Google域名<br>　　不同地区的 Google 搜索的不同，这种搜索引擎为了向大众提供方便根据不同的地域进行不同的优化。我们可以使用不同地区进行搜索，可能获取一些特别的信息。例如：<br>　　www.google.com.tw<br>　　www.google.com.hk<br>　　www.google.com.jp<br><strong>常见国际域名缩写</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">国际域名缩写	国家或地区	Countries and Regions</div><div class="line">CN	中国	China</div><div class="line">HK	香港特别行政区	Hongkong</div><div class="line">MO	澳门	Macao</div><div class="line">TW	台湾省	Taiwan</div><div class="line">KP	朝鲜	North Korea</div><div class="line">KR	韩国	Korea</div><div class="line">JP	日本	Japan</div><div class="line">RU	俄罗斯	Russia</div><div class="line">SG	新加坡	Singapore</div><div class="line">FR	法国	France</div><div class="line">CA	加拿大	Canada</div><div class="line">AU	澳大利亚	Australia</div><div class="line">US	美国	United States of America</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="0x02-whois查点"><a href="#0x02-whois查点" class="headerlink" title="0x02 whois查点"></a>0x02 whois查点</h2><p>　　whois信息包含了域名注册者的姓名、邮箱、电话、地址、DNS服务器等信息，对我们渗透目标以后后序的社工都很有用。</p>
+<ul>
+<li>KALI的whois查询<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/68826948.jpg" alt=""></li>
+<li>在线查询：<br><a href="https://www.whois.com/" target="_blank" rel="external">https://www.whois.com/</a><br><a href="http://whois.chinaz.com/reverse/" target="_blank" rel="external">http://whois.chinaz.com/reverse/</a><br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/30726785.jpg" alt=""></li>
+<li>whois反查<br>利用注册人、邮箱、电话等进行whois反查，也可以搜集到一些意想不到的信息。<br><a href="http://whois.chinaz.com/reverse" target="_blank" rel="external">http://whois.chinaz.com/reverse</a></li>
+</ul>
+<h2 id="0x03-目标IP"><a href="#0x03-目标IP" class="headerlink" title="0x03 目标IP"></a>0x03 目标IP</h2><p>　　现在大部分网站都采用了CDN加速，其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定，为用户提供更流畅的服务。可是对于我们渗透测试人员来说，对判断目标IP带来阻碍。绕过CDN获取真实IP：</p>
+<ul>
+<li>判断：在不同地区ping网址<br><a href="http://ping.chinaz.com/" target="_blank" rel="external">http://ping.chinaz.com/</a><br><a href="http://ping.aizhan.com/" target="_blank" rel="external">http://ping.aizhan.com/</a><br><a href="http://tools.fastweb.com.cn/Index/Ping" target="_blank" rel="external">http://tools.fastweb.com.cn/Index/Ping</a><br>kaili下：dnsenum<br>eg：dnsenum -o /root/baidu.com -t 30 –threads 30 baidu.com</li>
+<li>查找真实ip<br>1、二级域名法<br>　　一般网站不会所有的二级域名放CDN，可以使用谷歌语法site:xxxx.com查找二级域名，或者在线<a href="http://i.links.cn/subdomain/查找。" target="_blank" rel="external">http://i.links.cn/subdomain/查找。</a><br>　　确定没有使用CDN得二级域名之后，本地将目标域名绑定到同IP（修改hosts文件），如果目标网站还能访问说明目标网站与二级域名在同一服务器上；如果不在统一服务器也可能在同C段，扫描C段所有开放80端口IP。<br>2、nslookup<br>　　大部分CDN提供商只针对国内市场，而国外的市场几乎不做CDN，所以有机会解析到真实IP。所以可以使用国外的VPS ping目标网址，或者使用nslookup <a href="http://xxx.com" target="_blank" rel="external">http://xxx.com</a> 国外DNS，例如：nslookup www.baidu.com 8.8.8.8，国外DNS最好找一些冷门的提供商。<br>　　或者查询域名的NS记录，在域名记录中的MX记录，TXT记录等很有可能指向的是真实ip或同C段服务器。<br>3、ping<br>　　很多厂商只是把www.xxx.com做了CDN，我们可以使用ping <a href="http://www.xxx.com，或者使用国外多节点ping在线工具，例如[just-ping](http://www.just-ping.com" target="_blank" rel="external">http://www.xxx.com，或者使用国外多节点ping在线工具，例如[just-ping](http://www.just-ping.com</a>)<br>4、查看历史记录<br>　　查找域名历史解析记录，域名在上CDN之前用的IP，很有可能就是CDN的真实源IP地址<a href="http://toolbar.netcraft.com/site_report" target="_blank" rel="external">http://toolbar.netcraft.com/site_report</a><br>5、利用网站漏洞<br>XSS盲打、命令执行反弹shell、SSRF等<br>6、其他<br>RSS订阅：通过RSS订阅的方式，可以查找到订阅的消息中真实IP<br>订阅邮件：打开发来的邮件源码，可以看到服务器的真实IP，有时候会在同一网段，扫扫C段。<br>phpinfo：这个是最直接的，使用目录扫描，关键在于你的字典是否强大。</li>
+</ul>
+<h2 id="0x04-指纹识别"><a href="#0x04-指纹识别" class="headerlink" title="0x04 指纹识别"></a>0x04 指纹识别</h2><ul>
+<li>whatweb<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/43361731.jpg" alt=""></li>
+<li>Wappalyzer、Shodan、IP Whois &amp; Flags Chrome &amp; Websites Rating<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/9882144.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/35679591.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/63954749.jpg" alt=""></li>
+<li>nmap<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/41569206.jpg" alt=""></li>
+<li>TCP/IP属性：TTL、Window Size、DF<br>　　TTL：生存时间。指定数据报被路由器丢弃之前允许通过的网段数量。TTL 是由发送主机设置的，以防止数据包不断在 IP 互联网络上永不终止地循环。数据包在传送的时候至少会经过一个以上的路由器，当数据包经过一个路由器的时候，TTL就会自动减1，如果减到0了还是没有传送到目的主机，那么这个数据包就会自动丢失，这时路由器会发送一个ICMP报文给最初的发送者。<br><strong>ping直接查看TTL</strong><br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/59779587.jpg" alt=""><br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/30086518.jpg" alt=""><br>　　可以看到TTL为54，路由追踪发现经过10跳到达目的，很有可能是Liunx系统，虽然这种方法可能存在偏差。<br><strong>telent</strong><br>使用telent进行连接，使用Snort进行监听，查看三个属性，在siphon指纹数据库文件osprints.conf进行对比<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">WINDOWS NT/2000   TTL：128</div><div class="line">WINDOWS 95/98     TTL：32</div><div class="line">UNIX              TTL：255</div><div class="line">LINUX             TTL：64</div><div class="line">WIN7          TTL：64</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="0x05-WAF检测"><a href="#0x05-WAF检测" class="headerlink" title="0x05 WAF检测"></a>0x05 WAF检测</h2><ul>
+<li>WafW00f<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/9339095.jpg" alt=""></li>
+<li>nmap<br>nmap www.baidu.com –script=http-waf-detect<br>或者–script=firewalk –traceroute、–script=http-waf-fingerprint<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/85651442.jpg" alt=""></li>
+</ul>
+<h2 id="0x06-端口扫描"><a href="#0x06-端口扫描" class="headerlink" title="0x06 端口扫描"></a>0x06 端口扫描</h2><p>老生常谈的端口扫描，以及常用方法大家也都明白。<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/82233595.jpg" alt=""><br>nmap<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/40502374.jpg" alt=""></p>
+<h2 id="0x07-DNS查询"><a href="#0x07-DNS查询" class="headerlink" title="0x07 DNS查询"></a>0x07 DNS查询</h2><p>　　DNS（域名系统）可以在侦查过程中提供有价值的数据，DNS的基本功能是将域名转换为IP地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">DNS记录：</div><div class="line">AAAA记录    IPv6 地址记录，记录一个域名对应的IPv6地址</div><div class="line">CNAME记录   别名记录，记录一个主机的别名</div><div class="line">MX记录    电子邮件交换记录，记录一个邮件域名对应的IP地址</div><div class="line">NS记录      域名服务器记录 ,记录该域名由哪台域名服务器解析</div><div class="line">PTR记录     反向记录，也即从IP地址到域名的一条记录</div><div class="line">TXT记录     记录域名的相关文本信息</div></pre></td></tr></table></figure></p>
+<ul>
+<li>host<br>host -t ns  www.baidu.com<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/88130402.jpg" alt=""></li>
+<li>nslookup<br>Nslookup命令以两种方式运行:非交互式和交互式。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&gt; nslookup</div><div class="line">默认服务器:  UnKnown</div><div class="line">Address:  192.168.43.1</div><div class="line"></div><div class="line">&gt; ?</div><div class="line">命令:   (标识符以大写表示，[] 表示可选)</div><div class="line">set OPTION      - 设置选项</div><div class="line">    domain=NAME         - 将默认域名设置为 NAME</div><div class="line">    srchlist=N1[/N2/.../N6] - 将域设置为 N1，并将搜索列表设置为 N1、N2 等</div><div class="line">    root=NAME           - 将根服务器设置为 NAME</div><div class="line">    retry=X             - 将重试次数设置为 X</div><div class="line">    timeout=X           - 将初始超时间隔设置为 X 秒</div><div class="line">    type=X              - 设置查询类型(如 A、AAAA、A+AAAA、ANY、CNAME、MX、</div><div class="line">                          NS、PTR、SOA 和 SRV)</div><div class="line">ls [opt] DOMAIN [&gt; FILE] - 列出 DOMAIN 中的地址(可选: 输出到文件 FILE)</div><div class="line">    -a          -  列出规范名称和别名</div><div class="line">    -d          -  列出所有记录</div><div class="line">    -t TYPE     -  列出给定 RFC 记录类型(例如 A、CNAME、MX、NS 和 PTR 等)</div><div class="line">                   的记录</div><div class="line">exit            - 退出程序</div></pre></td></tr></table></figure>
+<p>根据DNS查询，我们可以查找到DNS服务器、邮件服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&gt; nslookup</div><div class="line">默认服务器:  UnKnown</div><div class="line">Address:  192.168.43.1</div><div class="line">&gt; set type=mx</div><div class="line">&gt; baidu.com</div><div class="line">服务器:  UnKnown</div><div class="line">Address:  192.168.43.1</div><div class="line"></div><div class="line">非权威应答:</div><div class="line">baidu.com       MX preference = 20, mail exchanger = mx1.baidu.com</div><div class="line">baidu.com       MX preference = 10, mail exchanger = mx.n.shifen.com</div><div class="line">baidu.com       MX preference = 20, mail exchanger = jpmx.baidu.com</div><div class="line">baidu.com       MX preference = 20, mail exchanger = mx50.baidu.com</div><div class="line"></div><div class="line">baidu.com       nameserver = ns7.baidu.com</div><div class="line">baidu.com       nameserver = ns3.baidu.com</div><div class="line">baidu.com       nameserver = ns2.baidu.com</div><div class="line">baidu.com       nameserver = ns4.baidu.com</div><div class="line">baidu.com       nameserver = dns.baidu.com</div><div class="line">jpmx.baidu.com  internet address = 61.208.132.13</div><div class="line">dns.baidu.com   internet address = 202.108.22.220</div><div class="line">ns2.baidu.com   internet address = 61.135.165.235</div><div class="line">ns3.baidu.com   internet address = 220.181.37.10</div><div class="line">ns4.baidu.com   internet address = 220.181.38.10</div><div class="line">ns7.baidu.com   internet address = 180.76.76.92</div><div class="line">&gt; exit</div></pre></td></tr></table></figure></p>
+<p>邮件在发送的过程:</p>
+<p>1.发件人服务器需要先解析“收件人的域名”的MX主机<br>2.然后解析MX主机对应的IP<br>3.服务器通过连接对方的MX主机的25（邮件SMTP端口）发送邮件<br>4.用户通过客户端工具如OUTLOOK  foxmail软件连接收件人邮件服务器进行接收邮件<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-1/25287351.jpg" alt=""></p>
+<h2 id="0x08-子域名查询"><a href="#0x08-子域名查询" class="headerlink" title="0x08 子域名查询"></a>0x08 子域名查询</h2><p>1、fierse工具：fierce -dns  www.baidu.com<br>2、在线查询：<a href="http://i.links.cn/subdomain/" target="_blank" rel="external">http://i.links.cn/subdomain/</a><br>3、谷歌语法：site: baidu.com/<br>4、subDomainsBrute：<a href="https://github.com/lijiejie/subDomainsBrute" target="_blank" rel="external">https://github.com/lijiejie/subDomainsBrute</a><br>5、DNS域传送漏洞<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; nslookup   输入nslookup命令进入交互式shell</div><div class="line">&gt; server DNS服务器   Server 命令参数设定查询将要使用的DNS服务器</div><div class="line">&gt; ls 域名   Ls命令列出某个域中的所有域名</div><div class="line">&gt; exit  Exit命令退出程序</div></pre></td></tr></table></figure></p>
+<h2 id="0x09-源码泄露、敏感目录"><a href="#0x09-源码泄露、敏感目录" class="headerlink" title="0x09 源码泄露、敏感目录"></a>0x09 源码泄露、敏感目录</h2><ul>
+<li><p>源码泄露<br>1、.git源码泄露<br>2、.DS_Store文件泄漏<br>3、SVN文件泄露<br>4、代码托管平台<br>5、网站备份压缩文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.rar</div><div class="line">.zip</div><div class="line">.7z</div><div class="line">.tar.gz</div><div class="line">.bak</div><div class="line">.swp</div><div class="line">.txt</div><div class="line">.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>敏感目录<br>1、nikto<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/36784113.jpg" alt=""><br>2、dirb<br><img src="http://obh1qcqek.bkt.clouddn.com/17-8-3/71646913.jpg" alt=""><br>3、御剑目录扫描</p>
+</li>
+</ul>
+<h2 id="0x10-旁注-C段"><a href="#0x10-旁注-C段" class="headerlink" title="0x10 旁注 C段"></a>0x10 旁注 C段</h2><p>　　旁注的意思就是从同台服务器上的其他网站入手，提权，然后把服务器拿下，就自然那个网站也就拿下了。C段嗅探，每个IP有ABCD四个段，举个例子，192.168.0.1，A段就是192，B段是168，C段是0，D段是1，而C段嗅探的意思就是拿下它同一C段中的其中一台服务器，也就是说是D段1-255中的一台服务器，然后利用工具嗅探拿下该服务。<br>在线查询：<br><a href="http://www.webscan.cc/" target="_blank" rel="external">http://www.webscan.cc/</a><br><a href="http://dns.aizhan.com/" target="_blank" rel="external">http://dns.aizhan.com/</a><br><a href="http://www.secbox.cn/wp-content/uploads/2015/02/%E5%AE%89%E5%85%A8%E7%9B%92%E5%AD%90C%E6%AE%B5%E6%97%81%E6%B3%A8%E5%B7%A5%E5%85%B7%E7%AC%AC%E4%BA%8C%E7%89%88.rar" target="_blank" rel="external">安全盒子C段旁注工具</a></p>
+<h2 id="0x11-社工"><a href="#0x11-社工" class="headerlink" title="0x11 社工"></a>0x11 社工</h2><p>QQ、QQ空间、微信朋友圈、微博、支付宝<br>Maltego：社工神器<br>社工库：<br><a href="http://s.70sec.com/" target="_blank" rel="external">http://s.70sec.com/</a><br>社交网站：<br><a href="http://twitter.com" target="_blank" rel="external">http://twitter.com</a><br><a href="http://facebook.com" target="_blank" rel="external">http://facebook.com</a><br>求职网站：<br><a href="http://linkedin.com" target="_blank" rel="external">http://linkedin.com</a><br><a href="http://plaxo.com" target="_blank" rel="external">http://plaxo.com</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Hello_C
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html" title="渗透测试--01信息搜集">http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i>  渗透测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/漏洞/2017/07/01/SQL注入技巧.html" rel="next" title="SQL注入技巧">
+                <i class="fa fa-chevron-left"></i> SQL注入技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/渗透/测试/2017/09/26/Linux渗透之OpenSSH后门.html" rel="prev" title="Linux渗透之OpenSSH后门">
+                Linux渗透之OpenSSH后门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="渗透/2017/08/03/渗透测试-01信息搜集.html"
+           data-title="渗透测试--01信息搜集" data-url="http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Hello_C" />
+          <p class="site-author-name" itemprop="name">Hello_C</p>
+           
+              <p class="site-description motion-element" itemprop="description">渗透测试  网络安全   web</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zjwfc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5664757301" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dropsec.xyz" title="Drops团队主页" target="_blank">Drops团队主页</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ctf.dropsec.xyz" title="Drops攻防平台" target="_blank">Drops攻防平台</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fgp.dropsec.xyz" title="F.G.PNotes" target="_blank">F.G.PNotes</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lyx.dropsec.xyz" title="lazy" target="_blank">lazy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://byd.dropsec.xyz" title="Joy_nick" target="_blank">Joy_nick</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz" title="X加油,未来" target="_blank">X加油,未来</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jdrops.dropsec.xyz" title="J_Drops" target="_blank">J_Drops</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lzx.dropsec.xyz" title="凡尘" target="_blank">凡尘</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cq.dropsec.xyz" title="qiqi" target="_blank">qiqi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yunnigu.dropsec.xyz" title="云" target="_blank">云</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://isron.cn" title="Isron" target="_blank">Isron</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://flashsec.cn" title="Flash|Sec" target="_blank">Flash|Sec</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-搜索引擎"><span class="nav-number">1.</span> <span class="nav-text">0x01 搜索引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-whois查点"><span class="nav-number">2.</span> <span class="nav-text">0x02 whois查点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-目标IP"><span class="nav-number">3.</span> <span class="nav-text">0x03 目标IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-指纹识别"><span class="nav-number">4.</span> <span class="nav-text">0x04 指纹识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-WAF检测"><span class="nav-number">5.</span> <span class="nav-text">0x05 WAF检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-端口扫描"><span class="nav-number">6.</span> <span class="nav-text">0x06 端口扫描</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-DNS查询"><span class="nav-number">7.</span> <span class="nav-text">0x07 DNS查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-子域名查询"><span class="nav-number">8.</span> <span class="nav-text">0x08 子域名查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09-源码泄露、敏感目录"><span class="nav-number">9.</span> <span class="nav-text">0x09 源码泄露、敏感目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x10-旁注-C段"><span class="nav-number">10.</span> <span class="nav-text">0x10 旁注 C段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x11-社工"><span class="nav-number">11.</span> <span class="nav-text">0x11 社工</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hello_C</span>
+  
+  <span class="site-pv">
+   <script src="http://s6.cnzz.com/stat.php?id=1261655448&web_id=1261655448" type="text/javascript"></script>
+  </span>
+  
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+<!-- time -->
+  <div id="show-time">
+    <span id="span_dt_dt"></span>
+  </div>
+  <script>
+      function show_date_time() {
+        window.setTimeout("show_date_time()", 1000);
+        BirthDay = new Date("9/1/2016 15:30:01");
+        today = new Date();
+        //总时间
+        timeold = (today.getTime() - BirthDay.getTime());
+        sectimeold = timeold / 1000
+        secondsold = Math.floor(sectimeold);
+        msPerDay = 24 * 60 * 60 * 1000
+        e_daysold = timeold / msPerDay
+        daysold = Math.floor(e_daysold);
+        e_hrsold = (e_daysold - daysold) * 24;
+        hrsold = Math.floor(e_hrsold);
+        e_minsold = (e_hrsold - hrsold) * 60;
+        minsold = Math.floor((e_hrsold - hrsold) * 60);
+        seconds = Math.floor((e_minsold - minsold) * 60);
+        span_dt_dt.innerHTML = "本站已安全运行 " + daysold + " 天 " + hrsold + " 小时 " + minsold + " 分 " + seconds + " 秒";
+      }
+     show_date_time();
+  </script>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zjwfc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("JCRSaBjs1fI4FctoIzV1M8Kh-gzGzoHsz", "HPfVnkuIFClUv2BUNyy20FlB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
