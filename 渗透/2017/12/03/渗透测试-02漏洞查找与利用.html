@@ -116,7 +116,7 @@
 <meta property="og:url" content="http://yoursite.com/渗透/2017/12/03/渗透测试-02漏洞查找与利用.html">
 <meta property="og:site_name" content="Hello_C技术博客">
 <meta property="og:description" content="经过前期的信息搜集阶段，我们已经基本掌握了目标网站的敏感信息，比如：真实IP、二级域名、服务器、组件指纹等等敏感信息。这么信息对我们进行后期的渗透起到了至关重要的作用。常见的网站搭配：1234asp（aspx）+MSSQLasp（aspx）+ACCESSphp+MYSQLjsp+MYSQL">
-<meta property="og:updated_time" content="2017-12-03T16:41:16.615Z">
+<meta property="og:updated_time" content="2017-12-04T15:43:14.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透测试--02漏洞查找与利用">
 <meta name="twitter:description" content="经过前期的信息搜集阶段，我们已经基本掌握了目标网站的敏感信息，比如：真实IP、二级域名、服务器、组件指纹等等敏感信息。这么信息对我们进行后期的渗透起到了至关重要的作用。常见的网站搭配：1234asp（aspx）+MSSQLasp（aspx）+ACCESSphp+MYSQLjsp+MYSQL">
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,638
+                  2,447
                 </span>
               
 
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  6
+                  9
                 </span>
               
             </div>
@@ -450,21 +450,24 @@
 </ul>
 <h3 id="0x01-扫描"><a href="#0x01-扫描" class="headerlink" title="0x01 扫描"></a>0x01 扫描</h3><p>　　在目标防护不是特别严的情况下，我们可以直接使用各种漏扫工具先进行一波漏洞扫描。如：Burp、Awvs、Appscan、Nessus等漏扫工具。对扫描出来的漏洞进一步进行手工验证。这样我们的工作效率可能会进一步提高，针对点也明确。<br>　　在进行目录扫描的时候，说不定可以一下扫出个上传点，直接上传shell，这是十分有可能的，有时候你花很久搞一个站，最后发现有个现成的上传点，而且很容易猜到，不过这种情况发生在asp居多！<br>　　对于目标各类web入口，普通网站后台、其他web入口，首先第一反应就是试试弱口令，第二万能密码，第三爆破，第四注入，登录口查找可以使用google语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">url:xxxx url:login|admin</div><div class="line">url:xxxx intitle:管理|登录</div><div class="line">url:xxxx intext:管理|登录</div></pre></td></tr></table></figure></p>
 <p>　　对于敏感文件的泄露，可能会扫描到一些源码泄露、目录遍历、各类探针文件、备份文件等，这样我们可以直接搜索到数据库用户名密码等敏感信息，或者直接进行代码审计，漏洞任你挖；或者识别出具体的CMS，先查找网上是否具有漏洞利用方法，然后下载对应版本信息进行代码审计。</p>
-<h3 id="0x02-SQL注入"><a href="#0x02-SQL注入" class="headerlink" title="0x02 SQL注入"></a>0x02 SQL注入</h3><p>　　　　一般情况下拿到一个网站先找注入，后找上传，两者都没有，那就编辑器（eweb,和fck)，或者旁注，存在注入好的情况下可以直接写shell，或者拿到用户命密码后台拿shell。<br>SQL注入直接拿shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">必须root权限；</div><div class="line">一直网站路径；</div><div class="line">GPC关闭；</div></pre></td></tr></table></figure></p>
+<h3 id="0x02-SQL注入"><a href="#0x02-SQL注入" class="headerlink" title="0x02 SQL注入"></a>0x02 SQL注入</h3><p>　　　　一般情况下拿到一个网站先找注入，后找上传，两者都没有，那就编辑器（eweb,和fck)，或者旁注，存在注入好的情况下可以直接写shell，或者拿到用户命密码后台拿shell。<br>SQL注入直接拿shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">必须root权限；</div><div class="line">已知网站路径；</div><div class="line">GPC关闭；</div></pre></td></tr></table></figure></p>
 <ul>
 <li>php+mysql注入<br>　　联合查询注入、堆查询注入、基于时间的盲注、基于布尔的盲注、基于报错注入，一般这五种注入SQLmap基本都可以解决，在平时练习的时候可以手工进行练习，以便理解其中的原理以及基本的流程，在实战中可以使用sqlmap等提高我们的效率，前提是我们对注入的原理要有所了解，可以使用-V 3参数可以查看sqlmap注入时的payload。至于如何绕过WAF等，以后我们慢慢详细说明。</li>
 <li>asp（aspx）+ACCESS<br>　　表名没得到注入：社工，对比url网站地址<br>　　列名没得到注入：偏移注入、社工、后台源码中参数名<br>　　偏移注入主要是针对知道表，但是不知道字段的。</li>
 <li>asp（aspx）+MSSQL<br>　　MSSQL数据库的用户权限，一般有两种，一种是SA权限，这种权限很大，还有一种是DB_OWNER权限，这个权限赋给用户一些对数据库的修改、删除、新增数据库表，执行部分存储过程的权限。但是涉及到一些系统敏感操作权限不具备。<br>　　实际中我们遇到的最多的还是db_owner权限，我们常用的方法就是读网站目录，然后备份获取shell</li>
 </ul>
-<h3 id="0x03-文件上传"><a href="#0x03-文件上传" class="headerlink" title="0x03 文件上传"></a>0x03 文件上传</h3><p>　　如果运气好的话，我们可以扫到一直上传页面，这样我们就可以直接上传我们的一句话，例如：FCK编辑器的上传页面等，一些根本不需要进入后台的。<br>　　文件上传的常用方法00截断、Apache、Ngnix、IIS等一些解析漏洞进行上传利用，绕过WAF的一些思路和方法：</p>
+<h3 id="0x03-文件上传"><a href="#0x03-文件上传" class="headerlink" title="0x03 文件上传"></a>0x03 文件上传</h3><p>　　如果运气好的话，我们可以扫到一直上传页面，这样我们就可以直接上传我们的一句话，例如：FCK编辑器的上传页面等，一些根本不需要进入后台就可以访问的上传页面。<br>　　文件上传的常用方法00截断、Apache、Ngnix、IIS等一些解析漏洞进行上传利用，绕过WAF的一些思路和方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">WAF身份认证阶段的绕过</div><div class="line">    伪造搜索引擎</div><div class="line">    伪造白名单特殊目录</div><div class="line">    直接攻击源站</div><div class="line">WAF数据包解析阶段的绕过</div><div class="line">    编码绕过</div><div class="line">    修改请求方式绕过</div><div class="line">    复参数绕过</div><div class="line">WAF触发规则的绕过</div><div class="line">    特殊字符替换空格</div><div class="line">    特殊字符拼接</div><div class="line">    注释包含关键字</div></pre></td></tr></table></figure></p>
 <ul>
-<li>WAF身份认证阶段的绕过<br>伪造搜索引擎<br>伪造白名单特殊目录<br>直接攻击源站</li>
-<li>WAF数据包解析阶段的绕过<br>编码绕过<br>修改请求方式绕过<br>复参数绕过</li>
-<li>WAF触发规则的绕过<br>特殊字符替换空格<br>特殊字符拼接<br>注释包含关键字</li>
+<li>解析漏洞<br>（1）IIS 6.0 （除了解析asp，还解析asa, cer, cdx ）<br>文件名解析：test.jpg ——à a.asp;.test.jpg<br>目录解析：/test.jpg ——à /111.asp/test.jpg （该目录下需能创建文件夹）<br>（2）IIS 7.0/7.5 Ngnix （只能解析php）<br>www.xxx.com/test.jpg ——à www.xxx.com/test.jpg/.php<br>在网站图片位置后面+/.php乱码就存在解析漏洞，然后传图马，+/.php菜刀链接。<br>（3）Apache<br>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.。<br>www.xxx.com/test.jpg ——à www.xxx.com/xx.php.xxxxxxx</li>
+<li>上传漏洞攻击手法<br>（1）%00截断上传<br>（2）文件头修改<br>有的时候审核文件类型并不都是按后缀名，也可能按文件头内容，修改可突破。<br>GIF: gif89a jpg：JFIF<br>（3）文件类型修改</li>
+<li>编辑器上传<br>（1）ewebeditor<br>辑器漏洞利用核心：获取编辑器地址</li>
 </ul>
-<h3 id="0x04-其他漏洞"><a href="#0x04-其他漏洞" class="headerlink" title="0x04 其他漏洞"></a>0x04 其他漏洞</h3><p>XSS：可以利用XSS盲打后台。得到管理员的COOKLE和后台登录地址，可以直接登录后台拿shell；<br>任意文件下载：通常有下载功能的站我们可以尝试修改下URL文件名，看能否下载站点敏感文件，如数据库配置文件、配置文件等进行代码审计；</p>
-<h3 id="0x04-端口、中间件利用"><a href="#0x04-端口、中间件利用" class="headerlink" title="0x04 端口、中间件利用"></a>0x04 端口、中间件利用</h3><p>　　弱口令和everyone权限，比如21对应的FTP、1433对应的MSSQL、3306对应的MYSQL、3389对应的远程桌面、1521对应的Oracle等等，先试试弱口令和字典爆破，或许会有收获呢！<br>　　常见的一些中间件，如weblogic、Tomcat、jboss、JOnAS、WebSphere等一些中间件根据已经爆出的漏洞我们也可以直接拿到shell。</p>
-<h3 id="0x05-其他"><a href="#0x05-其他" class="headerlink" title="0x05 其他"></a>0x05 其他</h3><p>爆网站路径：</p>
+<p>1、Ewebeditor编辑器漏洞利用过程：获取编辑器地址，尝试获取编辑器后台地址，尝试默认账号密码登陆，如登陆失败可尝试下载默认数据库，破解其账号密码，登陆后台，尝试添加上传类型，如无确认按钮，可新增样式，新增插入图片，浏览上传，获取后门地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">默认后台地址：ewebeditor/admin_login.asp</div><div class="line">默认账号密码：admin admin/admin123/admin888</div><div class="line">默认数据库地址：ewebeditor/db/ewebeditor.mdb</div></pre></td></tr></table></figure></p>
+<p>2、目录遍历（选择目录样式）<br><a href="http://www.kirinmach.com/ewebeditor//admin_uploadfile.asp?id=14&amp;dir=../../../" target="_blank" rel="external">http://www.kirinmach.com/ewebeditor//admin_uploadfile.asp?id=14&amp;dir=../../../</a>..<br>3、寻找前人痕迹再次入侵（下载的数据查找样式）<br><a href="http://www.njgyjx.com/ewebeditor/ewebeditor.asp?ID=45&amp;style=standard1" target="_blank" rel="external">http://www.njgyjx.com/ewebeditor/ewebeditor.asp?ID=45&amp;style=standard1</a><br>添加：asp，asa，php，aspx，aaspsp等类型<br>（2）fckeditor<br>首先确定网站脚本格式，然后寻找漏洞地址，访问上传，结合解析漏洞加以利用！<br>qq.asp;.jpg ==》qq.asp;.jpg （过滤：qqq_asp;.jpg）</p>
+<p>突破fckeditor “.”过滤”_”：二次上传<br>第一次上传：qq.asp;.jpg ==》qq_asp;.jpg<br>第二次上传：qq.asp;.jpg ==》qq_asp;.jpg (不满足命名要求)，可能出现第二次命名为 qq.asp;(1).jpg（这样就符合解析漏洞格式）<br>新建上传<br>漏洞地址：<br>editor/filemanager/connectors/asp/connector.asp?Command=CreateFolder&amp;Type=Image&amp;CurrentFolder=/qing.asp&amp;NewFolderName=x.asp<br>结果：会建两个文件夹 /qing.asp/x_asp<br>手工新建：<br>/editor/filemanager/connectors/asp/connector.asp?Command=CreateFolder&amp;Type=Image&amp;CurrentFolder=/&amp;NewFolderName=xiaodi.asp<br>结果： /xiaodi<em>asp<br>原因：<br>CurrentFolder：当前文件夹 未进行过滤<br>NewFolderName：新建文件名 进行了过滤（将“.”过滤成“</em>”）</p>
+<h3 id="0x04-其他漏洞"><a href="#0x04-其他漏洞" class="headerlink" title="0x04 其他漏洞"></a>0x04 其他漏洞</h3><p>XSS：可以利用XSS盲打后台。得到管理员的COOKLE和后台登录地址，可以直接登录后台拿shell；<br>任意文件下载：通常有下载功能的站我们可以尝试修改下URL文件名，看能否下载站点敏感文件，如数据库配置文件、配置文件等进行代码审计；<br>SSRF：可以利用SSRF得到真实IP，对内网进行扫描甚至攻击；<br>文件包含：可以包含本地的一些敏感信息或者远程包含拿shell；<br>变量覆盖：覆盖原始数据库配置信息（数据库地址，数据库账号密码，管理员账号密码）</p>
+<h3 id="0x05-端口、中间件利用"><a href="#0x05-端口、中间件利用" class="headerlink" title="0x05 端口、中间件利用"></a>0x05 端口、中间件利用</h3><p>　　弱口令和everyone权限，比如21对应的FTP、1433对应的MSSQL、3306对应的MYSQL、3389对应的远程桌面、1521对应的Oracle等等，先试试弱口令和字典爆破，或许会有收获呢！<br>　　常见的一些中间件，如weblogic、Tomcat、jboss、JOnAS、WebSphere等一些中间件根据已经爆出的漏洞我们也可以直接拿到shell。</p>
+<h3 id="0x06-其他"><a href="#0x06-其他" class="headerlink" title="0x06 其他"></a>0x06 其他</h3><p>爆网站路径：</p>
 <ul>
 <li>报错显示</li>
 <li>漏洞报错</li>
@@ -481,6 +484,7 @@
 <li>插入一句话</li>
 <li>修改上传类型</li>
 </ul>
+<p>网站cms识别<br>1、模板cms（开源源码程序）<br>Phpcms，dedecms，aspcms，WordPress，discuz，phpweb，php168等<br>2、非模板cms识别技术：<br>（1）工具识别：<br>Windows：指纹识别工具<br>Linux：whatweb<br>（2）人工识别：<br>图标logo，底部文件，后台标示，网站url地址,robots.txt等<br>介绍特定cms漏洞扫描两款工具：<br>（1）Wpscan：WordPress程序漏洞专用扫描器<br>（2）Joomscan：Joomla程序漏洞专用扫描器</p>
 
       
     </div>
@@ -796,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-扫描"><span class="nav-number">1.</span> <span class="nav-text">0x01 扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-SQL注入"><span class="nav-number">2.</span> <span class="nav-text">0x02 SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-文件上传"><span class="nav-number">3.</span> <span class="nav-text">0x03 文件上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-其他漏洞"><span class="nav-number">4.</span> <span class="nav-text">0x04 其他漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-端口、中间件利用"><span class="nav-number">5.</span> <span class="nav-text">0x04 端口、中间件利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-其他"><span class="nav-number">6.</span> <span class="nav-text">0x05 其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-扫描"><span class="nav-number">1.</span> <span class="nav-text">0x01 扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-SQL注入"><span class="nav-number">2.</span> <span class="nav-text">0x02 SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-文件上传"><span class="nav-number">3.</span> <span class="nav-text">0x03 文件上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-其他漏洞"><span class="nav-number">4.</span> <span class="nav-text">0x04 其他漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-端口、中间件利用"><span class="nav-number">5.</span> <span class="nav-text">0x05 端口、中间件利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-其他"><span class="nav-number">6.</span> <span class="nav-text">0x06 其他</span></a></li></ol></div>
             
 
           </div>
