@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-31T00:57:18.996Z</updated>
+  <updated>2017-12-03T16:41:16.615Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>渗透测试--02漏洞查找与利用</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/12/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-02%E6%BC%8F%E6%B4%9E%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%88%A9%E7%94%A8.html"/>
+    <id>http://yoursite.com/渗透/2017/12/03/渗透测试-02漏洞查找与利用.html</id>
+    <published>2017-12-03T15:14:28.000Z</published>
+    <updated>2017-12-03T16:41:16.615Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　经过前期的信息搜集阶段，我们已经基本掌握了目标网站的敏感信息，比如：真实IP、二级域名、服务器、组件指纹等等敏感信息。这么信息对我们进行后期的渗透起到了至关重要的作用。常见的网站搭配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">asp（aspx）+MSSQL</div><div class="line">asp（aspx）+ACCESS</div><div class="line">php+MYSQL</div><div class="line">jsp+MYSQL</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<ul>
+<li>asp（aspx）+MSSQL先考虑注入，一般的注入都有DBowner权限可以直接写shell；如果写不了，或者web与数据库分离，那就猜数据，从后台下手了，后台可以上传或者改配置文件；</li>
+<li>asp（aspx）+ACCESS拿shell一般只有3种方法，一是前台上传或者注入进后台上传；二是注入进后台改配置文件；三是注入进后台备份数据库或者暴库后知道是asp或者asa数据库于是直接写一句话；</li>
+<li>php+MYSQL一般是注入进后台上传，偶尔运气好些权限够高可以注入select into outfile；然后包含，分本地与远程，远程包含在高版本php是不力挺的，于是想办法本地上传图片文件或者写到log里；然后php程序某某未公开的漏洞，运气好可以直接写shell。</li>
+<li>jsp+MYSQL利用数据库拿权限方面基本同php，而且jsp的上传基本很少检查文件后缀，于是只要有注入点与后台，拿shell相当的容易。jsp+ORACLE的站我碰到的不多，碰到的也是猜出用户名与密码从后台下手的。</li>
+</ul>
+<h3 id="0x01-扫描"><a href="#0x01-扫描" class="headerlink" title="0x01 扫描"></a>0x01 扫描</h3><p>　　在目标防护不是特别严的情况下，我们可以直接使用各种漏扫工具先进行一波漏洞扫描。如：Burp、Awvs、Appscan、Nessus等漏扫工具。对扫描出来的漏洞进一步进行手工验证。这样我们的工作效率可能会进一步提高，针对点也明确。<br>　　在进行目录扫描的时候，说不定可以一下扫出个上传点，直接上传shell，这是十分有可能的，有时候你花很久搞一个站，最后发现有个现成的上传点，而且很容易猜到，不过这种情况发生在asp居多！<br>　　对于目标各类web入口，普通网站后台、其他web入口，首先第一反应就是试试弱口令，第二万能密码，第三爆破，第四注入，登录口查找可以使用google语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">url:xxxx url:login|admin</div><div class="line">url:xxxx intitle:管理|登录</div><div class="line">url:xxxx intext:管理|登录</div></pre></td></tr></table></figure></p>
+<p>　　对于敏感文件的泄露，可能会扫描到一些源码泄露、目录遍历、各类探针文件、备份文件等，这样我们可以直接搜索到数据库用户名密码等敏感信息，或者直接进行代码审计，漏洞任你挖；或者识别出具体的CMS，先查找网上是否具有漏洞利用方法，然后下载对应版本信息进行代码审计。</p>
+<h3 id="0x02-SQL注入"><a href="#0x02-SQL注入" class="headerlink" title="0x02 SQL注入"></a>0x02 SQL注入</h3><p>　　　　一般情况下拿到一个网站先找注入，后找上传，两者都没有，那就编辑器（eweb,和fck)，或者旁注，存在注入好的情况下可以直接写shell，或者拿到用户命密码后台拿shell。<br>SQL注入直接拿shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">必须root权限；</div><div class="line">一直网站路径；</div><div class="line">GPC关闭；</div></pre></td></tr></table></figure></p>
+<ul>
+<li>php+mysql注入<br>　　联合查询注入、堆查询注入、基于时间的盲注、基于布尔的盲注、基于报错注入，一般这五种注入SQLmap基本都可以解决，在平时练习的时候可以手工进行练习，以便理解其中的原理以及基本的流程，在实战中可以使用sqlmap等提高我们的效率，前提是我们对注入的原理要有所了解，可以使用-V 3参数可以查看sqlmap注入时的payload。至于如何绕过WAF等，以后我们慢慢详细说明。</li>
+<li>asp（aspx）+ACCESS<br>　　表名没得到注入：社工，对比url网站地址<br>　　列名没得到注入：偏移注入、社工、后台源码中参数名<br>　　偏移注入主要是针对知道表，但是不知道字段的。</li>
+<li>asp（aspx）+MSSQL<br>　　MSSQL数据库的用户权限，一般有两种，一种是SA权限，这种权限很大，还有一种是DB_OWNER权限，这个权限赋给用户一些对数据库的修改、删除、新增数据库表，执行部分存储过程的权限。但是涉及到一些系统敏感操作权限不具备。<br>　　实际中我们遇到的最多的还是db_owner权限，我们常用的方法就是读网站目录，然后备份获取shell</li>
+</ul>
+<h3 id="0x03-文件上传"><a href="#0x03-文件上传" class="headerlink" title="0x03 文件上传"></a>0x03 文件上传</h3><p>　　如果运气好的话，我们可以扫到一直上传页面，这样我们就可以直接上传我们的一句话，例如：FCK编辑器的上传页面等，一些根本不需要进入后台的。<br>　　文件上传的常用方法00截断、Apache、Ngnix、IIS等一些解析漏洞进行上传利用，绕过WAF的一些思路和方法：</p>
+<ul>
+<li>WAF身份认证阶段的绕过<br>伪造搜索引擎<br>伪造白名单特殊目录<br>直接攻击源站</li>
+<li>WAF数据包解析阶段的绕过<br>编码绕过<br>修改请求方式绕过<br>复参数绕过</li>
+<li>WAF触发规则的绕过<br>特殊字符替换空格<br>特殊字符拼接<br>注释包含关键字</li>
+</ul>
+<h3 id="0x04-其他漏洞"><a href="#0x04-其他漏洞" class="headerlink" title="0x04 其他漏洞"></a>0x04 其他漏洞</h3><p>XSS：可以利用XSS盲打后台。得到管理员的COOKLE和后台登录地址，可以直接登录后台拿shell；<br>任意文件下载：通常有下载功能的站我们可以尝试修改下URL文件名，看能否下载站点敏感文件，如数据库配置文件、配置文件等进行代码审计；</p>
+<h3 id="0x04-端口、中间件利用"><a href="#0x04-端口、中间件利用" class="headerlink" title="0x04 端口、中间件利用"></a>0x04 端口、中间件利用</h3><p>　　弱口令和everyone权限，比如21对应的FTP、1433对应的MSSQL、3306对应的MYSQL、3389对应的远程桌面、1521对应的Oracle等等，先试试弱口令和字典爆破，或许会有收获呢！<br>　　常见的一些中间件，如weblogic、Tomcat、jboss、JOnAS、WebSphere等一些中间件根据已经爆出的漏洞我们也可以直接拿到shell。</p>
+<h3 id="0x05-其他"><a href="#0x05-其他" class="headerlink" title="0x05 其他"></a>0x05 其他</h3><p>爆网站路径：</p>
+<ul>
+<li>报错显示</li>
+<li>漏洞报错</li>
+<li>遗留文件：phpinfo</li>
+<li>读取配置文件</li>
+<li>社工</li>
+</ul>
+<p>后台拿shell:</p>
+<ul>
+<li>修改配置文件（模板修改）</li>
+<li>数据库备份</li>
+<li>抓包上传</li>
+<li>执行SQL命令</li>
+<li>插入一句话</li>
+<li>修改上传类型</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　经过前期的信息搜集阶段，我们已经基本掌握了目标网站的敏感信息，比如：真实IP、二级域名、服务器、组件指纹等等敏感信息。这么信息对我们进行后期的渗透起到了至关重要的作用。常见的网站搭配：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;asp（aspx）+MSSQL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;asp（aspx）+ACCESS&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;php+MYSQL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;jsp+MYSQL&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Cobalt Strike学习笔记</title>
@@ -904,9 +967,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -1525,212 +1588,6 @@ popen(&apos;whoami&apos; &gt;&gt;D:/test.txt&apos;,&apos;r&apos;);
     
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CTF中的CRYPTO</title>
-    <link href="http://yoursite.com/CTF/2017/03/02/CTF%E4%B8%AD%E7%9A%84CRYPTO.html"/>
-    <id>http://yoursite.com/CTF/2017/03/02/CTF中的CRYPTO.html</id>
-    <published>2017-03-02T11:29:28.000Z</published>
-    <updated>2017-04-24T07:43:33.011Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-CRC32碰撞"><a href="#0x01-CRC32碰撞" class="headerlink" title="0x01 CRC32碰撞"></a>0x01 CRC32碰撞</h3><h4 id="0x01-CRC32"><a href="#0x01-CRC32" class="headerlink" title="0x01 CRC32"></a>0x01 CRC32</h4><p>　　CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。<br>　　CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。<a id="more"></a><br>　　尽管CRC32在错误检测中非常有用，但是并不能可靠地校验数据完整性（即数据没有发生任何变化），这是因为CRC多项式是线性结构，可以非常容易地故意改变数据而维持CRC不变，即存在产生碰撞的可能性。</p>
-<h4 id="0x02-CRC32计算"><a href="#0x02-CRC32计算" class="headerlink" title="0x02 CRC32计算"></a>0x02 CRC32计算</h4><p>　　为了快速方便的还原压缩包的内容，我们需要编程来计算CRC32的值。计算CRC32可以有多种方法，可以从网上找一个实现好的C/C++源文件，也可以使用Python提供的库函数来进行计算，这里我们选择后者。<br>Python的binascii模块提供了一个crc32方法，可以方便的计算所给参数的CRC32值。但是这里的计算结果有一点问题，因为计算出来的结果是一个有符号数，所以可能会看到结果为负数，因此需要将结果和0xFFFFFFFF进行一个位运算与操作。Python计算CRC32的代码如下：</p>
-<pre><code>import binascii
-def calcCRC32(s):
-    crc = binascii.crc32(s)
-    return crc &amp; 0xFFFFFFFF
-</code></pre><p>　　需要注意的是，前面提到CRC32会存在冲突的可能，也就是说，不同的内容在经过计算后得到的CRC32散列值可能是一样的。</p>
-<p><img src="http://p1.bpimg.com/4851/7d3305badacd27ba.png" alt=""></p>
-<h4 id="0x03-使用脚本进行快速破解"><a href="#0x03-使用脚本进行快速破解" class="headerlink" title="0x03 使用脚本进行快速破解"></a>0x03 使用脚本进行快速破解</h4><p>　　经过前面的分析，我们已经知道了可以通过CRC32来还原压缩包中的4字节文本，以及通过Python计算CRC32的方法，现在只需要给Python脚本添加枚举功能即可，代码如下</p>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-
-import datetime
-
-import binascii
-
-def showTime():
-    print datetime.datetime.now().strftime(&quot;%H:%M:%S&quot;)
-
-def crack():
-    crcs = set([0xE761062E, 0x2F9A55D3, 0xF0F809B5,
-    0x645F52A4, 0x0F448B76, 0x3E1A57D9, 0x3A512755])
-
-    r = xrange(32, 127)
-    for a in r:
-        for b in r:
-            for c in r:
-                for d in r:
-                    txt = chr(a)+chr(b)+chr(c)+chr(d)
-                    crc = binascii.crc32(txt)
-                    if (crc &amp; 0xFFFFFFFF) in crcs:
-                        print txt
-
-
-
-if __name__ == &quot;__main__&quot;:
-    showTime()
-    crack()
-    showTime()
-</code></pre><p><img src="http://p1.bpimg.com/4851/344187c4eab2c70d.jpg" alt=""></p>
-<h3 id="0x02-RSA算法"><a href="#0x02-RSA算法" class="headerlink" title="0x02 RSA算法"></a>0x02 RSA算法</h3><p>　　RSA属于非对称加密算法，因为RSA使用了两个不同的密钥分别用于加密和解密，这两个密钥称之为公私钥对，其中公钥用于加密，且公钥是公开的，而私钥用于解密，私钥是私有的。</p>
-<h4 id="0x01-RSA的计算过程如下"><a href="#0x01-RSA的计算过程如下" class="headerlink" title="0x01 RSA的计算过程如下"></a>0x01 RSA的计算过程如下</h4><pre><code>1. 找到两个大素数p和q，计算出n = pq；
-2. 计算出φ(n) = (p-1)*(q-1)，选择一个e，满足1 &lt; e &lt;φ(n)，且gcd(φ(n), e) = 1；
-3. 计算出d，使得d满足ed % φ(n) = 1；
-此时，已经生成了公私钥对，其中(e, n)为公钥，(d, n)为私钥。
-4. 对于明文M，有密文C = M^e % n，此为加密过程；
-5. 对于密文C，有明文M = C^d % n，此为解密过程；
-</code></pre><h4 id="0x02-相关知识"><a href="#0x02-相关知识" class="headerlink" title="0x02 相关知识"></a>0x02 相关知识</h4><p>一、素数</p>
-<ul>
-<li>素数（Prime Number）又称质数，是指在大于1的自然数中，约数只有1和它本身的数。</li>
-<li>根据素数的定义，要判断一个数n是否是素数，只需要看n是否能够被2, 3, 4, …, n-1里面的任意一个数整除，如果存在则说明不是素数。实际上，只需要判断2, 3, …, sqrt(n)里面的数即可。</li>
-</ul>
-<p>二、最大公约数</p>
-<ul>
-<li>假如整数n除以m，结果是一个整数（即余数为0），那么m为n的约数。最大公约数（Greatest Common Divisor，GCD）指某几个整数共有约数中最大的一个，我们使用gcd(a, b)表示a和b的最大公约数。</li>
-<li>使用辗转相除法（也称之为欧几里得算法），可以求出两个数的最大公约数。假设a &gt; b，则欧几里得算法的核心表示为gcd(a, b) = gcd(b, a%b)，这样不断的递归进行计算，直到b等于0，则此时的a即为最大公约数。</li>
-</ul>
-<p>三、扩展欧几里得算法</p>
-<ul>
-<li>欧几里得算法用于求出最大公约数d = gcd(a, b)，而扩展欧几里得算法不仅计算出最大公约数d，而且还有另外两个整数x和y，他们满足如下方程：ax + by = d = gcd(a, b)。很明显，这里x和y具有相反的正负号。</li>
-</ul>
-<p>四、乘法逆元</p>
-<pre><code>对于给定的书x和n，如果存在另外一个数y，使得xy % n = 1，那么我们称x模n的乘法逆元为y。乘法逆元的概念类似于小学数学中的倒数的概念，只不过此时为xy = 1。
-</code></pre><h4 id="0x03-RSA计算"><a href="#0x03-RSA计算" class="headerlink" title="0x03 RSA计算"></a>0x03 RSA计算</h4><p>给定RSA密文[971,922,605,1446,1704,889,2090,605,1899,1915,2088,1988,1235,1032,65,922,958,1988,2144,591,1988,2270,2088,1032,65,958,2233]，已知RSA的公钥为{7,2449}，请还原出对应的明文。</p>
-<p><strong>质因数分解</strong></p>
-<p>　　RSA面临的一种攻击方式为数学攻击，实质上就是试图分解两个素数的乘积，给定RSA的公钥{e, n}，根据RSA的定义，如果能够将n分解为两个素数的乘积，即n = pq，那么就可以计算出d了，也就是得到私钥{d, n}。<br>　　需要指出的是，如果n非常大，那么这样的攻击基本上是不可行的，以Gmail为例，其n的长度为256字节，即所说的2048位，就目前的计算条件而言，在私钥不泄露的情况下是安全的。对于本题给定的n=2449而言，我们可以轻易的将其分解为两个素数的乘积。进行质因数分解的代码如下：</p>
-<pre><code>import math
-def isPrime(n):
-
-    if n &lt;= 1:
-        return False
-    for i in xrange(2, int(math.sqrt(n) + 1)):
-        if n % i == 0:
-            return False
-    return True   
-
-def crack(n):    
-    for p in xrange(2, n):
-        for q in xrange(p+1, n):
-            if p*q == n and isPrime(p) and isPrime(q):
-                return (p, q)
-</code></pre><p>　　其中，isPrime用于判断一个数是否是素数，执行crack即可返回分解的结果。执行上面的代码，可以将2449分解为31与79的乘积。</p>
-<p><strong>私钥获取</strong><br>　　在前面，我们已经将2449分解为31与79的乘积，即p=31，q=79，因此可以计算出φ(n) = (p-1)<em>(q-1) = 30</em>78 = 2340，现在已经给定了e=7，只需要找到一个d，使得ed % φ(n) = 1即可。在数据量很小的情况下，这里直接枚举也是可以求出d的，但是更加正式的方法是使用扩展欧几里得算法进行求解。<br>　　对于扩展欧几里得算法的具体求解过程，因为篇幅原因这里不进行讲解，有兴趣的同学可以查阅相关资料。这里主要讲解为什么通过扩展欧几里得算法可以求出d。<br>　　对于给定的两个数a和b，扩展欧几里得可以求出最大公约数gcd(a,b)以及x,y使得：<br>      ax + by = gcd(a, b)<br>　　在RSA中，已知φ(n)和e，要求求出d，使得ed % φ(n) = 1。应用到扩展欧几里得算法中，另a=φ(n)，b=e，已知 gcd(φ(n), e) = 1，则有：<br>      φ(n)<em>x + e</em>y = 1<br>　　因为φ(n)<em>x %φ(n) = 0，所以自然有ey %φ(n) = 1，即扩展欧几里得求出的y就是我们所要的d。需要注意的是，求出来的y可能是负数，因此y需要不断的加上φ(n)，直到大于0，因为φ(n)</em>x + e<em>y =φ(n)</em>(x-e) + e*(y+φ(n))<br>求解私钥d的代码如下：</p>
-<pre><code>def extGcd(a, b):
-    if a &lt; b:
-        return extGcd(b, a)
-    if b == 0:
-        return a, 1, 0
-    gcd, x, y = extGcd(b, a%b)
-    return gcd, y, x-a/b*y 
-def getD(n, e):
-    p, q = crack(n) # call crack(n) to break n to p*q
-    fai = (p-1)*(q-1)
-    gcd, x, y = extGcd(fai, e)
-    while y &lt; 0:
-        y += fai
-    return y
-</code></pre><p><strong>RSA解密</strong><br>　　经过前面的推导分析，我们已经成功计算出了RSA的私钥{d, n}，现在只需要执行解密操作即可，解密过程为C^d % n。但是现在面临的一个问题是，在计算C^d时可能存在一些问题，比如当C和d都非常大时，C^d的计算可能非常耗时且结果非常大，实际上并不需要计算出完整的C^d，这里可以在数学上做一些优化，具体不进行讲解，有兴趣请自行查阅了解。Python自带的pow函数可以快速计算出C^d % n，即pow(C, d, n)。</p>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import math
-def isPrime(n):
-    if n &lt;= 1:
-        return False
-    for i in xrange(2, int(math.sqrt(n) + 1)):
-        if n % i == 0:
-            return False
-    return True
-
-def crack(n):
-    for p in xrange(2, n):
-        for q in xrange(p+1, n):
-            if p*q == n and isPrime(p) and isPrime(q):
-                return (p, q)
-
-def extGcd(a, b):
-    if a &lt; b:
-        return extGcd(b, a)
-    if b == 0:
-        return a, 1, 0
-    gcd, x, y = extGcd(b, a%b)
-    return gcd, y, x-a/b*y
-
-def getD(n, e):
-    p, q = crack(n)
-    fai = (p-1)*(q-1)
-    gcd, x, y = extGcd(fai, e)
-    while y &lt; 0:
-        y += fai
-    return y
-
-def decrypt(n, e, ciphertext):
-    plaintext = []
-    d = getD(n, e)
-    for num in ciphertext:
-        num = pow(num, d, n)
-        plaintext.append(chr(num))
-    return &quot;&quot;.join(plaintext)
-
-
-if __name__ == &quot;__main__&quot;:
-    n = 2449
-    e = 7
-    ciphertext = [971,922,605,1446,1704,889,2090,605,1899,
-              1915,2088,1988,1235,1032,65,922,958,1988,
-              2144,591,1988,2270,2088,1032,65,958,2233]
-    plaintext = decrypt(n, e, ciphertext)
-    print plaintext
-</code></pre><p>等待一段时间之后，得到如下的结果：<br><img src="http://p1.bpimg.com/567571/8998607018b8dd20.jpg" alt=""></p>
-<h3 id="0x03-影之密码"><a href="#0x03-影之密码" class="headerlink" title="0x03 影之密码"></a>0x03 影之密码</h3><p><img src="http://i1.piimg.com/567571/5d3157e0fbeddd55.png" alt=""></p>
-<p>8842101220480224404014224202480122</p>
-<p><strong>云影密码，1,2,4,8四个数字，以加法可以表示出0~9任何一个数字，例：28=0,124=7,18=9<br>再用1~26表示A~Z    其中0表示间隔。也被称为“01248密码”</strong></p>
-<pre><code>密文：8842101220480224404014224202480122
-88421       8+8+4+2+1=23    W
-122               1+2+2=5              E
-48                      4+8=12            L
-2244           2+2+4+4=12         L
-4                         4                        D
-142242   1+4+2+2+4+2=15   O
-248                2+4+8=14            N
-122                1+2+2=5               E
-
-FLAG:WELLDONE
-</code></pre><h3 id="0x04-德军密码"><a href="#0x04-德军密码" class="headerlink" title="0x04 德军密码"></a>0x04 德军密码</h3><p><img src="http://i1.piimg.com/567571/521cc0be1c8e6212.png" alt=""></p>
-<p>密文：<br>000000000000000000000000000000000000000000000000000101110000110001000000101000000001<br>二战时德军使用过的一种密码，其实是利用了二进制的表示法来替代字母，也称为“费娜姆密码”</p>
-<pre><code>A 1000001     B 1000010       C 1000011          D 1000100
-E 1000101     F 1000110       G 1000111          H 1001000
-I 1001001     J 1001010       K 1001011          L 1001100
-M 1001101     N 1001110       O 1001111          P 1010000
-Q 1010001     R 1010010       S 1010011          T 1010100
-U 1010101     V 1010110       W 1010111          X 1011000
-Y 1011001     Z 1011010
-</code></pre><p>密文每7个一组，与密钥进行异或处理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">0000000    +      W:1010111    =1010111        W</div><div class="line">0000000    +      E:1000101     =1000101         E</div><div class="line">0000000    +      L:1001100     =1001100         L</div><div class="line">0000000    +      C:1000011     =1000011         C</div><div class="line">0000000    +      O:1001111      =1001111         O</div><div class="line">0000000    +      M:1001101     =1001101         M</div><div class="line">0000000    +      E:1000101     =1000101         E</div><div class="line">0010111    +      T:1010100      =1000011         C</div><div class="line">0000110    +      O:1000011      =1000101         E</div><div class="line">0010000    +      C:1000011     =1010011          S</div><div class="line">0010100    +      F:1000110     =1010010         R</div><div class="line">0000001    +      F:1000110     =1000111         G</div><div class="line">    </div><div class="line">FLAG：WELCOMECESRG</div></pre></td></tr></table></figure>
-<p>异或手工太麻烦了，可以使用代码进行简化：</p>
-<pre><code>a=&apos;000000000000000000000000000000000000000000000000000000000001011100000110000100000001010000000001&apos;  
-b=&apos;010101110100010101001100010000110100111101001101010001010101010001001111010000110100011001000110&apos;  
-c=&apos;&apos;
-
-for i in range(len(a)):  
-    c+=str(ord(a[i])^ord(b[i]))  
-print c  
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-CRC32碰撞&quot;&gt;&lt;a href=&quot;#0x01-CRC32碰撞&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32碰撞&quot;&gt;&lt;/a&gt;0x01 CRC32碰撞&lt;/h3&gt;&lt;h4 id=&quot;0x01-CRC32&quot;&gt;&lt;a href=&quot;#0x01-CRC32&quot; class=&quot;headerlink&quot; title=&quot;0x01 CRC32&quot;&gt;&lt;/a&gt;0x01 CRC32&lt;/h4&gt;&lt;p&gt;　　CRC全称为Cyclic redundancy check，即循环冗余校验码，是一种根据输入数据产生简短的固定位数校验码的散列函数。CRC主要用来检测或者校验数据经过传输或者保存后可能出现的错误，CRC32产生32位的散列值（即4字节）。&lt;br&gt;　　CRC32可以用于数据的校验，在WinRAR等压缩软件中也使用了这一技术，压缩包中每个文件都保存有一个对应的CRC32值，这个值是对压缩前的文件数据计算出来的散列值，在进行解压时会再次计算文件的CRC32值来进行对比，判断压缩包文件是否损坏。
-    
-    </summary>
-    
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
-    
-    
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
