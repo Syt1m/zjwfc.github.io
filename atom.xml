@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-14T08:55:54.203Z</updated>
+  <updated>2018-01-14T09:01:09.970Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>上传绕过WAF的tips大全</title>
-    <link href="http://yoursite.com/CTF/%E6%B8%97%E9%80%8F/2018/01/14/%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87WAF%E7%9A%84tips%E5%A4%A7%E5%85%A8.html"/>
-    <id>http://yoursite.com/CTF/渗透/2018/01/14/上传绕过WAF的tips大全.html</id>
+    <link href="http://yoursite.com/CTF/2018/01/14/%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87WAF%E7%9A%84tips%E5%A4%A7%E5%85%A8.html"/>
+    <id>http://yoursite.com/CTF/2018/01/14/上传绕过WAF的tips大全.html</id>
     <published>2018-01-14T08:51:34.000Z</published>
-    <updated>2018-01-14T08:55:54.203Z</updated>
+    <updated>2018-01-14T09:01:09.970Z</updated>
     
     <content type="html"><![CDATA[<p>原始默认状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">——WebKitFormBoundary2smpsxFB3D0KbA7D</div><div class="line">Content-Disposition: form-data; name=”filepath”; filename=”backlion.asp”</div><div class="line">Content-Type: text/html</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -51,8 +51,6 @@
     </summary>
     
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
-    
-      <category term="渗透" scheme="http://yoursite.com/categories/CTF/%E6%B8%97%E9%80%8F/"/>
     
     
       <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
