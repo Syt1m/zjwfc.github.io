@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-17T14:33:58.298Z</updated>
+  <updated>2019-03-17T14:52:52.331Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,15 +17,24 @@
   
   <entry>
     <title>写给以后</title>
-    <link href="http://yoursite.com/uncategorized/2019/03/17/%E5%86%99%E7%BB%99%E4%BB%A5%E5%90%8E.html"/>
-    <id>http://yoursite.com/uncategorized/2019/03/17/写给以后.html</id>
+    <link href="http://yoursite.com/%E7%94%9F%E6%B4%BB/2019/03/17/%E5%86%99%E7%BB%99%E4%BB%A5%E5%90%8E.html"/>
+    <id>http://yoursite.com/生活/2019/03/17/写给以后.html</id>
     <published>2019-03-17T14:33:58.000Z</published>
-    <updated>2019-03-17T14:33:58.298Z</updated>
+    <updated>2019-03-17T14:52:52.331Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　自从去年7月上班之后，只更新了一篇博客，工作也不是很忙，整天也在不知道浑浑噩噩的干一些，感觉找到工作了，没有了什么压力，甚至没有了之前学校那种学习的劲头，整天就像混日子一样重复着一些机械的、没有什么技术的工作，感觉整个人都要废了。<a id="more"></a><br>　　博客也好久没有搭理，导致已经快要荒废，之前的图床也挂了，图片什么的都加载不出来了。唉，懒惰是人的天性，能够打败自己最大的敌人就是自己。<br>　　虽然知道还有还多东西要学，还有好多东西要做，可是就是没有实际行动起来，这样下去，整个人怕是要被行业淘汰。以后要努力了，把博客运用起来，希望多交一些朋友，大家一起开心的学习，玩耍。<br>　　之前看到一句话，这里分享给大家：<strong>不要在体制外混日子，不要在体制内一门心思搞研究关键是跟对人</strong>。</p>
+]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;　　自从去年7月上班之后，只更新了一篇博客，工作也不是很忙，整天也在不知道浑浑噩噩的干一些，感觉找到工作了，没有了什么压力，甚至没有了之前学校那种学习的劲头，整天就像混日子一样重复着一些机械的、没有什么技术的工作，感觉整个人都要废了。
+    
     </summary>
     
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="生活" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
