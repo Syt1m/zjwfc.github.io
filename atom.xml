@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-23T14:12:36.646Z</updated>
+  <updated>2018-07-23T14:16:57.881Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2018/07/23/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"/>
     <id>http://yoursite.com/渗透/2018/07/23/科学上网.html</id>
     <published>2018-07-23T13:19:50.000Z</published>
-    <updated>2018-07-23T14:12:36.646Z</updated>
+    <updated>2018-07-23T14:16:57.881Z</updated>
     
     <content type="html"><![CDATA[<p>　　如今有时候想出去查点资料，奈何法力不够，肉身翻不出去，于是就找了找相关知识，试试可不可以出去看看。首先我们需要有一个国外的vps，推荐搬瓦工或者Vultr，具体可以<a href="https://buy.shangyufeidi.com/vultr/vultr-vs-bwg/" target="_blank" rel="external">参考</a>自己进行选择。一般都有一键搭建ss或者ssr，简单方便、傻瓜化教程。<br><a id="more"></a></p>
 <h3 id="0x01-SS-SSR服务器端"><a href="#0x01-SS-SSR服务器端" class="headerlink" title="0x01 SS\SSR服务器端"></a>0x01 SS\SSR服务器端</h3><p>　　SS\SSR服务器端搭建比较简单，一般都有一键部署模式，而且网上的资料也比较多，这里就不多介绍咯。<br>　　具体搭建方法可以参考以下：<a href="https://blog.csdn.net/qq_26483671/article/details/79268195" target="_blank" rel="external">参考1</a><a href="https://www.yigeni.com/build-a-wall-ss-server/" target="_blank" rel="external">参考2</a><a href="https://blog.csdn.net/zoe9698/article/details/79025848" target="_blank" rel="external">参考3</a></p>
 <h3 id="0x02-SS-SSR客户端"><a href="#0x02-SS-SSR客户端" class="headerlink" title="0x02 SS\SSR客户端"></a>0x02 SS\SSR客户端</h3><p>　　服务器端配置好之后，我们只需要配置客户端就可以了，SS\SSR配置都差不多，这里主要讲SSR的一些步骤。客户端下载：</p>
 <p><a href="https://share.weiyun.com/4222c15ffbe1a09b477cb92d2f5fc619" target="_blank" rel="external">Win下载</a><br><a href="https://share.weiyun.com/aecdc5371c2af66f14aa2f029c0651ee" target="_blank" rel="external">Mac下载</a><br><a href="https://share.weiyun.com/6c766c04a22ab0daf50d4d728b3af4ee" target="_blank" rel="external">安卓下载</a></p>
 <h4 id="1、添加服务器（节点）"><a href="#1、添加服务器（节点）" class="headerlink" title="1、添加服务器（节点）"></a>1、添加服务器（节点）</h4><p>　　双击SSR程序后，屏幕右下角会出现小飞机图标，鼠标右键单击小飞机图标，点开编辑服务器<br><img src="https://upload-images.jianshu.io/upload_images/3946186-95432c8cc5df252b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/463" alt=""></p>
-<h4 id="2、根据节点配置，把配置信息填入到框内"><a href="#2、根据节点配置，把配置信息填入到框内" class="headerlink" title="2、根据节点配置，把配置信息填入到框内"></a>2、根据节点配置，把配置信息填入到框内</h4><p>　　最好把节点命名，否则沟通的时候会造成混乱。密码与IP前面的选择框是明文显示的意思，服务器ip尽量手打！！！！<br><img src="https://upload-images.jianshu.io/upload_images/3946186-abf7cb416537db7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></p>
+<h4 id="2、根据节点配置"><a href="#2、根据节点配置" class="headerlink" title="2、根据节点配置"></a>2、根据节点配置</h4><p>　　把配置信息填入到框内，最好把节点命名，否则沟通的时候会造成混乱。密码与IP前面的选择框是明文显示的意思，服务器ip尽量手打！！！！<br><img src="https://upload-images.jianshu.io/upload_images/3946186-abf7cb416537db7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt=""></p>
 <h4 id="3、开启代理"><a href="#3、开启代理" class="headerlink" title="3、开启代理"></a>3、开启代理</h4><p>　　直连模式为关闭代理，全局模式为打开代理，打开全局模式后就可以访问Google，Youtube了。<br><img src="https://upload-images.jianshu.io/upload_images/3946186-b6d11261c9d1e4c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/430" alt=""></p>
 <h4 id="4、切换节点"><a href="#4、切换节点" class="headerlink" title="4、切换节点"></a>4、切换节点</h4><p>　　红框中对勾表示目前正在使用的节点，想切换节点就单击选择其他节点。<br><img src="https://upload-images.jianshu.io/upload_images/3946186-1ff3e89ca501c5b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/522" alt=""></p>
 <h3 id="0x03-彩蛋"><a href="#0x03-彩蛋" class="headerlink" title="0x03 彩蛋"></a>0x03 彩蛋</h3><p>　　我们在渗透测试的时候，常常需要用到代理或者VPN，但是有的时候我们的测试的时候突然VPN掉线，可是我们还沉浸在自己的工作中，结果真实IP以及走出去了，过不了几天被查了水表，这个情况我们也是经常遇到。我们可以买一个专业的VPN，具有掉线即可断网的功能，但是资金有昂贵，还需要有一个VPS公网IP，这两个下来就是一大笔开销，作为穷苦人家的我连VPS都快买不起，更何况VPN。于是就找到了一种使用VPS做全局代理，掉线即可断网的基本目的。<br>　　介绍一款Windows下比较好用的代理工具Sstap，<a href="https://pan.baidu.com/s/1qYyunZe" target="_blank" rel="external">链接</a>、密码: fiy4，支持HTTP、SOCKS4、SOCKS5、SS、SSR等代理，模式有全局模式等几种。<br><img src="http://obh1qcqek.bkt.clouddn.com/18-7-23/44701059.jpg" alt=""></p>
@@ -87,9 +87,9 @@
       <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
-    
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
     
   </entry>
   
