@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-17T14:52:52.331Z</updated>
+  <updated>2019-03-27T14:58:15.956Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最近的一些想法</title>
+    <link href="http://yoursite.com/%E7%94%9F%E6%B4%BB/2019/03/27/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95.html"/>
+    <id>http://yoursite.com/生活/2019/03/27/最近的一些想法.html</id>
+    <published>2019-03-27T14:46:11.000Z</published>
+    <updated>2019-03-27T14:58:15.956Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。<a id="more"></a><br>　　下面是我之前整理的一个简单的目录，还不是很完整，内容也只是整理了一小部分，希望有志同道合的小伙伴或者喜欢渗透、红队的我们一起整理，一起学习。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">第一章 前期准备</div><div class="line">第二章 信息搜集</div><div class="line">    0x01 搜索引擎</div><div class="line">    0x02 whois查点</div><div class="line">    0x03 目标IP</div><div class="line">    0x04 指纹识别	</div><div class="line">    0x05 WAF检测</div><div class="line">    0x06 端口扫描</div><div class="line">    0x07 DNS查询</div><div class="line">    0x08 子域名查询</div><div class="line">    0x09 源码泄露、敏感目录</div><div class="line">    0x10 旁注 C段	</div><div class="line">    0x11 社工</div><div class="line">第三章 漏洞查找与利用</div><div class="line">    0x01 漏洞扫描	</div><div class="line">    0x02 SQL注入</div><div class="line">        一、MySql</div><div class="line">        二、Access</div><div class="line">        三、MSSQL</div><div class="line">        四、数据库判断	</div><div class="line">        五、NoSql注入	</div><div class="line">    0x03 文件上传	</div><div class="line">    0x04 其他漏洞	</div><div class="line">        一、XSS</div><div class="line">        二、任意文件下载</div><div class="line">        三、SSRF	</div><div class="line">        四、文件包含</div><div class="line">        五、变量覆盖</div><div class="line">    0x05 端口、中间件利用</div><div class="line">    0x06 其他</div><div class="line">第四章 权限提升</div><div class="line">    0x01  信息搜集</div><div class="line">         一、Liunx</div><div class="line">        二、Windows</div><div class="line">    0x02  提权方法</div><div class="line">        一、Linux提权</div><div class="line">        二、Windows提权</div><div class="line">        三、第三方提权</div><div class="line">第五章 内网渗透</div><div class="line">    0x01 端口转发</div><div class="line">    0x02 Windows认证协议	</div><div class="line">    0x03 信息搜集</div><div class="line">        一、单机基础信息收集</div><div class="line">        二、域信息收集	</div><div class="line">    0x04 凭证获取</div><div class="line">        一、弱密码破解	</div><div class="line">        二、密码明文读取</div><div class="line">        三、hash导出</div><div class="line">    0x04 横向移动</div><div class="line">        一、PTH(passing the hash)</div><div class="line">        二、Pass The Key (OverPass-the-Hash)	</div><div class="line">        三、PTT(Pass the ticket)</div><div class="line">        四、GPP漏洞（组策略漏洞）</div><div class="line">        五、IPC$	</div><div class="line">        六、MS14-068</div><div class="line">        七、SPN</div><div class="line">        八、Kerberos委派</div><div class="line">        九、LAPS</div><div class="line">        十、Kerberoast</div><div class="line">        十一、Kerberoasting </div><div class="line">        十二、ntds.dit</div><div class="line">    0x05 执行命令</div><div class="line">    0x06 权限维持	</div><div class="line">        一、黄金票据</div><div class="line">        二、白银票据</div><div class="line">        三、隐藏账户</div><div class="line">        四、Msf、CS权限维持</div><div class="line">        五、其他</div><div class="line">    0x07 域控制器	</div><div class="line">    0x08 痕迹清理	</div><div class="line">    0x09 数据获取	</div><div class="line">第六章 基本企业网渗透</div><div class="line">    0x01 基本环境</div><div class="line">    0x02 基本流程	</div><div class="line">第七章 红队攻防</div><div class="line">第八章 渗透神器</div><div class="line">    0x01 Metasploit</div><div class="line">    0x02 Cobalt Strike</div><div class="line">    0x03 Empire</div><div class="line">    0x04 PowerUp</div><div class="line">    0x05 PowerView</div><div class="line">第九章 其他</div><div class="line">    0x01 免杀</div><div class="line">    0x02 bypassuac</div><div class="line">    0x03 过Waf</div><div class="line">第十章 APT攻防</div></pre></td></tr></table></figure></p>
+<p>　　这里只是列了一部分目录，以后可能会增加一些其他的。还有两本RedTeam书籍还想翻译，真有点忙不过来，欢迎兄弟们加入一起学习，一起提高。欢迎来骚扰：—../….-/…../…–/…../..—/—-./….-/…..</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。
+    
+    </summary>
+    
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="生活" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>写给以后</title>
@@ -694,9 +718,9 @@
       <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
-    
       <category term="漏洞" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
@@ -1589,32 +1613,6 @@ expect:// — 处理交互式的流
     
     
       <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>时光不老 我们不散</title>
-    <link href="http://yoursite.com/%E7%94%9F%E6%B4%BB/2017/03/31/%E6%97%B6%E5%85%89%E4%B8%8D%E8%80%81-%E6%88%91%E4%BB%AC%E4%B8%8D%E6%95%A3.html"/>
-    <id>http://yoursite.com/生活/2017/03/31/时光不老-我们不散.html</id>
-    <published>2017-03-31T07:42:30.000Z</published>
-    <updated>2017-04-10T02:17:12.782Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="时光不老，我们不散；岁月不逝，我们不弃"><a href="#时光不老，我们不散；岁月不逝，我们不弃" class="headerlink" title="时光不老，我们不散；岁月不逝，我们不弃"></a>时光不老，我们不散；岁月不逝，我们不弃</h3><p>　　天空不知何时划过一颗颗流星，<br>　　飞向同一个星球，<br>　　宛如我们来自不同的城市，<a id="more"></a><br>　　但却相聚在这小小的房子里。<br>　　生命是个漫长又遥远的过程，<br>　　经历着陌生和熟悉，冷漠和温暖。<br>　　时光消磨着岁月的痕迹，<br>　　追着青春的步伐，<br>　　我们哼着歌回忆往昔;<br>　　我们读着书品味诗意;<br>　　我们说着笑讲述自己;<br>　　我们谈着天细数日子。</p>
-<p><img src="http://i2.muimg.com/567571/5fcda118895c7351.jpg" alt=""></p>
-<p>　　梦里花开，清风飘过，<br>　　桌上的书页正谱写动人的旋律。<br>　　白色的墙是你我最坚实的港湾，<br>　　小小的房子里住着我们的记忆，<br>　　灯光的照明，<br>　　你牵着我的手，<br>　　陪我走过无数个日日夜夜，<br>　　陪我穿梭于春夏秋冬，<br>　　陪我走过生命的旅程。<br>　　又是花开的季节，<br>　　到处都是风车在转，<br>　　记得那个时候，<br>　　你说日子好长，<br>　　你说青春不变梦想满星辰，<br>　　你说记忆犹存沧海桑田，<br>　　你说时光不老我们不散，<br>　　其实那年，<br>　　我们追着风筝奔跑的时候，<br>　　时光就早已悄悄溜走。<br>　　阳光下，<br>　　一行人一排影子，<br>　　还有一串相伴的小脚丫。</p>
-<p>那些曾经一起奋斗的你们现在过得怎么样了？时光不散，我们不老</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;时光不老，我们不散；岁月不逝，我们不弃&quot;&gt;&lt;a href=&quot;#时光不老，我们不散；岁月不逝，我们不弃&quot; class=&quot;headerlink&quot; title=&quot;时光不老，我们不散；岁月不逝，我们不弃&quot;&gt;&lt;/a&gt;时光不老，我们不散；岁月不逝，我们不弃&lt;/h3&gt;&lt;p&gt;　　天空不知何时划过一颗颗流星，&lt;br&gt;　　飞向同一个星球，&lt;br&gt;　　宛如我们来自不同的城市，
-    
-    </summary>
-    
-      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   

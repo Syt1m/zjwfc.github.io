@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="渗透测试,sql注入," />
+  <meta name="keywords" content="生活," />
 
 
 
@@ -110,21 +110,16 @@
 
 
 
-<meta name="description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
-在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
+<meta name="description" content="自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql注入绕过WAF">
-<meta property="og:url" content="http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html">
+<meta property="og:title" content="最近的一些想法">
+<meta property="og:url" content="http://yoursite.com/生活/2019/03/27/最近的一些想法.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
-在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
-<meta property="og:image" content="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png">
-<meta property="og:updated_time" content="2017-04-02T07:38:23.127Z">
+<meta property="og:description" content="自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。">
+<meta property="og:updated_time" content="2019-03-27T14:58:15.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql注入绕过WAF">
-<meta name="twitter:description" content="这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。
-在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。">
-<meta name="twitter:image" content="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png">
+<meta name="twitter:title" content="最近的一些想法">
+<meta name="twitter:description" content="自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。">
 
 
 
@@ -152,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html"/>
+  <link rel="canonical" href="http://yoursite.com/生活/2019/03/27/最近的一些想法.html"/>
 
 
 
 
 
-  <title>sql注入绕过WAF | Hello_C技术博客</title>
+  <title>最近的一些想法 | Hello_C技术博客</title>
   
 
 
@@ -303,7 +298,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/生活/2019/03/27/最近的一些想法.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hello_C">
@@ -320,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sql注入绕过WAF</h1>
+          <h1 class="post-title" itemprop="name headline">最近的一些想法</h1>
         
 
         <div class="post-meta">
@@ -332,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-05T12:44:16+08:00">
-                2016-10-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T22:46:11+08:00">
+                2019-03-27
               </time>
             
 
@@ -355,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/漏洞/" itemprop="url" rel="index">
-                    <span itemprop="name">漏洞</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -373,8 +368,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/漏洞/2016/10/05/sql注入绕过WAF.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="漏洞/2016/10/05/sql注入绕过WAF.html" itemprop="commentCount"></span>
+                <a href="/生活/2019/03/27/最近的一些想法.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="生活/2019/03/27/最近的一些想法.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,7 +377,7 @@
 
           
           
-             <span id="/漏洞/2016/10/05/sql注入绕过WAF.html" class="leancloud_visitors" data-flag-title="sql注入绕过WAF">
+             <span id="/生活/2019/03/27/最近的一些想法.html" class="leancloud_visitors" data-flag-title="最近的一些想法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,689
+                  680
                 </span>
               
 
@@ -423,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  7
+                  3
                 </span>
               
             </div>
@@ -445,228 +440,8 @@
       
 
       
-        <p>这几天的CTF题中有好几道题都是sql注入的，但都存在WAF需要绕过，于是整理了一些常见的绕过WAF注入的方法。</p>
-<p>在现实sql注入中我们也常常碰到WAF，那么掌握常见的绕过很有必要。</p>
-<a id="more"></a>
-<h3 id="0x01、手工注入绕过"><a href="#0x01、手工注入绕过" class="headerlink" title="0x01、手工注入绕过"></a>0x01、手工注入绕过</h3><p>1、大小写混合</p>
-<pre><code>例如：uNIoN sELecT 1,2,3,4
-</code></pre><p>只适用于针对大小写关键字的匹配</p>
-<p>2、替换关键字</p>
-<pre><code>例如：UNIunionON SELselectECT 1,2,3,4
-</code></pre><p>3、使用编码</p>
-<blockquote>
-<p>URL编码</p>
-</blockquote>
-<p>如：空格变为%20、单引号%27、左括号%28、右括号%29，有时候两次编码绕过%252f%252a*/UNION%252f%252a /SELECT</p>
-<blockquote>
-<p>十六进制编码</p>
-</blockquote>
-<p>可以对单个字符进行十六进制编码绕过，亦可以对整个字符串进行编码绕过。</p>
-<blockquote>
-<p>Unicode编码</p>
-</blockquote>
-<p>单引号: %u0027、%u02b9、%u02bc、%u02c8、%u2032、%uff07、%c0%27、%c0%a7、%e0%80%a7</p>
-<p>空格：%u0020、%uff00、%c0%20、%c0%a0、%e0%80%a0</p>
-<p>左括号：%u0028、%uff08、%c0%28、%c0%a8、%e0%80%a8</p>
-<p>右括号：%u0029、%uff09、%c0%29、%c0%a9、%e0%80%a9</p>
-<p>4、使用注释</p>
-<p>常见注释符号：//, – , /**/, #, –+,–  -, ;，–a</p>
-<blockquote>
-<p>普通注释</p>
-</blockquote>
-<p>%55nION/**/%53ElecT 1,2,3,4</p>
-<blockquote>
-<p>内联注释   /!**/只有MySQL能识别</p>
-</blockquote>
-<p>/<em> !UNION</em> / /<em> !SELECT</em> / 1,2,3</p>
-<p>5、等价函数或命令</p>
-<pre><code>hex()、bin() ==&gt; ascii()
-sleep() ==&gt;benchmark()
-concat_ws()==&gt;group_concat()
-mid()、substr() ==&gt; substring()
-@@user ==&gt; user()
-@@datadir ==&gt; datadir()
-</code></pre><p>and和or有时候不能使用，可以使用&amp;&amp;和||；还有=不能使用的情况，可以考虑尝试&lt;、&gt;，因为如果不小于又不大于，那边是等于了</p>
-<p>对于空格的绕过，可以使用如下符号绕过：%20 %09 %0a %0b %0c %0d %a0 /**/</p>
-<p>6、特殊符号</p>
-<blockquote>
-<p>1、使用反引号`</p>
-</blockquote>
-<p>例如select <code>version()</code>，可以用来过空格和正则，特殊情况下还可以将其做注释符用</p>
-<blockquote>
-<p>2、使用”-+.”</p>
-</blockquote>
-<p>elect+id-1+1.from users; “+”是用于字符串连接的，”-”和”.”在此也用于连接，可以逃过空格和关键字过滤</p>
-<blockquote>
-<p>3、@符号</p>
-</blockquote>
-<p>select@^ 1.from users; @用于变量定义如@var_name，一个@表示用户定义，@@表示系统变量</p>
-<p>7、加括号</p>
-<pre><code>例如：/?id=(1)union(select(1),mid(hash,1,32)from(users))
-</code></pre><p>8、缓冲区溢出</p>
-<p>不少WAF都是由C语言编写的，而C语言缓冲区保护机制。如何WAF在处理测试向量时超出其缓冲区长度，就会引发bug从而实现绕过</p>
-<pre><code>例如：id=1 and (select 1)=(Select 0xAAAAAAAAAAAAAAAAAAAAA)+UnIoN+SeLeCT+1,2,version(),4,5,database(),user(),8,9,10,11,12,13,14,15–-+
-</code></pre><p> 其中0xAAAAAAAAAAAAAAAAAAAAA这里A越多越好，一般来说对应用软件构成缓冲区溢出都需要较大的测试长度，一般要求1000个以上</p>
-<p>参考资料：<a href="http://netsecurity.51cto.com/art/201301/376869.htm" target="_blank" rel="external">http://netsecurity.51cto.com/art/201301/376869.htm</a></p>
-<h3 id="0x02、Sqlmap注入绕过"><a href="#0x02、Sqlmap注入绕过" class="headerlink" title="0x02、Sqlmap注入绕过"></a>0x02、Sqlmap注入绕过</h3><p>当我们使用sqlmap注入遇到WAF时，可以使用sqlmap中的tamper,它里面有很多实用的防过滤脚本</p>
-<p><img src="http://p1.bqimg.com/567571/7e9eae4c9ba5eb7e.png" alt=""></p>
-<p>首先我们需要确定WAF过滤了那些关键字，比如：单引号、空格、select、union、admin等，当我们确定了过滤机制可以使用tamper进行绕过</p>
-<blockquote>
-<p>如何判断使用那个过滤脚本，最简单的办法就是直接在URL手工带入进行测试，根据返回信息进行判断</p>
-</blockquote>
-<p>使用sqlmap确认是否含有WAF</p>
-<pre><code>sqlmap -u &quot;http://xxx?id=51&amp;types=4&quot; --thread 10 --identify-waf
-</code></pre><p>使用参数进行绕过</p>
-<pre><code>root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --random-agent -v 2 #使用任意浏览器进行绕过，尤其是在WAF配置不当的时候
- root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --hpp -v 3#使用HTTP 参数污染进行绕过，尤其是在ASP.NET/IIS 平台上
-  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --delay=3.5 --time-sec=60 #使用长的延时来避免触发WAF的机制，这方式比较耗时
-  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --proxy=211.211.211.211:8080 --proxy-cred=211:985#使用代理进行注入    
-  root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --ignore-proxy#禁止使用系统的代理，直接连接进行注入
- root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --flush-session#清空会话，重构注入
- root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --hex#或者使用参数 --no-cast ，进行字符码转换
- root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot;  --mobile #对移动端的服务器进行注入
- root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --tor # 匿名注入
-</code></pre><p>使用脚本绕过</p>
-<pre><code>root@kali:~# sqlmap -u &quot;http://xxxx?id=51&amp;types=4&quot; --tamper=A.py,B.py#脚本A，脚本B 
-</code></pre><p>还可以同时使用多个脚本，使用-v参数观察payload的变化</p>
-<p>常见脚本种类：</p>
-<blockquote>
-<p>apostrophemask.py</p>
-</blockquote>
-<p><strong><em>作用：用UTF8代替引号</em></strong></p>
-<blockquote>
-<p>equaltolike.py</p>
-</blockquote>
-<p><strong><em>作用：like代替等号</em></strong></p>
-<blockquote>
-<p>space2dash.py</p>
-</blockquote>
-<p><strong><em>作用：绕过过滤‘=’ 替换空格字符（”），（’ – ‘）后跟一个破折号注释，一个随机字符串和一个新行（’ n’）</em></strong></p>
-<blockquote>
-<p>greatest.py</p>
-</blockquote>
-<p><strong><em>绕过过滤’&gt;’ ,用GREATEST替换大于号</em></strong></p>
-<blockquote>
-<p>space2hash.py</p>
-</blockquote>
-<p><strong><em>作用：空格替换为#号 随机字符串 以及换行符</em></strong></p>
-<blockquote>
-<p>apostrophenullencode.py</p>
-</blockquote>
-<p><strong><em>绕过过滤双引号，替换字符和双引号。</em></strong></p>
-<blockquote>
-<p>halfversionedmorekeywords.py</p>
-</blockquote>
-<p><strong><em>当数据库为mysql时绕过防火墙，每个关键字之前添加mysql版本评论</em></strong></p>
-<blockquote>
-<p>space2morehash.py</p>
-</blockquote>
-<p><strong><em>空格替换为 #号 以及更多随机字符串 换行符</em></strong></p>
-<blockquote>
-<p>appendnullbyte.py</p>
-</blockquote>
-<p><strong><em>作用：在有效负荷结束位置加载零字节字符编码</em></strong></p>
-<blockquote>
-<p>ifnull2ifisnull.py</p>
-</blockquote>
-<p><strong><em>作用：绕过对 IFNULL 过滤。 替换类似’IFNULL(A, B)’为’IF(ISNULL(A), B, A)’</em></strong></p>
-<blockquote>
-<p>space2mssqlblank.py(mssql)</p>
-</blockquote>
-<p><strong><em>作用：空格替换为其它空符号</em></strong></p>
-<blockquote>
-<p>base64encode.py</p>
-</blockquote>
-<p><strong><em>作用：用base64编码替换</em></strong></p>
-<blockquote>
-<p>space2mssqlhash.py</p>
-</blockquote>
-<p><strong><em>作用：替换空格</em></strong></p>
-<blockquote>
-<p>modsecurityversioned.py</p>
-</blockquote>
-<p><strong><em>作用：过滤空格，包含完整的查询版本注释</em></strong></p>
-<blockquote>
-<p>space2mysqlblank.py</p>
-</blockquote>
-<p><strong><em>作用：空格替换其它空白符号(mysql)</em></strong></p>
-<blockquote>
-<p>between.py</p>
-</blockquote>
-<p><strong><em>作用：用between替换大于号（&gt;）</em></strong></p>
-<blockquote>
-<p>space2mysqldash.py</p>
-</blockquote>
-<p><strong><em>作用：替换空格字符（”）（’ – ‘）后跟一个破折号注释一个新行（’ n’）</em></strong><br>注：之前有个mssql的 这个是mysql的</p>
-<blockquote>
-<p>multiplespaces.py</p>
-</blockquote>
-<p><strong><em>作用：围绕SQL关键字添加多个空格</em></strong></p>
-<blockquote>
-<p>space2plus.py</p>
-</blockquote>
-<p><strong><em>作用：用+替换空格</em></strong></p>
-<blockquote>
-<p>bluecoat.py</p>
-</blockquote>
-<p><strong><em>作用：代替空格字符后与一个有效的随机空白字符的SQL语句。 然后替换=为like</em></strong></p>
-<blockquote>
-<p>nonrecursivereplacement.py</p>
-</blockquote>
-<p><strong><em>作用：双重查询语句。取代predefined SQL关键字with表示 suitable for替代（例如 .replace（“SELECT”、””)） filters</em></strong></p>
-<blockquote>
-<p>space2randomblank.py</p>
-</blockquote>
-<p><strong><em>作用：代替空格字符（“”）从一个随机的空白字符可选字符的有效集</em></strong></p>
-<blockquote>
-<p>sp_password.py</p>
-</blockquote>
-<p><strong><em>作用：追加sp_password’从DBMS日志的自动模糊处理的有效载荷的末尾</em></strong></p>
-<blockquote>
-<p>chardoubleencode.py</p>
-</blockquote>
-<p><strong><em>作用: 双url编码(不处理以编码的)</em></strong></p>
-<blockquote>
-<p>unionalltounion.py</p>
-</blockquote>
-<p><strong><em>作用：替换UNION ALL SELECT UNION SELECT</em></strong></p>
-<blockquote>
-<p>charencode.py</p>
-</blockquote>
-<p><strong><em>作用：url编码</em></strong></p>
-<blockquote>
-<p>randomcase.py</p>
-</blockquote>
-<p><strong><em>作用：随机大小写</em></strong></p>
-<blockquote>
-<p>unmagicquotes.py</p>
-</blockquote>
-<p><strong><em>作用：宽字符绕过 GPC addslashes</em></strong></p>
-<blockquote>
-<p>randomcomments.py</p>
-</blockquote>
-<p><strong><em>作用：用/ </em> <em> /分割sql关键字</em></strong></p>
-<blockquote>
-<p>charunicodeencode.py</p>
-</blockquote>
-<p><strong><em>作用：字符串 unicode 编码</em></strong></p>
-<blockquote>
-<p>securesphere.py</p>
-</blockquote>
-<p><strong><em>作用：追加特制的字符串</em></strong></p>
-<blockquote>
-<p>versionedmorekeywords.py</p>
-</blockquote>
-<p><strong><em>作用：注释绕过</em></strong></p>
-<blockquote>
-<p>space2comment.py</p>
-</blockquote>
-<p><strong><em>作用：Replaces space character (‘ ‘) with comments ‘/ </em> <em>/‘</em></strong></p>
-<blockquote>
-<p>halfversionedmorekeywords.py</p>
-</blockquote>
-<p><strong><em>作用：关键字前加注释</em></strong></p>
-<p>参考资料：<a href="http://www.cnblogs.com/lcamry/articles/5622584.html" target="_blank" rel="external">http://www.cnblogs.com/lcamry/articles/5622584.html</a><br>        <a href="http://www.vuln.cn/2086" target="_blank" rel="external">http://www.vuln.cn/2086</a></p>
+        <p>　　自从上班之后自己学习的时间也少了，上了半年班之后感觉还有好多自己不会的，想审计、C、C#等等好多好多。明明知道有好多要学的，可是就是提不起兴趣来，下班回家什么也不想干，唉，这样下去怕是要废了。之前准备整理一下渗透知识点也是断断续续整理大半年也没有完成，发现好几本RedTeam的书籍想翻译也没有时间，整天碌碌无为的忙碌着没有一点效果。<a id="more"></a><br>　　下面是我之前整理的一个简单的目录，还不是很完整，内容也只是整理了一小部分，希望有志同道合的小伙伴或者喜欢渗透、红队的我们一起整理，一起学习。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">第一章 前期准备</div><div class="line">第二章 信息搜集</div><div class="line">    0x01 搜索引擎</div><div class="line">    0x02 whois查点</div><div class="line">    0x03 目标IP</div><div class="line">    0x04 指纹识别	</div><div class="line">    0x05 WAF检测</div><div class="line">    0x06 端口扫描</div><div class="line">    0x07 DNS查询</div><div class="line">    0x08 子域名查询</div><div class="line">    0x09 源码泄露、敏感目录</div><div class="line">    0x10 旁注 C段	</div><div class="line">    0x11 社工</div><div class="line">第三章 漏洞查找与利用</div><div class="line">    0x01 漏洞扫描	</div><div class="line">    0x02 SQL注入</div><div class="line">        一、MySql</div><div class="line">        二、Access</div><div class="line">        三、MSSQL</div><div class="line">        四、数据库判断	</div><div class="line">        五、NoSql注入	</div><div class="line">    0x03 文件上传	</div><div class="line">    0x04 其他漏洞	</div><div class="line">        一、XSS</div><div class="line">        二、任意文件下载</div><div class="line">        三、SSRF	</div><div class="line">        四、文件包含</div><div class="line">        五、变量覆盖</div><div class="line">    0x05 端口、中间件利用</div><div class="line">    0x06 其他</div><div class="line">第四章 权限提升</div><div class="line">    0x01  信息搜集</div><div class="line">         一、Liunx</div><div class="line">        二、Windows</div><div class="line">    0x02  提权方法</div><div class="line">        一、Linux提权</div><div class="line">        二、Windows提权</div><div class="line">        三、第三方提权</div><div class="line">第五章 内网渗透</div><div class="line">    0x01 端口转发</div><div class="line">    0x02 Windows认证协议	</div><div class="line">    0x03 信息搜集</div><div class="line">        一、单机基础信息收集</div><div class="line">        二、域信息收集	</div><div class="line">    0x04 凭证获取</div><div class="line">        一、弱密码破解	</div><div class="line">        二、密码明文读取</div><div class="line">        三、hash导出</div><div class="line">    0x04 横向移动</div><div class="line">        一、PTH(passing the hash)</div><div class="line">        二、Pass The Key (OverPass-the-Hash)	</div><div class="line">        三、PTT(Pass the ticket)</div><div class="line">        四、GPP漏洞（组策略漏洞）</div><div class="line">        五、IPC$	</div><div class="line">        六、MS14-068</div><div class="line">        七、SPN</div><div class="line">        八、Kerberos委派</div><div class="line">        九、LAPS</div><div class="line">        十、Kerberoast</div><div class="line">        十一、Kerberoasting </div><div class="line">        十二、ntds.dit</div><div class="line">    0x05 执行命令</div><div class="line">    0x06 权限维持	</div><div class="line">        一、黄金票据</div><div class="line">        二、白银票据</div><div class="line">        三、隐藏账户</div><div class="line">        四、Msf、CS权限维持</div><div class="line">        五、其他</div><div class="line">    0x07 域控制器	</div><div class="line">    0x08 痕迹清理	</div><div class="line">    0x09 数据获取	</div><div class="line">第六章 基本企业网渗透</div><div class="line">    0x01 基本环境</div><div class="line">    0x02 基本流程	</div><div class="line">第七章 红队攻防</div><div class="line">第八章 渗透神器</div><div class="line">    0x01 Metasploit</div><div class="line">    0x02 Cobalt Strike</div><div class="line">    0x03 Empire</div><div class="line">    0x04 PowerUp</div><div class="line">    0x05 PowerView</div><div class="line">第九章 其他</div><div class="line">    0x01 免杀</div><div class="line">    0x02 bypassuac</div><div class="line">    0x03 过Waf</div><div class="line">第十章 APT攻防</div></pre></td></tr></table></figure></p>
+<p>　　这里只是列了一部分目录，以后可能会增加一些其他的。还有两本RedTeam书籍还想翻译，真有点忙不过来，欢迎兄弟们加入一起学习，一起提高。欢迎来骚扰：—../….-/…../…–/…../..—/—-./….-/…..</p>
 
       
     </div>
@@ -695,7 +470,7 @@ mid()、substr() ==&gt; substring()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html" title="sql注入绕过WAF">http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html</a>
+      <a href="http://yoursite.com/生活/2019/03/27/最近的一些想法.html" title="最近的一些想法">http://yoursite.com/生活/2019/03/27/最近的一些想法.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -711,9 +486,7 @@ mid()、substr() ==&gt; substring()
       
         <div class="post-tags">
           
-            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i>  渗透测试</a>
-          
-            <a href="/tags/sql注入/" rel="tag"><i class="fa fa-tag"></i>  sql注入</a>
+            <a href="/tags/生活/" rel="tag"><i class="fa fa-tag"></i>  生活</a>
           
         </div>
       
@@ -726,8 +499,8 @@ mid()、substr() ==&gt; substring()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/渗透/2016/10/05/浅谈ARP常见攻击.html" rel="next" title="浅谈ARP常见攻击">
-                <i class="fa fa-chevron-left"></i> 浅谈ARP常见攻击
+              <a href="/生活/2019/03/17/写给以后.html" rel="next" title="写给以后">
+                <i class="fa fa-chevron-left"></i> 写给以后
               </a>
             
           </div>
@@ -735,10 +508,6 @@ mid()、substr() ==&gt; substring()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/渗透/2016/10/05/NTFS数据流文件.html" rel="prev" title="NTFS数据流文件">
-                NTFS数据流文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -787,8 +556,8 @@ mid()、substr() ==&gt; substring()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="漏洞/2016/10/05/sql注入绕过WAF.html"
-           data-title="sql注入绕过WAF" data-url="http://yoursite.com/漏洞/2016/10/05/sql注入绕过WAF.html">
+      <div class="ds-thread" data-thread-key="生活/2019/03/27/最近的一些想法.html"
+           data-title="最近的一些想法" data-url="http://yoursite.com/生活/2019/03/27/最近的一些想法.html">
       </div>
     
   </div>
@@ -813,17 +582,8 @@ mid()、substr() ==&gt; substring()
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -974,22 +734,6 @@ mid()、substr() ==&gt; substring()
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01、手工注入绕过"><span class="nav-number">1.</span> <span class="nav-text">0x01、手工注入绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02、Sqlmap注入绕过"><span class="nav-number">2.</span> <span class="nav-text">0x02、Sqlmap注入绕过</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
