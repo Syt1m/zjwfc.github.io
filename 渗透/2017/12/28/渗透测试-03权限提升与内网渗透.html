@@ -5,26 +5,12 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-<style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
+<meta name="theme-color" content="#222">
 
 
 
@@ -51,36 +37,11 @@
 
 
 
+
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -89,7 +50,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="渗透测试," />
@@ -99,11 +75,6 @@
 
 
   <link rel="alternate" href="/atom.xml" title="Hello_C技术博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
 
 
 
@@ -162,12 +133,14 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 'undefined',
+      userId: '0',
       author: '博主'
     },
     algolia: {
@@ -198,18 +171,6 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
 
 
-
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261655448&web_id=1261655448" language="JavaScript"></script>
-  </div>
-
-
-
-
-
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -219,7 +180,7 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -332,7 +293,11 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -412,63 +377,20 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
           
           
-             <span id="/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html" class="leancloud_visitors" data-flag-title="渗透测试-03权限提升与内网渗透">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度 </span>
-               
-                 <span class="leancloud-visitors-count">℃</span>
-             </span>
+
           
 
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  5,335
-                </span>
-              
 
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  22
-                </span>
-              
-            </div>
-          
-
-          
-          
-		  
-         
-                <span id="busuanzi_container_page_pv">  |  热度<span id="busuanzi_value_page_pv"></span>℃</span>
-         
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -583,48 +505,21 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong>本文作者：</strong>
-      Hello_C
-    </li>
-    <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="http://yoursite.com/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html" title="渗透测试-03权限提升与内网渗透">http://yoursite.com/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong>
-      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i>  渗透测试</a>
+            <a href="/tags/渗透测试/" rel="tag"># 渗透测试</a>
           
         </div>
       
@@ -658,34 +553,15 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-
       
     </div>
   </div>
@@ -696,13 +572,16 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
 
           
-  <div class="comments" id="comments">
-    
+
+  
+    <div class="comments" id="comments">
       <div class="ds-thread" data-thread-key="渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html"
            data-title="渗透测试-03权限提升与内网渗透" data-url="http://yoursite.com/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html">
       </div>
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -725,164 +604,152 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Hello_C" />
-          <p class="site-author-name" itemprop="name">Hello_C</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hello_C</p>
               <p class="site-description motion-element" itemprop="description">渗透测试  网络安全   web</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">71</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
           </div>
-        
 
-        <div class="links-of-author motion-element">
-          
+          <nav class="site-state motion-element">
+
             
-              <span class="links-of-author-item">
-                <a href="https://github.com/Syt1m" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://github.com/Syt1m" target="_blank" title="微博">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  微博
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
             </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.dropsec.xyz" title="Drops团队主页" target="_blank">Drops团队主页</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://fgp.dropsec.xyz" title="F.G.PNotes" target="_blank">F.G.PNotes</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://lyx.dropsec.xyz" title="lazy" target="_blank">lazy</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://byd.dropsec.xyz" title="Joy_nick" target="_blank">Joy_nick</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://wkh.dropsec.xyz" title="X加油,未来" target="_blank">X加油,未来</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://jdrops.dropsec.xyz" title="J_Drops" target="_blank">J_Drops</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://lzx.dropsec.xyz" title="凡尘" target="_blank">凡尘</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://cq.dropsec.xyz" title="qiqi" target="_blank">qiqi</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://yunnigu.dropsec.xyz" title="云" target="_blank">云</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://isron.cn" title="Isron" target="_blank">Isron</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://klionsec.github.io" title="klion" target="_blank">klion</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.myh0st.cn" title="信安之路" target="_blank">信安之路</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.te7m.cn" title="周丹" target="_blank">周丹</a>
-                </li>
-              
-            </ul>
-          </div>
-        
+          
 
-        
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zjwfc" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
+          
+          
 
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.dropsec.xyz" title="Drops团队主页" target="_blank">Drops团队主页</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://fgp.dropsec.xyz" title="F.G.PNotes" target="_blank">F.G.PNotes</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lyx.dropsec.xyz" title="lazy" target="_blank">lazy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://byd.dropsec.xyz" title="Joy_nick" target="_blank">Joy_nick</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wkh.dropsec.xyz" title="X加油,未来" target="_blank">X加油,未来</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jdrops.dropsec.xyz" title="J_Drops" target="_blank">J_Drops</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lzx.dropsec.xyz" title="凡尘" target="_blank">凡尘</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://cq.dropsec.xyz" title="qiqi" target="_blank">qiqi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yunnigu.dropsec.xyz" title="云" target="_blank">云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://isron.cn" title="Isron" target="_blank">Isron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://klionsec.github.io" title="klion" target="_blank">klion</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.myh0st.cn" title="信安之路" target="_blank">信安之路</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.te7m.cn" title="周丹" target="_blank">周丹</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
       </section>
 
       
@@ -915,67 +782,42 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hello_C</span>
+
   
-  <span class="site-pv">
-   <script src="http://s6.cnzz.com/stat.php?id=1261655448&web_id=1261655448" type="text/javascript"></script>
-  </span>
-  
-  <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  </span>
-  <span id="busuanzi_container_site_uv">
-    本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
-</div>
-<!-- time -->
-  <div id="show-time">
-    <span id="span_dt_dt"></span>
-  </div>
-  <script>
-      function show_date_time() {
-        window.setTimeout("show_date_time()", 1000);
-        BirthDay = new Date("9/1/2016 15:30:01");
-        today = new Date();
-        //总时间
-        timeold = (today.getTime() - BirthDay.getTime());
-        sectimeold = timeold / 1000
-        secondsold = Math.floor(sectimeold);
-        msPerDay = 24 * 60 * 60 * 1000
-        e_daysold = timeold / msPerDay
-        daysold = Math.floor(e_daysold);
-        e_hrsold = (e_daysold - daysold) * 24;
-        hrsold = Math.floor(e_hrsold);
-        e_minsold = (e_hrsold - hrsold) * 60;
-        minsold = Math.floor((e_hrsold - hrsold) * 60);
-        seconds = Math.floor((e_minsold - minsold) * 60);
-        span_dt_dt.innerHTML = "本站已安全运行 " + daysold + " 天 " + hrsold + " 小时 " + minsold + " 分 " + seconds + " 秒";
-      }
-     show_date_time();
-  </script>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261655448&web_id=1261655448" language="JavaScript"></script>
+  </div>
+
+
 
         
       </div>
@@ -988,12 +830,12 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
       </div>
     
 
+    
+
   </div>
   
-  <!-- 页面点击小红心 -->
+  <!-- 页面点击小红心 --> 
   <script type="text/javascript" src="/js/src/love.js"></script>
-  <!-- 背景动画 -->
-  <script type="text/javascript" src="/js/src/particle.js"></script>
   
 
 <script type="text/javascript">
@@ -1026,56 +868,70 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="true"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1099,6 +955,15 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
   </script>
 
   
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
 
 
 
@@ -1122,114 +987,10 @@ LinEnum　　LinEnum可以列举系统设置并且高度总结的linux本地枚�
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("JCRSaBjs1fI4FctoIzV1M8Kh-gzGzoHsz", "HPfVnkuIFClUv2BUNyy20FlB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
