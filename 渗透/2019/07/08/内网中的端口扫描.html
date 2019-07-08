@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="渗透测试," />
+  <meta name="keywords" content="渗透测试,实战," />
 
 
 
@@ -88,23 +88,28 @@
 
 
 
-<meta name="description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
-0x02、文件上传漏洞的利用方法">
+<meta name="description" content="在渗透测试中，一般在拿下权限之后，一方面搜集本机的信息，包括：IP、口令、令牌等信息；另一方面就是判断内网的存活主机，是否存在域环境，对内网进行下一步的渗透。那么在内网进行端口扫描是必不可少的一部分，虽然有时候在内网进行大批量扫描可能会引发IDS、IPS等设备的告警，这个平时也是需要注意的。这里我们不考虑大流量的这部分，主要讨论在内网中的端口扫描。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件上传">
-<meta property="og:url" content="http://yoursite.com/漏洞/2016/11/02/文件上传.html">
+<meta property="og:title" content="内网中的端口扫描">
+<meta property="og:url" content="http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
-0x02、文件上传漏洞的利用方法">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/69798074.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/92689014.jpg">
-<meta property="og:updated_time" content="2017-04-02T07:39:58.566Z">
+<meta property="og:description" content="在渗透测试中，一般在拿下权限之后，一方面搜集本机的信息，包括：IP、口令、令牌等信息；另一方面就是判断内网的存活主机，是否存在域环境，对内网进行下一步的渗透。那么在内网进行端口扫描是必不可少的一部分，虽然有时候在内网进行大批量扫描可能会引发IDS、IPS等设备的告警，这个平时也是需要注意的。这里我们不考虑大流量的这部分，主要讨论在内网中的端口扫描。">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d2352037fda578072.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d2353b4d3d1877997.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d2353d3b054297877.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d2353fd0b96a56550.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d235751df45523270.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d2357c9d57fc86352.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d23597e1c02f23296.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d235a67dd87e77462.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d235b553b6c097001.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d235d620108e55820.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d235fb30358614449.jpg">
+<meta property="og:updated_time" content="2019-07-08T15:33:04.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件上传">
-<meta name="twitter:description" content="0x01、文件上传文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。
-0x02、文件上传漏洞的利用方法">
-<meta name="twitter:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg">
+<meta name="twitter:title" content="内网中的端口扫描">
+<meta name="twitter:description" content="在渗透测试中，一般在拿下权限之后，一方面搜集本机的信息，包括：IP、口令、令牌等信息；另一方面就是判断内网的存活主机，是否存在域环境，对内网进行下一步的渗透。那么在内网进行端口扫描是必不可少的一部分，虽然有时候在内网进行大批量扫描可能会引发IDS、IPS等设备的告警，这个平时也是需要注意的。这里我们不考虑大流量的这部分，主要讨论在内网中的端口扫描。">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/08/5d2352037fda578072.png">
 
 
 
@@ -134,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/漏洞/2016/11/02/文件上传.html"/>
+  <link rel="canonical" href="http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html"/>
 
 
 
 
 
-  <title>文件上传 | Hello_C技术博客</title>
+  <title>内网中的端口扫描 | Hello_C技术博客</title>
   
 
 
@@ -277,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/漏洞/2016/11/02/文件上传.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hello_C">
@@ -294,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">文件上传</h1>
+          <h1 class="post-title" itemprop="name headline">内网中的端口扫描</h1>
         
 
         <div class="post-meta">
@@ -306,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-02T11:41:47+08:00">
-                2016-11-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-08T21:42:17+08:00">
+                2019-07-08
               </time>
             
 
@@ -329,8 +334,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/漏洞/" itemprop="url" rel="index">
-                    <span itemprop="name">漏洞</span>
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
                   </a>
                 </span>
 
@@ -347,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/漏洞/2016/11/02/文件上传.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="漏洞/2016/11/02/文件上传.html" itemprop="commentCount"></span>
+                <a href="/渗透/2019/07/08/内网中的端口扫描.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2019/07/08/内网中的端口扫描.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -376,27 +381,11 @@
       
 
       
-        <h3 id="0x01、文件上传"><a href="#0x01、文件上传" class="headerlink" title="0x01、文件上传"></a>0x01、文件上传</h3><p>文件上传是Web应用中经常出现的功能,它允许用户上传文件到服务器并保存到特定位置。文件上传漏洞指攻击者利用程序缺陷绕过系统对文件的验证与处理策略将恶意程序上传到服务器并获得执行服务器端命令的能力。</p>
-<h3 id="0x02、文件上传漏洞的利用方法"><a href="#0x02、文件上传漏洞的利用方法" class="headerlink" title="0x02、文件上传漏洞的利用方法"></a>0x02、文件上传漏洞的利用方法</h3><a id="more"></a>
-<p>1、上传文件WEB脚本语言，服务器的WEB容器解释并执行了用户上传的脚本，导致代码执行；<br>2、上传文件FLASH策略文件crossdomain.xml，以此来控制Flash在该域下的行为；<br>3、上传文件是病毒、木马文件，攻击者用以诱骗用户或管理员下载执行；<br>4、上传文件是钓鱼图片或为包含了脚本的图片，某些浏览器会作为脚本执行，实施钓鱼或欺诈；</p>
-<h3 id="0x03、文件上传漏洞的原因"><a href="#0x03、文件上传漏洞的原因" class="headerlink" title="0x03、文件上传漏洞的原因"></a>0x03、文件上传漏洞的原因</h3><p>1、文件上传时检查不严；一些应用在文件上传时没有进行文件格式检查，导致攻击者可以直接上传恶意文件。这种现在已经挺少的了。<br>2、文件上传后修改文件名时处理不当；一些应用在服务器端进行了完整的黑名单和白名单过滤，在修改已上传文件文件名时却百密一疏，允许用户修改文件后缀。<br>3、使用第三方插件时引入；好多应用都引用了带有文件上传功能的第三方插件，这些插件的文件上传功能实现上可能有漏洞，攻击者可通过这些漏洞进行文件上传攻击。</p>
-<h3 id="0x04、文件上传漏洞挖掘"><a href="#0x04、文件上传漏洞挖掘" class="headerlink" title="0x04、文件上传漏洞挖掘"></a>0x04、文件上传漏洞挖掘</h3><p>1、白盒测试：大部分web应用都是基于框架来写的，上传的话都是调用同一个上传类，而上传函数只用move_uploaded_file()，所以我们在代码审计的时候，最直接快速的方法就是直接搜索move_uploaded_file()函数，再去查看调用此函数进行文件上传的代码是否存在上面所说的漏洞。<br>2、黑盒测试：对一些需要上传文件、图片等地方进行尝试</p>
-<p>经常出现在一些上传文件、头像、图片等验证不严谨的地方。在我们平时的CTF比赛中也是经常遇到的题型。</p>
-<h3 id="0x05、上传绕过方法"><a href="#0x05、上传绕过方法" class="headerlink" title="0x05、上传绕过方法"></a>0x05、上传绕过方法</h3><p>1、前台脚本检测扩展名，比较简单<br>2、Content-Type检测文件类型，修改数据包中文件的Content-Type类型(如改为:image/gif)，使其符合白名单的规则，达到上传的目的<br>3、文件系统00截断，通过抓包截断将【evil.php.jpg】后面的一个【.】换成【0x00】。在上传的时候，当文件系统读到【0x00】时，会认为文件已经结束，从而将【evil.php.jpg】的内容写入到【evil.php】中，从而达到攻击的目的。<br>4、服务器端扩展名检测黑名单，将一句话木马的文件名【evil.php】，改成【evil.php.abc】(奇怪的不被解析的后缀名都行)。首先，服务器验证文件扩展名的时候，验证的是【.abc】，只要该扩展名符合服务器端黑白名单规则，即可上传。另外，当在浏览器端访问该文件时，Apache如果解析不了【.abc】扩展名，会向前寻找可解析的扩展名，即【.php】<br>5、 JS检测上传文件，在本地浏览器客户端禁用JS即可。可使用火狐浏览器的NoScript插件、IE中禁用掉JS等方式实现。<br>6、重写解析规则，<br>在可以上传.htaccess文件时，先上传.htaccess文件，覆盖掉原先的.htaccess文件；再上传【evil.gif】文件。使用如下的.htaccess语句，即可将【evil.gif】文件以php脚本方式解析。</p>
-<pre><code>&lt;FilesMatch &quot;evil.gif&quot;&gt;
-    SetHandler application/x-httpd-php
-&lt;/FilesMatch&gt;
-</code></pre><p>7、后缀名大小写绕过<br>用于只将小写的脚本后缀名(如php)过滤掉的场合；<br>例如:将Burpsuite截获的数据包中的文件名【evil.php】改为【evil.Php】<br>8、双写后缀名绕过<br>用于只将文件后缀名，例如”php”字符串过滤的场合；<br>例如:上传时将Burpsuite截获的数据包中文件名【evil.php】改为【evil.pphphp】，那么过滤了第一个”php”字符串”后，开头的’p’和结尾的’hp’就组合又形成了【php】。<br>9、特殊后缀名绕过<br>用于检测文件合法性的脚本有问题的场合；<br>例如:将Burpsuite截获的数据包中【evil.php】名字改为【evil.php6】，或加个空格改为【evil.php 】等。php3 php4 php5 php7 PHP PHP3 phtml</p>
-<h3 id="0x06、对于上传文件php内容绕过"><a href="#0x06、对于上传文件php内容绕过" class="headerlink" title="0x06、对于上传文件php内容绕过"></a>0x06、对于上传文件php内容绕过</h3><p>1、过滤&lt;?php</p>
-<pre><code>&lt;script language = &quot;php&quot;&gt; @eval($_post[&apos;123&apos;]);&lt;/script&gt;
-</code></pre><p>2、使用require_once()</p>
-<pre><code>&lt;script language=&quot;PHP&quot;&gt;require_once(&quot;$_POST[id]&quot;) ;&lt;/script&gt;
-</code></pre><p>直接进行文件包含，使用php的filter流id=php://filter/convert.base64-encode/resource=../flag.php直接输出<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/47279034.jpg" alt=""><br>3、使用linux命令</p>
-<pre><code>&lt;script language=&quot;PHP&quot;&gt;echo `$_POST[id]` ;&lt;/script&gt;
-反引号`，反引号（``） 执行运算符,PHP 将尝试将反引号中的内容作为外壳命令来执行，并将其输出信息返回
-</code></pre><p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/69798074.jpg" alt=""><br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-11-2/92689014.jpg" alt=""></p>
-<h3 id="0x07、防御方法"><a href="#0x07、防御方法" class="headerlink" title="0x07、防御方法"></a>0x07、防御方法</h3><p>1、使用白名单进行过滤，上传记录上传操作；<br>2、对上传的文件头进行判断，限制上传文件格式 、大小；<br>3、对上传的文件进行重命名操作，图片压缩；<br>4、存储目录与Web应用分离,存储目录无执行权限；</p>
-<p>链接：<a href="https://www.secpulse.com/archives/40617.html" target="_blank" rel="external">https://www.secpulse.com/archives/40617.html</a><br><a href="https://my.oschina.net/yonghan/blog/496483" target="_blank" rel="external">https://my.oschina.net/yonghan/blog/496483</a><br><a href="http://www.2cto.com/article/201308/233831.html" target="_blank" rel="external">http://www.2cto.com/article/201308/233831.html</a></p>
+        <p>　　在渗透测试中，一般在拿下权限之后，一方面搜集本机的信息，包括：IP、口令、令牌等信息；另一方面就是判断内网的存活主机，是否存在域环境，对内网进行下一步的渗透。那么在内网进行端口扫描是必不可少的一部分，虽然有时候在内网进行大批量扫描可能会引发IDS、IPS等设备的告警，这个平时也是需要注意的。这里我们不考虑大流量的这部分，主要讨论在内网中的端口扫描。<a id="more"></a></p>
+<h3 id="0x01-Windows"><a href="#0x01-Windows" class="headerlink" title="0x01 Windows"></a>0x01 Windows</h3><p>　　在内网中，通常用的最多的就是Nmap和Masscan。但是在命令行中，我们使用静默安装方式，安装Nmap和Masscan，这里就不介绍两款工具的使用，网上都有很多的教程，主要讨论命令行下的静默安装两款工具进行扫描。<br><strong>Masscan</strong><br>　　<a href="https://github.com/robertdavidgraham/masscan" target="_blank" rel="external">Masscan</a>，号称3分钟(更快)扫完全网端口，github有linux安装教程，当然我们可以对他进行编译exe，在Windows下就可以运行了。<br>　　Masscan在windows下运行的，需要安装WinPcap，否则会出现下面报错，这里需要我们安装WinPcap。<br><img src="https://i.loli.net/2019/07/08/5d2352037fda578072.png" alt="1.png"><br>　　安装的<a href="https://www.winpcap.org/install/default.htm" target="_blank" rel="external">WinPcap</a>可以在此处下载，这里使用静默安装的方式进行安装，<strong>WinPcap.exe /S</strong><br><img src="https://i.loli.net/2019/07/08/5d2353b4d3d1877997.png" alt="2.png"><br><img src="https://i.loli.net/2019/07/08/5d2353d3b054297877.png" alt="3.png"><br>　　经过上面的一系列操作，masscan已经可以启动运行了，可以对内网进行扫描啦。<br><img src="https://i.loli.net/2019/07/08/5d2353fd0b96a56550.png" alt="4.png"><br>　　这里假设我们进入内网对里面的MS17010进行批量扫描，常用的命令<strong>masscan.exe –p445 10.0.0.0/8 –rate=100000 -oX scan_result.xml</strong>，这里我们输出结果为xml格式，然后使用python脚本对xml文档进行提取，保存为txt和xls。<br><img src="https://i.loli.net/2019/07/08/5d235751df45523270.png" alt="5.png"><br><img src="https://i.loli.net/2019/07/08/5d2357c9d57fc86352.png" alt="6.png"><br>　　对保存好的IP可以进行批量的MS17010扫描和利用，之后就可以进一步利用了。<br><strong>Nmap</strong><br>　　Nmap，日常渗透扫描必备，也可以进行命令行下静默安装，主要参考三好师傅的博客利用方式。Nmap也要在命令行提前安装WinPcap，和上面的安装方式一样，使用<strong>WinPcap.exe /S</strong>命令安装。下载安装好的压缩包，可以直接运行的那种，删除一些不必要的文件，还要添加vs2013的dll：msvcp120.dll和msvcr120.dll(Nmap.exe通过vs2013编译)，精简如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">libeay32.dll</div><div class="line">msvcp120.dll</div><div class="line">msvcr120.dll</div><div class="line">nmap-mac-prefixes</div><div class="line">nmap-os-db</div><div class="line">nmap-payloads</div><div class="line">nmap-services</div><div class="line">nmap.exe</div><div class="line">ssleay32.dll</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/07/08/5d23597e1c02f23296.png" alt="7.png"><br>　　但是精简下来也挺大，需要进行打包压缩，为了避免目标上没有解压软件，这里选择使用自解压模式进行压缩，以后解压就不用压缩工具了。使用sfx格式压缩，打包下来也就6兆左右。<br><img src="https://i.loli.net/2019/07/08/5d235a67dd87e77462.png" alt="8.png"><br>　　直接运行nmap就可以直接解压，可以完美的运行扫描端口啦。<br><img src="https://i.loli.net/2019/07/08/5d235b553b6c097001.png" alt="9.png"><br><strong>Nbtscan</strong><br>　　nbtscan只能用于局域网<br><img src="https://i.loli.net/2019/07/08/5d235d620108e55820.png" alt="11.png"></p>
+<h3 id="0x02-Linux"><a href="#0x02-Linux" class="headerlink" title="0x02 Linux"></a>0x02 Linux</h3><p><strong>Nmap</strong><br>　　Linux下可能有的目标安装有nmap，可以直接利用，没有的话如果出网的话可以在线安装扫描完成之后删除就行。<br><strong>Netcat</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -z -v 192.168.220.128 80-9999      #z代表不交互要不然遇到交互的端口nc会阻塞，v代表打印端口情况不然扫了也没办理出，下来是IP和要扫描的端口</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/07/08/5d235fb30358614449.jpg" alt="1.jpg"><br><strong>Nbtscan</strong><br>　　Nbtscan也有Linux版，也可以对端口扫描。<br><strong>RASscan</strong><br>　　<a href="https://github.com/RASSec/RASscan" target="_blank" rel="external">RASscan</a>，python脚本写的对内网可以进行扫描。<br>参考链接：<br><a href="https://www.4hou.com/penetration/6173.html" target="_blank" rel="external">https://www.4hou.com/penetration/6173.html</a><br><a href="https://www.lz1y.cn/2019/04/30/Windows%E4%B8%8B%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8nmap/index.html" target="_blank" rel="external">https://www.lz1y.cn/2019/04/30/Windows%E4%B8%8B%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8nmap/index.html</a><br><a href="https://3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E5%B9%B3%E5%8F%B0%E8%BF%90%E8%A1%8CMasscan%E5%92%8CNmap/" target="_blank" rel="external">https://3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E5%B9%B3%E5%8F%B0%E8%BF%90%E8%A1%8CMasscan%E5%92%8CNmap/</a></p>
 
       
     </div>
@@ -417,7 +406,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/漏洞/2016/11/02/文件上传.html" title="文件上传">http://yoursite.com/漏洞/2016/11/02/文件上传.html</a>
+    <a href="http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html" title="内网中的端口扫描">http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -434,6 +423,8 @@
           
             <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i> 渗透测试</a>
           
+            <a href="/tags/实战/" rel="tag"><i class="fa fa-tag"></i> 实战</a>
+          
         </div>
       
 
@@ -445,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/CTF/2016/10/29/第七届极客大挑战.html" rel="next" title="第七届极客大挑战">
-                <i class="fa fa-chevron-left"></i> 第七届极客大挑战
+              <a href="/渗透/2019/04/09/一次disable-functions绕过.html" rel="next" title="一次disable_functions绕过">
+                <i class="fa fa-chevron-left"></i> 一次disable_functions绕过
               </a>
             
           </div>
@@ -454,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/代码/2016/11/02/python之数据库编程.html" rel="prev" title="python数据库编程">
-                python数据库编程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,8 +513,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="漏洞/2016/11/02/文件上传.html"
-           data-title="文件上传" data-url="http://yoursite.com/漏洞/2016/11/02/文件上传.html">
+      <div class="ds-thread" data-thread-key="渗透/2019/07/08/内网中的端口扫描.html"
+           data-title="内网中的端口扫描" data-url="http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html">
       </div>
     </div>
 
@@ -717,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01、文件上传"><span class="nav-number">1.</span> <span class="nav-text">0x01、文件上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02、文件上传漏洞的利用方法"><span class="nav-number">2.</span> <span class="nav-text">0x02、文件上传漏洞的利用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03、文件上传漏洞的原因"><span class="nav-number">3.</span> <span class="nav-text">0x03、文件上传漏洞的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04、文件上传漏洞挖掘"><span class="nav-number">4.</span> <span class="nav-text">0x04、文件上传漏洞挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05、上传绕过方法"><span class="nav-number">5.</span> <span class="nav-text">0x05、上传绕过方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06、对于上传文件php内容绕过"><span class="nav-number">6.</span> <span class="nav-text">0x06、对于上传文件php内容绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07、防御方法"><span class="nav-number">7.</span> <span class="nav-text">0x07、防御方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Windows"><span class="nav-number">1.</span> <span class="nav-text">0x01 Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-Linux"><span class="nav-number">2.</span> <span class="nav-text">0x02 Linux</span></a></li></ol></div>
             
 
           </div>
