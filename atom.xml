@@ -4,9 +4,9 @@
   <subtitle>一个小白的独白！</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://zjw.dropsec.xyz/"/>
   <updated>2019-11-29T10:20:28.905Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://zjw.dropsec.xyz/</id>
   
   <author>
     <name>Hello_C</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>test</title>
-    <link href="http://yoursite.com/uncategorized/2019/11/29/test.html"/>
-    <id>http://yoursite.com/uncategorized/2019/11/29/test.html</id>
+    <link href="https://zjw.dropsec.xyz/uncategorized/2019/11/29/test.html"/>
+    <id>https://zjw.dropsec.xyz/uncategorized/2019/11/29/test.html</id>
     <published>2019-11-29T10:20:28.000Z</published>
     <updated>2019-11-29T10:20:28.905Z</updated>
     
@@ -31,8 +31,8 @@
   
   <entry>
     <title>内网中的端口扫描</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2019/07/08/%E5%86%85%E7%BD%91%E4%B8%AD%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F.html"/>
-    <id>http://yoursite.com/渗透/2019/07/08/内网中的端口扫描.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2019/07/08/%E5%86%85%E7%BD%91%E4%B8%AD%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2019/07/08/内网中的端口扫描.html</id>
     <published>2019-07-08T13:42:17.000Z</published>
     <updated>2019-07-08T15:33:06.000Z</updated>
     
@@ -49,19 +49,19 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+      <category term="实战" scheme="https://zjw.dropsec.xyz/tags/%E5%AE%9E%E6%88%98/"/>
     
   </entry>
   
   <entry>
     <title>一次disable_functions绕过</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2019/04/09/%E4%B8%80%E6%AC%A1disable-functions%E7%BB%95%E8%BF%87.html"/>
-    <id>http://yoursite.com/渗透/2019/04/09/一次disable-functions绕过.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2019/04/09/%E4%B8%80%E6%AC%A1disable-functions%E7%BB%95%E8%BF%87.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2019/04/09/一次disable-functions绕过.html</id>
     <published>2019-04-09T13:14:34.000Z</published>
     <updated>2019-04-09T13:27:50.000Z</updated>
     
@@ -79,19 +79,19 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+      <category term="实战" scheme="https://zjw.dropsec.xyz/tags/%E5%AE%9E%E6%88%98/"/>
     
   </entry>
   
   <entry>
     <title>一次曲折的注入</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2019/04/05/%E4%B8%80%E6%AC%A1%E6%9B%B2%E6%8A%98%E7%9A%84%E6%B3%A8%E5%85%A5.html"/>
-    <id>http://yoursite.com/渗透/2019/04/05/一次曲折的注入.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2019/04/05/%E4%B8%80%E6%AC%A1%E6%9B%B2%E6%8A%98%E7%9A%84%E6%B3%A8%E5%85%A5.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2019/04/05/一次曲折的注入.html</id>
     <published>2019-04-05T04:17:08.000Z</published>
     <updated>2019-04-05T04:53:26.000Z</updated>
     
@@ -113,19 +113,19 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+      <category term="实战" scheme="https://zjw.dropsec.xyz/tags/%E5%AE%9E%E6%88%98/"/>
     
   </entry>
   
   <entry>
     <title>科学上网</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2018/07/23/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"/>
-    <id>http://yoursite.com/渗透/2018/07/23/科学上网.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2018/07/23/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2018/07/23/科学上网.html</id>
     <published>2018-07-23T13:19:50.000Z</published>
     <updated>2018-07-23T14:16:58.000Z</updated>
     
@@ -148,17 +148,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Metasploit笔记</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2018/05/10/Metasploit%E7%AC%94%E8%AE%B0.html"/>
-    <id>http://yoursite.com/渗透/2018/05/10/Metasploit笔记.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2018/05/10/Metasploit%E7%AC%94%E8%AE%B0.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2018/05/10/Metasploit笔记.html</id>
     <published>2018-05-10T09:49:38.000Z</published>
     <updated>2018-05-10T10:18:22.000Z</updated>
     
@@ -191,19 +191,19 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="Metasploit" scheme="http://yoursite.com/tags/Metasploit/"/>
+      <category term="Metasploit" scheme="https://zjw.dropsec.xyz/tags/Metasploit/"/>
     
   </entry>
   
   <entry>
     <title>上传绕过WAF的tips大全</title>
-    <link href="http://yoursite.com/CTF/2018/01/14/%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87WAF%E7%9A%84tips%E5%A4%A7%E5%85%A8.html"/>
-    <id>http://yoursite.com/CTF/2018/01/14/上传绕过WAF的tips大全.html</id>
+    <link href="https://zjw.dropsec.xyz/CTF/2018/01/14/%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87WAF%E7%9A%84tips%E5%A4%A7%E5%85%A8.html"/>
+    <id>https://zjw.dropsec.xyz/CTF/2018/01/14/上传绕过WAF的tips大全.html</id>
     <published>2018-01-14T08:51:34.000Z</published>
     <updated>2018-01-14T09:01:10.000Z</updated>
     
@@ -235,19 +235,19 @@
     
     </summary>
     
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/tags/CTF/"/>
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>渗透测试-03权限提升与内网渗透</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/12/28/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-03%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E4%B8%8E%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F.html"/>
-    <id>http://yoursite.com/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/12/28/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-03%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E4%B8%8E%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/12/28/渗透测试-03权限提升与内网渗透.html</id>
     <published>2017-12-28T02:53:13.000Z</published>
     <updated>2018-01-03T13:41:00.000Z</updated>
     
@@ -366,17 +366,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>渗透测试--02漏洞查找与利用</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/12/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-02%E6%BC%8F%E6%B4%9E%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%88%A9%E7%94%A8.html"/>
-    <id>http://yoursite.com/渗透/2017/12/03/渗透测试-02漏洞查找与利用.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/12/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-02%E6%BC%8F%E6%B4%9E%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%88%A9%E7%94%A8.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/12/03/渗透测试-02漏洞查找与利用.html</id>
     <published>2017-12-03T15:14:28.000Z</published>
     <updated>2017-12-04T15:43:16.000Z</updated>
     
@@ -433,17 +433,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Cobalt Strike学习笔记</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/10/27/Cobalt-Strike%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
-    <id>http://yoursite.com/渗透/2017/10/27/Cobalt-Strike学习笔记.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/10/27/Cobalt-Strike%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/10/27/Cobalt-Strike学习笔记.html</id>
     <published>2017-10-27T03:45:22.000Z</published>
     <updated>2017-12-24T09:06:08.000Z</updated>
     
@@ -491,17 +491,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="https://zjw.dropsec.xyz/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title>Linux渗透之OpenSSH后门</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/09/26/Linux%E6%B8%97%E9%80%8F%E4%B9%8BOpenSSH%E5%90%8E%E9%97%A8.html"/>
-    <id>http://yoursite.com/渗透/2017/09/26/Linux渗透之OpenSSH后门.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/09/26/Linux%E6%B8%97%E9%80%8F%E4%B9%8BOpenSSH%E5%90%8E%E9%97%A8.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/09/26/Linux渗透之OpenSSH后门.html</id>
     <published>2017-09-26T12:59:04.000Z</published>
     <updated>2018-01-14T08:55:08.000Z</updated>
     
@@ -536,17 +536,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="后门" scheme="http://yoursite.com/tags/%E5%90%8E%E9%97%A8/"/>
+      <category term="后门" scheme="https://zjw.dropsec.xyz/tags/%E5%90%8E%E9%97%A8/"/>
     
   </entry>
   
   <entry>
     <title>渗透测试--01信息搜集</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/08/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-01%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86.html"/>
-    <id>http://yoursite.com/渗透/2017/08/03/渗透测试-01信息搜集.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/08/03/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-01%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/08/03/渗透测试-01信息搜集.html</id>
     <published>2017-08-03T04:06:17.000Z</published>
     <updated>2017-08-03T08:34:40.000Z</updated>
     
@@ -613,17 +613,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>SQL注入技巧</title>
-    <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2017/07/01/SQL%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7.html"/>
-    <id>http://yoursite.com/漏洞/2017/07/01/SQL注入技巧.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%BC%8F%E6%B4%9E/2017/07/01/SQL%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7.html"/>
+    <id>https://zjw.dropsec.xyz/漏洞/2017/07/01/SQL注入技巧.html</id>
     <published>2017-07-01T13:27:25.000Z</published>
     <updated>2017-08-24T02:31:52.000Z</updated>
     
@@ -775,19 +775,19 @@
     
     </summary>
     
-      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
+      <category term="漏洞" scheme="https://zjw.dropsec.xyz/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="漏洞" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+      <category term="漏洞" scheme="https://zjw.dropsec.xyz/tags/%E6%BC%8F%E6%B4%9E/"/>
     
-      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+      <category term="sql注入" scheme="https://zjw.dropsec.xyz/tags/sql%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
   <entry>
     <title>XXE漏洞攻防</title>
-    <link href="http://yoursite.com/%E6%BC%8F%E6%B4%9E/2017/06/30/XXE%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2.html"/>
-    <id>http://yoursite.com/漏洞/2017/06/30/XXE漏洞攻防.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%BC%8F%E6%B4%9E/2017/06/30/XXE%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2.html"/>
+    <id>https://zjw.dropsec.xyz/漏洞/2017/06/30/XXE漏洞攻防.html</id>
     <published>2017-06-30T02:30:55.000Z</published>
     <updated>2017-07-01T13:31:30.000Z</updated>
     
@@ -864,19 +864,19 @@
     
     </summary>
     
-      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
+      <category term="漏洞" scheme="https://zjw.dropsec.xyz/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="漏洞" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E/"/>
+      <category term="漏洞" scheme="https://zjw.dropsec.xyz/tags/%E6%BC%8F%E6%B4%9E/"/>
     
-      <category term="XXE" scheme="http://yoursite.com/tags/XXE/"/>
+      <category term="XXE" scheme="https://zjw.dropsec.xyz/tags/XXE/"/>
     
   </entry>
   
   <entry>
     <title>[转]黑客入侵应急分析手工排查</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/06/16/%E8%BD%AC-%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5%E5%BA%94%E6%80%A5%E5%88%86%E6%9E%90%E6%89%8B%E5%B7%A5%E6%8E%92%E6%9F%A5.html"/>
-    <id>http://yoursite.com/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/06/16/%E8%BD%AC-%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5%E5%BA%94%E6%80%A5%E5%88%86%E6%9E%90%E6%89%8B%E5%B7%A5%E6%8E%92%E6%9F%A5.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html</id>
     <published>2017-06-16T12:55:01.000Z</published>
     <updated>2017-06-18T02:19:38.000Z</updated>
     
@@ -1032,19 +1032,19 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="应急响应" scheme="http://yoursite.com/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+      <category term="应急响应" scheme="https://zjw.dropsec.xyz/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
     
   </entry>
   
   <entry>
     <title>windows权限提升基础</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/05/19/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%9F%BA%E7%A1%80.html"/>
-    <id>http://yoursite.com/渗透/2017/05/19/windows权限提升基础.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/05/19/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%9F%BA%E7%A1%80.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html</id>
     <published>2017-05-19T13:50:40.000Z</published>
     <updated>2017-05-30T04:40:16.000Z</updated>
     
@@ -1139,17 +1139,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="提权" scheme="http://yoursite.com/tags/%E6%8F%90%E6%9D%83/"/>
+      <category term="提权" scheme="https://zjw.dropsec.xyz/tags/%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
   <entry>
     <title>一次基于Linux的渗透测试</title>
-    <link href="http://yoursite.com/%E6%B8%97%E9%80%8F/2017/05/18/%E4%B8%80%E6%AC%A1%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95.html"/>
-    <id>http://yoursite.com/渗透/2017/05/18/一次基于Linux的渗透测试.html</id>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2017/05/18/%E4%B8%80%E6%AC%A1%E5%9F%BA%E4%BA%8ELinux%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2017/05/18/一次基于Linux的渗透测试.html</id>
     <published>2017-05-18T07:52:39.000Z</published>
     <updated>2017-05-18T08:49:08.000Z</updated>
     
@@ -1198,17 +1198,17 @@
     
     </summary>
     
-      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>CTF常见题型</title>
-    <link href="http://yoursite.com/CTF/2017/04/29/CTF%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B.html"/>
-    <id>http://yoursite.com/CTF/2017/04/29/CTF常见题型.html</id>
+    <link href="https://zjw.dropsec.xyz/CTF/2017/04/29/CTF%E5%B8%B8%E8%A7%81%E9%A2%98%E5%9E%8B.html"/>
+    <id>https://zjw.dropsec.xyz/CTF/2017/04/29/CTF常见题型.html</id>
     <published>2017-04-29T05:11:47.000Z</published>
     <updated>2017-04-29T05:17:18.000Z</updated>
     
@@ -1275,17 +1275,17 @@
     
     </summary>
     
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/tags/CTF/"/>
     
   </entry>
   
   <entry>
     <title>CBC字节翻转攻击</title>
-    <link href="http://yoursite.com/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html"/>
-    <id>http://yoursite.com/CTF/2017/04/24/CBC字节翻转攻击.html</id>
+    <link href="https://zjw.dropsec.xyz/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html"/>
+    <id>https://zjw.dropsec.xyz/CTF/2017/04/24/CBC字节翻转攻击.html</id>
     <published>2017-04-24T01:51:18.000Z</published>
     <updated>2017-06-18T02:19:48.000Z</updated>
     
@@ -1335,19 +1335,19 @@
     
     </summary>
     
-      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/categories/CTF/"/>
     
     
-      <category term="密码学" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/tags/CTF/"/>
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="密码学" scheme="https://zjw.dropsec.xyz/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>PHP伪协议</title>
-    <link href="http://yoursite.com/%E4%BB%A3%E7%A0%81/2017/04/09/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE.html"/>
-    <id>http://yoursite.com/代码/2017/04/09/PHP伪协议.html</id>
+    <link href="https://zjw.dropsec.xyz/%E4%BB%A3%E7%A0%81/2017/04/09/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE.html"/>
+    <id>https://zjw.dropsec.xyz/代码/2017/04/09/PHP伪协议.html</id>
     <published>2017-04-09T04:38:31.000Z</published>
     <updated>2017-04-09T05:25:12.000Z</updated>
     
@@ -1544,10 +1544,10 @@ expect:// — 处理交互式的流
     
     </summary>
     
-      <category term="代码" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81/"/>
+      <category term="代码" scheme="https://zjw.dropsec.xyz/categories/%E4%BB%A3%E7%A0%81/"/>
     
     
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+      <category term="php" scheme="https://zjw.dropsec.xyz/tags/php/"/>
     
   </entry>
   
