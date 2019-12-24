@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zjw.dropsec.xyz/"/>
-  <updated>2019-12-24T13:43:26.711Z</updated>
+  <updated>2019-12-24T14:01:33.414Z</updated>
   <id>https://zjw.dropsec.xyz/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PowerShell之PowerLine.md</title>
-    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2019/12/24/PowerShell%E4%B9%8BPowerLine.html"/>
-    <id>https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html</id>
+    <title>PowerShell之PowerLine</title>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/PowerShell/2019/12/24/PowerShell%E4%B9%8BPowerLine.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/PowerShell/2019/12/24/PowerShell之PowerLine.html</id>
     <published>2019-12-24T13:36:43.000Z</published>
-    <updated>2019-12-24T13:43:26.711Z</updated>
+    <updated>2019-12-24T14:01:33.414Z</updated>
     
     <content type="html"><![CDATA[<p>　　在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。</p>
 <h2 id="0x01-PowerLine"><a href="#0x01-PowerLine" class="headerlink" title="0x01 PowerLine"></a>0x01 PowerLine</h2><p><a href="https://github.com/fullmetalcache/PowerLine" target="_blank" rel="external">下载链接</a><a id="more"></a><br><img src="https://i.loli.net/2019/12/24/3KVLXle27nY8C4j.png" alt="1.png"><br><strong>优点：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1、快速安装、编译、运行，不需要安装Visual Studio PowerShell</div><div class="line">2、对加载的powershell脚本进行编码绕过</div><div class="line">3、执行编译好的exe，脚本在内存中运行</div></pre></td></tr></table></figure></p>
@@ -42,6 +42,8 @@
     </summary>
     
       <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="PowerShell" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/PowerShell/"/>
     
     
       <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
